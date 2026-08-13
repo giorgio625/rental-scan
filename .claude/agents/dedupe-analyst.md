@@ -26,7 +26,7 @@ loudly. Use the script.
    A flat concatenation. No merging of records, no cleanup, no filtering.
 3. Run:
    ```
-   python3 dedupe.py --listings raw/merged-{today}.json --ledger ledger.json
+   python dedupe.py --listings raw/merged-{today}.json --ledger ledger.json
    ```
 4. Save stdout to `raw/classified-{today}.json`.
 5. Return a summary: the counts block, plus anything in
