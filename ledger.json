@@ -1,0 +1,154 @@
+{
+  "listings": {
+    "1444-w-augusta-404": {
+      "address_raw": "1444 W Augusta Blvd, Unit 404",
+      "all_in_monthly": 3900.0,
+      "beds": 2,
+      "first_seen": "2026-08-13",
+      "key": "1444-w-augusta-404",
+      "key_type": "primary",
+      "last_seen": "2026-08-13",
+      "lat": null,
+      "layout": null,
+      "lng": null,
+      "loft_type": null,
+      "price_history": [
+        {
+          "date": "2026-08-13",
+          "rent": 3900
+        }
+      ],
+      "rent_gross": 3900,
+      "sources": [
+        {
+          "source": "web",
+          "url": "https://www.rentcafe.com/apartments/il/chicago/peabody-school-apartments0/default.aspx"
+        }
+      ],
+      "status": "active",
+      "unit": "404",
+      "verdict": null
+    },
+    "1942-w-division-3F": {
+      "address_raw": "1942 W Division St APT 3F, Chicago, IL",
+      "all_in_monthly": 3000.0,
+      "beds": 2,
+      "first_seen": "2026-08-13",
+      "key": "1942-w-division-3F",
+      "key_type": "primary",
+      "last_seen": "2026-08-13",
+      "lat": null,
+      "layout": null,
+      "lng": null,
+      "loft_type": null,
+      "price_history": [
+        {
+          "date": "2026-08-13",
+          "rent": 3000
+        }
+      ],
+      "rent_gross": 3000,
+      "sources": [
+        {
+          "source": "zillow",
+          "url": "https://www.zillow.com/routing/email/property-notifications/zpid_target/2110712217_zpid/X1-SS93sr9vba3j1s0000000000_3tnpj_sse/"
+        }
+      ],
+      "status": "active",
+      "unit": "3F",
+      "verdict": null
+    },
+    "1956-w-ohio-3br-3750": {
+      "address_raw": "1956 W Ohio St #, Chicago, IL 60622",
+      "all_in_monthly": 3750.0,
+      "beds": 3,
+      "first_seen": "2026-08-13",
+      "key": "1956-w-ohio-3br-3750",
+      "key_type": "fallback",
+      "last_seen": "2026-08-13",
+      "lat": null,
+      "layout": null,
+      "lng": null,
+      "loft_type": null,
+      "price_history": [
+        {
+          "date": "2026-08-13",
+          "rent": 3750
+        }
+      ],
+      "rent_gross": 3750,
+      "sources": [
+        {
+          "source": "domu",
+          "url": "http://www.domu.com/chicago/west-side/east-village/1956-w-ohio-st-chicago-il-60622-17"
+        }
+      ],
+      "status": "active",
+      "unit": null,
+      "verdict": null
+    },
+    "2428-w-walton-3": {
+      "address_raw": "2428-30 W. Walton, Unit #3",
+      "all_in_monthly": 2595.0,
+      "beds": 3,
+      "first_seen": "2026-08-13",
+      "key": "2428-w-walton-3",
+      "key_type": "primary",
+      "last_seen": "2026-08-13",
+      "lat": null,
+      "layout": null,
+      "lng": null,
+      "loft_type": "not_loft",
+      "price_history": [
+        {
+          "date": "2026-08-13",
+          "rent": 2595
+        }
+      ],
+      "rent_gross": 2595,
+      "sources": [
+        {
+          "source": "web",
+          "url": "https://www.wickerparkapartments.com/AvailableNow.php/index.php"
+        }
+      ],
+      "status": "active",
+      "unit": "3",
+      "verdict": null
+    },
+    "2465-n-lincoln-T3": {
+      "address_raw": "2465 N Lincoln Ave #T3, Chicago, IL",
+      "all_in_monthly": 3975.0,
+      "beds": 2,
+      "first_seen": "2026-08-13",
+      "key": "2465-n-lincoln-T3",
+      "key_type": "primary",
+      "last_seen": "2026-08-13",
+      "lat": null,
+      "layout": null,
+      "lng": null,
+      "loft_type": null,
+      "price_history": [
+        {
+          "date": "2026-08-13",
+          "rent": 3975
+        }
+      ],
+      "rent_gross": 3975,
+      "sources": [
+        {
+          "source": "zillow",
+          "url": "https://www.zillow.com/routing/email/property-notifications/zpid_target/464518234_zpid/X1-SS93sr9vba3j1s0000000000_3tnpj_sse/"
+        }
+      ],
+      "status": "active",
+      "unit": "T3",
+      "verdict": null
+    }
+  },
+  "meta": {
+    "created": "2026-08-13",
+    "last_output_date": "2026-08-13",
+    "last_run": "2026-08-13"
+  }
+}

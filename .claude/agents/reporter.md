@@ -21,10 +21,26 @@ agent that applies judgment, and the only one whose output is read by a human.
    - Score per §4, including penalties.
    - Flag every §5 trap that applies.
 4. Write `reports/{YYYY-MM-DD}.md` per §9.
-5. Overwrite `active.md` with all live listings scoring 50+, sorted by score.
-   **Preserve my status column** from the previous version — that's my own
-   notes on listings, and regenerating it blank destroys my work.
-6. If zero new, zero price changes, and zero near misses: write nothing.
+5. Maintain `shortlist.json` — the machine-readable state file — then render
+   `active.md` from it.
+   - `shortlist.json` is a JSON array of every live listing scoring 50+.
+     Each entry carries: the canonical key (`_key`), score, tier
+     (priority/worth), zone, and the listing fields the report used
+     (address_raw, unit, beds, baths, sqft, rent_gross, all_in_monthly,
+     cost_assumptions, loft_type, loft_signals, layout, outdoor_space,
+     parking_type, laundry, available_date, lat, lng, _sources, url,
+     first_seen, my_status).
+   - Build it by carrying forward the previous `shortlist.json` (drop any
+     key in `newly_dead`, update any key reappearing today), then adding
+     today's qualifiers. The classified JSON only contains today's changes —
+     the previous shortlist is where continuing listings come from.
+   - Overwrite `active.md` rendered from `shortlist.json`, sorted by score.
+     Include each listing's canonical key in its row. **Preserve my status
+     column** (`my_status`) by matching canonical keys across runs — that's
+     my own notes on listings, and regenerating it blank destroys my work.
+6. If zero new, zero price changes, and zero near misses: write no report.
+   Still refresh `shortlist.json`/`active.md` if `newly_dead` removed
+   anything.
    Exception: if `heartbeat_due` is true in the classified JSON, write a
    one-line file confirming sources are still returning data.
 
