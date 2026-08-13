@@ -48,7 +48,7 @@ anything west of Western.
 
 | Filter | Rule |
 |---|---|
-| All-in monthly rent | > $3,500 |
+| All-in monthly rent | > $3,800 |
 | Bedrooms | Studio, or 3BR+ |
 | Location | Outside boundaries in §2 |
 | **Style** | **Not a loft — see §4a for the qualification test** |
@@ -122,7 +122,7 @@ exposed brick duplex.
 
 ### Expected volume — read this before you get frustrated
 
-Loft + private outdoor space + 1–2BR + under $3,500 all-in, with duplex and
+Loft + private outdoor space + 1–2BR + under $3,800 all-in, with duplex and
 parking weighted heavily on top, is a genuinely narrow intersection. In Wicker
 Park that is likely a **handful of listings per month**, not per day. Most days
 the scan will correctly report nothing.

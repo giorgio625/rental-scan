@@ -65,7 +65,7 @@ ingested: 6      unique_units: 5      possible_duplicates: 1
 | Domu no-unit | Gets fallback key `1547-n-damen-2br-3200`, flagged as possible duplicate | Correct — refuses to guess which unit it is |
 
 That $451 gap between the advertised $3,200 and the real $3,651.67 is the
-entire reason §5 exists. It also pushes the listing over your ceiling.
+entire reason §5 exists. (Under the original $3,500 ceiling it was also a hard reject; at the current $3,800 ceiling it stays in scope.)
 
 ### Then test state transitions
 
@@ -220,7 +220,7 @@ on weekdays anyway. Move to daily after a clean week.
 
 ### Brace for silence
 
-Loft + private outdoor space + 1–2BR + under $3,500 all-in is a narrow
+Loft + private outdoor space + 1–2BR + under $3,800 all-in is a narrow
 intersection. Expect **a handful of listings per month**, not per day. Most
 days the scan correctly reports nothing.
 

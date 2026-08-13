@@ -1,7 +1,7 @@
 ---
 name: inbox-harvester
 description: Extracts rental listing records from Gmail alert emails in the rental-alerts label. Use for the daily Wicker Park rental scan when gathering listings from Zillow, Redfin, Apartments.com, Domu, and Craigslist alert emails. Returns raw JSON only.
-tools: Read, Write, Bash, mcp__gmail__search_threads, mcp__gmail__get_thread
+tools: Read, Write, Bash, mcp__1a070d99-0073-471d-ad05-68475a2bcb81__search_threads, mcp__1a070d99-0073-471d-ad05-68475a2bcb81__get_thread
 model: haiku
 ---
 

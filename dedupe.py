@@ -33,7 +33,7 @@ from pathlib import Path
 # --------------------------------------------------------------------------
 
 DAYS_ABSENT_UNTIL_DEAD = 7
-RENT_CEILING = 3500
+RENT_CEILING = 3800
 RENT_ROUNDING = 50           # fallback key buckets rent to nearest $50
 DUPLICATE_RENT_WINDOW = 50   # same building + within $50 => possible duplicate
 SUSPECT_PRICING_THRESHOLD = 0.80   # >20% below median for its bed count
