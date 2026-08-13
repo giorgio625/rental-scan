@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wicker Park Loft Scan</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --brick:#8a3b2e;
+    --brick-dark:#6e2f24;
+    --ink:#1e1b18;
+    --paper:#f7f3ee;
+    --paper-2:#efe8de;
+    --line:#ddd3c4;
+    --muted:#7a7166;
+    --priority:#8a3b2e;
+    --worth:#b8863f;
+    --near:#8a8578;
+    --green:#4d6a52;
+    --shadow:0 1px 0 rgba(30,27,24,0.06);
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{
+    font-family:'Inter',sans-serif;
+    background:var(--paper);
+    color:var(--ink);
+    height:100vh;
+    overflow:hidden;
+  }
+  .app{display:grid;grid-template-columns:440px 1fr;height:100vh;}
+
+  /* ---------- LEFT PANE ---------- */
+  .listings{
+    display:flex;flex-direction:column;
+    border-right:1px solid var(--line);
+    background:var(--paper);
+    overflow:hidden;
+  }
+  header.top{
+    padding:22px 24px 16px;
+    border-bottom:1px solid var(--line);
+    background:var(--paper);
+  }
+  .brand{
+    font-family:'Fraunces',serif;
+    font-size:22px;
+    font-weight:600;
+    letter-spacing:-0.01em;
+    display:flex;align-items:baseline;gap:8px;
+  }
+  .brand .dot{color:var(--brick);}
+  .subtitle{font-size:12.5px;color:var(--muted);margin-top:4px;letter-spacing:0.01em;}
+  .counts{
+    display:flex;gap:14px;margin-top:14px;font-size:12px;color:var(--muted);
+  }
+  .counts b{color:var(--ink);font-weight:600;}
+  .count-chip{display:flex;align-items:center;gap:5px;}
+  .swatch{width:7px;height:7px;border-radius:2px;}
+
+  .filters{
+    display:flex;gap:8px;padding:12px 24px;border-bottom:1px solid var(--line);
+    overflow-x:auto;
+  }
+  .filter-pill{
+    font-size:12px;padding:6px 12px;border-radius:100px;border:1px solid var(--line);
+    background:#fff;color:var(--muted);white-space:nowrap;cursor:pointer;
+    transition:all .15s ease;
+  }
+  .filter-pill.active{background:var(--ink);color:#fff;border-color:var(--ink);}
+
+  .list-scroll{overflow-y:auto;flex:1;padding:8px 16px 24px;}
+
+  .card{
+    background:#fff;
+    border:1px solid var(--line);
+    border-radius:6px;
+    margin-bottom:12px;
+    padding:16px;
+    cursor:pointer;
+    transition:border-color .15s ease, transform .1s ease;
+    position:relative;
+  }
+  .card:hover{border-color:#c4b8a2;}
+  .card.selected{border-color:var(--brick);box-shadow:0 0 0 1px var(--brick);}
+
+  .card-top{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;}
+  .tier-tag{
+    font-size:10px;font-weight:600;letter-spacing:0.04em;text-transform:uppercase;
+    padding:3px 8px;border-radius:3px;color:#fff;flex-shrink:0;
+  }
+  .tier-priority{background:var(--priority);}
+  .tier-worth{background:var(--worth);}
+  .tier-near{background:var(--near);}
+
+  .score{font-family:'Fraunces',serif;font-size:15px;font-weight:600;color:var(--muted);}
+
+  .address{font-size:15.5px;font-weight:600;margin-top:10px;letter-spacing:-0.005em;}
+  .neighborhood{font-size:12px;color:var(--muted);margin-top:2px;}
+
+  .price-row{display:flex;align-items:baseline;gap:8px;margin-top:10px;}
+  .price{font-family:'Fraunces',serif;font-size:20px;font-weight:600;}
+  .price-note{font-size:11px;color:var(--muted);}
+  .all-in{font-size:11.5px;color:var(--brick-dark);margin-top:2px;}
+
+  .tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px;}
+  .tag{
+    font-size:11px;padding:4px 8px;border-radius:4px;background:var(--paper-2);
+    color:var(--ink);display:flex;align-items:center;gap:4px;
+  }
+  .tag.warn{background:#f5e6d8;color:var(--brick-dark);}
+
+  .card-foot{
+    margin-top:12px;padding-top:10px;border-top:1px solid var(--paper-2);
+    display:flex;justify-content:space-between;align-items:center;
+  }
+  .sources{font-size:10.5px;color:var(--muted);}
+  .loft-sig{font-size:10.5px;color:var(--green);font-style:italic;}
+
+  .avail-row{display:flex;align-items:center;gap:5px;margin-top:8px;font-size:11.5px;color:var(--muted);}
+  .avail-row.unknown{color:#a8917a;}
+  .avail-dot{width:5px;height:5px;border-radius:50%;background:var(--green);flex-shrink:0;}
+  .avail-row.unknown .avail-dot{background:#c99a5f;}
+
+  .card.hidden{display:none;}
+  .empty-state{
+    text-align:center;padding:60px 20px;color:var(--muted);font-size:13px;
+  }
+
+  /* ---------- RIGHT PANE / MAP ---------- */
+  .map-pane{position:relative;}
+  #map{height:100vh;width:100%;background:#e4ddce;}
+
+  .legend{
+    position:absolute;top:20px;right:20px;z-index:1000;
+    background:#fff;border:1px solid var(--line);border-radius:6px;
+    padding:12px 16px;font-size:11.5px;box-shadow:0 2px 8px rgba(30,27,24,0.08);
+  }
+  .legend-row{display:flex;align-items:center;gap:8px;margin-top:6px;}
+  .legend-row:first-child{margin-top:0;}
+  .legend-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0;}
+
+  .zone-note{
+    position:absolute;bottom:20px;left:20px;z-index:1000;
+    background:rgba(255,255,255,0.95);border:1px solid var(--line);border-radius:6px;
+    padding:10px 14px;font-size:11px;color:var(--muted);max-width:260px;
+  }
+
+  /* leaflet pin styling */
+  .pin{
+    width:28px;height:28px;border-radius:50% 50% 50% 0;
+    transform:rotate(-45deg);
+    border:2px solid #fff;
+    display:flex;align-items:center;justify-content:center;
+    box-shadow:0 2px 6px rgba(0,0,0,0.3);
+  }
+  .pin span{transform:rotate(45deg);font-size:10px;font-weight:700;color:#fff;}
+  .pin.priority{background:var(--priority);}
+  .pin.worth{background:var(--worth);}
+  .pin.near{background:var(--near);}
+
+  .leaflet-popup-content-wrapper{border-radius:6px;font-family:'Inter',sans-serif;}
+  .popup-addr{font-weight:600;font-size:13px;}
+  .popup-price{font-family:'Fraunces',serif;font-size:16px;margin-top:4px;}
+  .popup-tags{font-size:11px;color:var(--muted);margin-top:4px;}
+
+  ::-webkit-scrollbar{width:8px;}
+  ::-webkit-scrollbar-thumb{background:var(--line);border-radius:4px;}
+</style>
+</head>
+<body>
+
+<div class="app">
+
+  <div class="listings">
+    <header class="top">
+      <div class="brand">Wicker Park Loft Scan<span class="dot">.</span></div>
+      <div class="subtitle">Live results · 5 new since yesterday</div>
+      <div class="counts">
+        <div class="count-chip"><span class="swatch" style="background:var(--priority)"></span><b>2</b> priority</div>
+        <div class="count-chip"><span class="swatch" style="background:var(--worth)"></span><b>3</b> worth a look</div>
+        <div class="count-chip"><span class="swatch" style="background:var(--near)"></span><b>1</b> near miss</div>
+      </div>
+    </header>
+
+    <div class="filters" id="tierFilters">
+      <div class="filter-pill active" data-tier="all">All (6)</div>
+      <div class="filter-pill" data-tier="priority">Priority (2)</div>
+      <div class="filter-pill" data-tier="worth">Worth a look (3)</div>
+      <div class="filter-pill" data-tier="near">Near miss (1)</div>
+    </div>
+    <div class="filters" id="priceFilters" style="border-bottom:1px solid var(--line);">
+      <div class="filter-pill active" data-price="all">Any price</div>
+      <div class="filter-pill" data-price="low">Under $2,750</div>
+      <div class="filter-pill" data-price="mid">$2,750–$3,250</div>
+      <div class="filter-pill" data-price="high">$3,250+</div>
+    </div>
+
+    <div class="list-scroll" id="listScroll"></div>
+  </div>
+
+  <div class="map-pane">
+    <div id="map"></div>
+    <div class="legend">
+      <div class="legend-row"><div class="legend-dot" style="background:var(--priority)"></div>Priority · 70+</div>
+      <div class="legend-row"><div class="legend-dot" style="background:var(--worth)"></div>Worth a look · 50–69</div>
+      <div class="legend-row"><div class="legend-dot" style="background:var(--near)"></div>Near miss</div>
+    </div>
+    <div class="zone-note">Primary zone: Wicker Park. Secondary: Bucktown, East Village, Lincoln Park (scored −5).</div>
+  </div>
+
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script>
+const listings = [
+  {
+    id:1, tier:'priority', score:86,
+    address:'1547 N Damen Ave, Unit 3W', zone:'Wicker Park',
+    rent:3200, allIn:3652, lat:41.9127, lng:-87.6773,
+    loft:'Hard loft', layout:'Duplex-up', tags:['Private terrace','Parking incl.','In-unit laundry'],
+    warn:'Heat not included — est. +$210/mo',
+    signals:'Exposed brick · timber beams · 13ft ceilings',
+    sources:'Zillow + Redfin', available:'2026-10-01'
+  },
+  {
+    id:2, tier:'priority', score:78,
+    address:'1820 N Milwaukee Ave, Unit 4', zone:'Wicker Park',
+    rent:3050, allIn:3050, lat:41.9151, lng:-87.6816,
+    loft:'Hard loft', layout:'Two-story', tags:['Roof deck','Parking incl.'],
+    warn:null,
+    signals:'Former factory · exposed ductwork · 12ft ceilings',
+    sources:'Domu', available:'2026-09-15'
+  },
+  {
+    id:3, tier:'worth', score:64,
+    address:'2100 W Cortland St, Apt 2', zone:'Bucktown',
+    rent:2650, allIn:2825, lat:41.9159, lng:-87.6764,
+    loft:'Soft loft', layout:'Single floor', tags:['Balcony','Heat incl.'],
+    warn:null,
+    signals:'New construction · open plan · 10ft ceilings',
+    sources:'Craigslist', available:'2026-11-01'
+  },
+  {
+    id:4, tier:'worth', score:58,
+    address:'1435 W Wabansia Ave, Unit 2', zone:'Wicker Park',
+    rent:3300, allIn:3300, lat:41.9142, lng:-87.6689,
+    loft:'Hard loft', layout:'Duplex-up', tags:['Balcony'],
+    warn:'Suspect pricing — 22% below comps',
+    signals:'Exposed brick · concrete columns',
+    sources:'Apartments.com', available:null
+  },
+  {
+    id:5, tier:'worth', score:52,
+    address:'2249 N Clybourn Ave, Unit 5', zone:'Lincoln Park',
+    rent:2950, allIn:3140, lat:41.9236, lng:-87.6754,
+    loft:'Soft loft', layout:'Single floor', tags:['Parking incl.','In-unit laundry'],
+    warn:null,
+    signals:'Open plan · 10ft ceilings · factory windows',
+    sources:'Redfin', available:'2026-12-01'
+  },
+  {
+    id:6, tier:'near', score:44,
+    address:'1955 W North Ave, Unit 1', zone:'Wicker Park',
+    rent:3620, allIn:3780, lat:41.9100, lng:-87.6795,
+    loft:'Hard loft', layout:'Duplex-up', tags:['Roof access'],
+    warn:'Failed hard filter — $280 over ceiling',
+    signals:'Exposed brick · timber beams · 14ft ceilings',
+    sources:'Zillow', available:'2026-10-15'
+  },
+];
+
+const tierColor = {priority:'var(--priority)', worth:'var(--worth)', near:'var(--near)'};
+const tierLabel = {priority:'Priority', worth:'Worth a look', near:'Near miss'};
+
+function formatDate(iso){
+  if(!iso) return null;
+  const d = new Date(iso + 'T00:00:00');
+  return d.toLocaleDateString('en-US', {month:'short', day:'numeric'});
+}
+
+function priceBucket(l){
+  if(l.allIn < 2750) return 'low';
+  if(l.allIn <= 3250) return 'mid';
+  return 'high';
+}
+
+const listScroll = document.getElementById('listScroll');
+listings.forEach(l => {
+  const card = document.createElement('div');
+  card.className = 'card';
+  card.id = 'card-' + l.id;
+  card.dataset.tier = l.tier;
+  card.dataset.price = priceBucket(l);
+  const dateStr = formatDate(l.available);
+  card.innerHTML = `
+    <div class="card-top">
+      <div>
+        <div class="address">${l.address}</div>
+        <div class="neighborhood">${l.zone}</div>
+      </div>
+      <div style="text-align:right">
+        <div class="tier-tag tier-${l.tier}">${tierLabel[l.tier]}</div>
+        <div class="score">${l.score}</div>
+      </div>
+    </div>
+    <div class="price-row">
+      <div class="price">$${l.rent.toLocaleString()}</div>
+      <div class="price-note">/mo</div>
+    </div>
+    ${l.allIn !== l.rent ? `<div class="all-in">All-in: $${l.allIn.toLocaleString()}/mo</div>` : ''}
+    <div class="avail-row ${dateStr ? '' : 'unknown'}">
+      <div class="avail-dot"></div>
+      ${dateStr ? `Available ${dateStr}` : 'Move-in date not listed'}
+    </div>
+    <div class="tags">
+      <span class="tag">${l.loft}</span>
+      <span class="tag">${l.layout}</span>
+      ${l.tags.map(t => `<span class="tag">${t}</span>`).join('')}
+      ${l.warn ? `<span class="tag warn">⚠ ${l.warn}</span>` : ''}
+    </div>
+    <div class="card-foot">
+      <div class="sources">${l.sources}</div>
+      <div class="loft-sig">${l.signals}</div>
+    </div>
+  `;
+  card.addEventListener('click', () => selectListing(l.id));
+  listScroll.appendChild(card);
+});
+
+const filterState = {tier:'all', price:'all'};
+
+function applyFilters(){
+  let visibleCount = 0;
+  listings.forEach(l => {
+    const card = document.getElementById('card-' + l.id);
+    const tierMatch = filterState.tier === 'all' || l.tier === filterState.tier;
+    const priceMatch = filterState.price === 'all' || priceBucket(l) === filterState.price;
+    const visible = tierMatch && priceMatch;
+    card.classList.toggle('hidden', !visible);
+    if(markers[l.id]){
+      if(visible){ if(!map.hasLayer(markers[l.id])) markers[l.id].addTo(map); }
+      else { if(map.hasLayer(markers[l.id])) map.removeLayer(markers[l.id]); }
+    }
+    if(visible) visibleCount++;
+  });
+  let empty = document.getElementById('emptyState');
+  if(visibleCount === 0){
+    if(!empty){
+      empty = document.createElement('div');
+      empty.id = 'emptyState';
+      empty.className = 'empty-state';
+      empty.textContent = 'Nothing matches these filters.';
+      listScroll.appendChild(empty);
+    }
+  } else if(empty){
+    empty.remove();
+  }
+}
+
+document.getElementById('tierFilters').addEventListener('click', e => {
+  const pill = e.target.closest('.filter-pill');
+  if(!pill) return;
+  document.querySelectorAll('#tierFilters .filter-pill').forEach(p => p.classList.remove('active'));
+  pill.classList.add('active');
+  filterState.tier = pill.dataset.tier;
+  applyFilters();
+});
+
+document.getElementById('priceFilters').addEventListener('click', e => {
+  const pill = e.target.closest('.filter-pill');
+  if(!pill) return;
+  document.querySelectorAll('#priceFilters .filter-pill').forEach(p => p.classList.remove('active'));
+  pill.classList.add('active');
+  filterState.price = pill.dataset.price;
+  applyFilters();
+});
+
+const map = L.map('map', {zoomControl:false}).setView([41.9145, -87.6770], 14.3);
+L.control.zoom({position:'bottomright'}).addTo(map);
+L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
+  attribution:'&copy; OpenStreetMap contributors &copy; CARTO',
+  subdomains:'abcd', maxZoom:19
+}).addTo(map);
+
+const markers = {};
+listings.forEach(l => {
+  const icon = L.divIcon({
+    className:'', html:`<div class="pin ${l.tier}"><span>${l.score}</span></div>`,
+    iconSize:[28,28], iconAnchor:[14,28]
+  });
+  const marker = L.marker([l.lat, l.lng], {icon}).addTo(map);
+  const popupDate = formatDate(l.available);
+  marker.bindPopup(`
+    <div class="popup-addr">${l.address}</div>
+    <div class="popup-price">$${l.rent.toLocaleString()}/mo</div>
+    <div class="popup-tags">${l.loft} · ${l.layout} · ${l.zone}</div>
+    <div class="popup-tags">${popupDate ? 'Available ' + popupDate : 'Move-in date not listed'}</div>
+  `);
+  marker.on('click', () => selectListing(l.id));
+  markers[l.id] = marker;
+});
+
+function selectListing(id){
+  document.querySelectorAll('.card').forEach(c => c.classList.remove('selected'));
+  const card = document.getElementById('card-' + id);
+  card.classList.add('selected');
+  card.scrollIntoView({behavior:'smooth', block:'nearest'});
+  const l = listings.find(x => x.id === id);
+  map.flyTo([l.lat, l.lng], 16, {duration:0.6});
+  markers[id].openPopup();
+}
+</script>
+
+</body>
+</html>
