@@ -29,7 +29,7 @@ agent that applies judgment, and the only one whose output is read by a human.
      (address_raw, unit, beds, baths, sqft, rent_gross, all_in_monthly,
      cost_assumptions, loft_type, loft_signals, layout, outdoor_space,
      parking_type, laundry, available_date, lat, lng, _sources, url,
-     first_seen, my_status).
+     first_seen, my_status) (lat/lng joined from ledger.json by canonical key).
    - Build it by carrying forward the previous `shortlist.json` (drop any
      key in `newly_dead`, update any key reappearing today), then adding
      today's qualifiers. The classified JSON only contains today's changes —
@@ -38,6 +38,16 @@ agent that applies judgment, and the only one whose output is read by a human.
      Include each listing's canonical key in its row. **Preserve my status
      column** (`my_status`) by matching canonical keys across runs — that's
      my own notes on listings, and regenerating it blank destroys my work.
+5b. Write `docs/index.html`: read `mockup.html` as the template and replace
+    ONLY the hardcoded `const listings = [...]` array with real data —
+    layout, styles, and filter logic are confirmed, never touch them.
+    Entries: everything in `shortlist.json` (tier `priority` ≥70 / `worth`
+    50–69) plus today's near-misses (tier `near`), mapped per
+    HTML-TOOL-SPEC.md §3's field table. `lat`/`lng` come from `ledger.json`
+    (the geocoder's cache), joined on canonical key — leave them null when
+    uncached and the page omits the pin. `sources` is an array of
+    {label, url} rendered as links. `available` passes through as-is —
+    a missing move-in date renders "not listed", never a guess.
 6. If zero new, zero price changes, and zero near misses: write no report.
    Still refresh `shortlist.json`/`active.md` if `newly_dead` removed
    anything.

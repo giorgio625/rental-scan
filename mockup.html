@@ -181,17 +181,17 @@
       <div class="brand">Wicker Park Loft Scan<span class="dot">.</span></div>
       <div class="subtitle">Live results · 5 new since yesterday</div>
       <div class="counts">
-        <div class="count-chip"><span class="swatch" style="background:var(--priority)"></span><b>2</b> priority</div>
-        <div class="count-chip"><span class="swatch" style="background:var(--worth)"></span><b>3</b> worth a look</div>
-        <div class="count-chip"><span class="swatch" style="background:var(--near)"></span><b>1</b> near miss</div>
+        <div class="count-chip"><span class="swatch" style="background:var(--priority)"></span><b id="countPriority">0</b> priority</div>
+        <div class="count-chip"><span class="swatch" style="background:var(--worth)"></span><b id="countWorth">0</b> worth a look</div>
+        <div class="count-chip"><span class="swatch" style="background:var(--near)"></span><b id="countNear">0</b> near miss</div>
       </div>
     </header>
 
     <div class="filters" id="tierFilters">
-      <div class="filter-pill active" data-tier="all">All (6)</div>
-      <div class="filter-pill" data-tier="priority">Priority (2)</div>
-      <div class="filter-pill" data-tier="worth">Worth a look (3)</div>
-      <div class="filter-pill" data-tier="near">Near miss (1)</div>
+      <div class="filter-pill active" data-tier="all">All</div>
+      <div class="filter-pill" data-tier="priority">Priority</div>
+      <div class="filter-pill" data-tier="worth">Worth a look</div>
+      <div class="filter-pill" data-tier="near">Near miss</div>
     </div>
     <div class="filters" id="priceFilters" style="border-bottom:1px solid var(--line);">
       <div class="filter-pill active" data-price="all">Any price</div>
@@ -287,6 +287,19 @@ const listings = [
 
 const tierColor = {priority:'var(--priority)', worth:'var(--worth)', near:'var(--near)'};
 const tierLabel = {priority:'Priority', worth:'Worth a look', near:'Near miss'};
+
+// Totals, not filtered counts — computed once from `listings` and left alone
+// after that, so this file only ever needs its listings array replaced.
+const tierCounts = {all: listings.length, priority:0, worth:0, near:0};
+listings.forEach(l => tierCounts[l.tier]++);
+document.getElementById('countPriority').textContent = tierCounts.priority;
+document.getElementById('countWorth').textContent = tierCounts.worth;
+document.getElementById('countNear').textContent = tierCounts.near;
+document.querySelectorAll('#tierFilters .filter-pill').forEach(pill => {
+  const t = pill.dataset.tier;
+  const label = t === 'all' ? 'All' : tierLabel[t];
+  pill.textContent = `${label} (${tierCounts[t]})`;
+});
 
 function formatDate(iso){
   if(!iso) return null;
