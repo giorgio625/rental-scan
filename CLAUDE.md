@@ -25,10 +25,13 @@ working — which is the whole reason it's split into four agents.
 2. Then `dedupe-analyst` — merges the raw files, runs `dedupe.py`, updates
    `ledger.json`.
 
-3. Then `reporter` — applies §4a and §4, writes `reports/{date}.md` and
+3. Then `geocoder` — fills cached `lat`/`lng` in `ledger.json` for any new
+   canonical keys (Nominatim, 1 req/sec, cache-first).
+
+4. Then `reporter` — applies §4a and §4, writes `reports/{date}.md` and
    `active.md`.
 
-4. Commit: `git add -A && git commit -m "scan {date}"`
+5. Commit: `git add -A && git commit -m "scan {date}"`
 
 `ledger.json` is the only irreplaceable artifact here. Weeks of alert emails
 cannot be re-collected, so commit every run — a bad run then costs a
@@ -36,7 +39,7 @@ cannot be re-collected, so commit every run — a bad run then costs a
 
 ## Sequencing
 
-Steps 2 and 3 are strictly serial and depend on the prior step's output file.
+Steps 2–4 are strictly serial and depend on the prior step's output file.
 Only step 1 parallelizes.
 
 If a harvester fails, continue with whatever the other returned and note the

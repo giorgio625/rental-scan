@@ -220,7 +220,7 @@ on weekdays anyway. Move to daily after a clean week.
 
 ### Brace for silence
 
-Loft + private outdoor space + 1–2BR + under $3,800 all-in is a narrow
+Loft + 1–2BR + under $3,800 all-in is a narrow
 intersection. Expect **a handful of listings per month**, not per day. Most
 days the scan correctly reports nothing.
 

@@ -3,7 +3,7 @@
 This file is the single source of truth for the daily scan. All four agents read it.
 Edit this file rather than editing agent prompts.
 
-**Last updated:** 2026-08-12
+**Last updated:** 2026-08-13
 
 ---
 
@@ -52,7 +52,6 @@ anything west of Western.
 | Bedrooms | Studio, or 3BR+ |
 | Location | Outside boundaries in §2 |
 | **Style** | **Not a loft — see §4a for the qualification test** |
-| **Outdoor space** | **No private balcony, deck, patio, or terrace** |
 | Availability | Move-in date before 2026-09-15 or after 2026-12-31 *(CONFIRM)* |
 | Lease term | Under 12 months |
 | Duplicate | Canonical key already in `ledger.json` (see §6) |
@@ -62,6 +61,11 @@ garage or pad spot separately, usually within a block or two, for $150–250/mo.
 Killing an otherwise-perfect loft over parking would be a mistake. It carries
 heavy scoring weight instead, and the reporter flags nearby separate-lease
 options when a listing has none.
+
+**Outdoor space is NOT a hard filter either** (changed 2026-08-13). Units with
+no private outdoor space — or none stated — stay in scope. It carries 12
+points of §4 scoring weight, and the HTML report has an outdoor-space filter
+to slice the shortlist either way on demand.
 
 **All-in monthly rent** = base rent + parking + mandatory building/amenity fees
 + heat, if not included. Amortize one-time fees (move-in fee, broker fee) over
@@ -76,7 +80,7 @@ options when a listing has none.
 | Loft authenticity | 20 | Hard loft = 20; soft loft = 10. See §4a |
 | Duplex / two floors | 18 | Duplex-up = 18; two-story = 15; duplex-down = 8 |
 | Parking | 14 | Included garage = 14; deeded/paid on site = 9; separate lease nearby = 5; street only = 0 |
-| Outdoor space quality | 12 | Private roof deck = 12; large terrace/deck = 10; balcony = 7 |
+| Outdoor space quality | 12 | Private roof deck = 12; large terrace/deck = 10; balcony = 7; shared or none = 0 |
 | Transit access | 10 | Walk time to Damen, Division, or Western Blue Line |
 | Value vs. comps | 10 | $/sqft against the running median in `ledger.json` |
 | In-unit laundry | 8 | In-building shared = 3; none = 0 |
@@ -122,8 +126,8 @@ exposed brick duplex.
 
 ### Expected volume — read this before you get frustrated
 
-Loft + private outdoor space + 1–2BR + under $3,800 all-in, with duplex and
-parking weighted heavily on top, is a genuinely narrow intersection. In Wicker
+Loft + 1–2BR + under $3,800 all-in, with outdoor space, duplex, and parking
+weighted heavily on top, is a genuinely narrow intersection. In Wicker
 Park that is likely a **handful of listings per month**, not per day. Most days
 the scan will correctly report nothing.
 
@@ -166,7 +170,8 @@ agent must call each one out explicitly when present.
   Duplex-down units are typically half below grade — scored much lower.
 - **Balcony vs. "outdoor space."** Shared roof access, a common courtyard, and
   a fire escape all get described as outdoor space. Only private, unit-exclusive
-  space satisfies the §3 hard filter. Mark shared-only as `shared` and reject.
+  space earns §4 outdoor points. Mark shared-only as `shared` — it scores 0,
+  same as none.
 - **Loft heating and cooling.** High ceilings and single-pane factory windows
   make winter heat bills materially higher than the neighborhood norm. If heat
   is tenant-paid in a hard loft, budget toward the top of the $120–200/mo range
@@ -290,8 +295,7 @@ sender-domain filter as the other four)
 3. **Worth a look (50–69)** — one line each: address, beds, all-in, score, link
 4. **Near misses** — listings failing exactly one hard filter, capped at 5 per
    run, each labeled with which filter it failed. Rent over ceiling by less than
-   10%, or a strong hard loft with no private outdoor space, belongs here rather
-   than in the void.
+   10% is the classic case.
 5. **Price changes** — address, old → new, days on market
 6. **Possible duplicates** — needing my resolution
 7. **Sources that returned zero** — canary for a broken parser

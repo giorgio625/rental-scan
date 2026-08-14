@@ -197,6 +197,11 @@
       <div class="filter-pill" data-price="mid">$2,750–$3,250</div>
       <div class="filter-pill" data-price="high">$3,250+</div>
     </div>
+    <div class="filters" id="outdoorFilters" style="border-bottom:1px solid var(--line);">
+      <div class="filter-pill active" data-outdoor="all">Outdoor: any</div>
+      <div class="filter-pill" data-outdoor="private">Private outdoor</div>
+      <div class="filter-pill" data-outdoor="other">None / unknown</div>
+    </div>
 
     <div class="list-scroll" id="listScroll"></div>
   </div>
@@ -223,7 +228,7 @@ const listings = [
     loft:'Hard loft', layout:'Duplex-up', tags:['Private terrace','Parking incl.','In-unit laundry'],
     warn:'Heat not included — est. +$210/mo',
     signals:'Exposed brick · timber beams · 13ft ceilings',
-    sources:'Zillow + Redfin', available:'2026-10-01'
+    sources:'Zillow + Redfin', available:'2026-10-01', outdoor:'private'
   },
   {
     id:2, tier:'priority', score:78,
@@ -232,7 +237,7 @@ const listings = [
     loft:'Hard loft', layout:'Two-story', tags:['Roof deck','Parking incl.'],
     warn:null,
     signals:'Former factory · exposed ductwork · 12ft ceilings',
-    sources:'Domu', available:'2026-09-15'
+    sources:'Domu', available:'2026-09-15', outdoor:'private'
   },
   {
     id:3, tier:'worth', score:64,
@@ -241,7 +246,7 @@ const listings = [
     loft:'Soft loft', layout:'Single floor', tags:['Balcony','Heat incl.'],
     warn:null,
     signals:'New construction · open plan · 10ft ceilings',
-    sources:'Craigslist', available:'2026-11-01'
+    sources:'Craigslist', available:'2026-11-01', outdoor:'private'
   },
   {
     id:4, tier:'worth', score:58,
@@ -250,7 +255,7 @@ const listings = [
     loft:'Hard loft', layout:'Duplex-up', tags:['Balcony'],
     warn:'Suspect pricing — 22% below comps',
     signals:'Exposed brick · concrete columns',
-    sources:'Apartments.com', available:null
+    sources:'Apartments.com', available:null, outdoor:'private'
   },
   {
     id:5, tier:'worth', score:52,
@@ -259,7 +264,7 @@ const listings = [
     loft:'Soft loft', layout:'Single floor', tags:['Parking incl.','In-unit laundry'],
     warn:null,
     signals:'Open plan · 10ft ceilings · factory windows',
-    sources:'Redfin', available:'2026-12-01'
+    sources:'Redfin', available:'2026-12-01', outdoor:'other'
   },
   {
     id:6, tier:'near', score:44,
@@ -268,7 +273,7 @@ const listings = [
     loft:'Hard loft', layout:'Duplex-up', tags:['Roof access'],
     warn:'Failed hard filter — $280 over ceiling',
     signals:'Exposed brick · timber beams · 14ft ceilings',
-    sources:'Zillow', available:'2026-10-15'
+    sources:'Zillow', available:'2026-10-15', outdoor:'other'
   },
 ];
 
@@ -294,6 +299,7 @@ listings.forEach(l => {
   card.id = 'card-' + l.id;
   card.dataset.tier = l.tier;
   card.dataset.price = priceBucket(l);
+  card.dataset.outdoor = l.outdoor;
   const dateStr = formatDate(l.available);
   card.innerHTML = `
     <div class="card-top">
@@ -330,7 +336,7 @@ listings.forEach(l => {
   listScroll.appendChild(card);
 });
 
-const filterState = {tier:'all', price:'all'};
+const filterState = {tier:'all', price:'all', outdoor:'all'};
 
 function applyFilters(){
   let visibleCount = 0;
@@ -338,7 +344,8 @@ function applyFilters(){
     const card = document.getElementById('card-' + l.id);
     const tierMatch = filterState.tier === 'all' || l.tier === filterState.tier;
     const priceMatch = filterState.price === 'all' || priceBucket(l) === filterState.price;
-    const visible = tierMatch && priceMatch;
+    const outdoorMatch = filterState.outdoor === 'all' || l.outdoor === filterState.outdoor;
+    const visible = tierMatch && priceMatch && outdoorMatch;
     card.classList.toggle('hidden', !visible);
     if(markers[l.id]){
       if(visible){ if(!map.hasLayer(markers[l.id])) markers[l.id].addTo(map); }
@@ -375,6 +382,15 @@ document.getElementById('priceFilters').addEventListener('click', e => {
   document.querySelectorAll('#priceFilters .filter-pill').forEach(p => p.classList.remove('active'));
   pill.classList.add('active');
   filterState.price = pill.dataset.price;
+  applyFilters();
+});
+
+document.getElementById('outdoorFilters').addEventListener('click', e => {
+  const pill = e.target.closest('.filter-pill');
+  if(!pill) return;
+  document.querySelectorAll('#outdoorFilters .filter-pill').forEach(p => p.classList.remove('active'));
+  pill.classList.add('active');
+  filterState.outdoor = pill.dataset.outdoor;
   applyFilters();
 });
 

@@ -2,8 +2,8 @@
 
 Adds a visual, filterable Zillow-style report alongside the existing markdown
 digest. Confirmed direction: `mockup.html` in this folder (card list + map,
-warm/brick palette, functional price and tier filters, move-in date shown
-per listing, honest "not listed" state when a date is missing).
+warm/brick palette, functional price, tier, and outdoor-space filters, move-in
+date shown per listing, honest "not listed" state when a date is missing).
 
 This is an ADDITION to the existing pipeline, not a replacement. The
 markdown report and `active.md` keep working as-is.
@@ -75,6 +75,7 @@ hardcoded JS. The real version needs this array generated from
 | `rent` | `rent_gross` | |
 | `allIn` | `all_in_monthly` | from `dedupe.py` |
 | `lat` / `lng` | from ledger, via `geocoder` | omit marker if null |
+| `outdoor` | `outdoor_space` | `private_roof`/`private_terrace`/`balcony` → `private`; `shared`/`none`/`null` → `other` |
 | `loft` | `loft_type`, mapped to "Hard loft"/"Soft loft" | |
 | `layout` | `layout` | |
 | `tags` | derived from `parking_type`, `laundry`, `outdoor_space` | |
