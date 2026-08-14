@@ -16,9 +16,12 @@ already cached, and you never guess a coordinate.
 2. Read `ledger.json`. For each collected key: if that ledger record already
    has non-null `lat`/`lng`, skip it. This cache check is the whole point —
    a unit is geocoded once in its lifetime, not once per run.
-3. For each remaining listing, query Nominatim with the listing's
-   `address_raw` (append ", Chicago, IL" if no city present):
-   `https://nominatim.openstreetmap.org/search?q={URL-encoded address}&format=json&limit=1`
+3. Build the query from the BUILDING, not the unit — Nominatim doesn't know
+   apartment numbers and a unit in the query sinks the match. Use
+   `street_number` + directional + `street_name` (fall back to `address_raw`
+   with any unit/apt/# part stripped), then ", Chicago, IL". Collapse ranged
+   numbers to their first value ("2428-30" → "2428").
+   `https://nominatim.openstreetmap.org/search?q={URL-encoded query}&format=json&limit=1`
    **Max 1 request per second — space requests out, never parallel.** This
    is Nominatim's usage policy, non-negotiable.
 4. Sanity-check every result: Chicago sits roughly at lat 41.6–42.1,

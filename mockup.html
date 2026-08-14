@@ -116,7 +116,9 @@
     margin-top:12px;padding-top:10px;border-top:1px solid var(--paper-2);
     display:flex;justify-content:space-between;align-items:center;
   }
-  .sources{font-size:10.5px;color:var(--muted);}
+  .sources{font-size:10.5px;color:var(--muted);display:flex;gap:8px;}
+  .source-link{color:var(--brick-dark);text-decoration:none;}
+  .source-link:hover{text-decoration:underline;}
   .loft-sig{font-size:10.5px;color:var(--green);font-style:italic;}
 
   .avail-row{display:flex;align-items:center;gap:5px;margin-top:8px;font-size:11.5px;color:var(--muted);}
@@ -228,7 +230,8 @@ const listings = [
     loft:'Hard loft', layout:'Duplex-up', tags:['Private terrace','Parking incl.','In-unit laundry'],
     warn:'Heat not included — est. +$210/mo',
     signals:'Exposed brick · timber beams · 13ft ceilings',
-    sources:'Zillow + Redfin', available:'2026-10-01', outdoor:'private'
+    sources:[{label:'Zillow', url:'https://www.zillow.com/example/1547-n-damen-3w'}, {label:'Redfin', url:'https://www.redfin.com/example/1547-n-damen-3w'}],
+    available:'2026-10-01', outdoor:'private'
   },
   {
     id:2, tier:'priority', score:78,
@@ -237,7 +240,8 @@ const listings = [
     loft:'Hard loft', layout:'Two-story', tags:['Roof deck','Parking incl.'],
     warn:null,
     signals:'Former factory · exposed ductwork · 12ft ceilings',
-    sources:'Domu', available:'2026-09-15', outdoor:'private'
+    sources:[{label:'Domu', url:'https://www.domu.com/example/1820-n-milwaukee-4'}],
+    available:'2026-09-15', outdoor:'private'
   },
   {
     id:3, tier:'worth', score:64,
@@ -246,7 +250,8 @@ const listings = [
     loft:'Soft loft', layout:'Single floor', tags:['Balcony','Heat incl.'],
     warn:null,
     signals:'New construction · open plan · 10ft ceilings',
-    sources:'Craigslist', available:'2026-11-01', outdoor:'private'
+    sources:[{label:'Craigslist', url:'https://chicago.craigslist.org/example/2100-w-cortland-2'}],
+    available:'2026-11-01', outdoor:'private'
   },
   {
     id:4, tier:'worth', score:58,
@@ -255,7 +260,8 @@ const listings = [
     loft:'Hard loft', layout:'Duplex-up', tags:['Balcony'],
     warn:'Suspect pricing — 22% below comps',
     signals:'Exposed brick · concrete columns',
-    sources:'Apartments.com', available:null, outdoor:'private'
+    sources:[{label:'Apartments.com', url:'https://www.apartments.com/example/1435-w-wabansia-2'}],
+    available:null, outdoor:'private'
   },
   {
     id:5, tier:'worth', score:52,
@@ -264,7 +270,8 @@ const listings = [
     loft:'Soft loft', layout:'Single floor', tags:['Parking incl.','In-unit laundry'],
     warn:null,
     signals:'Open plan · 10ft ceilings · factory windows',
-    sources:'Redfin', available:'2026-12-01', outdoor:'other'
+    sources:[{label:'Redfin', url:'https://www.redfin.com/example/2249-n-clybourn-5'}],
+    available:'2026-12-01', outdoor:'other'
   },
   {
     id:6, tier:'near', score:44,
@@ -273,7 +280,8 @@ const listings = [
     loft:'Hard loft', layout:'Duplex-up', tags:['Roof access'],
     warn:'Failed hard filter — $280 over ceiling',
     signals:'Exposed brick · timber beams · 14ft ceilings',
-    sources:'Zillow', available:'2026-10-15', outdoor:'other'
+    sources:[{label:'Zillow', url:'https://www.zillow.com/example/1955-w-north-1'}],
+    available:'2026-10-15', outdoor:'other'
   },
 ];
 
@@ -328,7 +336,7 @@ listings.forEach(l => {
       ${l.warn ? `<span class="tag warn">⚠ ${l.warn}</span>` : ''}
     </div>
     <div class="card-foot">
-      <div class="sources">${l.sources}</div>
+      <div class="sources">${l.sources.map(s => `<a class="source-link" href="${s.url}" target="_blank" rel="noopener" onclick="event.stopPropagation()">${s.label}</a>`).join('')}</div>
       <div class="loft-sig">${l.signals}</div>
     </div>
   `;
@@ -414,6 +422,7 @@ listings.forEach(l => {
     <div class="popup-price">$${l.rent.toLocaleString()}/mo</div>
     <div class="popup-tags">${l.loft} · ${l.layout} · ${l.zone}</div>
     <div class="popup-tags">${popupDate ? 'Available ' + popupDate : 'Move-in date not listed'}</div>
+    <div class="popup-tags">${l.sources.map(s => `<a class="source-link" href="${s.url}" target="_blank" rel="noopener">${s.label}</a>`).join(' · ')}</div>
   `);
   marker.on('click', () => selectListing(l.id));
   markers[l.id] = marker;

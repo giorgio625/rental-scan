@@ -81,7 +81,7 @@ hardcoded JS. The real version needs this array generated from
 | `tags` | derived from `parking_type`, `laundry`, `outdoor_space` | |
 | `warn` | `cost_assumptions` + `suspect_pricing` + near-miss reason | |
 | `signals` | `loft_signals`, joined | |
-| `sources` | `_sources`, joined | |
+| `sources` | `_sources` | array of {label: source name, url: listing url}, rendered as links on card and popup |
 | `available` | `available_date` | pass through as-is, including `null` |
 
 **Regeneration, not append:** `docs/index.html` is fully overwritten each
