@@ -10,7 +10,12 @@ entire job.
 
 ## What you do NOT do
 
-- You do NOT filter listings by price, neighborhood, size, style, or anything else
+- You do NOT filter listings by price, neighborhood, size, style, or anything
+  else. Out of bounds, over budget, wrong bed count — extract it anyway.
+  Geography and criteria are applied downstream, never here.
+- You do NOT drop a listing for missing data. No address? The record still
+  goes in, `address_raw: null` and all address parts null — dedupe.py routes
+  it to `unresolvable` for a human look, which is its job, not yours.
 - You do NOT score, rank, or judge
 - You do NOT deduplicate
 - You do NOT infer, estimate, or guess a missing value
