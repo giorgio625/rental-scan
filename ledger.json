@@ -29,6 +29,209 @@
       "unit": "404",
       "verdict": null
     },
+    "1513-n-milwaukee-2br-4000": {
+      "address_raw": "1513 N Milwaukee Ave, Chicago, IL",
+      "all_in_monthly": 4000.0,
+      "beds": 2,
+      "first_seen": "2026-08-13",
+      "key": "1513-n-milwaukee-2br-4000",
+      "key_type": "fallback",
+      "last_seen": "2026-08-13",
+      "lat": null,
+      "layout": null,
+      "lng": null,
+      "loft_type": null,
+      "price_history": [
+        {
+          "date": "2026-08-13",
+          "rent": 4000
+        }
+      ],
+      "rent_gross": 4000,
+      "sources": [
+        {
+          "source": "zillow",
+          "url": "https://click.mail.zillow.com/f/a/IE0a19NcYXdPDaV7YyfZjw~~/AAAAARA~/eYdn5CBYmeVxLvfs4TYTe6ezpP-WlG6NhWB037aX_gcV8OkdLPjSxp6bhDXpdzZqd1fzXXUtp4Ivqw7Mwiqcmg~~?target=https%3A%2F%2Fwww.zillow.com%2Frouting%2Femail%2Fproperty-notifications%2Fzpid_target%2F80729578_zpid%2FX1-SS93sr9vba3j1s0000000000_3tnpj_sse%2F"
+        }
+      ],
+      "status": "active",
+      "unit": null,
+      "verdict": null
+    },
+    "1557-n-honore-G": {
+      "address_raw": "1557 N Honore St Unit G, Chicago, IL",
+      "all_in_monthly": 2500.0,
+      "beds": 2,
+      "first_seen": "2026-08-13",
+      "key": "1557-n-honore-G",
+      "key_type": "primary",
+      "last_seen": "2026-08-13",
+      "lat": null,
+      "layout": null,
+      "lng": null,
+      "loft_type": null,
+      "price_history": [
+        {
+          "date": "2026-08-13",
+          "rent": 2500
+        }
+      ],
+      "rent_gross": 2500,
+      "sources": [
+        {
+          "source": "zillow",
+          "url": "https://click.mail.zillow.com/f/a/e0XW2cVSutkVUTCWG0b0bQ~~/AAAAARA~/ukgtX-AI2jO462OGJaHHTN6kyflQqWJSr7xYXtwKk-j9cPaLIVaDJrsz24ejxFSA2psml9X3KvxskcNL3cruLA~~?target=https%3A%2F%2Fwww.zillow.com%2Frouting%2Femail%2Fproperty-notifications%2Fzpid_target%2F464521333_zpid%2FX1-SS93sr9vba3j1s0000000000_3tnpj_sse%2F"
+        }
+      ],
+      "status": "active",
+      "unit": "G",
+      "verdict": null
+    },
+    "1647-n-milwaukee-0br-2400": {
+      "address_raw": "1647 North Milwaukee",
+      "all_in_monthly": 2375.0,
+      "beds": 0,
+      "first_seen": "2026-08-13",
+      "key": "1647-n-milwaukee-0br-2400",
+      "key_type": "fallback",
+      "last_seen": "2026-08-13",
+      "lat": null,
+      "layout": null,
+      "lng": null,
+      "loft_type": null,
+      "price_history": [
+        {
+          "date": "2026-08-13",
+          "rent": 2375
+        }
+      ],
+      "rent_gross": 2375,
+      "sources": [
+        {
+          "source": "web",
+          "url": "https://www.downtownapartmentcollective.com/luxury-rentals/236-apt/"
+        }
+      ],
+      "status": "active",
+      "unit": null,
+      "verdict": null
+    },
+    "1647-n-milwaukee-1br-2900": {
+      "address_raw": "1647 North Milwaukee",
+      "all_in_monthly": 2895.0,
+      "beds": 1,
+      "first_seen": "2026-08-13",
+      "key": "1647-n-milwaukee-1br-2900",
+      "key_type": "fallback",
+      "last_seen": "2026-08-13",
+      "lat": null,
+      "layout": null,
+      "lng": null,
+      "loft_type": null,
+      "price_history": [
+        {
+          "date": "2026-08-13",
+          "rent": 2895
+        }
+      ],
+      "rent_gross": 2895,
+      "sources": [
+        {
+          "source": "web",
+          "url": "https://www.downtownapartmentcollective.com/luxury-rentals/236-apt/"
+        }
+      ],
+      "status": "active",
+      "unit": null,
+      "verdict": null
+    },
+    "1647-n-milwaukee-2br-3300": {
+      "address_raw": "1647 North Milwaukee",
+      "all_in_monthly": 3295.0,
+      "beds": 2,
+      "first_seen": "2026-08-13",
+      "key": "1647-n-milwaukee-2br-3300",
+      "key_type": "fallback",
+      "last_seen": "2026-08-13",
+      "lat": null,
+      "layout": null,
+      "lng": null,
+      "loft_type": null,
+      "price_history": [
+        {
+          "date": "2026-08-13",
+          "rent": 3295
+        }
+      ],
+      "rent_gross": 3295,
+      "sources": [
+        {
+          "source": "web",
+          "url": "https://www.downtownapartmentcollective.com/luxury-rentals/236-apt/"
+        }
+      ],
+      "status": "active",
+      "unit": null,
+      "verdict": null
+    },
+    "1920-n-milwaukee-1br-2500": {
+      "address_raw": "1920 N. Milwaukee",
+      "all_in_monthly": 2525.0,
+      "beds": 1,
+      "first_seen": "2026-08-13",
+      "key": "1920-n-milwaukee-1br-2500",
+      "key_type": "fallback",
+      "last_seen": "2026-08-13",
+      "lat": null,
+      "layout": null,
+      "lng": null,
+      "loft_type": null,
+      "price_history": [
+        {
+          "date": "2026-08-13",
+          "rent": 2525
+        }
+      ],
+      "rent_gross": 2525,
+      "sources": [
+        {
+          "source": "web",
+          "url": "https://www.downtownapartmentcollective.com/luxury-rentals/248-2/"
+        }
+      ],
+      "status": "active",
+      "unit": null,
+      "verdict": null
+    },
+    "1920-n-milwaukee-2br-3550": {
+      "address_raw": "1920 N. Milwaukee",
+      "all_in_monthly": 3550.0,
+      "beds": 2,
+      "first_seen": "2026-08-13",
+      "key": "1920-n-milwaukee-2br-3550",
+      "key_type": "fallback",
+      "last_seen": "2026-08-13",
+      "lat": null,
+      "layout": null,
+      "lng": null,
+      "loft_type": null,
+      "price_history": [
+        {
+          "date": "2026-08-13",
+          "rent": 3550
+        }
+      ],
+      "rent_gross": 3550,
+      "sources": [
+        {
+          "source": "web",
+          "url": "https://www.downtownapartmentcollective.com/luxury-rentals/248-2/"
+        }
+      ],
+      "status": "active",
+      "unit": null,
+      "verdict": null
+    },
     "1942-w-division-3F": {
       "address_raw": "1942 W Division St APT 3F, Chicago, IL",
       "all_in_monthly": 3000.0,
@@ -51,7 +254,7 @@
       "sources": [
         {
           "source": "zillow",
-          "url": "https://www.zillow.com/routing/email/property-notifications/zpid_target/2110712217_zpid/X1-SS93sr9vba3j1s0000000000_3tnpj_sse/"
+          "url": "https://click.mail.zillow.com/f/a/S6yX5dKskg72jJ_2vtjFWg~~/AAAAARA~/ITcZfcZ-CJVp8zADxUUnRW2ld6e4h8IejxmmKSO_AZwfplrwB7u6xJTu-tdPHlF8i0zAVaGItYfT9QuWFisOCw~~?target=https%3A%2F%2Fwww.zillow.com%2Frouting%2Femail%2Fproperty-notifications%2Fzpid_target%2F2110712217_zpid%2FX1-SS93sr9vba3j1s0000000000_3tnpj_sse%2F"
         }
       ],
       "status": "active",
@@ -85,6 +288,35 @@
       ],
       "status": "active",
       "unit": null,
+      "verdict": null
+    },
+    "2428-30-w-walton-3": {
+      "address_raw": "2428-30 W. Walton",
+      "all_in_monthly": 2595.0,
+      "beds": 3,
+      "first_seen": "2026-08-13",
+      "key": "2428-30-w-walton-3",
+      "key_type": "primary",
+      "last_seen": "2026-08-13",
+      "lat": null,
+      "layout": null,
+      "lng": null,
+      "loft_type": null,
+      "price_history": [
+        {
+          "date": "2026-08-13",
+          "rent": 2595
+        }
+      ],
+      "rent_gross": 2595,
+      "sources": [
+        {
+          "source": "web",
+          "url": "https://wickerparkapartments.com/AvailableNow.php/index.php"
+        }
+      ],
+      "status": "active",
+      "unit": "3",
       "verdict": null
     },
     "2428-w-walton-3": {
@@ -138,7 +370,7 @@
       "sources": [
         {
           "source": "zillow",
-          "url": "https://www.zillow.com/routing/email/property-notifications/zpid_target/464518234_zpid/X1-SS93sr9vba3j1s0000000000_3tnpj_sse/"
+          "url": "https://click.mail.zillow.com/f/a/PYs0QuCHA48Im5L1HMUxSA~~/AAAAARA~/Jv3LC2qC4kUtlXMgOH3DvOHCAx8dl4max8CVV5UiDzDBtt0s_t8Y1VUVHWNqSV6G0jniJHL16IRpWGj_A4MxGg~~?target=https%3A%2F%2Fwww.zillow.com%2Frouting%2Femail%2Fproperty-notifications%2Fzpid_target%2F464518234_zpid%2FX1-SS93sr9vba3j1s0000000000_3tnpj_sse%2F"
         }
       ],
       "status": "active",

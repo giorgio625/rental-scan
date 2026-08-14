@@ -99,8 +99,9 @@ def normalize_street_name(value):
     # Drop a trailing suffix only. 'Court Place' should keep 'court'.
     while tokens and tokens[-1] in STREET_SUFFIXES:
         tokens.pop()
-    # A leading directional sometimes rides along in street_name.
-    if tokens and tokens[0] in DIRECTIONALS:
+    # A leading directional sometimes rides along in street_name — but only
+    # strip it when something follows; "North Avenue" IS the street.
+    if len(tokens) > 1 and tokens[0] in DIRECTIONALS:
         tokens.pop(0)
     return "-".join(tokens)
 
