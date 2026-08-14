@@ -8,9 +8,9 @@
       "key": "1444-w-augusta-404",
       "key_type": "primary",
       "last_seen": "2026-08-13",
-      "lat": null,
+      "lat": 41.8998456,
       "layout": null,
-      "lng": null,
+      "lng": -87.6639362,
       "loft_type": null,
       "price_history": [
         {
@@ -37,9 +37,9 @@
       "key": "1942-w-division-3F",
       "key_type": "primary",
       "last_seen": "2026-08-13",
-      "lat": null,
+      "lat": 41.9035022,
       "layout": null,
-      "lng": null,
+      "lng": -87.6765485,
       "loft_type": null,
       "price_history": [
         {
@@ -95,9 +95,9 @@
       "key": "2428-w-walton-3",
       "key_type": "primary",
       "last_seen": "2026-08-13",
-      "lat": null,
+      "lat": 41.8986434,
       "layout": null,
-      "lng": null,
+      "lng": -87.6881412,
       "loft_type": "not_loft",
       "price_history": [
         {
@@ -124,9 +124,9 @@
       "key": "2465-n-lincoln-T3",
       "key_type": "primary",
       "last_seen": "2026-08-13",
-      "lat": null,
+      "lat": 41.9269844,
       "layout": null,
-      "lng": null,
+      "lng": -87.650571,
       "loft_type": null,
       "price_history": [
         {
