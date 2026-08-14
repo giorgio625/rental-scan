@@ -290,6 +290,35 @@
       "unit": null,
       "verdict": null
     },
+    "2412-w-north-4R": {
+      "address_raw": "2412 W North Avenue",
+      "all_in_monthly": 3995.0,
+      "beds": 0,
+      "first_seen": "2026-08-13",
+      "key": "2412-w-north-4R",
+      "key_type": "primary",
+      "last_seen": "2026-08-13",
+      "lat": 41.910589,
+      "layout": "single_floor",
+      "lng": -87.68788,
+      "loft_type": null,
+      "price_history": [
+        {
+          "date": "2026-08-13",
+          "rent": 3995
+        }
+      ],
+      "rent_gross": 3995,
+      "sources": [
+        {
+          "source": "web",
+          "url": "https://bestchicagoproperties.com/listings/listing/MRED/12707769/Chicago/2412-W-North-Avenue-4R"
+        }
+      ],
+      "status": "active",
+      "unit": "4R",
+      "verdict": null
+    },
     "2428-30-w-walton-3": {
       "address_raw": "2428-30 W. Walton",
       "all_in_monthly": 2595.0,
