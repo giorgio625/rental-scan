@@ -1,5 +1,150 @@
 {
   "listings": {
+    "1241-n-milwaukee-1br-2900": {
+      "address_raw": "1241 N. Milwaukee Ave",
+      "all_in_monthly": 2898.0,
+      "beds": 1,
+      "first_seen": "2026-08-17",
+      "key": "1241-n-milwaukee-1br-2900",
+      "key_type": "fallback",
+      "last_seen": "2026-08-17",
+      "lat": 41.9042757,
+      "layout": null,
+      "lng": -87.6677455,
+      "loft_type": null,
+      "price_history": [
+        {
+          "date": "2026-08-17",
+          "rent": 2898
+        }
+      ],
+      "rent_gross": 2898,
+      "sources": [
+        {
+          "source": "web",
+          "url": "https://1241milwaukee.com/floorplans/1-bed-den2-bath/"
+        }
+      ],
+      "status": "active",
+      "unit": null,
+      "verdict": null
+    },
+    "1241-n-milwaukee-1br-3200": {
+      "address_raw": "1241 N. Milwaukee Ave",
+      "all_in_monthly": 3195.0,
+      "beds": 1,
+      "first_seen": "2026-08-17",
+      "key": "1241-n-milwaukee-1br-3200",
+      "key_type": "fallback",
+      "last_seen": "2026-08-17",
+      "lat": 41.9042757,
+      "layout": null,
+      "lng": -87.6677455,
+      "loft_type": null,
+      "price_history": [
+        {
+          "date": "2026-08-17",
+          "rent": 3195
+        }
+      ],
+      "rent_gross": 3195,
+      "sources": [
+        {
+          "source": "web",
+          "url": "https://1241milwaukee.com/floorplans/1-bed1-bath-6/"
+        }
+      ],
+      "status": "active",
+      "unit": null,
+      "verdict": null
+    },
+    "1249-n-damen-2": {
+      "address_raw": "1249 N Damen Ave APT 2, Chicago, IL",
+      "all_in_monthly": 2800.0,
+      "beds": 2,
+      "first_seen": "2026-08-17",
+      "key": "1249-n-damen-2",
+      "key_type": "primary",
+      "last_seen": "2026-08-17",
+      "lat": 41.9047378,
+      "layout": null,
+      "lng": -87.6770416,
+      "loft_type": null,
+      "price_history": [
+        {
+          "date": "2026-08-17",
+          "rent": 2800
+        }
+      ],
+      "rent_gross": 2800,
+      "sources": [
+        {
+          "source": "zillow",
+          "url": "https://www.zillow.com/routed/email/property-notifications/zpid_target/464607265_zpid"
+        }
+      ],
+      "status": "active",
+      "unit": "2",
+      "verdict": null
+    },
+    "1255-s-michigan-1704": {
+      "address_raw": "1255 S Michigan Ave #1704, Chicago, IL 60605",
+      "all_in_monthly": 2355.0,
+      "beds": 1,
+      "first_seen": "2026-08-17",
+      "key": "1255-s-michigan-1704",
+      "key_type": "primary",
+      "last_seen": "2026-08-17",
+      "lat": 41.8660156,
+      "layout": null,
+      "lng": -87.6236006,
+      "loft_type": null,
+      "price_history": [
+        {
+          "date": "2026-08-17",
+          "rent": 2355
+        }
+      ],
+      "rent_gross": 2355,
+      "sources": [
+        {
+          "source": "domu",
+          "url": "http://www.domu.com/chicago/central/south-loop/1255-s-michigan-ave-1704-chicago-il-60605"
+        }
+      ],
+      "status": "active",
+      "unit": "1704",
+      "verdict": null
+    },
+    "1413-15-e-57th-3br-3500": {
+      "address_raw": "1413-15 E. 57th, Chicago, IL 60637",
+      "all_in_monthly": 3499.0,
+      "beds": 3,
+      "first_seen": "2026-08-17",
+      "key": "1413-15-e-57th-3br-3500",
+      "key_type": "fallback",
+      "last_seen": "2026-08-17",
+      "lat": 41.7913202,
+      "layout": null,
+      "lng": -87.5909554,
+      "loft_type": null,
+      "price_history": [
+        {
+          "date": "2026-08-17",
+          "rent": 3499
+        }
+      ],
+      "rent_gross": 3499,
+      "sources": [
+        {
+          "source": "domu",
+          "url": "http://www.domu.com/chicago/south-side/hyde-park/1413-15-e-57th"
+        }
+      ],
+      "status": "active",
+      "unit": null,
+      "verdict": null
+    },
     "1444-w-augusta-404": {
       "address_raw": "1444 W Augusta Blvd, Unit 404",
       "all_in_monthly": 3900.0,
@@ -174,6 +319,64 @@
       "unit": null,
       "verdict": null
     },
+    "1735-n-paulina-611": {
+      "address_raw": "1735 N Paulina St APT 611, Chicago, IL",
+      "all_in_monthly": 3895.0,
+      "beds": 2,
+      "first_seen": "2026-08-17",
+      "key": "1735-n-paulina-611",
+      "key_type": "primary",
+      "last_seen": "2026-08-17",
+      "lat": 41.9131986,
+      "layout": null,
+      "lng": -87.6699883,
+      "loft_type": null,
+      "price_history": [
+        {
+          "date": "2026-08-17",
+          "rent": 3895
+        }
+      ],
+      "rent_gross": 3895,
+      "sources": [
+        {
+          "source": "zillow",
+          "url": "https://www.zillow.com/routed/email/property-notifications/zpid_target/89923653_zpid"
+        }
+      ],
+      "status": "active",
+      "unit": "611",
+      "verdict": null
+    },
+    "1743-n-leavitt-UNKNOWN": {
+      "address_raw": "1743 N Leavitt St, Chicago, IL 60647",
+      "all_in_monthly": 2795.0,
+      "beds": null,
+      "first_seen": "2026-08-17",
+      "key": "1743-n-leavitt-UNKNOWN",
+      "key_type": "weak",
+      "last_seen": "2026-08-17",
+      "lat": 41.9136405,
+      "layout": null,
+      "lng": -87.6819906,
+      "loft_type": null,
+      "price_history": [
+        {
+          "date": "2026-08-17",
+          "rent": 2795
+        }
+      ],
+      "rent_gross": 2795,
+      "sources": [
+        {
+          "source": "redfin",
+          "url": "https://www.redfin.com/IL/Chicago/606-Blue/apartment/171313176"
+        }
+      ],
+      "status": "active",
+      "unit": null,
+      "verdict": null
+    },
     "1920-n-milwaukee-1br-2500": {
       "address_raw": "1920 N. Milwaukee",
       "all_in_monthly": 2525.0,
@@ -288,6 +491,267 @@
       ],
       "status": "active",
       "unit": null,
+      "verdict": null
+    },
+    "2032-n-clybourn-3317": {
+      "address_raw": "2032 N Clybourn Ave #3-317, Chicago, IL",
+      "all_in_monthly": 2595.0,
+      "beds": 1,
+      "first_seen": "2026-08-17",
+      "key": "2032-n-clybourn-3317",
+      "key_type": "primary",
+      "last_seen": "2026-08-17",
+      "lat": 41.918244,
+      "layout": null,
+      "lng": -87.659887,
+      "loft_type": null,
+      "price_history": [
+        {
+          "date": "2026-08-17",
+          "rent": 2595
+        }
+      ],
+      "rent_gross": 2595,
+      "sources": [
+        {
+          "source": "zillow",
+          "url": "https://www.zillow.com/apartments/chicago-il/the-ludlow"
+        }
+      ],
+      "status": "active",
+      "unit": "3-317",
+      "verdict": null
+    },
+    "2040-w-crystal-1": {
+      "address_raw": "2040 W Crystal St #1, Chicago, IL",
+      "all_in_monthly": 2400.0,
+      "beds": 2,
+      "first_seen": "2026-08-17",
+      "key": "2040-w-crystal-1",
+      "key_type": "primary",
+      "last_seen": "2026-08-17",
+      "lat": 41.9043074,
+      "layout": null,
+      "lng": -87.6789087,
+      "loft_type": null,
+      "price_history": [
+        {
+          "date": "2026-08-17",
+          "rent": 2400
+        }
+      ],
+      "rent_gross": 2400,
+      "sources": [
+        {
+          "source": "zillow",
+          "url": "https://www.zillow.com/routed/email/property-notifications/zpid_target/2072705889_zpid"
+        }
+      ],
+      "status": "active",
+      "unit": "1",
+      "verdict": null
+    },
+    "2046-n-bissell-3": {
+      "address_raw": "2046 N Bissell St #3, Chicago, IL",
+      "all_in_monthly": 3960.0,
+      "beds": 3,
+      "first_seen": "2026-08-17",
+      "key": "2046-n-bissell-3",
+      "key_type": "primary",
+      "last_seen": "2026-08-17",
+      "lat": 41.9195283,
+      "layout": null,
+      "lng": -87.6524771,
+      "loft_type": null,
+      "price_history": [
+        {
+          "date": "2026-08-17",
+          "rent": 3960
+        }
+      ],
+      "rent_gross": 3960,
+      "sources": [
+        {
+          "source": "zillow",
+          "url": "https://www.zillow.com/routed/email/property-notifications/zpid_target/2057862026_zpid"
+        }
+      ],
+      "status": "active",
+      "unit": "3",
+      "verdict": null
+    },
+    "2061-n-southport-308": {
+      "address_raw": "2061-2071 N. Southport Ave.",
+      "all_in_monthly": 2280.0,
+      "beds": 1,
+      "first_seen": "2026-08-17",
+      "key": "2061-n-southport-308",
+      "key_type": "primary",
+      "last_seen": "2026-08-17",
+      "lat": 41.9179324,
+      "layout": null,
+      "lng": -87.6629699,
+      "loft_type": null,
+      "price_history": [
+        {
+          "date": "2026-08-17",
+          "rent": 2280
+        }
+      ],
+      "rent_gross": 2280,
+      "sources": [
+        {
+          "source": "web",
+          "url": "https://www.rentcafe.com/apartments/il/chicago/southport-lofts/default.aspx"
+        }
+      ],
+      "status": "active",
+      "unit": "308",
+      "verdict": null
+    },
+    "2061-n-southport-410": {
+      "address_raw": "2061-2071 N. Southport Ave.",
+      "all_in_monthly": 2305.0,
+      "beds": 1,
+      "first_seen": "2026-08-17",
+      "key": "2061-n-southport-410",
+      "key_type": "primary",
+      "last_seen": "2026-08-17",
+      "lat": 41.9179324,
+      "layout": null,
+      "lng": -87.6629699,
+      "loft_type": null,
+      "price_history": [
+        {
+          "date": "2026-08-17",
+          "rent": 2305
+        }
+      ],
+      "rent_gross": 2305,
+      "sources": [
+        {
+          "source": "web",
+          "url": "https://www.rentcafe.com/apartments/il/chicago/southport-lofts/default.aspx"
+        }
+      ],
+      "status": "active",
+      "unit": "410",
+      "verdict": null
+    },
+    "2155-n-elston-11": {
+      "address_raw": "2155 N Elston Ave #1/1, Chicago, IL 60614",
+      "all_in_monthly": 2677.0,
+      "beds": 1,
+      "first_seen": "2026-08-17",
+      "key": "2155-n-elston-11",
+      "key_type": "primary",
+      "last_seen": "2026-08-17",
+      "lat": 41.9204923,
+      "layout": null,
+      "lng": -87.6702316,
+      "loft_type": null,
+      "price_history": [
+        {
+          "date": "2026-08-17",
+          "rent": 2677
+        }
+      ],
+      "rent_gross": 2677,
+      "sources": [
+        {
+          "source": "domu",
+          "url": "http://www.domu.com/chicago/north-side/lincoln-park/2155-n-elston-ave-1/1-chicago-il-60614-0"
+        }
+      ],
+      "status": "active",
+      "unit": "1/1",
+      "verdict": null
+    },
+    "2155-n-elston-CONVERTIBLE": {
+      "address_raw": "2155 N Elston Ave #CONVERTIBLE, Chicago, IL 60614",
+      "all_in_monthly": 2295.0,
+      "beds": 1,
+      "first_seen": "2026-08-17",
+      "key": "2155-n-elston-CONVERTIBLE",
+      "key_type": "primary",
+      "last_seen": "2026-08-17",
+      "lat": 41.9204923,
+      "layout": null,
+      "lng": -87.6702316,
+      "loft_type": null,
+      "price_history": [
+        {
+          "date": "2026-08-17",
+          "rent": 2295
+        }
+      ],
+      "rent_gross": 2295,
+      "sources": [
+        {
+          "source": "domu",
+          "url": "http://www.domu.com/chicago/north-side/lincoln-park/2155-n-elston-ave-convertible-chicago-il-60614-0"
+        }
+      ],
+      "status": "active",
+      "unit": "CONVERTIBLE",
+      "verdict": null
+    },
+    "2241-n-bissell-1br-2800": {
+      "address_raw": "2241 N Bissell St, Chicago, IL",
+      "all_in_monthly": 2795.0,
+      "beds": 1,
+      "first_seen": "2026-08-17",
+      "key": "2241-n-bissell-1br-2800",
+      "key_type": "fallback",
+      "last_seen": "2026-08-17",
+      "lat": 41.92291,
+      "layout": null,
+      "lng": -87.6517751,
+      "loft_type": null,
+      "price_history": [
+        {
+          "date": "2026-08-17",
+          "rent": 2795
+        }
+      ],
+      "rent_gross": 2795,
+      "sources": [
+        {
+          "source": "zillow",
+          "url": "https://www.zillow.com/routed/email/property-notifications/zpid_target/2106492726_zpid"
+        }
+      ],
+      "status": "active",
+      "unit": null,
+      "verdict": null
+    },
+    "2345-n-lincoln-A10805": {
+      "address_raw": "2345 N Lincoln Ave #A1-0805, Chicago, IL",
+      "all_in_monthly": 3379.0,
+      "beds": 1,
+      "first_seen": "2026-08-17",
+      "key": "2345-n-lincoln-A10805",
+      "key_type": "primary",
+      "last_seen": "2026-08-17",
+      "lat": 41.9251282,
+      "layout": null,
+      "lng": -87.6471954,
+      "loft_type": null,
+      "price_history": [
+        {
+          "date": "2026-08-17",
+          "rent": 3379
+        }
+      ],
+      "rent_gross": 3379,
+      "sources": [
+        {
+          "source": "zillow",
+          "url": "https://www.zillow.com/apartments/chicago-il/the-apartments-at-lincoln-common"
+        }
+      ],
+      "status": "active",
+      "unit": "A1-0805",
       "verdict": null
     },
     "2412-w-north-4R": {
@@ -405,11 +869,388 @@
       "status": "active",
       "unit": "T3",
       "verdict": null
+    },
+    "299-pembridge-D2": {
+      "address_raw": "299 Pembridge Ln #D2, Schaumburg, IL 60193",
+      "all_in_monthly": 2400.0,
+      "beds": 2,
+      "first_seen": "2026-08-17",
+      "key": "299-pembridge-D2",
+      "key_type": "primary",
+      "last_seen": "2026-08-17",
+      "lat": null,
+      "layout": null,
+      "lng": null,
+      "loft_type": null,
+      "price_history": [
+        {
+          "date": "2026-08-17",
+          "rent": 2400
+        }
+      ],
+      "rent_gross": 2400,
+      "sources": [
+        {
+          "source": "domu",
+          "url": "http://www.domu.com/chicago/northwestern-suburbs/schaumburg/299-pembridge-ln-d2-schaumburg-il-60193"
+        }
+      ],
+      "status": "active",
+      "unit": "D2",
+      "verdict": null
+    },
+    "325-w-fullerton-101": {
+      "address_raw": "325 W Fullerton Pkwy #101, Chicago, IL",
+      "all_in_monthly": 2873.0,
+      "beds": 1,
+      "first_seen": "2026-08-17",
+      "key": "325-w-fullerton-101",
+      "key_type": "primary",
+      "last_seen": "2026-08-17",
+      "lat": 41.9252985,
+      "layout": null,
+      "lng": -87.6375658,
+      "loft_type": null,
+      "price_history": [
+        {
+          "date": "2026-08-17",
+          "rent": 2873
+        }
+      ],
+      "rent_gross": 2873,
+      "sources": [
+        {
+          "source": "zillow",
+          "url": "https://www.zillow.com/apartments/chicago-il/park-fullerton-by-reside"
+        }
+      ],
+      "status": "active",
+      "unit": "101",
+      "verdict": null
+    },
+    "429-w-belden-GN": {
+      "address_raw": "429 W Belden Ave Unit GN, Chicago, IL 60614",
+      "all_in_monthly": 2450.0,
+      "beds": 1,
+      "first_seen": "2026-08-17",
+      "key": "429-w-belden-GN",
+      "key_type": "primary",
+      "last_seen": "2026-08-17",
+      "lat": 41.9236725,
+      "layout": null,
+      "lng": -87.6403392,
+      "loft_type": null,
+      "price_history": [
+        {
+          "date": "2026-08-17",
+          "rent": 2450
+        }
+      ],
+      "rent_gross": 2450,
+      "sources": [
+        {
+          "source": "redfin",
+          "url": "https://www.redfin.com/IL/Chicago/429-W-Belden-Ave-60614/unit-GN/apartment/196954529"
+        }
+      ],
+      "status": "active",
+      "unit": "GN",
+      "verdict": null
+    },
+    "439-w-melrose-1br-2250": {
+      "address_raw": "439 W Melrose, Chicago, IL 60657",
+      "all_in_monthly": 2227.0,
+      "beds": 1,
+      "first_seen": "2026-08-17",
+      "key": "439-w-melrose-1br-2250",
+      "key_type": "fallback",
+      "last_seen": "2026-08-17",
+      "lat": 41.9408422,
+      "layout": null,
+      "lng": -87.641276,
+      "loft_type": null,
+      "price_history": [
+        {
+          "date": "2026-08-17",
+          "rent": 2227
+        }
+      ],
+      "rent_gross": 2227,
+      "sources": [
+        {
+          "source": "domu",
+          "url": "http://www.domu.com/chicago/north-side/lakeview/439-w-melrose"
+        }
+      ],
+      "status": "active",
+      "unit": null,
+      "verdict": null
+    },
+    "506-w-deming-1br-2700": {
+      "address_raw": "506 W Deming Pl, Chicago, IL 60614",
+      "all_in_monthly": 2700.0,
+      "beds": 1,
+      "first_seen": "2026-08-17",
+      "key": "506-w-deming-1br-2700",
+      "key_type": "fallback",
+      "last_seen": "2026-08-17",
+      "lat": 41.9287172,
+      "layout": null,
+      "lng": -87.6431829,
+      "loft_type": null,
+      "price_history": [
+        {
+          "date": "2026-08-17",
+          "rent": 2700
+        }
+      ],
+      "rent_gross": 2700,
+      "sources": [
+        {
+          "source": "redfin",
+          "url": "https://www.redfin.com/IL/Chicago/The-Deming/apartment/13366693"
+        }
+      ],
+      "status": "active",
+      "unit": null,
+      "verdict": null
+    },
+    "5208-n-sawyer-1": {
+      "address_raw": "5208 N Sawyer Ave #1, Chicago, IL 60625",
+      "all_in_monthly": 2550.0,
+      "beds": 2,
+      "first_seen": "2026-08-17",
+      "key": "5208-n-sawyer-1",
+      "key_type": "primary",
+      "last_seen": "2026-08-17",
+      "lat": 41.9759937,
+      "layout": null,
+      "lng": -87.710013,
+      "loft_type": null,
+      "price_history": [
+        {
+          "date": "2026-08-17",
+          "rent": 2550
+        }
+      ],
+      "rent_gross": 2550,
+      "sources": [
+        {
+          "source": "domu",
+          "url": "http://www.domu.com/chicago/far-north-side/north-park/5208-n-sawyer-ave-1-chicago-il-60625"
+        }
+      ],
+      "status": "active",
+      "unit": "1",
+      "verdict": null
+    },
+    "8041-w-bluemound-412": {
+      "address_raw": "8041 W Bluemound Rd #412, Milwaukee, IL 53213",
+      "all_in_monthly": 1682.0,
+      "beds": 1,
+      "first_seen": "2026-08-17",
+      "key": "8041-w-bluemound-412",
+      "key_type": "primary",
+      "last_seen": "2026-08-17",
+      "lat": null,
+      "layout": null,
+      "lng": null,
+      "loft_type": null,
+      "price_history": [
+        {
+          "date": "2026-08-17",
+          "rent": 1682
+        }
+      ],
+      "rent_gross": 1682,
+      "sources": [
+        {
+          "source": "domu",
+          "url": "http://www.domu.com/chicago/8041-w-bluemound-rd-412-milwaukee-il-53213"
+        }
+      ],
+      "status": "active",
+      "unit": "412",
+      "verdict": null
+    },
+    "927-w-irving-park-503": {
+      "address_raw": "927 W Irving Park Rd #503, Chicago, IL",
+      "all_in_monthly": 2750.0,
+      "beds": 1,
+      "first_seen": "2026-08-17",
+      "key": "927-w-irving-park-503",
+      "key_type": "primary",
+      "last_seen": "2026-08-17",
+      "lat": 41.9542625,
+      "layout": null,
+      "lng": -87.65329,
+      "loft_type": null,
+      "price_history": [
+        {
+          "date": "2026-08-17",
+          "rent": 2750
+        }
+      ],
+      "rent_gross": 2750,
+      "sources": [
+        {
+          "source": "domu",
+          "url": "http://www.domu.com/chicago/north-side/lakeview/927-w-irving-park-rd-927-503-chicago-il-60613"
+        }
+      ],
+      "status": "active",
+      "unit": "503",
+      "verdict": null
+    },
+    "948-w-armitage-2S": {
+      "address_raw": "948 W Armitage Ave APT 2S, Chicago, IL",
+      "all_in_monthly": 3200.0,
+      "beds": 2,
+      "first_seen": "2026-08-17",
+      "key": "948-w-armitage-2S",
+      "key_type": "primary",
+      "last_seen": "2026-08-17",
+      "lat": 41.9183706,
+      "layout": null,
+      "lng": -87.6528232,
+      "loft_type": null,
+      "price_history": [
+        {
+          "date": "2026-08-17",
+          "rent": 3200
+        }
+      ],
+      "rent_gross": 3200,
+      "sources": [
+        {
+          "source": "zillow",
+          "url": "https://www.zillow.com/routing/email/property-notifications/zpid_target/2102308204_zpid"
+        }
+      ],
+      "status": "active",
+      "unit": "2S",
+      "verdict": null
+    },
+    "952-w-carmen-202": {
+      "address_raw": "952 W Carmen Ave #202, Chicago, IL 60640",
+      "all_in_monthly": 3650.0,
+      "beds": 2,
+      "first_seen": "2026-08-17",
+      "key": "952-w-carmen-202",
+      "key_type": "primary",
+      "last_seen": "2026-08-17",
+      "lat": 41.9744012,
+      "layout": null,
+      "lng": -87.6535156,
+      "loft_type": null,
+      "price_history": [
+        {
+          "date": "2026-08-17",
+          "rent": 3650
+        }
+      ],
+      "rent_gross": 3650,
+      "sources": [
+        {
+          "source": "domu",
+          "url": "http://www.domu.com/chicago/far-north-side/margate-park/952-w-carmen-ave-952-202-chicago-il-60640"
+        }
+      ],
+      "status": "active",
+      "unit": "202",
+      "verdict": null
+    },
+    "952-w-carmen-205": {
+      "address_raw": "952 W Carmen Ave #205, Chicago, IL 60640",
+      "all_in_monthly": 3550.0,
+      "beds": 2,
+      "first_seen": "2026-08-17",
+      "key": "952-w-carmen-205",
+      "key_type": "primary",
+      "last_seen": "2026-08-17",
+      "lat": 41.9744012,
+      "layout": null,
+      "lng": -87.6535156,
+      "loft_type": null,
+      "price_history": [
+        {
+          "date": "2026-08-17",
+          "rent": 3550
+        }
+      ],
+      "rent_gross": 3550,
+      "sources": [
+        {
+          "source": "domu",
+          "url": "http://www.domu.com/chicago/far-north-side/margate-park/952-w-carmen-ave-952-205-chicago-il-60640"
+        }
+      ],
+      "status": "active",
+      "unit": "205",
+      "verdict": null
+    },
+    "952-w-carmen-211": {
+      "address_raw": "952 W Carmen Ave #211, Chicago, IL 60640",
+      "all_in_monthly": 3500.0,
+      "beds": 2,
+      "first_seen": "2026-08-17",
+      "key": "952-w-carmen-211",
+      "key_type": "primary",
+      "last_seen": "2026-08-17",
+      "lat": 41.9744012,
+      "layout": null,
+      "lng": -87.6535156,
+      "loft_type": null,
+      "price_history": [
+        {
+          "date": "2026-08-17",
+          "rent": 3500
+        }
+      ],
+      "rent_gross": 3500,
+      "sources": [
+        {
+          "source": "domu",
+          "url": "http://www.domu.com/chicago/far-north-side/margate-park/952-w-carmen-ave-952-211-chicago-il-60640"
+        }
+      ],
+      "status": "active",
+      "unit": "211",
+      "verdict": null
+    },
+    "952-w-carmen-309": {
+      "address_raw": "952 W Carmen Ave #309, Chicago, IL 60640",
+      "all_in_monthly": 2550.0,
+      "beds": 1,
+      "first_seen": "2026-08-17",
+      "key": "952-w-carmen-309",
+      "key_type": "primary",
+      "last_seen": "2026-08-17",
+      "lat": 41.9744012,
+      "layout": null,
+      "lng": -87.6535156,
+      "loft_type": null,
+      "price_history": [
+        {
+          "date": "2026-08-17",
+          "rent": 2550
+        }
+      ],
+      "rent_gross": 2550,
+      "sources": [
+        {
+          "source": "domu",
+          "url": "http://www.domu.com/chicago/far-north-side/margate-park/952-w-carmen-ave-952-309-chicago-il-60640"
+        }
+      ],
+      "status": "active",
+      "unit": "309",
+      "verdict": null
     }
   },
   "meta": {
     "created": "2026-08-13",
-    "last_output_date": "2026-08-13",
-    "last_run": "2026-08-13"
+    "last_output_date": "2026-08-17",
+    "last_run": "2026-08-17"
   }
 }

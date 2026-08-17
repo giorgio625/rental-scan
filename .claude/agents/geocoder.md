@@ -21,12 +21,19 @@ already cached, and you never guess a coordinate.
    `street_number` + directional + `street_name` (fall back to `address_raw`
    with any unit/apt/# part stripped), then ", Chicago, IL". Collapse ranged
    numbers to their first value ("2428-30" → "2428").
+   Keep the street-type suffix (Ave/St/Rd/Blvd/Pkwy/Pl/Ln/etc.) from
+   `address_raw` in the query — omitting it has produced silent wrong-street
+   matches that still pass the Chicago bounding-box check, because the
+   box only catches wrong-CITY matches, not wrong-street-within-Chicago
+   ones.
    `https://nominatim.openstreetmap.org/search?q={URL-encoded query}&format=json&limit=1`
    **Max 1 request per second — space requests out, never parallel.** This
    is Nominatim's usage policy, non-negotiable.
 4. Sanity-check every result: Chicago sits roughly at lat 41.6–42.1,
    lng −87.9 to −87.5. A coordinate outside that box is a bad match —
-   treat it as a failure, do not cache it.
+   treat it as a failure, do not cache it. The bounding box catches
+   wrong-city matches only — it will not catch a wrong-street match within
+   Chicago, which is why the suffix in step 3 matters.
 5. A failed geocode (no match, network error, out-of-box) leaves `lat`/`lng`
    null and does not block the run. List failures in your return message.
 6. Update `ledger.json`: rewrite the file changing ONLY the `lat`/`lng`
