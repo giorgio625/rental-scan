@@ -187,7 +187,7 @@
   <div class="listings">
     <header class="top">
       <div class="brand">Wicker Park Loft Scan<span class="dot">.</span></div>
-      <div class="subtitle">Latest run: 2026-08-17 · 29 new reviewed · 0 priority · 0 worth a look · 16 near misses</div>
+      <div class="subtitle">2026-08-13 · 6 new reviewed · 0 priority · 0 worth a look · 1 near miss</div>
       <div class="counts">
         <div class="count-chip"><span class="swatch" style="background:var(--priority)"></span><b id="countPriority">0</b> priority</div>
         <div class="count-chip"><span class="swatch" style="background:var(--worth)"></span><b id="countWorth">0</b> worth a look</div>
@@ -196,8 +196,8 @@
     </header>
 
     <div class="archive-nav" id="archiveNav">
-      <span class="current">2026-08-17</span>
-      <a href="2026-08-13.html">2026-08-13</a>
+      <a href="2026-08-17.html">2026-08-17</a>
+      <span class="current">2026-08-13</span>
     </div>
 
     <div class="filters" id="tierFilters">
@@ -235,186 +235,20 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
 <script>
-// Generated from raw/classified-2026-08-17.json + ledger.json (lat/lng cache) by the
-// reporter agent. Of 29 new listings reviewed today, 13 failed 2+ §3 hard filters (not
-// included here — see reports/2026-08-17.md) and 16 failed exactly one filter (all shown
-// below, tier 'near'). Nothing scored 50+ today, so priority/worth-a-look are empty.
-// This is the "latest run" page — identical content to docs/2026-08-17.html.
+// Generated from reports/2026-08-13.md + ledger.json (lat/lng cache) by the reporter
+// agent. Of 6 new listings reviewed that day, 5 failed 2+ §3 hard filters (not included
+// here — see reports/2026-08-13.md) and 1 failed exactly one filter (shown below, tier
+// 'near'). Nothing scored 50+ that day. Permanent snapshot — never overwritten.
 const listings = [
   {
-    id:1, tier:'near', score:32,
-    address:'2061-2071 N Southport Ave, Unit 410', zone:'Lincoln Park (secondary — Clybourn-corridor judgment call, see report)',
-    rent:2305, allIn:2305, lat:41.9179324, lng:-87.6629699,
-    loft:'Hard loft', layout:'Layout not listed',
-    tags:['Parking (paid lot)','In-unit laundry','Shared outdoor space'],
-    warn:'Fails availability only — move-in 2026-08-23 is before the 2026-09-15 window opens. Zone counted Lincoln Park by a generous reading of the Clybourn corridor; a strict boundary read would also fail location. Heat inclusion unknown, not priced in.',
-    signals:'Exposed brick · timber beams · 12ft ceilings (claimed, unverified against photos) · concrete floors — 4 of 5 hard-loft signals',
-    sources:[{label:'Web', url:'https://www.rentcafe.com/apartments/il/chicago/southport-lofts/default.aspx'}],
-    available:'2026-08-23', outdoor:'other'
-  },
-  {
-    id:2, tier:'near', score:32,
-    address:'2061-2071 N Southport Ave, Unit 308', zone:'Lincoln Park (secondary — Clybourn-corridor judgment call, see report)',
-    rent:2280, allIn:2280, lat:41.9179324, lng:-87.6629699,
-    loft:'Hard loft', layout:'Layout not listed',
-    tags:['Parking (paid lot)','In-unit laundry','Shared outdoor space'],
-    warn:'Fails availability only — move-in 2026-09-07 is before the 2026-09-15 window opens. Zone counted Lincoln Park by a generous reading of the Clybourn corridor; a strict boundary read would also fail location. Heat inclusion unknown, not priced in.',
-    signals:'Exposed brick · timber beams · 12ft ceilings (claimed, unverified against photos) · concrete floors — 4 of 5 hard-loft signals',
-    sources:[{label:'Web', url:'https://www.rentcafe.com/apartments/il/chicago/southport-lofts/default.aspx'}],
-    available:'2026-09-07', outdoor:'other'
-  },
-  {
-    id:3, tier:'near', score:8,
-    address:'1241 N Milwaukee Ave — 957 sqft 1BR/1BA floorplan', zone:'Wicker Park',
-    rent:3195, allIn:3195, lat:41.9042757, lng:-87.6677455,
-    loft:'Borderline (1 signal)', layout:'Layout not listed',
-    tags:['In-unit laundry'],
-    warn:'Borderline style — only 1 of 5 hard-loft signals (concrete floors), short of the 3 needed. Fails style, the only filter tripped. Heat inclusion unknown, not priced in.',
-    signals:'Concrete floors only — 1 of 5 hard-loft signals',
-    sources:[{label:'Web', url:'https://1241milwaukee.com/floorplans/1-bed1-bath-6/'}],
-    available:null, outdoor:'other'
-  },
-  {
-    id:4, tier:'near', score:8,
-    address:'1241 N Milwaukee Ave — 986 sqft 1BR/1BA+den floorplan', zone:'Wicker Park',
-    rent:2898, allIn:2898, lat:41.9042757, lng:-87.6677455,
-    loft:'Borderline (1 signal)', layout:'Layout not listed',
-    tags:['In-unit laundry'],
-    warn:'Borderline style — only 1 of 5 hard-loft signals (concrete floors), short of the 3 needed. Fails style, the only filter tripped. Heat inclusion unknown, not priced in.',
-    signals:'Concrete floors only — 1 of 5 hard-loft signals',
-    sources:[{label:'Web', url:'https://1241milwaukee.com/floorplans/1-bed-den2-bath/'}],
-    available:null, outdoor:'other'
-  },
-  {
-    id:5, tier:'near', score:8,
-    address:'1743 N Leavitt St (606 Blue)', zone:'Wicker Park',
-    rent:2795, allIn:2795, lat:41.9136405, lng:-87.6819906,
-    loft:'Not a loft (0 signals)', layout:'Layout not listed',
-    tags:['In-unit laundry'],
-    warn:'Fails style only — 0 loft signals recorded. Beds/baths missing from the alert (extraction gap, not disqualifying) — worth a manual look. Heat inclusion unknown, not priced in.',
-    signals:'No loft signals extracted',
-    sources:[{label:'Redfin', url:'https://www.redfin.com/IL/Chicago/606-Blue/apartment/171313176'}],
-    available:null, outdoor:'other'
-  },
-  {
-    id:6, tier:'near', score:3,
-    address:'506 W Deming Pl (The Deming)', zone:'Lincoln Park',
-    rent:2700, allIn:2700, lat:41.9287172, lng:-87.6431829,
-    loft:'Not a loft (0 signals)', layout:'Layout not listed',
-    tags:['In-unit laundry'],
-    warn:'Fails style only — 0 loft signals recorded. Heat inclusion unknown, not priced in.',
-    signals:'No loft signals extracted',
-    sources:[{label:'Redfin', url:'https://www.redfin.com/IL/Chicago/The-Deming/apartment/13366693'}],
-    available:null, outdoor:'other'
-  },
-  {
-    id:7, tier:'near', score:0,
-    address:'1249 N Damen Ave #2', zone:'Wicker Park',
-    rent:2800, allIn:2800, lat:41.9047378, lng:-87.6770416,
+    id:1, tier:'near', score:6,
+    address:'1942 W Division St, Apt 3F', zone:'Wicker Park / East Village (sits on the Division St boundary line — inside bounds either way)',
+    rent:3000, allIn:3000, lat:41.9035022, lng:-87.6765485,
     loft:'Not a loft (0 signals)', layout:'Layout not listed',
     tags:[],
-    warn:'Fails style only — 0 loft signals recorded. Suspect pricing flagged (20%+ under the running 2BR median) — treat as a possible bait listing, not a real deal, until checked by hand. Heat inclusion unknown, not priced in.',
+    warn:'Fails style only — 0 of 5 hard-loft and 0 of 4 soft-loft signals extracted. Could be a genuine non-loft, or just an alert that never carried loft detail — no way to tell from what Zillow sent. Every other §3 filter passes (rent, beds, location, and so far as known, availability/lease term). Heat inclusion unknown, not priced in. Score is mostly zeros for missing data (parking, laundry, outdoor space, layout, sqft, condition all null) — only transit (~0.4–0.5 mi to the Division Blue Line) earns anything real.',
     signals:'No loft signals extracted',
-    sources:[{label:'Zillow', url:'https://www.zillow.com/routed/email/property-notifications/zpid_target/464607265_zpid'}],
-    available:null, outdoor:'other'
-  },
-  {
-    id:8, tier:'near', score:0,
-    address:'2040 W Crystal St #1', zone:'Wicker Park',
-    rent:2400, allIn:2400, lat:41.9043074, lng:-87.6789087,
-    loft:'Not a loft (0 signals)', layout:'Layout not listed',
-    tags:[],
-    warn:'Fails style only — 0 loft signals recorded. Suspect pricing flagged — treat as a possible bait listing until checked by hand. Heat inclusion unknown, not priced in.',
-    signals:'No loft signals extracted',
-    sources:[{label:'Zillow', url:'https://www.zillow.com/routed/email/property-notifications/zpid_target/2072705889_zpid'}],
-    available:null, outdoor:'other'
-  },
-  {
-    id:9, tier:'near', score:0,
-    address:'429 W Belden Ave, Unit GN', zone:'Lincoln Park',
-    rent:2450, allIn:2450, lat:41.9236725, lng:-87.6403392,
-    loft:'Not a loft (0 signals)', layout:'Layout not listed',
-    tags:['In-unit laundry'],
-    warn:'Fails style only — 0 loft signals recorded. Garden-level unit (would also carry a −10 scoring penalty, though that is not a §3 filter on its own). Heat inclusion unknown, not priced in.',
-    signals:'No loft signals extracted',
-    sources:[{label:'Redfin', url:'https://www.redfin.com/IL/Chicago/429-W-Belden-Ave-60614/unit-GN/apartment/196954529'}],
-    available:null, outdoor:'other'
-  },
-  {
-    id:10, tier:'near', score:0,
-    address:'2032 N Clybourn Ave #3-317 (The Ludlow)', zone:'Lincoln Park (sits on the Lincoln Park/Bucktown boundary seam)',
-    rent:2595, allIn:2595, lat:41.918244, lng:-87.659887,
-    loft:'Not a loft (0 signals)', layout:'Layout not listed',
-    tags:[],
-    warn:'Fails style only — 0 loft signals recorded. Heat inclusion unknown, not priced in.',
-    signals:'No loft signals extracted',
-    sources:[{label:'Zillow', url:'https://www.zillow.com/apartments/chicago-il/the-ludlow'}],
-    available:null, outdoor:'other'
-  },
-  {
-    id:11, tier:'near', score:0,
-    address:'325 W Fullerton Pkwy #101 (Park Fullerton by Reside)', zone:'Lincoln Park (Fullerton is the shared Bucktown/Lincoln Park edge; counted Lincoln Park by longitude)',
-    rent:2873, allIn:2873, lat:41.9252985, lng:-87.6375658,
-    loft:'Not a loft (0 signals)', layout:'Layout not listed',
-    tags:[],
-    warn:'Fails style only — 0 loft signals recorded. Heat inclusion unknown, not priced in.',
-    signals:'No loft signals extracted',
-    sources:[{label:'Zillow', url:'https://www.zillow.com/apartments/chicago-il/park-fullerton-by-reside'}],
-    available:null, outdoor:'other'
-  },
-  {
-    id:12, tier:'near', score:0,
-    address:'948 W Armitage Ave #2S', zone:'Lincoln Park',
-    rent:3200, allIn:3200, lat:41.9183706, lng:-87.6528232,
-    loft:'Not a loft (0 signals)', layout:'Layout not listed',
-    tags:[],
-    warn:'Fails style only — 0 loft signals recorded. Heat inclusion unknown, not priced in.',
-    signals:'No loft signals extracted',
-    sources:[{label:'Zillow', url:'https://www.zillow.com/routing/email/property-notifications/zpid_target/2102308204_zpid'}],
-    available:null, outdoor:'other'
-  },
-  {
-    id:13, tier:'near', score:0,
-    address:'2155 N Elston Ave #1/1', zone:'Bucktown (listing claims Lincoln Park — coordinates say otherwise)',
-    rent:2677, allIn:2677, lat:41.9204923, lng:-87.6702316,
-    loft:'Not a loft (0 signals)', layout:'Layout not listed',
-    tags:[],
-    warn:'Fails style only — 0 loft signals recorded. Heat inclusion unknown, not priced in.',
-    signals:'No loft signals extracted',
-    sources:[{label:'Domu', url:'http://www.domu.com/chicago/north-side/lincoln-park/2155-n-elston-ave-1/1-chicago-il-60614-0'}],
-    available:null, outdoor:'other'
-  },
-  {
-    id:14, tier:'near', score:0,
-    address:'2155 N Elston Ave #Convertible', zone:'Bucktown (listing claims Lincoln Park — coordinates say otherwise)',
-    rent:2295, allIn:2295, lat:41.9204923, lng:-87.6702316,
-    loft:'Not a loft (0 signals)', layout:'Layout not listed',
-    tags:[],
-    warn:'Fails style only — 0 loft signals recorded. Heat inclusion unknown, not priced in.',
-    signals:'No loft signals extracted',
-    sources:[{label:'Domu', url:'http://www.domu.com/chicago/north-side/lincoln-park/2155-n-elston-ave-convertible-chicago-il-60614-0'}],
-    available:null, outdoor:'other'
-  },
-  {
-    id:15, tier:'near', score:0,
-    address:'2345 N Lincoln Ave #A1-0805 (Lincoln Common)', zone:'Lincoln Park',
-    rent:3379, allIn:3379, lat:41.9251282, lng:-87.6471954,
-    loft:'Not a loft (0 signals)', layout:'Layout not listed',
-    tags:[],
-    warn:'Fails style only — 0 loft signals recorded. Heat inclusion unknown, not priced in.',
-    signals:'No loft signals extracted',
-    sources:[{label:'Zillow', url:'https://www.zillow.com/apartments/chicago-il/the-apartments-at-lincoln-common'}],
-    available:null, outdoor:'other'
-  },
-  {
-    id:16, tier:'near', score:0,
-    address:'2241 N Bissell St', zone:'Lincoln Park',
-    rent:2795, allIn:2795, lat:41.92291, lng:-87.6517751,
-    loft:'Not a loft (0 signals)', layout:'Layout not listed',
-    tags:[],
-    warn:'Fails style only — 0 loft signals recorded. Heat inclusion unknown, not priced in.',
-    signals:'No loft signals extracted',
-    sources:[{label:'Zillow', url:'https://www.zillow.com/routed/email/property-notifications/zpid_target/2106492726_zpid'}],
+    sources:[{label:'Zillow', url:'https://www.zillow.com/routing/email/property-notifications/zpid_target/2110712217_zpid/X1-SS93sr9vba3j1s0000000000_3tnpj_sse/'}],
     available:null, outdoor:'other'
   },
 ];
