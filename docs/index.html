@@ -179,7 +179,7 @@
   <div class="listings">
     <header class="top">
       <div class="brand">Wicker Park Loft Scan<span class="dot">.</span></div>
-      <div class="subtitle">2026-08-13 · 6 new reviewed, 0 qualify, 1 near miss</div>
+      <div class="subtitle">2026-08-17 · 29 new reviewed, 0 qualify, 5 near misses shown (16 total, capped)</div>
       <div class="counts">
         <div class="count-chip"><span class="swatch" style="background:var(--priority)"></span><b id="countPriority">0</b> priority</div>
         <div class="count-chip"><span class="swatch" style="background:var(--worth)"></span><b id="countWorth">0</b> worth a look</div>
@@ -222,21 +222,65 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
 <script>
-// Generated from raw/classified-2026-08-13.json (morning + afternoon passes) + ledger.json
-// (lat/lng cache) by the reporter agent.
-// Of 6 new listings reviewed today, 5 failed 2+ §3 hard filters (not included here — see
-// reports/2026-08-13.md) and 1 failed exactly one (style) — included below as a near miss.
-// None scored 50+.
+// Generated from raw/classified-2026-08-17.json + ledger.json (lat/lng cache) by the
+// reporter agent. Of 29 new listings reviewed today, 13 failed 2+ §3 hard filters (not
+// included here — see reports/2026-08-17.md), 16 failed exactly one filter, and 0 scored
+// 50+. Only 5 near-misses are included below per the 5-per-run report cap; the other 11
+// are listed in the markdown report.
 const listings = [
   {
-    id:1, tier:'near', score:6,
-    address:'1942 W Division St, Apt 3F', zone:'Wicker Park (border)',
-    rent:3000, allIn:3000, lat:41.9035022, lng:-87.6765485,
+    id:1, tier:'near', score:37,
+    address:'2061-2071 N Southport Ave #308', zone:'Lincoln Park (Southport industrial pocket, adjacent)',
+    rent:2280, allIn:2280, lat:41.9179324, lng:-87.6629699,
+    loft:'Hard loft', layout:'Layout not stated',
+    tags:['Paid lot parking','In-unit laundry','Shared outdoor'],
+    warn:'Failed hard filter — available 2026-09-07, 8 days before the 2026-09-15 window opens. Heat inclusion unknown, not priced in.',
+    signals:'Exposed brick · timber beams · 12ft ceilings (concrete floors also noted, not an official signal)',
+    sources:[{label:'Web', url:'https://www.rentcafe.com/apartments/il/chicago/southport-lofts/default.aspx'}],
+    available:'2026-09-07', outdoor:'other'
+  },
+  {
+    id:2, tier:'near', score:37,
+    address:'2061-2071 N Southport Ave #410', zone:'Lincoln Park (Southport industrial pocket, adjacent)',
+    rent:2305, allIn:2305, lat:41.9179324, lng:-87.6629699,
+    loft:'Hard loft', layout:'Layout not stated',
+    tags:['Paid lot parking','In-unit laundry','Shared outdoor'],
+    warn:'Failed hard filter — available 2026-08-23, over 3 weeks before the 2026-09-15 window opens. Heat inclusion unknown, not priced in.',
+    signals:'Exposed brick · timber beams · 12ft ceilings (concrete floors also noted, not an official signal)',
+    sources:[{label:'Web', url:'https://www.rentcafe.com/apartments/il/chicago/southport-lofts/default.aspx'}],
+    available:'2026-08-23', outdoor:'other'
+  },
+  {
+    id:3, tier:'near', score:16,
+    address:'1241 N Milwaukee Ave', zone:'Wicker Park',
+    rent:2898, allIn:2898, lat:41.9042757, lng:-87.6677455,
+    loft:'Not a confirmed loft', layout:'Layout not stated',
+    tags:['In-unit laundry'],
+    warn:'Failed hard filter — style unconfirmed (1 of 4 soft-loft signals: concrete floors only). Heat inclusion unknown, not priced in.',
+    signals:'Concrete floors only (1 of 4 soft-loft signals needed)',
+    sources:[{label:'Web', url:'https://1241milwaukee.com/floorplans/1-bed-den2-bath/'}],
+    available:null, outdoor:'other'
+  },
+  {
+    id:4, tier:'near', score:10,
+    address:'1249 N Damen Ave #2', zone:'Wicker Park',
+    rent:2800, allIn:2800, lat:41.9047378, lng:-87.6770416,
     loft:'Not a confirmed loft', layout:'Layout not stated',
     tags:[],
-    warn:'Failed hard filter — style unconfirmed (0/5 loft signals recorded). Heat inclusion unknown, not priced in.',
+    warn:'Failed hard filter — style unconfirmed (0 of 5 loft signals recorded). Suspect pricing — may be below comps for a 2BR, verify before assuming a deal. Heat inclusion unknown, not priced in.',
     signals:'No loft signals recorded',
-    sources:[{label:'Zillow', url:'https://www.zillow.com/routing/email/property-notifications/zpid_target/2110712217_zpid/X1-SS93sr9vba3j1s0000000000_3tnpj_sse/'}],
+    sources:[{label:'Zillow', url:'https://www.zillow.com/routed/email/property-notifications/zpid_target/464607265_zpid'}],
+    available:null, outdoor:'other'
+  },
+  {
+    id:5, tier:'near', score:10,
+    address:'2040 W Crystal St #1', zone:'Wicker Park',
+    rent:2400, allIn:2400, lat:41.9043074, lng:-87.6789087,
+    loft:'Not a confirmed loft', layout:'Layout not stated',
+    tags:[],
+    warn:'Failed hard filter — style unconfirmed (0 of 5 loft signals recorded). Suspect pricing — may be below comps for a 2BR, verify before assuming a deal. Heat inclusion unknown, not priced in.',
+    signals:'No loft signals recorded',
+    sources:[{label:'Zillow', url:'https://www.zillow.com/routed/email/property-notifications/zpid_target/2072705889_zpid'}],
     available:null, outdoor:'other'
   },
 ];
