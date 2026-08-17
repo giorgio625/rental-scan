@@ -293,7 +293,7 @@ sender-domain filter as the other four)
 2. **Priority (70+)** — full detail, all-in cost breakdown, the §5 traps flagged,
    loft signals found, and nearby separate-lease parking if the unit has none
 3. **Worth a look (50–69)** — one line each: address, beds, all-in, score, link
-4. **Near misses** — listings failing exactly one hard filter, capped at 5 per
+4. **Near misses** — listings failing exactly one hard filter, capped at 10 per
    run, each labeled with which filter it failed. Rent over ceiling by less than
    10% is the classic case.
 5. **Price changes** — address, old → new, days on market

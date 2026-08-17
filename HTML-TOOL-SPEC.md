@@ -84,9 +84,14 @@ hardcoded JS. The real version needs this array generated from
 | `sources` | `_sources` | array of {label: source name, url: listing url}, rendered as links on card and popup |
 | `available` | `available_date` | pass through as-is, including `null` |
 
-**Regeneration, not append:** `docs/index.html` is fully overwritten each
-run from the current `active.md` equivalent (all live listings scoring 50+),
-same as `active.md` itself. It is a view of current state, not a running log.
+**Regeneration, not append — but two outputs now.** `docs/index.html` is
+fully overwritten each run from the current `active.md` equivalent (all live
+listings scoring 50+ plus today's near-misses): a view of current state, not
+a running log. `docs/{YYYY-MM-DD}.html` is the opposite — a permanent
+per-day snapshot, the HTML twin of that day's `reports/{date}.md`, written
+once and never overwritten by a later run. Both carry the same archive nav
+strip linking every `docs/YYYY-MM-DD.html` on disk, newest first, so either
+page can reach any day.
 
 **Do not touch the file structure of `mockup.html` beyond the data-loading
 change.** The layout, filters, and styling are confirmed. If `reporter`

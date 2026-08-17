@@ -38,7 +38,8 @@ agent that applies judgment, and the only one whose output is read by a human.
      Include each listing's canonical key in its row. **Preserve my status
      column** (`my_status`) by matching canonical keys across runs — that's
      my own notes on listings, and regenerating it blank destroys my work.
-5b. Write `docs/index.html`: read `mockup.html` as the template and replace
+5b. Write TWO HTML dashboards from the `mockup.html` template — read the
+    template and replace
     ONLY the hardcoded `const listings = [...]` array with real data —
     layout, styles, and filter logic are confirmed, never touch them.
     Entries: everything in `shortlist.json` (tier `priority` ≥70 / `worth`
@@ -48,6 +49,13 @@ agent that applies judgment, and the only one whose output is read by a human.
     uncached and the page omits the pin. `sources` is an array of
     {label, url} rendered as links. `available` passes through as-is —
     a missing move-in date renders "not listed", never a guess.
+    Write the same generated page to BOTH `docs/{YYYY-MM-DD}.html` (that
+    day's permanent dashboard, never overwritten on a later date — the
+    HTML twin of `reports/{date}.md`, so it carries that day's near-misses
+    and rejects even after they age out of the shortlist) and
+    `docs/index.html` (always the latest run, overwritten every time).
+    Both get an archive nav strip listing every `docs/YYYY-MM-DD.html`
+    present, newest first, so any day is reachable from any page.
 6. If zero new, zero price changes, and zero near misses: write no report.
    Still refresh `shortlist.json`/`active.md` if `newly_dead` removed
    anything.
