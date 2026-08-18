@@ -61,7 +61,14 @@ agent that applies judgment, and the only one whose output is read by a human.
     **cumulative — every currently-available listing scoring 50+, not just
     today's finds.** Never build these cards from the `new`,
     `price_change`, or `relist` buckets; those are the markdown digest's
-    job. Only the `near` tier is scoped to today's run. `lat`/`lng` come from `ledger.json`
+    job. Only the `near` tier is scoped to today's run.
+    **Every entry must carry `key:` — its canonical key.** The template
+    stores saved (★) and removed (✕) listings against it in localStorage;
+    `id` is a render ordinal reassigned every run, so keying off `id` would
+    silently re-point a saved listing at a different apartment. The save,
+    remove, and mobile list/map toggle behaviour all live in the template
+    already — replace the data array and nothing else.
+    `lat`/`lng` come from `ledger.json`
     (the geocoder's cache), joined on canonical key — leave them null when
     uncached and the page omits the pin. `sources` is an array of
     {label, url} rendered as links. `available` passes through as-is —

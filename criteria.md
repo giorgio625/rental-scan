@@ -230,6 +230,49 @@ the canonical key — see HTML-TOOL-SPEC.md §1.
 
 ---
 
+## 6a. Listing URLs — normalize the tracking wrappers
+
+The `url` field has to still work when I tap it a week later, on a phone,
+not signed in. Alert emails do not give you that by default.
+
+**Zillow.** Alert emails wrap listing links two different ways, sometimes
+nested one inside the other:
+
+```
+https://www.zillow.com/routed/email/property-notifications/zpid_target/464607265_zpid
+https://www.zillow.com/routing/email/property-notifications/zpid_target/2102308204_zpid
+https://click.mail.zillow.com/f/a/<token>/AAAAARA~/<token>?target=<urlencoded real url>
+```
+
+Both spellings (`routed`, `routing`) appear. The `click.mail.zillow.com`
+form carries the real URL urlencoded in its `target=` query param — unwrap
+that first, then apply the rule below to what comes out.
+
+These are single-use tracking wrappers tied to the email that carried them —
+they expire, and an expired one silently lands on a generic Zillow page
+rather than erroring, so a dead link looks exactly like a working one until
+you tap it.
+
+The ZPID in the path is the stable identifier. Rewrite to the canonical
+permalink:
+
+```
+464607265_zpid   →   https://www.zillow.com/homedetails/464607265_zpid/
+```
+
+**Any source.** Rewrite `http://` to `https://`. Strip tracking query
+parameters (`utm_*`, `rgid`, `mid`, `s_trk`, `fromEmail`, `signature`) —
+they carry nothing needed to resolve the listing and some encode the
+recipient.
+
+**What NOT to do:** if an email only gives a building-level or floorplan URL
+(`zillow.com/apartments/chicago-il/the-ludlow`, a RentCafe `default.aspx`, a
+property's own `/floorplans/` page), keep it as-is. It is the real link the
+source published. Do not synthesize a unit-level URL that was never given —
+a fabricated link that 404s is worse than an honest building page.
+
+---
+
 ## 7. Canonical key and address normalization
 
 `dedupe.py` implements this. Spec lives here.

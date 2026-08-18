@@ -47,6 +47,13 @@ agents do the filtering.
 - `address_raw` is the address exactly as printed, unmodified. Do not clean,
   expand, or normalize it — normalization happens in `dedupe.py`, and it needs
   the original string.
+- `url` is the ONE field you do normalize, per **§6a**. Zillow alert links
+  are per-email tracking redirects that expire onto a generic page. Unwrap a
+  `click.mail.zillow.com/...?target=` link first, then rewrite
+  `.../zpid_target/{ZPID}_zpid` to
+  `https://www.zillow.com/homedetails/{ZPID}_zpid/`. Force `https://`, drop
+  tracking query params. Never invent a unit-level URL the email didn't
+  give: a building or floorplan page passes through unchanged.
 - Also populate the structured address parts (`street_number`,
   `street_directional`, `street_name`, `unit`) when the email states them
   clearly. If the email only gives a single address string, fill `address_raw`

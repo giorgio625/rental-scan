@@ -122,12 +122,39 @@
 
   .card-foot{
     margin-top:12px;padding-top:10px;border-top:1px solid var(--paper-2);
-    display:flex;justify-content:space-between;align-items:center;
+    display:flex;justify-content:space-between;align-items:center;gap:10px;
   }
-  .sources{font-size:10.5px;color:var(--muted);display:flex;gap:8px;}
+  .sources{font-size:10.5px;color:var(--muted);display:flex;gap:8px;flex-wrap:wrap;}
   .source-link{color:var(--brick-dark);text-decoration:none;}
   .source-link:hover{text-decoration:underline;}
-  .loft-sig{font-size:10.5px;color:var(--green);font-style:italic;}
+  .loft-sig{font-size:10.5px;color:var(--green);font-style:italic;margin-top:10px;line-height:1.45;}
+
+  /* ---------- CARD ACTIONS: favorite / dismiss ---------- */
+  .card-actions{display:flex;gap:4px;flex-shrink:0;}
+  .act{
+    width:32px;height:32px;border-radius:6px;border:1px solid var(--line);
+    background:#fff;cursor:pointer;font-size:14px;line-height:1;
+    display:flex;align-items:center;justify-content:center;color:var(--muted);
+    transition:all .12s ease;padding:0;
+  }
+  .act:hover{border-color:#c4b8a2;color:var(--ink);}
+  .act.fav.on{background:#fdf4e3;border-color:var(--worth);color:var(--worth);}
+  .act.dismiss:hover{border-color:var(--brick);color:var(--brick);}
+
+  .card.is-dismissed{opacity:.52;background:var(--paper-2);}
+  .card.is-dismissed .address{text-decoration:line-through;text-decoration-color:var(--muted);}
+  .card.is-fav{border-left:3px solid var(--worth);}
+
+  .dismissed-bar{
+    display:none;align-items:center;justify-content:space-between;gap:10px;
+    padding:9px 24px;border-bottom:1px solid var(--line);
+    background:var(--paper-2);font-size:11.5px;color:var(--muted);
+  }
+  .dismissed-bar.show{display:flex;}
+  .linkish{
+    background:none;border:none;padding:0;font:inherit;color:var(--brick-dark);
+    cursor:pointer;text-decoration:underline;
+  }
 
   .avail-row{display:flex;align-items:center;gap:5px;margin-top:8px;font-size:11.5px;color:var(--muted);}
   .avail-row.unknown{color:#a8917a;}
@@ -178,6 +205,49 @@
 
   ::-webkit-scrollbar{width:8px;}
   ::-webkit-scrollbar-thumb{background:var(--line);border-radius:4px;}
+
+  /* ---------- MOBILE: list <-> map toggle ---------- */
+  /* Floating and fixed rather than in the header, because the header lives
+     inside .listings — which is the pane that gets hidden in map view. */
+  .view-toggle{
+    display:none;
+    position:fixed;bottom:20px;left:50%;transform:translateX(-50%);
+    z-index:1200;background:#fff;border:1px solid var(--line);
+    border-radius:100px;padding:4px;gap:2px;
+    box-shadow:0 3px 14px rgba(30,27,24,0.18);
+  }
+  .view-btn{
+    font-family:inherit;font-size:13px;font-weight:500;
+    padding:9px 20px;border-radius:100px;border:none;background:none;
+    color:var(--muted);cursor:pointer;display:flex;align-items:center;gap:6px;
+  }
+  .view-btn.active{background:var(--ink);color:#fff;}
+
+  @media (max-width:860px){
+    body{height:100dvh;}
+    .app{grid-template-columns:1fr;height:100dvh;}
+    .view-toggle{display:flex;}
+
+    .listings{border-right:none;}
+    .map-pane{height:100dvh;}
+    #map{height:100dvh;}
+
+    /* One pane at a time. Default is list; body class flips it. */
+    body.view-map .listings{display:none;}
+    body:not(.view-map) .map-pane{display:none;}
+
+    header.top{padding:16px 18px 12px;}
+    .archive-nav,.filters{padding-left:18px;padding-right:18px;}
+    .dismissed-bar{padding-left:18px;padding-right:18px;}
+    .list-scroll{padding:8px 12px 88px;}  /* clear the floating toggle */
+    .legend{top:12px;right:12px;padding:9px 12px;font-size:11px;}
+    .zone-note{display:none;}             /* competes with the toggle */
+    .brand{font-size:19px;}
+
+    /* Touch targets, not mouse targets. */
+    .act{width:38px;height:38px;font-size:15px;}
+    .filter-pill{padding:8px 14px;}
+  }
 </style>
 </head>
 <body>
@@ -205,6 +275,7 @@
       <div class="filter-pill" data-tier="priority">Priority</div>
       <div class="filter-pill" data-tier="worth">Worth a look</div>
       <div class="filter-pill" data-tier="near">Near miss</div>
+      <div class="filter-pill" data-tier="saved">★ Saved</div>
     </div>
     <div class="filters" id="priceFilters" style="border-bottom:1px solid var(--line);">
       <div class="filter-pill active" data-price="all">Any price</div>
@@ -216,6 +287,15 @@
       <div class="filter-pill active" data-outdoor="all">Outdoor: any</div>
       <div class="filter-pill" data-outdoor="private">Private outdoor</div>
       <div class="filter-pill" data-outdoor="other">None / unknown</div>
+    </div>
+
+    <div class="dismissed-bar" id="dismissedBar">
+      <span><b id="dismissedCount">0</b> removed</span>
+      <span>
+        <button class="linkish" id="toggleDismissed">Show</button>
+        &nbsp;·&nbsp;
+        <button class="linkish" id="restoreAll">Restore all</button>
+      </span>
     </div>
 
     <div class="list-scroll" id="listScroll"></div>
@@ -233,193 +313,225 @@
 
 </div>
 
+<div class="view-toggle" id="viewToggle" role="group" aria-label="Switch between list and map">
+  <button class="view-btn active" data-view="list" aria-pressed="true">☰ List</button>
+  <button class="view-btn" data-view="map" aria-pressed="false">◈ Map</button>
+</div>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
 <script>
-// Generated from raw/classified-2026-08-17.json + ledger.json (lat/lng cache) by the
-// reporter agent. Of 29 new listings reviewed today, 13 failed 2+ §3 hard filters (not
-// included here — see reports/2026-08-17.md) and 16 failed exactly one filter (all shown
-// below, tier 'near'). Nothing scored 50+ today, so priority/worth-a-look are empty.
 const listings = [
   {
-    id:1, tier:'near', score:32,
+    id:1, key:'2061-n-southport-410', tier:'near', score:32,
     address:'2061-2071 N Southport Ave, Unit 410', zone:'Lincoln Park (secondary — Clybourn-corridor judgment call, see report)',
     rent:2305, allIn:2305, lat:41.9179324, lng:-87.6629699,
     loft:'Hard loft', layout:'Layout not listed',
     tags:['Parking (paid lot)','In-unit laundry','Shared outdoor space'],
     warn:'Fails availability only — move-in 2026-08-23 is before the 2026-09-15 window opens. Zone counted Lincoln Park by a generous reading of the Clybourn corridor; a strict boundary read would also fail location. Heat inclusion unknown, not priced in.',
     signals:'Exposed brick · timber beams · 12ft ceilings (claimed, unverified against photos) · concrete floors — 4 of 5 hard-loft signals',
-    sources:[{label:'Web', url:'https://www.rentcafe.com/apartments/il/chicago/southport-lofts/default.aspx'}],
+    sources:[{label:'Web', url: 'https://www.rentcafe.com/apartments/il/chicago/southport-lofts/default.aspx'}],
     available:'2026-08-23', outdoor:'other'
   },
   {
-    id:2, tier:'near', score:32,
+    id:2, key:'2061-n-southport-308', tier:'near', score:32,
     address:'2061-2071 N Southport Ave, Unit 308', zone:'Lincoln Park (secondary — Clybourn-corridor judgment call, see report)',
     rent:2280, allIn:2280, lat:41.9179324, lng:-87.6629699,
     loft:'Hard loft', layout:'Layout not listed',
     tags:['Parking (paid lot)','In-unit laundry','Shared outdoor space'],
     warn:'Fails availability only — move-in 2026-09-07 is before the 2026-09-15 window opens. Zone counted Lincoln Park by a generous reading of the Clybourn corridor; a strict boundary read would also fail location. Heat inclusion unknown, not priced in.',
     signals:'Exposed brick · timber beams · 12ft ceilings (claimed, unverified against photos) · concrete floors — 4 of 5 hard-loft signals',
-    sources:[{label:'Web', url:'https://www.rentcafe.com/apartments/il/chicago/southport-lofts/default.aspx'}],
+    sources:[{label:'Web', url: 'https://www.rentcafe.com/apartments/il/chicago/southport-lofts/default.aspx'}],
     available:'2026-09-07', outdoor:'other'
   },
   {
-    id:3, tier:'near', score:8,
+    id:3, key:'1241-n-milwaukee-1br-3200', tier:'near', score:8,
     address:'1241 N Milwaukee Ave — 957 sqft 1BR/1BA floorplan', zone:'Wicker Park',
     rent:3195, allIn:3195, lat:41.9042757, lng:-87.6677455,
     loft:'Borderline (1 signal)', layout:'Layout not listed',
     tags:['In-unit laundry'],
     warn:'Borderline style — only 1 of 5 hard-loft signals (concrete floors), short of the 3 needed. Fails style, the only filter tripped. Heat inclusion unknown, not priced in.',
     signals:'Concrete floors only — 1 of 5 hard-loft signals',
-    sources:[{label:'Web', url:'https://1241milwaukee.com/floorplans/1-bed1-bath-6/'}],
+    sources:[{label:'Web', url: 'https://1241milwaukee.com/floorplans/1-bed1-bath-6/'}],
     available:null, outdoor:'other'
   },
   {
-    id:4, tier:'near', score:8,
+    id:4, key:'1241-n-milwaukee-1br-2900', tier:'near', score:8,
     address:'1241 N Milwaukee Ave — 986 sqft 1BR/1BA+den floorplan', zone:'Wicker Park',
     rent:2898, allIn:2898, lat:41.9042757, lng:-87.6677455,
     loft:'Borderline (1 signal)', layout:'Layout not listed',
     tags:['In-unit laundry'],
     warn:'Borderline style — only 1 of 5 hard-loft signals (concrete floors), short of the 3 needed. Fails style, the only filter tripped. Heat inclusion unknown, not priced in.',
     signals:'Concrete floors only — 1 of 5 hard-loft signals',
-    sources:[{label:'Web', url:'https://1241milwaukee.com/floorplans/1-bed-den2-bath/'}],
+    sources:[{label:'Web', url: 'https://1241milwaukee.com/floorplans/1-bed-den2-bath/'}],
     available:null, outdoor:'other'
   },
   {
-    id:5, tier:'near', score:8,
+    id:5, key:'1743-n-leavitt-UNKNOWN', tier:'near', score:8,
     address:'1743 N Leavitt St (606 Blue)', zone:'Wicker Park',
     rent:2795, allIn:2795, lat:41.9136405, lng:-87.6819906,
     loft:'Not a loft (0 signals)', layout:'Layout not listed',
     tags:['In-unit laundry'],
     warn:'Fails style only — 0 loft signals recorded. Beds/baths missing from the alert (extraction gap, not disqualifying) — worth a manual look. Heat inclusion unknown, not priced in.',
     signals:'No loft signals extracted',
-    sources:[{label:'Redfin', url:'https://www.redfin.com/IL/Chicago/606-Blue/apartment/171313176'}],
+    sources:[{label:'Redfin', url: 'https://www.redfin.com/IL/Chicago/606-Blue/apartment/171313176'}],
     available:null, outdoor:'other'
   },
   {
-    id:6, tier:'near', score:3,
+    id:6, key:'506-w-deming-1br-2700', tier:'near', score:3,
     address:'506 W Deming Pl (The Deming)', zone:'Lincoln Park',
     rent:2700, allIn:2700, lat:41.9287172, lng:-87.6431829,
     loft:'Not a loft (0 signals)', layout:'Layout not listed',
     tags:['In-unit laundry'],
     warn:'Fails style only — 0 loft signals recorded. Heat inclusion unknown, not priced in.',
     signals:'No loft signals extracted',
-    sources:[{label:'Redfin', url:'https://www.redfin.com/IL/Chicago/The-Deming/apartment/13366693'}],
+    sources:[{label:'Redfin', url: 'https://www.redfin.com/IL/Chicago/The-Deming/apartment/13366693'}],
     available:null, outdoor:'other'
   },
   {
-    id:7, tier:'near', score:0,
+    id:7, key:'1249-n-damen-2', tier:'near', score:0,
     address:'1249 N Damen Ave #2', zone:'Wicker Park',
     rent:2800, allIn:2800, lat:41.9047378, lng:-87.6770416,
     loft:'Not a loft (0 signals)', layout:'Layout not listed',
     tags:[],
     warn:'Fails style only — 0 loft signals recorded. Suspect pricing flagged (20%+ under the running 2BR median) — treat as a possible bait listing, not a real deal, until checked by hand. Heat inclusion unknown, not priced in.',
     signals:'No loft signals extracted',
-    sources:[{label:'Zillow', url:'https://www.zillow.com/routed/email/property-notifications/zpid_target/464607265_zpid'}],
+    sources:[{label:'Zillow', url: 'https://www.zillow.com/homedetails/464607265_zpid/'}],
     available:null, outdoor:'other'
   },
   {
-    id:8, tier:'near', score:0,
+    id:8, key:'2040-w-crystal-1', tier:'near', score:0,
     address:'2040 W Crystal St #1', zone:'Wicker Park',
     rent:2400, allIn:2400, lat:41.9043074, lng:-87.6789087,
     loft:'Not a loft (0 signals)', layout:'Layout not listed',
     tags:[],
     warn:'Fails style only — 0 loft signals recorded. Suspect pricing flagged — treat as a possible bait listing until checked by hand. Heat inclusion unknown, not priced in.',
     signals:'No loft signals extracted',
-    sources:[{label:'Zillow', url:'https://www.zillow.com/routed/email/property-notifications/zpid_target/2072705889_zpid'}],
+    sources:[{label:'Zillow', url: 'https://www.zillow.com/homedetails/2072705889_zpid/'}],
     available:null, outdoor:'other'
   },
   {
-    id:9, tier:'near', score:0,
+    id:9, key:'429-w-belden-GN', tier:'near', score:0,
     address:'429 W Belden Ave, Unit GN', zone:'Lincoln Park',
     rent:2450, allIn:2450, lat:41.9236725, lng:-87.6403392,
     loft:'Not a loft (0 signals)', layout:'Layout not listed',
     tags:['In-unit laundry'],
     warn:'Fails style only — 0 loft signals recorded. Garden-level unit (would also carry a −10 scoring penalty, though that is not a §3 filter on its own). Heat inclusion unknown, not priced in.',
     signals:'No loft signals extracted',
-    sources:[{label:'Redfin', url:'https://www.redfin.com/IL/Chicago/429-W-Belden-Ave-60614/unit-GN/apartment/196954529'}],
+    sources:[{label:'Redfin', url: 'https://www.redfin.com/IL/Chicago/429-W-Belden-Ave-60614/unit-GN/apartment/196954529'}],
     available:null, outdoor:'other'
   },
   {
-    id:10, tier:'near', score:0,
+    id:10, key:'2032-n-clybourn-3317', tier:'near', score:0,
     address:'2032 N Clybourn Ave #3-317 (The Ludlow)', zone:'Lincoln Park (sits on the Lincoln Park/Bucktown boundary seam)',
     rent:2595, allIn:2595, lat:41.918244, lng:-87.659887,
     loft:'Not a loft (0 signals)', layout:'Layout not listed',
     tags:[],
     warn:'Fails style only — 0 loft signals recorded. Heat inclusion unknown, not priced in.',
     signals:'No loft signals extracted',
-    sources:[{label:'Zillow', url:'https://www.zillow.com/apartments/chicago-il/the-ludlow'}],
+    sources:[{label:'Zillow', url: 'https://www.zillow.com/apartments/chicago-il/the-ludlow'}],
     available:null, outdoor:'other'
   },
   {
-    id:11, tier:'near', score:0,
+    id:11, key:'325-w-fullerton-101', tier:'near', score:0,
     address:'325 W Fullerton Pkwy #101 (Park Fullerton by Reside)', zone:'Lincoln Park (Fullerton is the shared Bucktown/Lincoln Park edge; counted Lincoln Park by longitude)',
     rent:2873, allIn:2873, lat:41.9252985, lng:-87.6375658,
     loft:'Not a loft (0 signals)', layout:'Layout not listed',
     tags:[],
     warn:'Fails style only — 0 loft signals recorded. Heat inclusion unknown, not priced in.',
     signals:'No loft signals extracted',
-    sources:[{label:'Zillow', url:'https://www.zillow.com/apartments/chicago-il/park-fullerton-by-reside'}],
+    sources:[{label:'Zillow', url: 'https://www.zillow.com/apartments/chicago-il/park-fullerton-by-reside'}],
     available:null, outdoor:'other'
   },
   {
-    id:12, tier:'near', score:0,
+    id:12, key:'948-w-armitage-2S', tier:'near', score:0,
     address:'948 W Armitage Ave #2S', zone:'Lincoln Park',
     rent:3200, allIn:3200, lat:41.9183706, lng:-87.6528232,
     loft:'Not a loft (0 signals)', layout:'Layout not listed',
     tags:[],
     warn:'Fails style only — 0 loft signals recorded. Heat inclusion unknown, not priced in.',
     signals:'No loft signals extracted',
-    sources:[{label:'Zillow', url:'https://www.zillow.com/routing/email/property-notifications/zpid_target/2102308204_zpid'}],
+    sources:[{label:'Zillow', url: 'https://www.zillow.com/homedetails/2102308204_zpid/'}],
     available:null, outdoor:'other'
   },
   {
-    id:13, tier:'near', score:0,
+    id:13, key:'2155-n-elston-11', tier:'near', score:0,
     address:'2155 N Elston Ave #1/1', zone:'Bucktown (listing claims Lincoln Park — coordinates say otherwise)',
     rent:2677, allIn:2677, lat:41.9204923, lng:-87.6702316,
     loft:'Not a loft (0 signals)', layout:'Layout not listed',
     tags:[],
     warn:'Fails style only — 0 loft signals recorded. Heat inclusion unknown, not priced in.',
     signals:'No loft signals extracted',
-    sources:[{label:'Domu', url:'http://www.domu.com/chicago/north-side/lincoln-park/2155-n-elston-ave-1/1-chicago-il-60614-0'}],
+    sources:[{label:'Domu', url: 'https://www.domu.com/chicago/north-side/lincoln-park/2155-n-elston-ave-1/1-chicago-il-60614-0'}],
     available:null, outdoor:'other'
   },
   {
-    id:14, tier:'near', score:0,
+    id:14, key:'2155-n-elston-CONVERTIBLE', tier:'near', score:0,
     address:'2155 N Elston Ave #Convertible', zone:'Bucktown (listing claims Lincoln Park — coordinates say otherwise)',
     rent:2295, allIn:2295, lat:41.9204923, lng:-87.6702316,
     loft:'Not a loft (0 signals)', layout:'Layout not listed',
     tags:[],
     warn:'Fails style only — 0 loft signals recorded. Heat inclusion unknown, not priced in.',
     signals:'No loft signals extracted',
-    sources:[{label:'Domu', url:'http://www.domu.com/chicago/north-side/lincoln-park/2155-n-elston-ave-convertible-chicago-il-60614-0'}],
+    sources:[{label:'Domu', url: 'https://www.domu.com/chicago/north-side/lincoln-park/2155-n-elston-ave-convertible-chicago-il-60614-0'}],
     available:null, outdoor:'other'
   },
   {
-    id:15, tier:'near', score:0,
+    id:15, key:'2345-n-lincoln-A10805', tier:'near', score:0,
     address:'2345 N Lincoln Ave #A1-0805 (Lincoln Common)', zone:'Lincoln Park',
     rent:3379, allIn:3379, lat:41.9251282, lng:-87.6471954,
     loft:'Not a loft (0 signals)', layout:'Layout not listed',
     tags:[],
     warn:'Fails style only — 0 loft signals recorded. Heat inclusion unknown, not priced in.',
     signals:'No loft signals extracted',
-    sources:[{label:'Zillow', url:'https://www.zillow.com/apartments/chicago-il/the-apartments-at-lincoln-common'}],
+    sources:[{label:'Zillow', url: 'https://www.zillow.com/apartments/chicago-il/the-apartments-at-lincoln-common'}],
     available:null, outdoor:'other'
   },
   {
-    id:16, tier:'near', score:0,
+    id:16, key:'2241-n-bissell-1br-2800', tier:'near', score:0,
     address:'2241 N Bissell St', zone:'Lincoln Park',
     rent:2795, allIn:2795, lat:41.92291, lng:-87.6517751,
     loft:'Not a loft (0 signals)', layout:'Layout not listed',
     tags:[],
     warn:'Fails style only — 0 loft signals recorded. Heat inclusion unknown, not priced in.',
     signals:'No loft signals extracted',
-    sources:[{label:'Zillow', url:'https://www.zillow.com/routed/email/property-notifications/zpid_target/2106492726_zpid'}],
+    sources:[{label:'Zillow', url: 'https://www.zillow.com/homedetails/2106492726_zpid/'}],
     available:null, outdoor:'other'
   },
 ];
 
 const tierColor = {priority:'var(--priority)', worth:'var(--worth)', near:'var(--near)'};
 const tierLabel = {priority:'Priority', worth:'Worth a look', near:'Near miss'};
+
+// ---------------------------------------------------------------------------
+// Saved / removed state.
+//
+// Keyed on the CANONICAL KEY from dedupe.py, never on `id`. `id` is a render
+// ordinal — it is reassigned every run as listings enter and leave, so
+// favouriting id:3 today and reading it back tomorrow would silently point at
+// a different apartment. `key` is stable for the life of the unit, which is
+// the whole reason dedupe.py computes it.
+//
+// Same-origin localStorage means these carry across index.html and every
+// archived docs/{date}.html without any extra work.
+// ---------------------------------------------------------------------------
+const STORE = {fav:'wpscan.favorites.v1', dismissed:'wpscan.dismissed.v1'};
+
+function loadSet(name){
+  try{ return new Set(JSON.parse(localStorage.getItem(name)) || []); }
+  catch(e){ return new Set(); }   // private mode / corrupt value: degrade to in-memory
+}
+function saveSet(name, set){
+  try{ localStorage.setItem(name, JSON.stringify([...set])); }
+  catch(e){ /* storage unavailable — UI still works for this session */ }
+}
+
+const favorites = loadSet(STORE.fav);
+const dismissed = loadSet(STORE.dismissed);
+let showDismissed = false;
+
+// Fall back to the address when a generated page predates the `key` field, so
+// an older archived dashboard still favourites something rather than throwing.
+const keyOf = l => l.key || l.address;
 
 // Totals, not filtered counts — computed once from `listings` and left alone
 // after that, so this file only ever needs its listings array replaced.
@@ -430,6 +542,7 @@ document.getElementById('countWorth').textContent = tierCounts.worth;
 document.getElementById('countNear').textContent = tierCounts.near;
 document.querySelectorAll('#tierFilters .filter-pill').forEach(pill => {
   const t = pill.dataset.tier;
+  if(t === 'saved') return;          // count is dynamic; paintState() owns it
   const label = t === 'all' ? 'All' : tierLabel[t];
   pill.textContent = `${label} (${tierCounts[t]})`;
 });
@@ -481,14 +594,65 @@ listings.forEach(l => {
       ${l.tags.map(t => `<span class="tag">${t}</span>`).join('')}
       ${l.warn ? `<span class="tag warn">⚠ ${l.warn}</span>` : ''}
     </div>
+    <div class="loft-sig">${l.signals}</div>
     <div class="card-foot">
       <div class="sources">${l.sources.map(s => `<a class="source-link" href="${s.url}" target="_blank" rel="noopener" onclick="event.stopPropagation()">${s.label}</a>`).join('')}</div>
-      <div class="loft-sig">${l.signals}</div>
+      <div class="card-actions">
+        <button class="act fav" data-act="fav" title="Save" aria-label="Save this listing">★</button>
+        <button class="act dismiss" data-act="dismiss" title="Remove" aria-label="Remove this listing">✕</button>
+      </div>
     </div>
   `;
+
+  card.querySelector('[data-act="fav"]').addEventListener('click', e => {
+    e.stopPropagation();
+    const k = keyOf(l);
+    favorites.has(k) ? favorites.delete(k) : favorites.add(k);
+    saveSet(STORE.fav, favorites);
+    paintState();
+    applyFilters();
+  });
+
+  card.querySelector('[data-act="dismiss"]').addEventListener('click', e => {
+    e.stopPropagation();
+    const k = keyOf(l);
+    dismissed.has(k) ? dismissed.delete(k) : dismissed.add(k);
+    saveSet(STORE.dismissed, dismissed);
+    paintState();
+    applyFilters();
+  });
+
   card.addEventListener('click', () => selectListing(l.id));
   listScroll.appendChild(card);
 });
+
+// Reflect saved/removed state onto the cards and the removed-count bar.
+function paintState(){
+  listings.forEach(l => {
+    const card = document.getElementById('card-' + l.id);
+    const k = keyOf(l);
+    const isFav = favorites.has(k);
+    const isGone = dismissed.has(k);
+    card.classList.toggle('is-fav', isFav);
+    card.classList.toggle('is-dismissed', isGone);
+    const favBtn = card.querySelector('[data-act="fav"]');
+    favBtn.classList.toggle('on', isFav);
+    favBtn.setAttribute('aria-pressed', String(isFav));
+    favBtn.title = isFav ? 'Saved — click to unsave' : 'Save';
+    const rmBtn = card.querySelector('[data-act="dismiss"]');
+    rmBtn.textContent = isGone ? '↺' : '✕';
+    rmBtn.title = isGone ? 'Restore' : 'Remove';
+  });
+
+  const n = listings.filter(l => dismissed.has(keyOf(l))).length;
+  document.getElementById('dismissedCount').textContent = n;
+  document.getElementById('dismissedBar').classList.toggle('show', n > 0);
+  document.getElementById('toggleDismissed').textContent = showDismissed ? 'Hide' : 'Show';
+
+  const savedPill = document.querySelector('#tierFilters [data-tier="saved"]');
+  const savedCount = listings.filter(l => favorites.has(keyOf(l))).length;
+  savedPill.textContent = `★ Saved (${savedCount})`;
+}
 
 const filterState = {tier:'all', price:'all', outdoor:'all'};
 
@@ -496,10 +660,16 @@ function applyFilters(){
   let visibleCount = 0;
   listings.forEach(l => {
     const card = document.getElementById('card-' + l.id);
-    const tierMatch = filterState.tier === 'all' || l.tier === filterState.tier;
+    const k = keyOf(l);
+    const tierMatch = filterState.tier === 'all' ? true
+                    : filterState.tier === 'saved' ? favorites.has(k)
+                    : l.tier === filterState.tier;
     const priceMatch = filterState.price === 'all' || priceBucket(l) === filterState.price;
     const outdoorMatch = filterState.outdoor === 'all' || l.outdoor === filterState.outdoor;
-    const visible = tierMatch && priceMatch && outdoorMatch;
+    // Removed listings stay hidden until you ask to see them — but a saved
+    // listing you also removed is still findable under ★ Saved.
+    const dismissMatch = !dismissed.has(k) || showDismissed || filterState.tier === 'saved';
+    const visible = tierMatch && priceMatch && outdoorMatch && dismissMatch;
     card.classList.toggle('hidden', !visible);
     if(markers[l.id]){
       if(visible){ if(!map.hasLayer(markers[l.id])) markers[l.id].addTo(map); }
@@ -513,9 +683,13 @@ function applyFilters(){
       empty = document.createElement('div');
       empty.id = 'emptyState';
       empty.className = 'empty-state';
-      empty.textContent = 'Nothing matches these filters.';
       listScroll.appendChild(empty);
     }
+    // Reassigned on every call — the message depends on the current filter,
+    // and a cached one goes stale the moment the filter changes.
+    empty.textContent = filterState.tier === 'saved'
+      ? 'Nothing saved yet. Tap ★ on a listing to keep it here.'
+      : 'Nothing matches these filters.';
   } else if(empty){
     empty.remove();
   }
@@ -548,6 +722,20 @@ document.getElementById('outdoorFilters').addEventListener('click', e => {
   applyFilters();
 });
 
+document.getElementById('toggleDismissed').addEventListener('click', () => {
+  showDismissed = !showDismissed;
+  paintState();
+  applyFilters();
+});
+
+document.getElementById('restoreAll').addEventListener('click', () => {
+  dismissed.clear();
+  saveSet(STORE.dismissed, dismissed);
+  showDismissed = false;
+  paintState();
+  applyFilters();
+});
+
 const map = L.map('map', {zoomControl:false}).setView([41.9145, -87.6770], 14.3);
 L.control.zoom({position:'bottomright'}).addTo(map);
 L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
@@ -557,6 +745,8 @@ L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r
 
 const markers = {};
 listings.forEach(l => {
+  // A failed geocode leaves lat/lng null. Spec: omit the pin, keep the card.
+  if(l.lat == null || l.lng == null) return;
   const icon = L.divIcon({
     className:'', html:`<div class="pin ${l.tier}"><span>${l.score}</span></div>`,
     iconSize:[28,28], iconAnchor:[14,28]
@@ -580,9 +770,37 @@ function selectListing(id){
   card.classList.add('selected');
   card.scrollIntoView({behavior:'smooth', block:'nearest'});
   const l = listings.find(x => x.id === id);
+  if(!markers[id]) return;                 // ungeocoded: no pin to fly to
   map.flyTo([l.lat, l.lng], 16, {duration:0.6});
   markers[id].openPopup();
 }
+
+// ---------------------------------------------------------------------------
+// Mobile list <-> map toggle.
+//
+// Both panes exist in the DOM at all times; only visibility changes. Leaflet
+// cannot measure a display:none container, so a map revealed after load comes
+// up as grey tiles until invalidateSize() runs against real dimensions.
+// ---------------------------------------------------------------------------
+document.getElementById('viewToggle').addEventListener('click', e => {
+  const btn = e.target.closest('.view-btn');
+  if(!btn) return;
+  const wantMap = btn.dataset.view === 'map';
+  document.body.classList.toggle('view-map', wantMap);
+  document.querySelectorAll('.view-btn').forEach(b => {
+    const on = b === btn;
+    b.classList.toggle('active', on);
+    b.setAttribute('aria-pressed', String(on));
+  });
+  if(wantMap) requestAnimationFrame(() => map.invalidateSize());
+});
+
+// Crossing the breakpoint (rotation, desktop resize) can leave the map sized
+// for the pane it no longer occupies.
+window.addEventListener('resize', () => map.invalidateSize());
+
+paintState();
+applyFilters();
 </script>
 
 </body>

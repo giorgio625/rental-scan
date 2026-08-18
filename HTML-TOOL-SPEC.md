@@ -68,6 +68,7 @@ hardcoded JS. The real version needs this array generated from
 
 | Mockup field | Source field | Notes |
 |---|---|---|
+| `key` | `_key` (canonical key) | **Required.** Saved/removed state is stored against it in `localStorage`. `id` is a render ordinal that gets reassigned every run — keying off it would silently re-point a saved listing at a different apartment |
 | `tier` | derived from `score` | `priority` ≥70, `worth` 50–69, `near` = failed exactly one §3 filter |
 | `score` | computed score, §4 | |
 | `address` | `address_raw` | |
@@ -97,6 +98,27 @@ page can reach any day.
 change.** The layout, filters, and styling are confirmed. If `reporter`
 wants to change the visual design, that's a separate conversation, not
 something to drift into while wiring up real data.
+
+### Saved / removed listings, and the mobile view toggle
+
+Added 2026-08-18, in the template — `reporter` inherits all of it by
+replacing only the `listings` array, and must not reimplement any of it:
+
+- **★ save and ✕ remove** on every card, persisted in `localStorage` under
+  `wpscan.favorites.v1` / `wpscan.dismissed.v1`, keyed on the **canonical
+  key**. Removed listings hide behind a "*n* removed — Show / Restore all"
+  bar; nothing is ever destroyed, because a listing removed by accident on a
+  phone has to be recoverable. A `★ Saved (n)` pill filters to favourites.
+- **List ↔ Map toggle**, a floating control that appears under 860px so the
+  map is usable on a phone, where the two-pane desktop layout collapses to
+  one pane at a time. It is fixed-position rather than in the header because
+  the header lives inside the list pane, which is hidden in map view.
+- Because state is same-origin `localStorage`, saves and removals carry
+  across `index.html` and every archived `docs/{date}.html` for free.
+
+This is why `key` is required in the field table above. A generated page
+that omits it falls back to the address string, which works but breaks the
+moment `reporter` rewords an address.
 
 ---
 

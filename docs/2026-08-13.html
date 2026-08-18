@@ -122,12 +122,39 @@
 
   .card-foot{
     margin-top:12px;padding-top:10px;border-top:1px solid var(--paper-2);
-    display:flex;justify-content:space-between;align-items:center;
+    display:flex;justify-content:space-between;align-items:center;gap:10px;
   }
-  .sources{font-size:10.5px;color:var(--muted);display:flex;gap:8px;}
+  .sources{font-size:10.5px;color:var(--muted);display:flex;gap:8px;flex-wrap:wrap;}
   .source-link{color:var(--brick-dark);text-decoration:none;}
   .source-link:hover{text-decoration:underline;}
-  .loft-sig{font-size:10.5px;color:var(--green);font-style:italic;}
+  .loft-sig{font-size:10.5px;color:var(--green);font-style:italic;margin-top:10px;line-height:1.45;}
+
+  /* ---------- CARD ACTIONS: favorite / dismiss ---------- */
+  .card-actions{display:flex;gap:4px;flex-shrink:0;}
+  .act{
+    width:32px;height:32px;border-radius:6px;border:1px solid var(--line);
+    background:#fff;cursor:pointer;font-size:14px;line-height:1;
+    display:flex;align-items:center;justify-content:center;color:var(--muted);
+    transition:all .12s ease;padding:0;
+  }
+  .act:hover{border-color:#c4b8a2;color:var(--ink);}
+  .act.fav.on{background:#fdf4e3;border-color:var(--worth);color:var(--worth);}
+  .act.dismiss:hover{border-color:var(--brick);color:var(--brick);}
+
+  .card.is-dismissed{opacity:.52;background:var(--paper-2);}
+  .card.is-dismissed .address{text-decoration:line-through;text-decoration-color:var(--muted);}
+  .card.is-fav{border-left:3px solid var(--worth);}
+
+  .dismissed-bar{
+    display:none;align-items:center;justify-content:space-between;gap:10px;
+    padding:9px 24px;border-bottom:1px solid var(--line);
+    background:var(--paper-2);font-size:11.5px;color:var(--muted);
+  }
+  .dismissed-bar.show{display:flex;}
+  .linkish{
+    background:none;border:none;padding:0;font:inherit;color:var(--brick-dark);
+    cursor:pointer;text-decoration:underline;
+  }
 
   .avail-row{display:flex;align-items:center;gap:5px;margin-top:8px;font-size:11.5px;color:var(--muted);}
   .avail-row.unknown{color:#a8917a;}
@@ -178,6 +205,49 @@
 
   ::-webkit-scrollbar{width:8px;}
   ::-webkit-scrollbar-thumb{background:var(--line);border-radius:4px;}
+
+  /* ---------- MOBILE: list <-> map toggle ---------- */
+  /* Floating and fixed rather than in the header, because the header lives
+     inside .listings — which is the pane that gets hidden in map view. */
+  .view-toggle{
+    display:none;
+    position:fixed;bottom:20px;left:50%;transform:translateX(-50%);
+    z-index:1200;background:#fff;border:1px solid var(--line);
+    border-radius:100px;padding:4px;gap:2px;
+    box-shadow:0 3px 14px rgba(30,27,24,0.18);
+  }
+  .view-btn{
+    font-family:inherit;font-size:13px;font-weight:500;
+    padding:9px 20px;border-radius:100px;border:none;background:none;
+    color:var(--muted);cursor:pointer;display:flex;align-items:center;gap:6px;
+  }
+  .view-btn.active{background:var(--ink);color:#fff;}
+
+  @media (max-width:860px){
+    body{height:100dvh;}
+    .app{grid-template-columns:1fr;height:100dvh;}
+    .view-toggle{display:flex;}
+
+    .listings{border-right:none;}
+    .map-pane{height:100dvh;}
+    #map{height:100dvh;}
+
+    /* One pane at a time. Default is list; body class flips it. */
+    body.view-map .listings{display:none;}
+    body:not(.view-map) .map-pane{display:none;}
+
+    header.top{padding:16px 18px 12px;}
+    .archive-nav,.filters{padding-left:18px;padding-right:18px;}
+    .dismissed-bar{padding-left:18px;padding-right:18px;}
+    .list-scroll{padding:8px 12px 88px;}  /* clear the floating toggle */
+    .legend{top:12px;right:12px;padding:9px 12px;font-size:11px;}
+    .zone-note{display:none;}             /* competes with the toggle */
+    .brand{font-size:19px;}
+
+    /* Touch targets, not mouse targets. */
+    .act{width:38px;height:38px;font-size:15px;}
+    .filter-pill{padding:8px 14px;}
+  }
 </style>
 </head>
 <body>
@@ -205,6 +275,7 @@
       <div class="filter-pill" data-tier="priority">Priority</div>
       <div class="filter-pill" data-tier="worth">Worth a look</div>
       <div class="filter-pill" data-tier="near">Near miss</div>
+      <div class="filter-pill" data-tier="saved">★ Saved</div>
     </div>
     <div class="filters" id="priceFilters" style="border-bottom:1px solid var(--line);">
       <div class="filter-pill active" data-price="all">Any price</div>
@@ -216,6 +287,15 @@
       <div class="filter-pill active" data-outdoor="all">Outdoor: any</div>
       <div class="filter-pill" data-outdoor="private">Private outdoor</div>
       <div class="filter-pill" data-outdoor="other">None / unknown</div>
+    </div>
+
+    <div class="dismissed-bar" id="dismissedBar">
+      <span><b id="dismissedCount">0</b> removed</span>
+      <span>
+        <button class="linkish" id="toggleDismissed">Show</button>
+        &nbsp;·&nbsp;
+        <button class="linkish" id="restoreAll">Restore all</button>
+      </span>
     </div>
 
     <div class="list-scroll" id="listScroll"></div>
@@ -233,28 +313,60 @@
 
 </div>
 
+<div class="view-toggle" id="viewToggle" role="group" aria-label="Switch between list and map">
+  <button class="view-btn active" data-view="list" aria-pressed="true">☰ List</button>
+  <button class="view-btn" data-view="map" aria-pressed="false">◈ Map</button>
+</div>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
 <script>
-// Generated from reports/2026-08-13.md + ledger.json (lat/lng cache) by the reporter
-// agent. Of 6 new listings reviewed that day, 5 failed 2+ §3 hard filters (not included
-// here — see reports/2026-08-13.md) and 1 failed exactly one filter (shown below, tier
-// 'near'). Nothing scored 50+ that day. Permanent snapshot — never overwritten.
 const listings = [
   {
-    id:1, tier:'near', score:6,
+    id:1, key:'1942-w-division-3F', tier:'near', score:6,
     address:'1942 W Division St, Apt 3F', zone:'Wicker Park / East Village (sits on the Division St boundary line — inside bounds either way)',
     rent:3000, allIn:3000, lat:41.9035022, lng:-87.6765485,
     loft:'Not a loft (0 signals)', layout:'Layout not listed',
     tags:[],
     warn:'Fails style only — 0 of 5 hard-loft and 0 of 4 soft-loft signals extracted. Could be a genuine non-loft, or just an alert that never carried loft detail — no way to tell from what Zillow sent. Every other §3 filter passes (rent, beds, location, and so far as known, availability/lease term). Heat inclusion unknown, not priced in. Score is mostly zeros for missing data (parking, laundry, outdoor space, layout, sqft, condition all null) — only transit (~0.4–0.5 mi to the Division Blue Line) earns anything real.',
     signals:'No loft signals extracted',
-    sources:[{label:'Zillow', url:'https://www.zillow.com/routing/email/property-notifications/zpid_target/2110712217_zpid/X1-SS93sr9vba3j1s0000000000_3tnpj_sse/'}],
+    sources:[{label:'Zillow', url: 'https://www.zillow.com/homedetails/2110712217_zpid/'}],
     available:null, outdoor:'other'
   },
 ];
 
 const tierColor = {priority:'var(--priority)', worth:'var(--worth)', near:'var(--near)'};
 const tierLabel = {priority:'Priority', worth:'Worth a look', near:'Near miss'};
+
+// ---------------------------------------------------------------------------
+// Saved / removed state.
+//
+// Keyed on the CANONICAL KEY from dedupe.py, never on `id`. `id` is a render
+// ordinal — it is reassigned every run as listings enter and leave, so
+// favouriting id:3 today and reading it back tomorrow would silently point at
+// a different apartment. `key` is stable for the life of the unit, which is
+// the whole reason dedupe.py computes it.
+//
+// Same-origin localStorage means these carry across index.html and every
+// archived docs/{date}.html without any extra work.
+// ---------------------------------------------------------------------------
+const STORE = {fav:'wpscan.favorites.v1', dismissed:'wpscan.dismissed.v1'};
+
+function loadSet(name){
+  try{ return new Set(JSON.parse(localStorage.getItem(name)) || []); }
+  catch(e){ return new Set(); }   // private mode / corrupt value: degrade to in-memory
+}
+function saveSet(name, set){
+  try{ localStorage.setItem(name, JSON.stringify([...set])); }
+  catch(e){ /* storage unavailable — UI still works for this session */ }
+}
+
+const favorites = loadSet(STORE.fav);
+const dismissed = loadSet(STORE.dismissed);
+let showDismissed = false;
+
+// Fall back to the address when a generated page predates the `key` field, so
+// an older archived dashboard still favourites something rather than throwing.
+const keyOf = l => l.key || l.address;
 
 // Totals, not filtered counts — computed once from `listings` and left alone
 // after that, so this file only ever needs its listings array replaced.
@@ -265,6 +377,7 @@ document.getElementById('countWorth').textContent = tierCounts.worth;
 document.getElementById('countNear').textContent = tierCounts.near;
 document.querySelectorAll('#tierFilters .filter-pill').forEach(pill => {
   const t = pill.dataset.tier;
+  if(t === 'saved') return;          // count is dynamic; paintState() owns it
   const label = t === 'all' ? 'All' : tierLabel[t];
   pill.textContent = `${label} (${tierCounts[t]})`;
 });
@@ -316,14 +429,65 @@ listings.forEach(l => {
       ${l.tags.map(t => `<span class="tag">${t}</span>`).join('')}
       ${l.warn ? `<span class="tag warn">⚠ ${l.warn}</span>` : ''}
     </div>
+    <div class="loft-sig">${l.signals}</div>
     <div class="card-foot">
       <div class="sources">${l.sources.map(s => `<a class="source-link" href="${s.url}" target="_blank" rel="noopener" onclick="event.stopPropagation()">${s.label}</a>`).join('')}</div>
-      <div class="loft-sig">${l.signals}</div>
+      <div class="card-actions">
+        <button class="act fav" data-act="fav" title="Save" aria-label="Save this listing">★</button>
+        <button class="act dismiss" data-act="dismiss" title="Remove" aria-label="Remove this listing">✕</button>
+      </div>
     </div>
   `;
+
+  card.querySelector('[data-act="fav"]').addEventListener('click', e => {
+    e.stopPropagation();
+    const k = keyOf(l);
+    favorites.has(k) ? favorites.delete(k) : favorites.add(k);
+    saveSet(STORE.fav, favorites);
+    paintState();
+    applyFilters();
+  });
+
+  card.querySelector('[data-act="dismiss"]').addEventListener('click', e => {
+    e.stopPropagation();
+    const k = keyOf(l);
+    dismissed.has(k) ? dismissed.delete(k) : dismissed.add(k);
+    saveSet(STORE.dismissed, dismissed);
+    paintState();
+    applyFilters();
+  });
+
   card.addEventListener('click', () => selectListing(l.id));
   listScroll.appendChild(card);
 });
+
+// Reflect saved/removed state onto the cards and the removed-count bar.
+function paintState(){
+  listings.forEach(l => {
+    const card = document.getElementById('card-' + l.id);
+    const k = keyOf(l);
+    const isFav = favorites.has(k);
+    const isGone = dismissed.has(k);
+    card.classList.toggle('is-fav', isFav);
+    card.classList.toggle('is-dismissed', isGone);
+    const favBtn = card.querySelector('[data-act="fav"]');
+    favBtn.classList.toggle('on', isFav);
+    favBtn.setAttribute('aria-pressed', String(isFav));
+    favBtn.title = isFav ? 'Saved — click to unsave' : 'Save';
+    const rmBtn = card.querySelector('[data-act="dismiss"]');
+    rmBtn.textContent = isGone ? '↺' : '✕';
+    rmBtn.title = isGone ? 'Restore' : 'Remove';
+  });
+
+  const n = listings.filter(l => dismissed.has(keyOf(l))).length;
+  document.getElementById('dismissedCount').textContent = n;
+  document.getElementById('dismissedBar').classList.toggle('show', n > 0);
+  document.getElementById('toggleDismissed').textContent = showDismissed ? 'Hide' : 'Show';
+
+  const savedPill = document.querySelector('#tierFilters [data-tier="saved"]');
+  const savedCount = listings.filter(l => favorites.has(keyOf(l))).length;
+  savedPill.textContent = `★ Saved (${savedCount})`;
+}
 
 const filterState = {tier:'all', price:'all', outdoor:'all'};
 
@@ -331,10 +495,16 @@ function applyFilters(){
   let visibleCount = 0;
   listings.forEach(l => {
     const card = document.getElementById('card-' + l.id);
-    const tierMatch = filterState.tier === 'all' || l.tier === filterState.tier;
+    const k = keyOf(l);
+    const tierMatch = filterState.tier === 'all' ? true
+                    : filterState.tier === 'saved' ? favorites.has(k)
+                    : l.tier === filterState.tier;
     const priceMatch = filterState.price === 'all' || priceBucket(l) === filterState.price;
     const outdoorMatch = filterState.outdoor === 'all' || l.outdoor === filterState.outdoor;
-    const visible = tierMatch && priceMatch && outdoorMatch;
+    // Removed listings stay hidden until you ask to see them — but a saved
+    // listing you also removed is still findable under ★ Saved.
+    const dismissMatch = !dismissed.has(k) || showDismissed || filterState.tier === 'saved';
+    const visible = tierMatch && priceMatch && outdoorMatch && dismissMatch;
     card.classList.toggle('hidden', !visible);
     if(markers[l.id]){
       if(visible){ if(!map.hasLayer(markers[l.id])) markers[l.id].addTo(map); }
@@ -348,9 +518,13 @@ function applyFilters(){
       empty = document.createElement('div');
       empty.id = 'emptyState';
       empty.className = 'empty-state';
-      empty.textContent = 'Nothing matches these filters.';
       listScroll.appendChild(empty);
     }
+    // Reassigned on every call — the message depends on the current filter,
+    // and a cached one goes stale the moment the filter changes.
+    empty.textContent = filterState.tier === 'saved'
+      ? 'Nothing saved yet. Tap ★ on a listing to keep it here.'
+      : 'Nothing matches these filters.';
   } else if(empty){
     empty.remove();
   }
@@ -383,6 +557,20 @@ document.getElementById('outdoorFilters').addEventListener('click', e => {
   applyFilters();
 });
 
+document.getElementById('toggleDismissed').addEventListener('click', () => {
+  showDismissed = !showDismissed;
+  paintState();
+  applyFilters();
+});
+
+document.getElementById('restoreAll').addEventListener('click', () => {
+  dismissed.clear();
+  saveSet(STORE.dismissed, dismissed);
+  showDismissed = false;
+  paintState();
+  applyFilters();
+});
+
 const map = L.map('map', {zoomControl:false}).setView([41.9145, -87.6770], 14.3);
 L.control.zoom({position:'bottomright'}).addTo(map);
 L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
@@ -392,6 +580,8 @@ L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r
 
 const markers = {};
 listings.forEach(l => {
+  // A failed geocode leaves lat/lng null. Spec: omit the pin, keep the card.
+  if(l.lat == null || l.lng == null) return;
   const icon = L.divIcon({
     className:'', html:`<div class="pin ${l.tier}"><span>${l.score}</span></div>`,
     iconSize:[28,28], iconAnchor:[14,28]
@@ -415,9 +605,37 @@ function selectListing(id){
   card.classList.add('selected');
   card.scrollIntoView({behavior:'smooth', block:'nearest'});
   const l = listings.find(x => x.id === id);
+  if(!markers[id]) return;                 // ungeocoded: no pin to fly to
   map.flyTo([l.lat, l.lng], 16, {duration:0.6});
   markers[id].openPopup();
 }
+
+// ---------------------------------------------------------------------------
+// Mobile list <-> map toggle.
+//
+// Both panes exist in the DOM at all times; only visibility changes. Leaflet
+// cannot measure a display:none container, so a map revealed after load comes
+// up as grey tiles until invalidateSize() runs against real dimensions.
+// ---------------------------------------------------------------------------
+document.getElementById('viewToggle').addEventListener('click', e => {
+  const btn = e.target.closest('.view-btn');
+  if(!btn) return;
+  const wantMap = btn.dataset.view === 'map';
+  document.body.classList.toggle('view-map', wantMap);
+  document.querySelectorAll('.view-btn').forEach(b => {
+    const on = b === btn;
+    b.classList.toggle('active', on);
+    b.setAttribute('aria-pressed', String(on));
+  });
+  if(wantMap) requestAnimationFrame(() => map.invalidateSize());
+});
+
+// Crossing the breakpoint (rotation, desktop resize) can leave the map sized
+// for the pane it no longer occupies.
+window.addEventListener('resize', () => map.invalidateSize());
+
+paintState();
+applyFilters();
 </script>
 
 </body>
