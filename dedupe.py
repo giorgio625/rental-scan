@@ -468,7 +468,12 @@ def classify(merged, ledger, today):
 
 
 def reap_absent(ledger, seen_keys, today):
-    """Mark anything absent DAYS_ABSENT_UNTIL_DEAD consecutive days as dead."""
+    """Mark anything absent DAYS_ABSENT_UNTIL_DEAD consecutive days as dead.
+
+    Note this measures CALENDAR days since last_seen, not runs. On an
+    every-other-day cadence a listing still dies ~7-8 days after it was last
+    seen; the cadence only controls which run notices.
+    """
     newly_dead = []
     for key, record in ledger["listings"].items():
         if key in seen_keys or record.get("status") == "dead":
@@ -481,6 +486,23 @@ def reap_absent(ledger, seen_keys, today):
     return newly_dead
 
 
+def live_keys(ledger):
+    """
+    Every ledger key that is still on the market — the full cumulative set the
+    reporter renders, not just this run's changes.
+
+    `newly_dead` is a delta and only fires on the single run a listing dies.
+    Anything downstream that removes listings by subtracting that delta strands
+    a dead listing forever the first time a run is skipped or the reporter
+    fails. This is the absolute set, so the shortlist reconciles to the ledger
+    every run instead of accumulating drift.
+    """
+    return sorted(
+        key for key, record in ledger["listings"].items()
+        if record.get("status") != "dead"
+    )
+
+
 # --------------------------------------------------------------------------
 # Entry point
 # --------------------------------------------------------------------------
@@ -490,6 +512,7 @@ def run(listings, ledger, today):
     duplicates = group_possible_duplicates(listings)
     buckets = classify(merged, ledger, today)
     newly_dead = reap_absent(ledger, set(merged.keys()), today)
+    live = live_keys(ledger)
 
     last_output = _parse_day(ledger["meta"].get("last_output_date"))
     silent_days = (today - last_output).days if last_output else 0
@@ -508,6 +531,7 @@ def run(listings, ledger, today):
             "relist": len(buckets["relist"]),
             "seen_suppressed": len(buckets["seen"]),
             "newly_dead": len(newly_dead),
+            "live_total": len(live),
             "possible_duplicates": len(duplicates),
             "unresolvable_addresses": len(unresolvable),
         },
@@ -517,6 +541,10 @@ def run(listings, ledger, today):
         "possible_duplicates": duplicates,
         "unresolvable": unresolvable,
         "newly_dead": newly_dead,
+        # The cumulative live set. reporter keeps shortlist.json entries whose
+        # key appears here and drops every other one — an intersection against
+        # current state, never a subtraction of newly_dead.
+        "live_keys": live,
         # Canary: a silent scan and a broken scan look identical from outside.
         "heartbeat_due": silent_days >= 7 and not has_output,
         "sources_seen": sorted({

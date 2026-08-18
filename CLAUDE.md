@@ -28,10 +28,19 @@ working — which is the whole reason it's split into four agents.
 3. Then `geocoder` — fills cached `lat`/`lng` in `ledger.json` for any new
    canonical keys (Nominatim, 1 req/sec, cache-first).
 
-4. Then `reporter` — applies §4a and §4, writes `reports/{date}.md` and
-   `active.md`.
+4. Then `reporter` — applies §4a and §4, writes `reports/{date}.md`,
+   `active.md`, and the two `docs/*.html` dashboards.
 
 5. Commit: `git add -A && git commit -m "scan {date}"`
+
+6. Push: `git push origin master`. Best-effort — if it fails (auth expired,
+   network, conflict), do not fail the run or block anything above. Report
+   the push failure plainly in what you report back (see below); the commit
+   already happened locally, so no data is lost, but `docs/index.html` on
+   GitHub Pages goes stale until the next successful push. If pushes have
+   been failing for multiple consecutive runs, say so explicitly rather than
+   repeating the same one-line failure note each day — a run of failures is
+   the thing worth noticing, not any single one.
 
 `ledger.json` is the only irreplaceable artifact here. Weeks of alert emails
 cannot be re-collected, so commit every run — a bad run then costs a
@@ -40,7 +49,8 @@ cannot be re-collected, so commit every run — a bad run then costs a
 ## Sequencing
 
 Steps 2–4 are strictly serial and depend on the prior step's output file.
-Only step 1 parallelizes.
+Only step 1 parallelizes. Step 6 depends on step 5 (nothing to push without
+a commit) but its failure never rolls back or blocks step 5.
 
 If a harvester fails, continue with whatever the other returned and note the
 gap in the report. A partial scan is useful; a skipped day is a hole in the
@@ -49,8 +59,8 @@ ledger.
 ## What you report back
 
 Only what needs a human: the report path, headline counts, any
-`possible_duplicates` awaiting a call, and any source that returned zero when
-it normally returns something.
+`possible_duplicates` awaiting a call, any source that returned zero when
+it normally returns something, and any `git push` failure (step 6).
 
 Do not summarize the listings. That's the report's job, and restating it
 here just means it gets read twice.

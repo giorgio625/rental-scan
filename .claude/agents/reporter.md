@@ -30,10 +30,22 @@ agent that applies judgment, and the only one whose output is read by a human.
      cost_assumptions, loft_type, loft_signals, layout, outdoor_space,
      parking_type, laundry, available_date, lat, lng, _sources, url,
      first_seen, my_status) (lat/lng joined from ledger.json by canonical key).
-   - Build it by carrying forward the previous `shortlist.json` (drop any
-     key in `newly_dead`, update any key reappearing today), then adding
-     today's qualifiers. The classified JSON only contains today's changes —
-     the previous shortlist is where continuing listings come from.
+   - Build it by carrying forward the previous `shortlist.json`, then
+     **keeping only entries whose `_key` appears in `live_keys`** in the
+     classified JSON, then adding today's qualifiers (updating in place any
+     key that reappeared today). The classified JSON only contains today's
+     changes — the previous shortlist is where continuing listings come from.
+   - **`live_keys` is the removal rule, not `newly_dead`.** `live_keys` is
+     every non-dead key in the ledger, computed fresh each run, so the
+     shortlist reconciles to current state every time. `newly_dead` is a
+     delta that fires on exactly one run; subtract it instead and a single
+     skipped or failed run strands a dead listing on the dashboard
+     permanently, with nothing downstream showing that it happened. Use
+     `newly_dead` only to report what died today.
+   - A listing stays on the shortlist every run until its key leaves
+     `live_keys` — not just the run it was discovered on. Most runs add
+     nothing and remove nothing, and the shortlist should come out
+     byte-identical. That is correct, not a failure.
    - Overwrite `active.md` rendered from `shortlist.json`, sorted by score.
      Include each listing's canonical key in its row. **Preserve my status
      column** (`my_status`) by matching canonical keys across runs — that's
@@ -44,7 +56,12 @@ agent that applies judgment, and the only one whose output is read by a human.
     layout, styles, and filter logic are confirmed, never touch them.
     Entries: everything in `shortlist.json` (tier `priority` ≥70 / `worth`
     50–69) plus today's near-misses (tier `near`), mapped per
-    HTML-TOOL-SPEC.md §3's field table. `lat`/`lng` come from `ledger.json`
+    HTML-TOOL-SPEC.md §3's field table. Because `shortlist.json` is the
+    reconciled live set from step 5, the `priority`/`worth` cards are
+    **cumulative — every currently-available listing scoring 50+, not just
+    today's finds.** Never build these cards from the `new`,
+    `price_change`, or `relist` buckets; those are the markdown digest's
+    job. Only the `near` tier is scoped to today's run. `lat`/`lng` come from `ledger.json`
     (the geocoder's cache), joined on canonical key — leave them null when
     uncached and the page omits the pin. `sources` is an array of
     {label, url} rendered as links. `available` passes through as-is —
@@ -57,8 +74,10 @@ agent that applies judgment, and the only one whose output is read by a human.
     Both get an archive nav strip listing every `docs/YYYY-MM-DD.html`
     present, newest first, so any day is reachable from any page.
 6. If zero new, zero price changes, and zero near misses: write no report.
-   Still refresh `shortlist.json`/`active.md` if `newly_dead` removed
-   anything.
+   **Steps 5 and 5b still run every time regardless** — `shortlist.json`,
+   `active.md`, and the two HTML dashboards are current state and must be
+   rebuilt on a silent run too, so a listing that died drops off the same
+   day. Only `reports/{date}.md` is conditional.
    Exception: if `heartbeat_due` is true in the classified JSON, write a
    one-line file confirming sources are still returning data.
 

@@ -253,6 +253,12 @@ Example: `1547 N. Damen Ave, Unit 3W` → `1547-n-damen-3W`
 **Fallback key** when unit is null:
 `{street_number}-{directional}-{normalized_street}-{beds}br-{rent rounded to nearest 50}`
 
+**Death is measured in calendar days, not runs.** `DAYS_ABSENT_UNTIL_DEAD`
+in `dedupe.py` is compared against `last_seen`, so a listing dies 7 days after
+the last run that saw it no matter how often the scan runs. The cadence only
+decides which run notices — on an every-other-day schedule that's the run at
+day 8, not day 14.
+
 **Ambiguity rule:** if two records share a building key, rents are within $50,
 and at least one record is missing its unit number, do **not** auto-merge.
 Emit both under a single `possible_duplicate` group and let me resolve it.
@@ -266,7 +272,7 @@ different known units are different apartments — neither case is ambiguous.)
 | Key not in ledger | `new` |
 | Key in ledger, rent changed | `price_change` — report the delta |
 | Key in ledger, unchanged | `seen` — suppress from report |
-| Key absent 7+ consecutive days | `dead` — mark, stop reporting |
+| Key absent 7+ days | `dead` — mark, stop reporting |
 | Key returns after `dead` 30+ days | `relist` — not `new` |
 
 ---
@@ -306,6 +312,28 @@ write a one-line heartbeat confirming the sources are still returning data.
 
 `active.md` is overwritten each run with every live listing scoring 50+,
 sorted by score, with my own status column preserved across runs.
+
+### State vs. diff — the two outputs are deliberately different
+
+`reports/{date}.md` is a **diff**: what changed since the last run. New,
+price changes, relists, near misses. It stays that way — a cumulative digest
+is not skimmable, which is the only thing a daily digest is for.
+
+`active.md`, `shortlist.json`, and `docs/index.html` are **state**: every
+listing that is *currently available* and scores 50+, however long ago it was
+found. A listing discovered three runs back that is still on the market and
+still scores 50+ appears in all three on every run until it dies. Rebuild
+them from `dedupe.py`'s `live_keys` — the full set of non-dead ledger keys —
+intersected with the scored shortlist. Never from the run's `new` bucket, and
+never by subtracting `newly_dead`, which only fires on the single run a
+listing dies and silently strands it if that run is missed.
+
+`docs/{date}.html` is the exception on the state side: it's the permanent
+HTML twin of that day's digest, so it keeps that day's near-misses and
+rejects even after they age out.
+
+These three run on every scan, including a silent one. Only
+`reports/{date}.md` is conditional on there being something to report.
 
 ---
 
