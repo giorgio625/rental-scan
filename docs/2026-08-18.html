@@ -257,7 +257,7 @@
   <div class="listings">
     <header class="top">
       <div class="brand">Wicker Park Loft Scan<span class="dot">.</span></div>
-      <div class="subtitle">2026-08-18 — harvester outage: Gmail + web sources returned nothing (Gmail MCP unavailable, WebFetch egress blocked), geocoder also 403'd. 0 collected today. Showing 2026-08-17's shortlist, unchanged — 0 priority, 0 worth a look. See reports/2026-08-18.md.</div>
+      <div class="subtitle">2026-08-18 (corrected, full harvest) · 58 evaluated + 1 price change · 0 priority · 0 worth a look · 18 near misses</div>
       <div class="counts">
         <div class="count-chip"><span class="swatch" style="background:var(--priority)"></span><b id="countPriority">0</b> priority</div>
         <div class="count-chip"><span class="swatch" style="background:var(--worth)"></span><b id="countWorth">0</b> worth a look</div>
@@ -322,6 +322,204 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
 <script>
 const listings = [
+  {
+    id:1, key:'1249-n-damen-2', tier:'near', score:0,
+    address:'1249 N Damen Ave #2', zone:'Wicker Park',
+    rent:3200, allIn:3200, lat:41.9047378, lng:-87.6770416,
+    loft:'Not a loft (0 signals)', layout:'Layout not listed',
+    tags:[],
+    warn:'Price change today: $2,800 → $3,200 (+$400, +14%), 1 day on market. Fails style only — 0 loft signals recorded. Heat inclusion unknown, not priced in.',
+    signals:'No loft signals extracted',
+    sources:[{label:'Zillow', url:'https://www.zillow.com/homedetails/464607265_zpid/'}],
+    available:null, outdoor:'other'
+  },
+  {
+    id:2, key:'1355-n-milwaukee-203', tier:'near', score:0,
+    address:'1355 N Milwaukee Ave #203', zone:'Wicker Park',
+    rent:3000, allIn:3000, lat:41.9066248, lng:-87.6711058,
+    loft:'Not a loft (0 signals)', layout:'Layout not listed',
+    tags:[],
+    warn:'Fails style only — 0 loft signals recorded. Heat inclusion unknown, not priced in.',
+    signals:'No loft signals extracted',
+    sources:[{label:'Zillow', url:'https://www.zillow.com/homedetails/2070266075_zpid/'}],
+    available:null, outdoor:'other'
+  },
+  {
+    id:3, key:'1425-n-milwaukee-301', tier:'near', score:0,
+    address:'1425 N Milwaukee Ave #301', zone:'Wicker Park',
+    rent:2889, allIn:2889, lat:41.9079245, lng:-87.6731706,
+    loft:'Not a loft (0 signals)', layout:'Layout not listed',
+    tags:[],
+    warn:'Fails style only — 0 loft signals recorded. Heat inclusion unknown, not priced in.',
+    signals:'No loft signals extracted',
+    sources:[{label:'Zillow', url:'https://www.zillow.com/homedetails/457601837_zpid/'}],
+    available:null, outdoor:'other'
+  },
+  {
+    id:4, key:'1444-n-milwaukee-3R', tier:'near', score:8,
+    address:'1444 N Milwaukee Ave #3R', zone:'Wicker Park',
+    rent:2100, allIn:2100, lat:41.9080045, lng:-87.6742146,
+    loft:'Not a loft (0 signals)', layout:'Layout not listed',
+    tags:['In-unit laundry'],
+    warn:'Fails style only — 0 loft signals recorded. Heat inclusion unknown, not priced in.',
+    signals:'No loft signals extracted',
+    sources:[{label:'Zillow', url:'https://www.zillow.com/homedetails/2077358598_zpid/'}],
+    available:null, outdoor:'other'
+  },
+  {
+    id:5, key:'1500-n-western-2R', tier:'near', score:8,
+    address:'1500 N Western Ave, Unit 2R', zone:'Wicker Park (on the Western Ave boundary line)',
+    rent:2650, allIn:2650, lat:41.9086078, lng:-87.6874979,
+    loft:'Not a loft (0 signals)', layout:'Layout not listed',
+    tags:['In-unit laundry'],
+    warn:'Sits directly on the Western Ave boundary line; counted in-bounds. Fails style only — 0 loft signals recorded. Heat inclusion unknown, not priced in.',
+    signals:'No loft signals extracted',
+    sources:[{label:'Redfin', url:'https://www.redfin.com/IL/Chicago/1500-N-Western-Ave-60622/unit-2R/home/201674988'}],
+    available:null, outdoor:'other'
+  },
+  {
+    id:6, key:'1548-n-milwaukee-2F', tier:'near', score:0,
+    address:'1548 N Milwaukee Ave #2F', zone:'Wicker Park',
+    rent:3100, allIn:3100, lat:41.9094433, lng:-87.6765902,
+    loft:'Not a loft (0 signals)', layout:'Layout not listed',
+    tags:[],
+    warn:'Fails style only — 0 loft signals recorded. Heat inclusion unknown, not priced in.',
+    signals:'No loft signals extracted',
+    sources:[{label:'Zillow', url:'https://www.zillow.com/homedetails/464628938_zpid/'}],
+    available:null, outdoor:'other'
+  },
+  {
+    id:7, key:'1640-n-damen-1br-2700', tier:'near', score:8,
+    address:'1640 N Damen Ave', zone:'Wicker Park',
+    rent:2695, allIn:2695, lat:41.9116834, lng:-87.6777618,
+    loft:'Not a loft (0 signals)', layout:'Layout not listed',
+    tags:['In-unit laundry'],
+    warn:'Fails style only — 0 loft signals recorded. Heat inclusion unknown, not priced in.',
+    signals:'No loft signals extracted',
+    sources:[{label:'Redfin', url:'https://www.redfin.com/IL/Chicago/1640-N-Damen-Ave-60647/apartment/195899697'}],
+    available:null, outdoor:'other'
+  },
+  {
+    id:8, key:'2257-w-hirsch-1E', tier:'near', score:0,
+    address:'2257 W Hirsch St #1E', zone:'Wicker Park',
+    rent:2725, allIn:2725, lat:41.9065906, lng:-87.6843398,
+    loft:'Not a loft (0 signals)', layout:'Layout not listed',
+    tags:[],
+    warn:'Fails style only — 0 loft signals recorded. Heat inclusion unknown, not priced in.',
+    signals:'No loft signals extracted',
+    sources:[{label:'Zillow', url:'https://www.zillow.com/homedetails/2068720932_zpid/'}],
+    available:null, outdoor:'other'
+  },
+  {
+    id:9, key:'2300-w-wabansia-231', tier:'near', score:0,
+    address:'2300 W Wabansia Ave #231', zone:'Wicker Park',
+    rent:3800, allIn:3800, lat:41.9128445, lng:-87.6844055,
+    loft:'Not a loft (0 signals)', layout:'Layout not listed',
+    tags:[],
+    warn:'Sits exactly at the $3,800 ceiling — no headroom left if heat turns out tenant-paid (currently unknown, not priced in). Fails style only — 0 loft signals recorded.',
+    signals:'No loft signals extracted',
+    sources:[{label:'Zillow', url:'https://www.zillow.com/homedetails/3733079_zpid/'}],
+    available:null, outdoor:'other'
+  },
+  {
+    id:10, key:'2335-w-moffat-2', tier:'near', score:0,
+    address:'2335 W Moffat St #2', zone:'Wicker Park / Bucktown border',
+    rent:2400, allIn:2400, lat:41.9145545, lng:-87.6861953,
+    loft:'Not a loft (0 signals)', layout:'Layout not listed',
+    tags:[],
+    warn:'Suspect pricing — more than 20% under the running 2BR median; treat as possible bait, not a real deal. Sits near the Bloomingdale Ave line (Wicker Park/Bucktown boundary) — in bounds either way. Fails style only — 0 loft signals recorded. Heat inclusion unknown, not priced in.',
+    signals:'No loft signals extracted',
+    sources:[{label:'Zillow', url:'https://www.zillow.com/homedetails/2071463361_zpid/'}],
+    available:null, outdoor:'other'
+  },
+  {
+    id:11, key:'839-w-lill-1', tier:'near', score:0,
+    address:'839 W Lill Ave #1', zone:'Lincoln Park',
+    rent:2700, allIn:2700, lat:41.9279481, lng:-87.6503764,
+    loft:'Not a loft (0 signals)', layout:'Layout not listed',
+    tags:[],
+    warn:'Lincoln Park — secondary zone, −5 if it ever scored. Suspect pricing — more than 20% under the running 2BR median; treat as possible bait. Fails style only — 0 loft signals recorded. Heat inclusion unknown, not priced in.',
+    signals:'No loft signals extracted',
+    sources:[{label:'Zillow', url:'https://www.zillow.com/homedetails/2085384840_zpid/'}],
+    available:null, outdoor:'other'
+  },
+  {
+    id:12, key:'2140-n-lincoln-park-w-807', tier:'near', score:0,
+    address:'2140 N Lincoln Park W #807', zone:'Lincoln Park',
+    rent:2750, allIn:2750, lat:41.9213092, lng:-87.6368508,
+    loft:'Not a loft (0 signals)', layout:'Layout not listed',
+    tags:[],
+    warn:'Lincoln Park — secondary zone, −5 if it ever scored. Fails style only — 0 loft signals recorded. Heat inclusion unknown, not priced in.',
+    signals:'No loft signals extracted',
+    sources:[{label:'Domu', url:'http://www.domu.com/chicago/north-side/lincoln-park/2140-n-lincoln-park-w-807-chicago-il-60614-0'}],
+    available:null, outdoor:'other'
+  },
+  {
+    id:13, key:'2155-n-elston-11', tier:'near', score:0,
+    address:'2155 N Elston Ave #1/1', zone:'Lincoln Park',
+    rent:2677, allIn:2677, lat:41.9204923, lng:-87.6702316,
+    loft:'Not a loft (0 signals)', layout:'Layout not listed',
+    tags:[],
+    warn:'Lincoln Park — secondary zone, −5 if it ever scored. Fails style only — 0 loft signals recorded. Heat inclusion unknown, not priced in.',
+    signals:'No loft signals extracted',
+    sources:[{label:'Domu', url:'http://www.domu.com/chicago/north-side/lincoln-park/2155-n-elston-ave-1/1-chicago-il-60614-0'}],
+    available:null, outdoor:'other'
+  },
+  {
+    id:14, key:'2241-n-bissell-GDN', tier:'near', score:0,
+    address:'2241 N Bissell St, Garden Unit', zone:'Lincoln Park',
+    rent:2795, allIn:2795, lat:41.92291, lng:-87.6517751,
+    loft:'Not a loft (0 signals)', layout:'Layout not listed',
+    tags:['In-unit laundry'],
+    warn:'Lincoln Park — secondary zone (−5) and a garden/English-basement unit (−10 if it ever scored), though neither is a §3 filter on its own. Fails style only — 0 loft signals recorded. Heat inclusion unknown, not priced in.',
+    signals:'No loft signals extracted',
+    sources:[{label:'Redfin', url:'https://www.redfin.com/IL/Chicago/2241-N-Bissell-St-60614/unit-Gdn/home/202283288'}],
+    available:null, outdoor:'other'
+  },
+  {
+    id:15, key:'2345-n-lincoln-A21602', tier:'near', score:0,
+    address:'2345 N Lincoln Ave #A2-1602', zone:'Lincoln Park',
+    rent:3512, allIn:3512, lat:41.9251282, lng:-87.6471954,
+    loft:'Not a loft (0 signals)', layout:'Layout not listed',
+    tags:[],
+    warn:'Lincoln Park (Lincoln Common lease-up) — secondary zone, −5 if it ever scored. Same building/pattern as unit A1-0805 seen 08-17. Fails style only — 0 loft signals recorded. Heat inclusion unknown, not priced in.',
+    signals:'No loft signals extracted',
+    sources:[{label:'Zillow', url:'https://www.zillow.com/apartments/chicago-il/the-apartments-at-lincoln-common/CgH9W3/'}],
+    available:null, outdoor:'other'
+  },
+  {
+    id:16, key:'449-w-belden-2', tier:'near', score:0,
+    address:'449 W Belden Ave #2', zone:'Lincoln Park',
+    rent:2930, allIn:2930, lat:41.9235095, lng:-87.6409315,
+    loft:'Not a loft (0 signals)', layout:'Layout not listed',
+    tags:[],
+    warn:'Lincoln Park — secondary zone, −5 if it ever scored. Same building/block as 429-w-belden-GN seen 08-17. Fails style only — 0 loft signals recorded. Heat inclusion unknown, not priced in.',
+    signals:'No loft signals extracted',
+    sources:[{label:'Zillow', url:'https://www.zillow.com/homedetails/464660264_zpid/'}],
+    available:null, outdoor:'other'
+  },
+  {
+    id:17, key:'535-w-arlington-1br-2250', tier:'near', score:0,
+    address:'535 W Arlington Pl', zone:'Lincoln Park',
+    rent:2250, allIn:2250, lat:41.9264679, lng:-87.6426203,
+    loft:'Not a loft (0 signals)', layout:'Layout not listed',
+    tags:[],
+    warn:'Lincoln Park — secondary zone, −5 if it ever scored. Fails style only — 0 loft signals recorded. Heat inclusion unknown, not priced in.',
+    signals:'No loft signals extracted',
+    sources:[{label:'Zillow', url:'https://www.zillow.com/homedetails/3725373_zpid/'}],
+    available:null, outdoor:'other'
+  },
+  {
+    id:18, key:'948-w-armitage-2S', tier:'near', score:0,
+    address:'948 W Armitage Ave #2S', zone:'Lincoln Park',
+    rent:3200, allIn:3200, lat:41.9183706, lng:-87.6528232,
+    loft:'Not a loft (0 signals)', layout:'Layout not listed',
+    tags:[],
+    warn:'Lincoln Park — secondary zone, −5 if it ever scored. Fails style only — 0 loft signals recorded. Heat inclusion unknown, not priced in.',
+    signals:'No loft signals extracted',
+    sources:[{label:'Zillow', url:'https://www.zillow.com/homedetails/2102308204_zpid/'}],
+    available:null, outdoor:'other'
+  },
 ];
 
 const tierColor = {priority:'var(--priority)', worth:'var(--worth)', near:'var(--near)'};
