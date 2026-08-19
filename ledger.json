@@ -29,6 +29,35 @@
       "unit": "615",
       "verdict": null
     },
+    "1225-n-cleaver-FB2R": {
+      "address_raw": "1225 N Cleaver St #Fb2r, Chicago, IL",
+      "all_in_monthly": 1800.0,
+      "beds": 1,
+      "first_seen": "2026-08-18",
+      "key": "1225-n-cleaver-FB2R",
+      "key_type": "primary",
+      "last_seen": "2026-08-18",
+      "lat": 41.9042254,
+      "layout": null,
+      "lng": -87.6635039,
+      "loft_type": null,
+      "price_history": [
+        {
+          "date": "2026-08-18",
+          "rent": 1800
+        }
+      ],
+      "rent_gross": 1800,
+      "sources": [
+        {
+          "source": "zillow",
+          "url": "https://www.zillow.com/homedetails/2108647401_zpid/"
+        }
+      ],
+      "status": "active",
+      "unit": "Fb2r",
+      "verdict": null
+    },
     "1241-n-milwaukee-1br-2900": {
       "address_raw": "1241 N. Milwaukee Ave",
       "all_in_monthly": 2898.0,
@@ -59,13 +88,13 @@
       "verdict": null
     },
     "1241-n-milwaukee-1br-3200": {
-      "address_raw": "1241 N. Milwaukee Ave",
-      "all_in_monthly": 3195.0,
+      "address_raw": "1241 North Milwaukee",
+      "all_in_monthly": 3225.0,
       "beds": 1,
       "first_seen": "2026-08-17",
       "key": "1241-n-milwaukee-1br-3200",
       "key_type": "fallback",
-      "last_seen": "2026-08-17",
+      "last_seen": "2026-08-18",
       "lat": 41.9042757,
       "layout": null,
       "lng": -87.6677455,
@@ -74,13 +103,17 @@
         {
           "date": "2026-08-17",
           "rent": 3195
+        },
+        {
+          "date": "2026-08-18",
+          "rent": 3225
         }
       ],
-      "rent_gross": 3195,
+      "rent_gross": 3225,
       "sources": [
         {
           "source": "web",
-          "url": "https://1241milwaukee.com/floorplans/1-bed1-bath-6/"
+          "url": "https://www.downtownapartmentcollective.com/luxury-rentals/150-apt/"
         }
       ],
       "status": "active",
@@ -292,6 +325,93 @@
       ],
       "status": "active",
       "unit": "1704",
+      "verdict": null
+    },
+    "1314-n-damen-1": {
+      "address_raw": "1314 N Damen Ave APT 1, Chicago, IL",
+      "all_in_monthly": 2005.0,
+      "beds": 1,
+      "first_seen": "2026-08-18",
+      "key": "1314-n-damen-1",
+      "key_type": "primary",
+      "last_seen": "2026-08-18",
+      "lat": 41.9057001,
+      "layout": null,
+      "lng": -87.677543,
+      "loft_type": null,
+      "price_history": [
+        {
+          "date": "2026-08-18",
+          "rent": 2005
+        }
+      ],
+      "rent_gross": 2005,
+      "sources": [
+        {
+          "source": "zillow",
+          "url": "https://www.zillow.com/apartments/chicago-il/1314-28-n.-damen-ave.-2001-2003-w.-evergreen-ave./D7Df/"
+        }
+      ],
+      "status": "active",
+      "unit": "1",
+      "verdict": null
+    },
+    "1317-n-leavitt-1br-4300": {
+      "address_raw": "1317 N Leavitt Street",
+      "all_in_monthly": 4300.0,
+      "beds": 1,
+      "first_seen": "2026-08-18",
+      "key": "1317-n-leavitt-1br-4300",
+      "key_type": "fallback",
+      "last_seen": "2026-08-18",
+      "lat": 41.9056017,
+      "layout": null,
+      "lng": -87.6823248,
+      "loft_type": null,
+      "price_history": [
+        {
+          "date": "2026-08-18",
+          "rent": 4300
+        }
+      ],
+      "rent_gross": 4300,
+      "sources": [
+        {
+          "source": "web",
+          "url": "https://landstarchicago.com/wicker-park-apartments/"
+        }
+      ],
+      "status": "active",
+      "unit": null,
+      "verdict": null
+    },
+    "1318-n-cleaver-CH1": {
+      "address_raw": "1318 N Cleaver St #Ch1, Chicago, IL",
+      "all_in_monthly": 1995.0,
+      "beds": 2,
+      "first_seen": "2026-08-18",
+      "key": "1318-n-cleaver-CH1",
+      "key_type": "primary",
+      "last_seen": "2026-08-18",
+      "lat": 41.9057476,
+      "layout": null,
+      "lng": -87.6641708,
+      "loft_type": null,
+      "price_history": [
+        {
+          "date": "2026-08-18",
+          "rent": 1995
+        }
+      ],
+      "rent_gross": 1995,
+      "sources": [
+        {
+          "source": "zillow",
+          "url": "https://www.zillow.com/homedetails/2099254681_zpid/"
+        }
+      ],
+      "status": "active",
+      "unit": "Ch1",
       "verdict": null
     },
     "1355-n-milwaukee-203": {
@@ -527,7 +647,7 @@
       "verdict": null
     },
     "1446-n-leavitt-2": {
-      "address_raw": "1446 N Leavitt St Unit 2, Chicago, IL 60622",
+      "address_raw": "1446 N Leavitt St #2, Chicago, IL",
       "all_in_monthly": 2995.0,
       "beds": 3,
       "first_seen": "2026-08-18",
@@ -546,6 +666,10 @@
       ],
       "rent_gross": 2995,
       "sources": [
+        {
+          "source": "zillow",
+          "url": "https://www.zillow.com/homedetails/2093323140_zpid/"
+        },
         {
           "source": "redfin",
           "url": "https://www.redfin.com/IL/Chicago/1446-N-Leavitt-St-60622/unit-2/home/185315645"
@@ -582,6 +706,35 @@
       ],
       "status": "active",
       "unit": "2R",
+      "verdict": null
+    },
+    "1512-n-artesian-1F": {
+      "address_raw": "1512 N Artesian Avenue #1F",
+      "all_in_monthly": 2100.0,
+      "beds": 2,
+      "first_seen": "2026-08-18",
+      "key": "1512-n-artesian-1F",
+      "key_type": "primary",
+      "last_seen": "2026-08-18",
+      "lat": 41.9088976,
+      "layout": null,
+      "lng": -87.6886087,
+      "loft_type": null,
+      "price_history": [
+        {
+          "date": "2026-08-18",
+          "rent": 2100
+        }
+      ],
+      "rent_gross": 2100,
+      "sources": [
+        {
+          "source": "web",
+          "url": "https://landstarchicago.com/wicker-park-apartments/"
+        }
+      ],
+      "status": "active",
+      "unit": "1F",
       "verdict": null
     },
     "1513-n-milwaukee-2br-4000": {
@@ -640,6 +793,35 @@
       ],
       "status": "active",
       "unit": "601",
+      "verdict": null
+    },
+    "1528-n-ashland-2R": {
+      "address_raw": "1528 N Ashland Avenue #2R",
+      "all_in_monthly": 2050.0,
+      "beds": 2,
+      "first_seen": "2026-08-18",
+      "key": "1528-n-ashland-2R",
+      "key_type": "primary",
+      "last_seen": "2026-08-18",
+      "lat": 41.9096919,
+      "layout": null,
+      "lng": -87.667994,
+      "loft_type": null,
+      "price_history": [
+        {
+          "date": "2026-08-18",
+          "rent": 2050
+        }
+      ],
+      "rent_gross": 2050,
+      "sources": [
+        {
+          "source": "web",
+          "url": "https://landstarchicago.com/wicker-park-apartments/"
+        }
+      ],
+      "status": "active",
+      "unit": "2R",
       "verdict": null
     },
     "1530-s-state-417": {
@@ -910,7 +1092,7 @@
       "first_seen": "2026-08-13",
       "key": "1647-n-milwaukee-0br-2400",
       "key_type": "fallback",
-      "last_seen": "2026-08-13",
+      "last_seen": "2026-08-18",
       "lat": 41.9115952,
       "layout": null,
       "lng": -87.6790597,
@@ -939,7 +1121,7 @@
       "first_seen": "2026-08-13",
       "key": "1647-n-milwaukee-1br-2900",
       "key_type": "fallback",
-      "last_seen": "2026-08-13",
+      "last_seen": "2026-08-18",
       "lat": 41.9115952,
       "layout": null,
       "lng": -87.6790597,
@@ -968,7 +1150,7 @@
       "first_seen": "2026-08-13",
       "key": "1647-n-milwaukee-2br-3300",
       "key_type": "fallback",
-      "last_seen": "2026-08-13",
+      "last_seen": "2026-08-18",
       "lat": 41.9115952,
       "layout": null,
       "lng": -87.6790597,
@@ -1077,6 +1259,35 @@
       "unit": null,
       "verdict": null
     },
+    "1920-n-clark-14B": {
+      "address_raw": "1920 N Clark St Unit 14B, Chicago, IL 60614",
+      "all_in_monthly": 4000.0,
+      "beds": 2,
+      "first_seen": "2026-08-18",
+      "key": "1920-n-clark-14B",
+      "key_type": "primary",
+      "last_seen": "2026-08-18",
+      "lat": 41.917211,
+      "layout": null,
+      "lng": -87.635714,
+      "loft_type": null,
+      "price_history": [
+        {
+          "date": "2026-08-18",
+          "rent": 4000
+        }
+      ],
+      "rent_gross": 4000,
+      "sources": [
+        {
+          "source": "redfin",
+          "url": "https://www.redfin.com/IL/Chicago/1920-N-Clark-St-60614/unit-14B/home/13344655"
+        }
+      ],
+      "status": "active",
+      "unit": "14B",
+      "verdict": null
+    },
     "1920-n-milwaukee-1br-2500": {
       "address_raw": "1920 N. Milwaukee",
       "all_in_monthly": 2525.0,
@@ -1084,7 +1295,7 @@
       "first_seen": "2026-08-13",
       "key": "1920-n-milwaukee-1br-2500",
       "key_type": "fallback",
-      "last_seen": "2026-08-13",
+      "last_seen": "2026-08-18",
       "lat": 41.9164129,
       "layout": null,
       "lng": -87.6870725,
@@ -1113,7 +1324,7 @@
       "first_seen": "2026-08-13",
       "key": "1920-n-milwaukee-2br-3550",
       "key_type": "fallback",
-      "last_seen": "2026-08-13",
+      "last_seen": "2026-08-18",
       "lat": 41.9164129,
       "layout": null,
       "lng": -87.6870725,
@@ -1133,6 +1344,35 @@
       ],
       "status": "active",
       "unit": null,
+      "verdict": null
+    },
+    "1933-w-crystal-2A": {
+      "address_raw": "1933 W Crystal Street #2A",
+      "all_in_monthly": 1850.0,
+      "beds": 1,
+      "first_seen": "2026-08-18",
+      "key": "1933-w-crystal-2A",
+      "key_type": "primary",
+      "last_seen": "2026-08-18",
+      "lat": 41.9039326,
+      "layout": null,
+      "lng": -87.6763485,
+      "loft_type": null,
+      "price_history": [
+        {
+          "date": "2026-08-18",
+          "rent": 1850
+        }
+      ],
+      "rent_gross": 1850,
+      "sources": [
+        {
+          "source": "web",
+          "url": "https://landstarchicago.com/wicker-park-apartments/"
+        }
+      ],
+      "status": "active",
+      "unit": "2A",
       "verdict": null
     },
     "1942-w-division-3F": {
@@ -1425,6 +1665,64 @@
       "unit": "410",
       "verdict": null
     },
+    "2120-w-washington-406": {
+      "address_raw": "2120 W Washington Blvd, Chicago, IL 60612, Unit #406",
+      "all_in_monthly": 2400.0,
+      "beds": 2,
+      "first_seen": "2026-08-18",
+      "key": "2120-w-washington-406",
+      "key_type": "primary",
+      "last_seen": "2026-08-18",
+      "lat": 41.8834005,
+      "layout": null,
+      "lng": -87.6801339,
+      "loft_type": null,
+      "price_history": [
+        {
+          "date": "2026-08-18",
+          "rent": 2300
+        }
+      ],
+      "rent_gross": 2300,
+      "sources": [
+        {
+          "source": "web",
+          "url": "https://www.millerchicagorealestate.com/west-town-recent-rehab-apartments-for-lease-2120-w-washington-blvd-3/"
+        }
+      ],
+      "status": "active",
+      "unit": "406",
+      "verdict": null
+    },
+    "2140-n-lincoln-park-807": {
+      "address_raw": "2140 N Lincoln Park W #807, Chicago, IL 60614",
+      "all_in_monthly": 2750.0,
+      "beds": 1,
+      "first_seen": "2026-08-18",
+      "key": "2140-n-lincoln-park-807",
+      "key_type": "primary",
+      "last_seen": "2026-08-18",
+      "lat": 41.9213092,
+      "layout": null,
+      "lng": -87.6368508,
+      "loft_type": null,
+      "price_history": [
+        {
+          "date": "2026-08-18",
+          "rent": 2750
+        }
+      ],
+      "rent_gross": 2750,
+      "sources": [
+        {
+          "source": "domu",
+          "url": "http://www.domu.com/chicago/north-side/lincoln-park/2140-n-lincoln-park-w-807-chicago-il-60614-0"
+        }
+      ],
+      "status": "active",
+      "unit": "807",
+      "verdict": null
+    },
     "2140-n-lincoln-park-w-807": {
       "address_raw": "2140 N Lincoln Park W #807, Chicago, IL 60614",
       "all_in_monthly": 2750.0,
@@ -1599,6 +1897,35 @@
       "unit": "Gdn",
       "verdict": null
     },
+    "2244-n-cleveland-0br-1550": {
+      "address_raw": "2244 N Cleveland Ave, Chicago, IL 60614",
+      "all_in_monthly": 1545.0,
+      "beds": 0,
+      "first_seen": "2026-08-18",
+      "key": "2244-n-cleveland-0br-1550",
+      "key_type": "fallback",
+      "last_seen": "2026-08-18",
+      "lat": 41.923301,
+      "layout": null,
+      "lng": -87.641745,
+      "loft_type": null,
+      "price_history": [
+        {
+          "date": "2026-08-18",
+          "rent": 1545
+        }
+      ],
+      "rent_gross": 1545,
+      "sources": [
+        {
+          "source": "redfin",
+          "url": "https://www.redfin.com/IL/Chicago/2244-N-Cleveland-Ave-60614/apartment/13348646"
+        }
+      ],
+      "status": "active",
+      "unit": null,
+      "verdict": null
+    },
     "2257-w-hirsch-1E": {
       "address_raw": "2257 W Hirsch St #1E, Chicago, IL",
       "all_in_monthly": 2725.0,
@@ -1745,15 +2072,15 @@
       "verdict": null
     },
     "2412-w-north-4R": {
-      "address_raw": "2412 W North Avenue",
+      "address_raw": "2412 W North Avenue #4R",
       "all_in_monthly": 3995.0,
       "beds": 0,
       "first_seen": "2026-08-13",
       "key": "2412-w-north-4R",
       "key_type": "primary",
-      "last_seen": "2026-08-13",
+      "last_seen": "2026-08-18",
       "lat": 41.910589,
-      "layout": "single_floor",
+      "layout": null,
       "lng": -87.68788,
       "loft_type": null,
       "price_history": [
@@ -1766,7 +2093,7 @@
       "sources": [
         {
           "source": "web",
-          "url": "https://bestchicagoproperties.com/listings/listing/MRED/12707769/Chicago/2412-W-North-Avenue-4R"
+          "url": "https://landstarchicago.com/wicker-park-apartments/"
         }
       ],
       "status": "active",
@@ -1945,6 +2272,35 @@
       ],
       "status": "active",
       "unit": "1024",
+      "verdict": null
+    },
+    "427-w-belden-0br-1700": {
+      "address_raw": "427 W Belden Ave, Chicago, IL 60614",
+      "all_in_monthly": 1695.0,
+      "beds": 0,
+      "first_seen": "2026-08-18",
+      "key": "427-w-belden-0br-1700",
+      "key_type": "fallback",
+      "last_seen": "2026-08-18",
+      "lat": 41.923542,
+      "layout": null,
+      "lng": -87.6402927,
+      "loft_type": null,
+      "price_history": [
+        {
+          "date": "2026-08-18",
+          "rent": 1695
+        }
+      ],
+      "rent_gross": 1695,
+      "sources": [
+        {
+          "source": "redfin",
+          "url": "https://www.redfin.com/IL/Chicago/427-W-Belden-Ave-60614/apartment/13348633"
+        }
+      ],
+      "status": "active",
+      "unit": null,
       "verdict": null
     },
     "429-w-belden-GN": {
@@ -2150,6 +2506,35 @@
       "unit": null,
       "verdict": null
     },
+    "541-w-oakdale-0br-1800": {
+      "address_raw": "541 W Oakdale Ave, Chicago, IL 60657",
+      "all_in_monthly": 1795.0,
+      "beds": 0,
+      "first_seen": "2026-08-18",
+      "key": "541-w-oakdale-0br-1800",
+      "key_type": "fallback",
+      "last_seen": "2026-08-18",
+      "lat": 41.9351941,
+      "layout": null,
+      "lng": -87.64347,
+      "loft_type": null,
+      "price_history": [
+        {
+          "date": "2026-08-18",
+          "rent": 1795
+        }
+      ],
+      "rent_gross": 1795,
+      "sources": [
+        {
+          "source": "redfin",
+          "url": "https://www.redfin.com/IL/Chicago/541-W-Oakdale-Ave-60657/apartment/13371287"
+        }
+      ],
+      "status": "active",
+      "unit": null,
+      "verdict": null
+    },
     "541-w-oakdale-1br-1800": {
       "address_raw": "541 W Oakdale Ave, Chicago, IL 60657",
       "all_in_monthly": 1795.0,
@@ -2296,7 +2681,7 @@
       "verdict": null
     },
     "649-51-n-wolcott-1": {
-      "address_raw": "649-51 N. Wolcott, Unit 649 #1",
+      "address_raw": "649-51 N. Wolcott, Unit #1",
       "all_in_monthly": 2395.0,
       "beds": 2,
       "first_seen": "2026-08-18",
@@ -2304,7 +2689,7 @@
       "key_type": "primary",
       "last_seen": "2026-08-18",
       "lat": 41.8937385,
-      "layout": null,
+      "layout": "duplex_down",
       "lng": -87.6743465,
       "loft_type": null,
       "price_history": [

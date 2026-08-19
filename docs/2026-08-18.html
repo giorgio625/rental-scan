@@ -257,7 +257,7 @@
   <div class="listings">
     <header class="top">
       <div class="brand">Wicker Park Loft Scan<span class="dot">.</span></div>
-      <div class="subtitle">2026-08-18 (corrected, full harvest) · 58 evaluated + 1 price change · 0 priority · 0 worth a look · 18 near misses</div>
+      <div class="subtitle">2026-08-18 (full day, both passes) · 0 priority · 0 worth a look · 23 near misses</div>
       <div class="counts">
         <div class="count-chip"><span class="swatch" style="background:var(--priority)"></span><b id="countPriority">0</b> priority</div>
         <div class="count-chip"><span class="swatch" style="background:var(--worth)"></span><b id="countWorth">0</b> worth a look</div>
@@ -518,6 +518,61 @@ const listings = [
     warn:'Lincoln Park — secondary zone, −5 if it ever scored. Fails style only — 0 loft signals recorded. Heat inclusion unknown, not priced in.',
     signals:'No loft signals extracted',
     sources:[{label:'Zillow', url:'https://www.zillow.com/homedetails/2102308204_zpid/'}],
+    available:null, outdoor:'other'
+  },
+  {
+    id:19, key:'1314-n-damen-1', tier:'near', score:0,
+    address:'1314 N Damen Ave, Unit 1', zone:'Wicker Park',
+    rent:2005, allIn:2005, lat:41.9057001, lng:-87.677543,
+    loft:'Not a loft (0 signals)', layout:'Layout not listed',
+    tags:[],
+    warn:'Fails style only — 0 loft signals recorded. `suspect_pricing` flagged — more than 20% under the running 1BR median, treat as possible bait per §5. Heat inclusion unknown, not priced in.',
+    signals:'No loft signals extracted',
+    sources:[{label:'Zillow', url:'https://www.zillow.com/apartments/chicago-il/1314-28-n.-damen-ave.-2001-2003-w.-evergreen-ave./D7Df/'}],
+    available:null, outdoor:'other'
+  },
+  {
+    id:20, key:'1528-n-ashland-2R', tier:'near', score:0,
+    address:'1528 N Ashland Ave #2R', zone:'Wicker Park (on the Ashland Ave boundary line)',
+    rent:2050, allIn:2050, lat:41.9096919, lng:-87.667994,
+    loft:'Not a loft (0 signals)', layout:'Layout not listed',
+    tags:[],
+    warn:'Sits directly on the Ashland Ave line, §2\'s own east boundary — counted in-bounds. Fails style only — 0 loft signals recorded. `suspect_pricing` flagged — more than 20% under the running 2BR median. Unit is 2nd-floor rear, not ground floor, so no arterial-frontage penalty.',
+    signals:'No loft signals extracted',
+    sources:[{label:'Web', url:'https://landstarchicago.com/wicker-park-apartments/'}],
+    available:null, outdoor:'other'
+  },
+  {
+    id:21, key:'1933-w-crystal-2A', tier:'near', score:0,
+    address:'1933 W Crystal St #2A', zone:'Wicker Park',
+    rent:1850, allIn:1850, lat:41.9039326, lng:-87.6763485,
+    loft:'Not a loft (0 signals)', layout:'Layout not listed',
+    tags:[],
+    warn:'Fails style only — 0 loft signals recorded. `suspect_pricing` flagged — more than 20% under the running 1BR median. Heat inclusion unknown, not priced in.',
+    signals:'No loft signals extracted',
+    sources:[{label:'Web', url:'https://landstarchicago.com/wicker-park-apartments/'}],
+    available:null, outdoor:'other'
+  },
+  {
+    id:22, key:'2140-n-lincoln-park-807', tier:'near', score:0,
+    address:'2140 N Lincoln Park W #807', zone:'Lincoln Park',
+    rent:2750, allIn:2750, lat:41.9213092, lng:-87.6368508,
+    loft:'Not a loft (0 signals)', layout:'Layout not listed',
+    tags:[],
+    warn:'Lincoln Park — secondary zone, −5 if it ever scored. Fails style only — 0 loft signals recorded. Heat inclusion unknown, not priced in. Likely the same unit as ledger key 2140-n-lincoln-park-w-807 above (street-name normalization split, not flagged as a possible_duplicate by dedupe.py) — worth a manual look, not merged here.',
+    signals:'No loft signals extracted',
+    sources:[{label:'Domu', url:'http://www.domu.com/chicago/north-side/lincoln-park/2140-n-lincoln-park-w-807-chicago-il-60614-0'}],
+    available:null, outdoor:'other'
+  },
+  {
+    id:23, key:'1241-n-milwaukee-1br-3200', tier:'near', score:24,
+    address:'1241 N Milwaukee Ave', zone:'Wicker Park',
+    rent:3225, allIn:3225, lat:41.9042757, lng:-87.6677455,
+    loft:'Not a loft — borderline', layout:'Layout not listed',
+    tags:['Paid garage','In-unit laundry','Balcony'],
+    warn:'Price change today: $3,195 → $3,225 (+$30, +0.9%), 1 day on market. Loft call is borderline: 2 signals recorded but both cluster under one loft-idiom category, short of the 3 distinct hard-loft categories §4a requires — same pattern as unit 401 in this building, flagged earlier today. Heat inclusion unknown, not priced in.',
+    signals:'Exposed ductwork · concrete floors (1 distinct category — short of 3 needed)',
+    sources:[{label:'Web', url:'https://www.downtownapartmentcollective.com/luxury-rentals/150-apt/'}],
     available:null, outdoor:'other'
   },
 ];
