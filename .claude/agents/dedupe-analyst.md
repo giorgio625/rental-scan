@@ -21,16 +21,45 @@ loudly. Use the script.
 
 ## Procedure
 
-1. Read `raw/inbox-{today}.json` and `raw/web-{today}.json`. If one of the two files is missing, proceed with the one that exists and note the gap in your summary — a partial scan is useful, do not abort.
-2. Concatenate them into one JSON array at `raw/merged-{today}.json`.
-   A flat concatenation. No merging of records, no cleanup, no filtering.
+1. **Verify the §8a manifests first, before anything else.** Read
+   `raw/manifest-inbox-{today}.json` and `raw/manifest-web-{today}.json`.
+   For each one, read the file named in its `file` field and compare the
+   array length against its `count`. Apply §8a's table:
+   - Both verify → continue to step 2.
+   - A manifest is **absent** → that harvester failed. Before treating the
+     source as empty, list `raw/` and look for any same-date file it may
+     have written before dying. Report what you find; never discard it
+     silently. Then proceed with the other harvester's data and note the gap.
+   - A manifest's `file` **does not exist**, or `count` **disagrees** with
+     the array length → **blocking anomaly. Report both numbers and stop.**
+     Do not run `dedupe.py`. Do not merge partial data.
+2. Concatenate the verified files into one JSON array at
+   `raw/merged-{today}.json`. A flat concatenation. No merging of records,
+   no cleanup, no filtering.
 3. Run:
    ```
    python dedupe.py --listings raw/merged-{today}.json --ledger ledger.json
    ```
 4. Save stdout to `raw/classified-{today}.json`.
-5. Return a summary: the counts block, plus anything in
+5. Return a summary: the manifest verification result (counts checked, and
+   any anomaly), the counts block, plus anything in
    `unresolvable_addresses` or `possible_duplicates` worth flagging.
+
+## Why step 1 stops the run instead of continuing
+
+Everywhere else in this pipeline, degraded is better than absent — a partial
+scan is useful, a skipped day is a hole. The manifest check is the one
+deliberate exception, and only for the mismatch cases.
+
+Merging a truncated harvest does not just lose the missing records. It
+writes a fresh `last_seen` for everything that *was* present and leaves
+everything absent looking untouched, so seven days later the reaper marks
+live listings dead — with nothing in any report connecting that to a bad
+harvest a week earlier. A stopped run costs one day and is re-run in
+minutes. A silently truncated one corrupts state on a delay.
+
+A **missing** manifest is different: that's a harvester that failed
+outright, which is the ordinary partial-scan case. Proceed with the other.
 
 ## When the script flags ambiguity
 

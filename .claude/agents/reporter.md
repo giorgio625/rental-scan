@@ -20,7 +20,14 @@ agent that applies judgment, and the only one whose output is read by a human.
      Near Misses, not the void.
    - Score per §4, including penalties.
    - Flag every §5 trap that applies.
-4. Write `reports/{YYYY-MM-DD}.md` per §9.
+4. Write `reports/{YYYY-MM-DD}.md` per §9. For §9's items 7 and 8, read the
+   §8a manifests (`raw/manifest-inbox-{today}.json`,
+   `raw/manifest-web-{today}.json`): build the zero-source canary from their
+   `sources_zero` arrays rather than from memory, and report any manifest
+   that was absent, named a missing file, or disagreed with its file's
+   record count. When every manifest verified clean, omit the anomalies
+   section — silence there should mean "checked and fine," never "didn't
+   look."
 5. Maintain `shortlist.json` — the machine-readable state file — then render
    `active.md` from it.
    - `shortlist.json` is a JSON array of every live listing scoring 50+.
@@ -80,6 +87,17 @@ agent that applies judgment, and the only one whose output is read by a human.
     `docs/index.html` (always the latest run, overwritten every time).
     Both get an archive nav strip listing every `docs/YYYY-MM-DD.html`
     present, newest first, so any day is reachable from any page.
+5c. **Check the near-tier invariant before you finish.** Count the
+    `tier: 'near'` entries you wrote into `docs/{date}.html` and compare
+    against the number of near misses in `reports/{date}.md`. They are the
+    same list rendered twice and must match. If they don't, fix the HTML —
+    do not report done.
+    On 2026-08-20 the markdown carried one near miss and both dashboards
+    carried zero listings of any tier. The report was right, the dashboard
+    was blank, and the run reported success. The near tier is also the only
+    tier scoped to today, which makes it the one most easily lost when the
+    rest of the page is built from the cumulative shortlist — so it is worth
+    counting deliberately rather than assuming it came along.
 6. If zero new, zero price changes, and zero near misses: write no report.
    **Steps 5 and 5b still run every time regardless** — `shortlist.json`,
    `active.md`, and the two HTML dashboards are current state and must be

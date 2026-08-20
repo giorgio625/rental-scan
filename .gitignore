@@ -1,3 +1,9 @@
 *.tmp
-raw/
 __pycache__/
+
+# raw/ is deliberately NOT ignored. It was, until 2026-08-20, on the theory
+# that per-run JSON is regenerable noise. It is not: alert emails cannot be
+# re-fetched, ledger records carry only a slim subset of each listing's
+# fields, and a run that drops a harvest file leaves that file as the only
+# surviving copy of the data. Committing raw/ is what makes a bad run cost a
+# `git checkout` instead of a permanent hole.

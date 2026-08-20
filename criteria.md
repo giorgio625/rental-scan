@@ -3,7 +3,7 @@
 This file is the single source of truth for the daily scan. All four agents read it.
 Edit this file rather than editing agent prompts.
 
-**Last updated:** 2026-08-13
+**Last updated:** 2026-08-20 (added §8a harvest manifests)
 
 ---
 
@@ -334,6 +334,66 @@ sender-domain filter as the other four)
 
 ---
 
+## 8a. Harvest manifests — the handoff contract
+
+Added 2026-08-20, after a run silently discarded an entire 111-record web
+sweep. The harvester wrote its file under a name the next step didn't look
+for; the next step found nothing, re-ran a thinner sweep, and the run
+completed looking perfectly normal. Nothing anywhere reported a problem.
+
+Two failures made that possible, and this section closes both:
+
+1. The filename was **constructed by convention** at both ends, so the two
+   ends could disagree.
+2. Nothing compared **what was written** against **what was read**.
+
+**Every harvester writes a manifest alongside its data file:**
+
+```
+raw/manifest-inbox-{YYYY-MM-DD}.json     (inbox-harvester)
+raw/manifest-web-{YYYY-MM-DD}.json       (web-scout)
+```
+
+Separate files per agent — the two harvesters run concurrently and must
+never write to the same path.
+
+```json
+{
+  "agent": "inbox-harvester",
+  "run_date": "2026-08-20",
+  "file": "raw/inbox-2026-08-20.json",
+  "count": 45,
+  "sources_present": ["zillow", "redfin", "craigslist"],
+  "sources_zero": ["apartments", "domu"]
+}
+```
+
+- `file` — the path actually written, relative to the repo root. **This is
+  the authoritative location of the data.** Downstream reads this value; it
+  never rebuilds the path from a template. A harvester that names its file
+  something unexpected is then harmless, because the manifest points at it.
+- `count` — the number of records in that array, counted after writing.
+- `sources_zero` — sources that normally appear and returned nothing this
+  run. This makes the §9 zero-source canary machine-readable instead of
+  surviving only as prose in a return message.
+
+**`dedupe-analyst` verifies before it merges:**
+
+| Condition | Action |
+|---|---|
+| Manifest present, file exists, `count` == array length | Merge normally |
+| Manifest absent | That harvester failed. Proceed with the other, report the gap. **First check `raw/` for any same-date file it may have written before its manifest step** — report what you find; never discard it silently |
+| Manifest present, `file` missing on disk | **Blocking anomaly.** Report and stop |
+| `count` != array length | **Blocking anomaly.** Report both numbers and stop. This is the truncation signature |
+
+A blocking anomaly stops the run *before* `dedupe.py` touches the ledger.
+That ordering is the point: a stopped run costs a day and is trivially
+re-run, while a run that merges a truncated harvest writes a wrong
+`last_seen` for everything it didn't see, and the reaper then kills live
+listings seven days later with nothing indicating why.
+
+---
+
 ## 9. Report format
 
 `reports/{YYYY-MM-DD}.md`
@@ -347,7 +407,12 @@ sender-domain filter as the other four)
    10% is the classic case.
 5. **Price changes** — address, old → new, days on market
 6. **Possible duplicates** — needing my resolution
-7. **Sources that returned zero** — canary for a broken parser
+7. **Sources that returned zero** — canary for a broken parser. Built from
+   the `sources_zero` arrays in the §8a manifests, not from memory
+8. **Harvest anomalies** — any §8a manifest that was absent, pointed at a
+   missing file, or disagreed with its file's record count. Omit the section
+   entirely when all manifests verified clean; a run that degraded silently
+   is the failure this whole pipeline is least able to notice on its own
 
 If zero new, zero price changes, and zero near misses: write nothing, exit
 silently. **Exception:** if the scan has been silent for 7 consecutive days,
@@ -377,6 +442,13 @@ rejects even after they age out.
 
 These three run on every scan, including a silent one. Only
 `reports/{date}.md` is conditional on there being something to report.
+
+**Invariant, check it before finishing:** the number of `tier: 'near'`
+entries in `docs/{date}.html` equals the number of near misses in
+`reports/{date}.md`. The two are the same list rendered twice. On
+2026-08-20 the markdown carried one near miss and the HTML carried none —
+the dashboard was empty on a day the report was not, and nothing caught it.
+A silent run is `0` on both sides; `0` on one side alone is a bug.
 
 ---
 

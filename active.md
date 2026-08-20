@@ -1,8 +1,8 @@
 # Active Shortlist
 
-Last updated: 2026-08-20. Sorted by score, high to low. Nothing currently qualifies (50+ threshold).
+Last updated: 2026-08-20 (corrected). Sorted by score, high to low. Nothing currently qualifies (50+ threshold).
 
-**2026-08-20 note:** still nothing scoring 50+. Quietest run yet — only 1 new listing (1407 N Milwaukee Ave), and it has almost no data: no rent, no beds, no unit, `loft_signals: null`. Fails style by mechanical default (no signals to count toward the loft test) and is otherwise unscoreable rather than a genuine "one criterion away" near miss. See `reports/2026-08-20.md`. 0 possible duplicates, 2 unresolvable Craigslist addresses (Lincoln Park, no street address).
+**2026-08-20 note (corrected):** the first version of today's report was built from a partial merge (see `reports/2026-08-20.md` for the full explanation) and understated the run badly — it showed 1 new listing and no deaths. The corrected run found 88 new listings and 7 newly-dead. Still nothing scoring 50+: of the 88, only one (`2048-w-evergreen-1`) carries any `loft_signals` at all, and even that one is two signals short of the hard-loft bar (2 of 5: exposed brick, 12 ft ceilings). 31 listings failed style alone (near misses, 10 detailed in the report, capped per §9); 56 stacked style with bed count, rent ceiling, or location; 1 had no rent data to evaluate. One possible duplicate (`1317-n-leavitt`, carried over) still awaiting resolution. Apartments.com has now returned zero for five consecutive runs; Domu for two.
 
 **2026-08-19 note:** still nothing scoring 50+. All 37 new listings this run failed §3's style filter under §4a — every one came back with zero recorded `loft_signals`, so none clear the 3-of-5 hard-loft / 3-of-4 soft-loft bar. 13 failed style alone (near misses); the other 24 stacked a second hard filter (rent ceiling, bed count, or location) on top. See `reports/2026-08-19.md` for the full breakdown, plus one open `possible_duplicate` at building `1317-n-leavitt` awaiting manual resolution.
 
@@ -10,4 +10,4 @@ Last updated: 2026-08-20. Sorted by score, high to low. Nothing currently qualif
 
 | Score | Tier | Key | Address | Unit | Beds/Baths | All-in | Loft | Outdoor | Parking | Laundry | Available | Link | My Status |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| — | — | — | *(no listings scoring 50+ yet — see reports/2026-08-20.md for today's near miss)* | | | | | | | | | | |
+| — | — | — | *(no listings scoring 50+ yet — see reports/2026-08-20.md for today's near misses, incl. the borderline `2048-w-evergreen-1`)* | | | | | | | | | | |

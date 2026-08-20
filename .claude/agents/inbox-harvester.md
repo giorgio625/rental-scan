@@ -35,8 +35,22 @@ agents do the filtering.
    live in the body.
 4. Extract every listing from every email into the §6 schema.
 5. Write the JSON array to `raw/inbox-{YYYY-MM-DD}.json`.
-6. Return ONLY: the file path, the count of records, and the list of sender
-   domains you saw. Do not return the JSON itself.
+6. **Re-read the file you just wrote and count the array.** Not the number
+   of records you believe you extracted — the number actually on disk. These
+   have differed before, and only the on-disk count is true.
+7. Write the §8a manifest to `raw/manifest-inbox-{YYYY-MM-DD}.json`, with
+   `file` set to the path you actually wrote in step 5 and `count` set to
+   the number you counted in step 6. Populate `sources_zero` with any source
+   that normally appears and returned nothing today.
+8. Return ONLY: the manifest path, the count, and the sender domains you
+   saw. Do not return the JSON itself.
+
+**The manifest is not bookkeeping.** `dedupe-analyst` reads your data file
+from the manifest's `file` field rather than guessing at a filename, and
+hard-fails if `count` disagrees with what it finds. Write the file but skip
+the manifest and your entire harvest is treated as a failed source. Write a
+`count` you didn't verify and you defeat the check that exists specifically
+to catch truncated writes.
 
 ## Extraction rules
 

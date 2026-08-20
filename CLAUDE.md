@@ -22,8 +22,11 @@ working — which is the whole reason it's split into four agents.
    Spawn both in a single message so they run concurrently. They write to
    `raw/` and return only file paths and counts.
 
-2. Then `dedupe-analyst` — merges the raw files, runs `dedupe.py`, updates
-   `ledger.json`.
+2. Then `dedupe-analyst` — verifies the §8a harvest manifests, merges the
+   raw files, runs `dedupe.py`, updates `ledger.json`. If it reports a
+   blocking manifest anomaly it will have stopped before touching the
+   ledger: do not work around it, do not re-run a harvester to paper over
+   it, and do not continue to steps 3–4. Report it and stop.
 
 3. Then `geocoder` — fills cached `lat`/`lng` in `ledger.json` for any new
    canonical keys (Nominatim, 1 req/sec, cache-first).
@@ -56,11 +59,18 @@ If a harvester fails, continue with whatever the other returned and note the
 gap in the report. A partial scan is useful; a skipped day is a hole in the
 ledger.
 
+The one exception is a §8a manifest **mismatch** — a manifest whose `file`
+is missing, or whose `count` disagrees with the file it names. That is not a
+partial scan, it is an unreliable one, and `dedupe-analyst` stops the run
+rather than writing a `last_seen` it can't stand behind. A missing manifest
+is the ordinary failed-harvester case and does not stop anything.
+
 ## What you report back
 
 Only what needs a human: the report path, headline counts, any
 `possible_duplicates` awaiting a call, any source that returned zero when
-it normally returns something, and any `git push` failure (step 6).
+it normally returns something, any §8a manifest anomaly, and any `git push`
+failure (step 6).
 
 Do not summarize the listings. That's the report's job, and restating it
 here just means it gets read twice.

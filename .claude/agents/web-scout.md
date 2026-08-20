@@ -47,8 +47,21 @@ exposed brick duplex.
 3. Set `source` to `"web"` and `url` to the actual listing page, not a
    search results page.
 4. Write the JSON array to `raw/web-{YYYY-MM-DD}.json`.
-5. Return ONLY: the file path, the record count, and which sources you
+5. **Re-read the file you just wrote and count the array.** Not the number
+   of records you believe you extracted — the number actually on disk.
+6. Write the §8a manifest to `raw/manifest-web-{YYYY-MM-DD}.json`, with
+   `file` set to the path you actually wrote in step 4 and `count` set to
+   the number you counted in step 5.
+7. Return ONLY: the manifest path, the record count, and which sources you
    checked. Not the JSON.
+
+**Why the manifest matters here specifically.** On 2026-08-20 this agent
+wrote 111 records to `raw/2026-08-20-webscout.json` — a correct, complete
+sweep, under a filename that did not match what the next step looked for.
+The next step found nothing, re-ran a thinner 22-record sweep, and the whole
+day's work was discarded without a single error anywhere. `dedupe-analyst`
+now reads your data file from the manifest's `file` field, so the filename
+itself no longer has to match anything. The manifest does have to exist.
 
 ## Extraction rules
 
