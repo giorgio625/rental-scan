@@ -66,7 +66,13 @@ itself no longer has to match anything. The manifest does have to exist.
 ## Extraction rules
 
 Identical to `inbox-harvester`: missing → `null`, never a guess.
-`address_raw` verbatim as printed.
+`address_raw` verbatim as printed. **`loft_type` is never yours to set** —
+leave it `null` even when a page calls itself a "hard loft" in its own
+marketing copy. That label is exactly what §5 warns against; §4a exists so
+the qualification is earned from 5 specific signals, never read off a
+source's own word for itself. Extract `loft_signals` from what you can see
+or what the page states — the reporter is the only agent that ever writes
+`loft_type`.
 
 One addition specific to you: when a page shows photos, you may populate
 `loft_signals` with what is **visibly** present — exposed brick, timber

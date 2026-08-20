@@ -3,7 +3,7 @@
 This file is the single source of truth for the daily scan. All four agents read it.
 Edit this file rather than editing agent prompts.
 
-**Last updated:** 2026-08-20 (added §8a harvest manifests)
+**Last updated:** 2026-08-20 (added §8a harvest manifests, §4b enrichment)
 
 ---
 
@@ -123,6 +123,125 @@ so a borderline call is auditable rather than a black-box verdict.
 **Search terms for the web sweep:** loft, timber loft, authentic loft, hard
 loft, concrete loft, warehouse conversion, factory conversion, post and beam,
 exposed brick duplex.
+
+## 4b. Enrichment — closing the §4a evidence gap
+
+Added 2026-08-20. `enrich_select.py` implements the selection; the
+`enricher` agent does the fetching. Runs after `geocoder`, before
+`reporter`.
+
+**The problem this solves.** §4a is a test against evidence, and alert
+emails carry almost none of it. They give price, beds, and an address; they
+do not say whether there is exposed brick or how high the ceilings are. So
+every listing arrived with `loft_signals: null`, failed the 3-of-5 test by
+mechanical default, and the scan reported nothing for a week — 297 records
+ingested, 19 with any loft signal at all. The harvesters were right to
+refuse to invent evidence. The gap was that nothing ever went and looked at
+the listing page.
+
+**The rule stays the same.** Enrichment does not relax §4a; it feeds it. A
+field the page does not state stays `null`, exactly as in §6.
+
+### What gets fetched
+
+Fetching costs time and hits other people's servers, so there is a per-run
+budget — 20 pages by default — spent on the listings where the answer could
+actually change the outcome. The number is sized to observed volume: a busy
+day produces roughly 15–25 eligible candidates, so 20 keeps the deferred
+queue from growing while leaving the cap meaningful on an unusual day.
+Anything over budget lands in `deferred` and comes up first next run.
+`enrich_select.py` picks the set deterministically. An agent choosing
+twenty records out of a hundred is a set operation, and those drift
+invisibly; the same reasoning that keeps `dedupe.py` deterministic applies
+here.
+
+A listing is eligible when it has a URL, sits on a non-excluded host, has
+1–2 beds, is at or under the all-in ceiling, is in bounds **by its cached
+coordinates rather than its claimed neighborhood**, has not already been
+fetched, and does not already have §4a *settled* — 3 or more of the 5 hard
+criteria already confirmed. A listing with 1 or 2 confirmed signals is not
+skipped: it is exactly the case where one more page could decide the
+outcome, so it stays eligible until the test is actually resolved either
+way.
+
+Candidates are then ranked by **score ceiling** — the highest §4 score the
+listing could still reach if every unknown field came back at its best.
+Known fields count what they earn; unknown fields count their maximum,
+because an unknown field is upside and upside is the reason to look.
+Anything that cannot reach 50 even at its best case is dropped: it could
+not be reported no matter what the page said. Ties break toward Wicker
+Park, then toward cheaper.
+
+**No host is excluded from fetching** (decided 2026-08-20). The selector
+keeps an `EXCLUDED_HOSTS` tuple and it is deliberately empty.
+
+It briefly held Zillow and Redfin, generalised from a line in the sibling
+condo project about its provider-adapter ingest layer. The cost showed up
+immediately: 10 of 23 eligible candidates in a single day, including **all
+three Wicker Park listings** — the primary target zone. One of them,
+`2048-w-evergreen-1`, already had exposed brick and 12 ft ceilings on
+record and needed one more signal to clear §4a. Refusing to open the page
+that could settle it, for the best candidate in the target neighbourhood,
+is not caution — it is the search failing at its own purpose.
+
+The standing instruction is that every listing should reach the report for
+personal review. `web-scout` already fetches listing pages routinely, so
+nothing here is a new kind of access. The mechanism stays: a host that
+should be left alone for some other reason goes in the tuple and the
+selector stops offering it.
+
+**In practice the question turned out to be moot.** With the tuple emptied,
+all five Zillow and Redfin candidates returned a clean HTTP 403 — including
+two attempts at `2048-w-evergreen-1`. Both sites decline automated reads at
+the door, so the debate about whether we *should* fetch them was settled by
+their servers rather than by us. Do not try to work around it. The
+practical consequences are worth stating plainly:
+
+- **Portal-only listings cannot be enriched, ever.** A listing whose only
+  URL is Zillow or Redfin stays at whatever the alert email carried. It is
+  recorded `blocked`, retried once after 14 days, and otherwise stands on
+  email data alone.
+- **They are still reported.** `blocked` is not a rejection — the listing
+  flows to the report as normal, and the reporter says the page could not
+  be read rather than implying the features are absent.
+- **A blocked listing sitting near the §4a bar is a manual job.** Opening
+  one URL in a browser is thirty seconds of human time and is the only way
+  those get resolved.
+
+### Where it is cached
+
+`enrichment.json`, keyed by canonical key, one entry per unit ever — same
+economics as the geocoder's coordinate cache, and for the same reason: a
+building's bones do not change.
+
+**Not in `ledger.json`.** `dedupe.py` rewrites every ledger record each run
+and preserves only `verdict`, `lat`, and `lng` from the prior version, so
+any other field written there is silently erased on the next scan. The
+separation also keeps a regenerable cache out of the one irreplaceable
+file: losing `enrichment.json` costs re-fetching, losing `ledger.json`
+costs the search.
+
+A failed fetch is recorded too, with `fetch_status` of `blocked`,
+`not_found`, or `error`. Otherwise the selector would retry the same dead
+page every day forever. Failures are retried once after 14 days.
+
+### Evidence, not verdicts
+
+The enricher records signals and **quotes the page's own wording for each
+one**. It never sets `loft_type` — the reporter applies §4a. A signal
+without a quote is not auditable, and §4a exists precisely so a borderline
+loft call can be inspected rather than taken on faith.
+
+The enricher also fills §4 scoring fields the emails routinely miss
+(`layout`, `outdoor_space`, `laundry`, `parking_type`, `unit_level`) and
+two §5 trap fields: `heat_included`, and any mandatory monthly amenity or
+utility package. That second one is a genuine gap — a "$95 utility package"
+is a mandatory fee under §3's all-in definition, and `dedupe.py` never saw
+it because the email never mentioned it. It is recorded in
+`mandatory_fees_monthly`; the reporter surfaces it as an adjustment to the
+all-in figure rather than silently restating a number now known to be low.
+
+---
 
 ### Expected volume — read this before you get frustrated
 

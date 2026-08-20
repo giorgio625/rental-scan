@@ -3300,7 +3300,7 @@
       "lat": 41.9061028,
       "layout": null,
       "lng": -87.6792094,
-      "loft_type": "hard",
+      "loft_type": null,
       "price_history": [
         {
           "date": "2026-08-20",

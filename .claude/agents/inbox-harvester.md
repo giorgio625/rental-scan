@@ -72,10 +72,19 @@ to catch truncated writes.
   `street_directional`, `street_name`, `unit`) when the email states them
   clearly. If the email only gives a single address string, fill `address_raw`
   and leave the parts `null`.
-- `loft_type`, `layout`, `outdoor_space`: only populate these when the email
-  explicitly says so. An email that doesn't mention laundry means
-  `laundry: null`, not `laundry: "none"`. Absence of evidence is not evidence
-  of absence, and the difference matters for §4a.
+- `layout`, `outdoor_space`: only populate these when the email explicitly
+  says so. An email that doesn't mention laundry means `laundry: null`, not
+  `laundry: "none"`. Absence of evidence is not evidence of absence, and the
+  difference matters for §4a.
+- **`loft_type` is never yours to set — leave it `null` always, even when the
+  email itself calls the listing a "hard loft."** That label is exactly what
+  §5 warns about ("loft" as the single most common mislabel), and §4a exists
+  because the qualification has to be earned against 5 specific signals, not
+  read off a source's marketing copy. A record reached the ledger on
+  2026-08-20 with `loft_type: "hard"` set straight from a Redfin listing's
+  own label, at 2 of the 5 signals actually required — it sat there
+  unnoticed for a week. Extract `loft_signals` from what the email states;
+  the reporter is the only agent that ever writes `loft_type`.
 - One JSON object per listing, not per email. Digest emails contain many.
 
 ## Failure reporting

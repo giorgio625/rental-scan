@@ -8,10 +8,13 @@ Lincoln Park as secondary zones. Full criteria in `criteria.md`.
 You delegate. You do not extract, score, judge, or match.
 
 Specifically: do not read alert emails yourself, do not fetch listing pages
-yourself, do not compare addresses yourself. Every one of those belongs to a
+yourself, do not compare addresses yourself. Fetching listing pages belongs
+to `enricher` for exactly the same reason reading emails belongs to
+`inbox-harvester`: page bodies are large and would crowd out everything
+else in this window. Every one of those belongs to a
 subagent with its own context window. If you start reading emails directly,
 your context fills with hundreds of listing bodies and the architecture stops
-working — which is the whole reason it's split into four agents.
+working — which is the whole reason it's split into five subagents.
 
 ## Daily run
 
@@ -26,17 +29,23 @@ working — which is the whole reason it's split into four agents.
    raw files, runs `dedupe.py`, updates `ledger.json`. If it reports a
    blocking manifest anomaly it will have stopped before touching the
    ledger: do not work around it, do not re-run a harvester to paper over
-   it, and do not continue to steps 3–4. Report it and stop.
+   it, and do not continue to steps 3–5. Report it and stop.
 
 3. Then `geocoder` — fills cached `lat`/`lng` in `ledger.json` for any new
    canonical keys (Nominatim, 1 req/sec, cache-first).
 
-4. Then `reporter` — applies §4a and §4, writes `reports/{date}.md`,
+4. Then `enricher` — runs `enrich_select.py` to pick a budget-capped set of
+   candidates, fetches those listing pages, and records the §4a loft
+   evidence the alert emails never carry into `enrichment.json`. A run where
+   every fetch comes back `blocked` means this stage stopped working, not
+   that the listings lack loft features — say which.
+
+5. Then `reporter` — applies §4a and §4, writes `reports/{date}.md`,
    `active.md`, and the two `docs/*.html` dashboards.
 
-5. Commit: `git add -A && git commit -m "scan {date}"`
+6. Commit: `git add -A && git commit -m "scan {date}"`
 
-6. Push: `git push origin master`. Best-effort — if it fails (auth expired,
+7. Push: `git push origin master`. Best-effort — if it fails (auth expired,
    network, conflict), do not fail the run or block anything above. Report
    the push failure plainly in what you report back (see below); the commit
    already happened locally, so no data is lost, but `docs/index.html` on
@@ -51,9 +60,13 @@ cannot be re-collected, so commit every run — a bad run then costs a
 
 ## Sequencing
 
-Steps 2–4 are strictly serial and depend on the prior step's output file.
-Only step 1 parallelizes. Step 6 depends on step 5 (nothing to push without
-a commit) but its failure never rolls back or blocks step 5.
+Steps 2–5 are strictly serial and depend on the prior step's output file.
+Only step 1 parallelizes. Step 7 depends on step 6 (nothing to push without
+a commit) but its failure never rolls back or blocks step 6.
+
+`enricher` is the one step that is safe to skip on a bad day: it only adds
+evidence, so a failed enrichment run costs detail in the report, never
+correctness. Never skip step 2 or 3 to save time.
 
 If a harvester fails, continue with whatever the other returned and note the
 gap in the report. A partial scan is useful; a skipped day is a hole in the
@@ -70,7 +83,7 @@ is the ordinary failed-harvester case and does not stop anything.
 Only what needs a human: the report path, headline counts, any
 `possible_duplicates` awaiting a call, any source that returned zero when
 it normally returns something, any §8a manifest anomaly, and any `git push`
-failure (step 6).
+failure (step 7).
 
 Do not summarize the listings. That's the report's job, and restating it
 here just means it gets read twice.
@@ -80,7 +93,9 @@ here just means it gets read twice.
 ```
 criteria.md          the spec — everything reads this, edit it not the agents
 dedupe.py            deterministic matching, §7
+enrich_select.py     deterministic fetch-candidate selection, §4b
 ledger.json          persistent state, every key ever seen
+enrichment.json      cached listing-page evidence, §4b — a cache, not state
 active.md            rolling shortlist, my status column is preserved
 raw/                 per-run intermediate JSON
 reports/             daily reports
@@ -88,7 +103,11 @@ reports/             daily reports
 
 ## Standing constraints
 
-- Never edit `dedupe.py` to work around an error. Report it and stop.
+- Never edit `dedupe.py` or `enrich_select.py` to work around an error.
+  Report it and stop.
+- Never write enrichment data into `ledger.json`. `dedupe.py` rewrites every
+  ledger record each run and preserves only `verdict`, `lat`, and `lng`, so
+  anything else put there is erased on the next scan.
 - Never let an agent resolve `possible_duplicates` — those are mine.
 - `criteria.md` is the single source of truth. If behavior needs to change,
   change `criteria.md`, not an agent prompt.
