@@ -1,5 +1,34 @@
 {
   "listings": {
+    "1046-w-altgeld-1N": {
+      "address_raw": "1046 West Altgeld Street",
+      "all_in_monthly": 7000.0,
+      "beds": 3,
+      "first_seen": "2026-08-20",
+      "key": "1046-w-altgeld-1N",
+      "key_type": "primary",
+      "last_seen": "2026-08-20",
+      "lat": 41.9272408,
+      "layout": null,
+      "lng": -87.6556816,
+      "loft_type": null,
+      "price_history": [
+        {
+          "date": "2026-08-20",
+          "rent": 7000
+        }
+      ],
+      "rent_gross": 7000,
+      "sources": [
+        {
+          "source": "web",
+          "url": "https://www.compass.com/homedetails/1046-W-Altgeld-St-Unit-1N-Chicago-IL-60614/1WR3VS_pid/"
+        }
+      ],
+      "status": "active",
+      "unit": "1N",
+      "verdict": null
+    },
     "1140-n-wells-615": {
       "address_raw": "1140 N Wells St #615, Chicago, IL 60610",
       "all_in_monthly": 2600.0,
@@ -36,7 +65,7 @@
       "first_seen": "2026-08-18",
       "key": "1225-n-cleaver-FB2R",
       "key_type": "primary",
-      "last_seen": "2026-08-19",
+      "last_seen": "2026-08-20",
       "lat": 41.9042254,
       "layout": null,
       "lng": -87.6635039,
@@ -51,7 +80,7 @@
       "sources": [
         {
           "source": "zillow",
-          "url": "https://www.zillow.com/routing/email/property-notifications/zpid_target/2108647401_zpid/"
+          "url": "https://www.zillow.com/homedetails/2108647401_zpid/"
         }
       ],
       "status": "active",
@@ -59,13 +88,13 @@
       "verdict": null
     },
     "1226-n-maplewood-2": {
-      "address_raw": "1226 North Maplewood Avenue, Unit 2",
+      "address_raw": "1226 North Maplewood Avenue",
       "all_in_monthly": 1895.0,
       "beds": 2,
       "first_seen": "2026-08-19",
       "key": "1226-n-maplewood-2",
       "key_type": "primary",
-      "last_seen": "2026-08-19",
+      "last_seen": "2026-08-20",
       "lat": 41.9038694,
       "layout": null,
       "lng": -87.6910007,
@@ -88,13 +117,13 @@
       "verdict": null
     },
     "1235-n-ashland-502": {
-      "address_raw": "1235 N Ashland Ave #502",
+      "address_raw": "1235 N Ashland Avenue 502, Chicago, IL 60622",
       "all_in_monthly": 4600.0,
       "beds": 2,
       "first_seen": "2026-08-19",
       "key": "1235-n-ashland-502",
       "key_type": "primary",
-      "last_seen": "2026-08-19",
+      "last_seen": "2026-08-20",
       "lat": 41.9044676,
       "layout": null,
       "lng": -87.667162,
@@ -109,7 +138,7 @@
       "sources": [
         {
           "source": "web",
-          "url": "https://bestchicagoproperties.com/neighborhoods/wicker-park/wicker-park-rentals/"
+          "url": "https://bestchicagoproperties.com/listings/listing/MRED/12717993/Chicago/1235-N-ASHLAND-Avenue-502"
         }
       ],
       "status": "active",
@@ -179,13 +208,13 @@
       "verdict": null
     },
     "1241-n-milwaukee-401": {
-      "address_raw": "1241 North Milwaukee Avenue, Unit 401",
-      "all_in_monthly": 3195.0,
+      "address_raw": "1241 North Milwaukee Avenue",
+      "all_in_monthly": 3228.33,
       "beds": 1,
       "first_seen": "2026-08-18",
       "key": "1241-n-milwaukee-401",
       "key_type": "primary",
-      "last_seen": "2026-08-19",
+      "last_seen": "2026-08-20",
       "lat": 41.9042757,
       "layout": null,
       "lng": -87.6677455,
@@ -208,13 +237,13 @@
       "verdict": null
     },
     "1241-n-milwaukee-701": {
-      "address_raw": "1241 North Milwaukee Avenue, Unit 701",
+      "address_raw": "1241 North Milwaukee Avenue",
       "all_in_monthly": 5141.0,
       "beds": 3,
       "first_seen": "2026-08-18",
       "key": "1241-n-milwaukee-701",
       "key_type": "primary",
-      "last_seen": "2026-08-19",
+      "last_seen": "2026-08-20",
       "lat": 41.9042757,
       "layout": null,
       "lng": -87.6677455,
@@ -385,14 +414,43 @@
       "unit": "1704",
       "verdict": null
     },
+    "1255-w-belden-2B": {
+      "address_raw": "1255 West Belden Avenue",
+      "all_in_monthly": 3400.0,
+      "beds": 2,
+      "first_seen": "2026-08-20",
+      "key": "1255-w-belden-2B",
+      "key_type": "primary",
+      "last_seen": "2026-08-20",
+      "lat": 41.9233308,
+      "layout": null,
+      "lng": -87.6605808,
+      "loft_type": null,
+      "price_history": [
+        {
+          "date": "2026-08-20",
+          "rent": 3400
+        }
+      ],
+      "rent_gross": 3400,
+      "sources": [
+        {
+          "source": "web",
+          "url": "https://www.compass.com/homedetails/1255-W-Belden-Ave-Unit-2B-Chicago-IL-60614/1VV90Q_pid/"
+        }
+      ],
+      "status": "active",
+      "unit": "2B",
+      "verdict": null
+    },
     "1257-n-ashland-402": {
-      "address_raw": "1257 N Ashland Ave #402",
+      "address_raw": "1257 N Ashland Avenue 402, Chicago, IL 60622",
       "all_in_monthly": 4700.0,
       "beds": 2,
       "first_seen": "2026-08-19",
       "key": "1257-n-ashland-402",
       "key_type": "primary",
-      "last_seen": "2026-08-19",
+      "last_seen": "2026-08-20",
       "lat": 41.9050592,
       "layout": null,
       "lng": -87.6671395,
@@ -407,7 +465,7 @@
       "sources": [
         {
           "source": "web",
-          "url": "https://bestchicagoproperties.com/neighborhoods/wicker-park/wicker-park-rentals/"
+          "url": "https://bestchicagoproperties.com/listings/listing/MRED/12730223/Chicago/1257-N-ASHLAND-Avenue-402"
         }
       ],
       "status": "active",
@@ -415,13 +473,13 @@
       "verdict": null
     },
     "1257-n-ashland-502": {
-      "address_raw": "1257 N Ashland Ave #502",
+      "address_raw": "1257 N Ashland Avenue 502, Chicago, IL 60622",
       "all_in_monthly": 4800.0,
       "beds": 2,
       "first_seen": "2026-08-19",
       "key": "1257-n-ashland-502",
       "key_type": "primary",
-      "last_seen": "2026-08-19",
+      "last_seen": "2026-08-20",
       "lat": 41.9050592,
       "layout": null,
       "lng": -87.6671395,
@@ -436,7 +494,7 @@
       "sources": [
         {
           "source": "web",
-          "url": "https://bestchicagoproperties.com/neighborhoods/wicker-park/wicker-park-rentals/"
+          "url": "https://bestchicagoproperties.com/listings/listing/MRED/12730269/Chicago/1257-N-ASHLAND-Avenue-502"
         }
       ],
       "status": "active",
@@ -444,13 +502,13 @@
       "verdict": null
     },
     "1301-n-oakley-2B": {
-      "address_raw": "1301 North Oakley Boulevard, Unit 2B",
+      "address_raw": "1301 North Oakley Boulevard",
       "all_in_monthly": 4000.0,
       "beds": 3,
       "first_seen": "2026-08-19",
       "key": "1301-n-oakley-2B",
       "key_type": "primary",
-      "last_seen": "2026-08-19",
+      "last_seen": "2026-08-20",
       "lat": 41.9050087,
       "layout": null,
       "lng": -87.6842543,
@@ -479,7 +537,7 @@
       "first_seen": "2026-08-18",
       "key": "1314-n-damen-1",
       "key_type": "primary",
-      "last_seen": "2026-08-19",
+      "last_seen": "2026-08-20",
       "lat": 41.9057001,
       "layout": null,
       "lng": -87.677543,
@@ -502,13 +560,13 @@
       "verdict": null
     },
     "1317-n-leavitt-1br-4300": {
-      "address_raw": "1317 North Leavitt Street",
+      "address_raw": "1317 N Leavitt Street",
       "all_in_monthly": 4300.0,
       "beds": 1,
       "first_seen": "2026-08-18",
       "key": "1317-n-leavitt-1br-4300",
       "key_type": "fallback",
-      "last_seen": "2026-08-19",
+      "last_seen": "2026-08-20",
       "lat": 41.9056017,
       "layout": null,
       "lng": -87.6823248,
@@ -523,11 +581,7 @@
       "sources": [
         {
           "source": "web",
-          "url": "https://www.compass.com/homedetails/1317-N-Leavitt-St-Chicago-IL-60622/27KIXI_pid/"
-        },
-        {
-          "source": "web",
-          "url": "https://landstarchicago.com/wicker-park-apartments/"
+          "url": "https://landstarchicago.com/homes-for-sale-details/1317-N-LEAVITT-STREET-CHICAGO-IL-60622/12682086/34/"
         }
       ],
       "status": "active",
@@ -541,7 +595,7 @@
       "first_seen": "2026-08-18",
       "key": "1318-n-cleaver-CH1",
       "key_type": "primary",
-      "last_seen": "2026-08-19",
+      "last_seen": "2026-08-20",
       "lat": 41.9057476,
       "layout": null,
       "lng": -87.6641708,
@@ -556,7 +610,7 @@
       "sources": [
         {
           "source": "zillow",
-          "url": "https://www.zillow.com/routing/email/property-notifications/zpid_target/2099254681_zpid/"
+          "url": "https://www.zillow.com/homedetails/2099254681_zpid/"
         }
       ],
       "status": "active",
@@ -564,13 +618,13 @@
       "verdict": null
     },
     "1343-n-leavitt-1": {
-      "address_raw": "1343 North Leavitt Street, Unit 1",
+      "address_raw": "1343 North Leavitt Street",
       "all_in_monthly": 3100.0,
       "beds": 3,
       "first_seen": "2026-08-19",
       "key": "1343-n-leavitt-1",
       "key_type": "primary",
-      "last_seen": "2026-08-19",
+      "last_seen": "2026-08-20",
       "lat": 41.906268,
       "layout": null,
       "lng": -87.6818951,
@@ -593,13 +647,13 @@
       "verdict": null
     },
     "1350-n-bell-1": {
-      "address_raw": "1350 N Bell Ave #1",
+      "address_raw": "1350 N Bell Avenue 1, Chicago, IL 60622",
       "all_in_monthly": 2850.0,
       "beds": 3,
       "first_seen": "2026-08-19",
       "key": "1350-n-bell-1",
       "key_type": "primary",
-      "last_seen": "2026-08-19",
+      "last_seen": "2026-08-20",
       "lat": 41.9063965,
       "layout": null,
       "lng": -87.6837595,
@@ -614,7 +668,7 @@
       "sources": [
         {
           "source": "web",
-          "url": "https://bestchicagoproperties.com/neighborhoods/wicker-park/wicker-park-rentals/"
+          "url": "https://bestchicagoproperties.com/listings/listing/MRED/12710490/Chicago/1350-N-Bell-Avenue-1"
         }
       ],
       "status": "active",
@@ -648,6 +702,35 @@
       ],
       "status": "active",
       "unit": "203",
+      "verdict": null
+    },
+    "1358-n-artesian-2F": {
+      "address_raw": "1358 North Artesian Avenue",
+      "all_in_monthly": 2600.0,
+      "beds": 1,
+      "first_seen": "2026-08-20",
+      "key": "1358-n-artesian-2F",
+      "key_type": "primary",
+      "last_seen": "2026-08-20",
+      "lat": 41.9065292,
+      "layout": null,
+      "lng": -87.6886477,
+      "loft_type": null,
+      "price_history": [
+        {
+          "date": "2026-08-20",
+          "rent": 2600
+        }
+      ],
+      "rent_gross": 2600,
+      "sources": [
+        {
+          "source": "web",
+          "url": "https://www.compass.com/homedetails/1358-N-Artesian-Ave-Unit-2F-Chicago-IL-60622/1XKO9M_pid/"
+        }
+      ],
+      "status": "active",
+      "unit": "2F",
       "verdict": null
     },
     "1401-s-state-1912": {
@@ -708,6 +791,35 @@
       "unit": "515",
       "verdict": null
     },
+    "1407-n-milwaukee-UNKNOWN": {
+      "address_raw": "1407 N Milwaukee Avenue, Chicago, IL 60622",
+      "all_in_monthly": null,
+      "beds": null,
+      "first_seen": "2026-08-20",
+      "key": "1407-n-milwaukee-UNKNOWN",
+      "key_type": "weak",
+      "last_seen": "2026-08-20",
+      "lat": 41.9074766,
+      "layout": null,
+      "lng": -87.6726773,
+      "loft_type": null,
+      "price_history": [
+        {
+          "date": "2026-08-20",
+          "rent": null
+        }
+      ],
+      "rent_gross": null,
+      "sources": [
+        {
+          "source": "web",
+          "url": "https://bestchicagoproperties.com/listings/listing/MRED/12693495/Chicago/1407-N-Milwaukee-Avenue"
+        }
+      ],
+      "status": "active",
+      "unit": null,
+      "verdict": null
+    },
     "1413-15-e-57th-3br-3500": {
       "address_raw": "1413-15 E. 57th, Chicago, IL 60637",
       "all_in_monthly": 3499.0,
@@ -738,13 +850,13 @@
       "verdict": null
     },
     "1415-n-campbell-1": {
-      "address_raw": "1415 North Campbell Avenue, Unit 1",
+      "address_raw": "1415 North Campbell Avenue",
       "all_in_monthly": 2900.0,
       "beds": 2,
       "first_seen": "2026-08-19",
       "key": "1415-n-campbell-1",
       "key_type": "primary",
-      "last_seen": "2026-08-19",
+      "last_seen": "2026-08-20",
       "lat": 41.9071944,
       "layout": null,
       "lng": -87.6893318,
@@ -767,13 +879,13 @@
       "verdict": null
     },
     "1420-n-western-2R": {
-      "address_raw": "1420 North Western Avenue, Unit 2R",
+      "address_raw": "1420 North Western Avenue",
       "all_in_monthly": 1995.0,
       "beds": 2,
       "first_seen": "2026-08-19",
       "key": "1420-n-western-2R",
       "key_type": "primary",
-      "last_seen": "2026-08-19",
+      "last_seen": "2026-08-20",
       "lat": 41.9073431,
       "layout": null,
       "lng": -87.6874873,
@@ -831,7 +943,7 @@
       "first_seen": "2026-08-18",
       "key": "1444-n-leavitt-14462",
       "key_type": "primary",
-      "last_seen": "2026-08-19",
+      "last_seen": "2026-08-20",
       "lat": 41.9080294,
       "layout": null,
       "lng": -87.6825039,
@@ -846,7 +958,7 @@
       "sources": [
         {
           "source": "zillow",
-          "url": "https://www.zillow.com/routing/email/property-notifications/zpid_target/464043632_zpid/"
+          "url": "https://www.zillow.com/homedetails/464043632_zpid/"
         }
       ],
       "status": "active",
@@ -860,7 +972,7 @@
       "first_seen": "2026-08-18",
       "key": "1444-n-milwaukee-3R",
       "key_type": "primary",
-      "last_seen": "2026-08-19",
+      "last_seen": "2026-08-20",
       "lat": 41.9080045,
       "layout": null,
       "lng": -87.6742146,
@@ -875,7 +987,7 @@
       "sources": [
         {
           "source": "zillow",
-          "url": "https://www.zillow.com/routing/email/property-notifications/zpid_target/2077358598_zpid/"
+          "url": "https://www.zillow.com/homedetails/2077358598_zpid/"
         }
       ],
       "status": "active",
@@ -886,6 +998,7 @@
       "address_raw": "1444 W Augusta Blvd, Unit 404",
       "all_in_monthly": 3900.0,
       "beds": 2,
+      "dead_since": "2026-08-20",
       "first_seen": "2026-08-13",
       "key": "1444-w-augusta-404",
       "key_type": "primary",
@@ -907,7 +1020,7 @@
           "url": "https://www.rentcafe.com/apartments/il/chicago/peabody-school-apartments0/default.aspx"
         }
       ],
-      "status": "active",
+      "status": "dead",
       "unit": "404",
       "verdict": null
     },
@@ -918,7 +1031,7 @@
       "first_seen": "2026-08-18",
       "key": "1446-n-leavitt-2",
       "key_type": "primary",
-      "last_seen": "2026-08-19",
+      "last_seen": "2026-08-20",
       "lat": 41.9080976,
       "layout": null,
       "lng": -87.6825993,
@@ -933,11 +1046,7 @@
       "sources": [
         {
           "source": "zillow",
-          "url": "https://www.zillow.com/routing/email/property-notifications/zpid_target/2093323140_zpid/"
-        },
-        {
-          "source": "redfin",
-          "url": "https://www.redfin.com/IL/Chicago/1446-N-Leavitt-St-60622/unit-2/home/185315645"
+          "url": "https://www.zillow.com/homedetails/2093323140_zpid/"
         }
       ],
       "status": "active",
@@ -945,13 +1054,13 @@
       "verdict": null
     },
     "1449-n-ashland-2F": {
-      "address_raw": "1449 N Ashland Ave #2F",
+      "address_raw": "1449 N Ashland Avenue 2F, Chicago, IL 60622",
       "all_in_monthly": 2400.0,
       "beds": 2,
       "first_seen": "2026-08-19",
       "key": "1449-n-ashland-2F",
       "key_type": "primary",
-      "last_seen": "2026-08-19",
+      "last_seen": "2026-08-20",
       "lat": 41.9084453,
       "layout": null,
       "lng": -87.6672541,
@@ -966,7 +1075,7 @@
       "sources": [
         {
           "source": "web",
-          "url": "https://bestchicagoproperties.com/neighborhoods/wicker-park/wicker-park-rentals/"
+          "url": "https://bestchicagoproperties.com/listings/listing/MRED/12723524/Chicago/1449-N-Ashland-Avenue-2F"
         }
       ],
       "status": "active",
@@ -974,13 +1083,13 @@
       "verdict": null
     },
     "1450-n-maplewood-2F": {
-      "address_raw": "1450 North Maplewood Avenue, Unit 2F",
+      "address_raw": "1450 North Maplewood Avenue",
       "all_in_monthly": 1350.0,
-      "beds": 1,
+      "beds": 2,
       "first_seen": "2026-08-19",
       "key": "1450-n-maplewood-2F",
       "key_type": "primary",
-      "last_seen": "2026-08-19",
+      "last_seen": "2026-08-20",
       "lat": 41.9081281,
       "layout": null,
       "lng": -87.6911627,
@@ -1002,14 +1111,43 @@
       "unit": "2F",
       "verdict": null
     },
+    "1450-w-webster-2": {
+      "address_raw": "1450 West Webster Avenue",
+      "all_in_monthly": 6200.0,
+      "beds": 4,
+      "first_seen": "2026-08-20",
+      "key": "1450-w-webster-2",
+      "key_type": "primary",
+      "last_seen": "2026-08-20",
+      "lat": 41.9217431,
+      "layout": null,
+      "lng": -87.6651378,
+      "loft_type": null,
+      "price_history": [
+        {
+          "date": "2026-08-20",
+          "rent": 6200
+        }
+      ],
+      "rent_gross": 6200,
+      "sources": [
+        {
+          "source": "web",
+          "url": "https://www.compass.com/homedetails/1450-W-Webster-Ave-Unit-2-Chicago-IL-60614/1X4SHR_pid/"
+        }
+      ],
+      "status": "active",
+      "unit": "2",
+      "verdict": null
+    },
     "1451-n-ashland-S": {
-      "address_raw": "1451 N Ashland Ave #S",
+      "address_raw": "1451 N Ashland Avenue S, Chicago, IL 60622",
       "all_in_monthly": 5000.0,
       "beds": 3,
       "first_seen": "2026-08-19",
       "key": "1451-n-ashland-S",
       "key_type": "primary",
-      "last_seen": "2026-08-19",
+      "last_seen": "2026-08-20",
       "lat": 41.90854,
       "layout": null,
       "lng": -87.6673039,
@@ -1024,21 +1162,50 @@
       "sources": [
         {
           "source": "web",
-          "url": "https://bestchicagoproperties.com/neighborhoods/wicker-park/wicker-park-rentals/"
+          "url": "https://bestchicagoproperties.com/listings/listing/MRED/12728542/Chicago/1451-N-ASHLAND-Avenue-S"
         }
       ],
       "status": "active",
       "unit": "S",
       "verdict": null
     },
+    "1455-w-fullerton-302": {
+      "address_raw": "1455 West Fullerton Avenue",
+      "all_in_monthly": 3200.0,
+      "beds": 2,
+      "first_seen": "2026-08-20",
+      "key": "1455-w-fullerton-302",
+      "key_type": "primary",
+      "last_seen": "2026-08-20",
+      "lat": 41.9250083,
+      "layout": null,
+      "lng": -87.66547,
+      "loft_type": null,
+      "price_history": [
+        {
+          "date": "2026-08-20",
+          "rent": 3200
+        }
+      ],
+      "rent_gross": 3200,
+      "sources": [
+        {
+          "source": "web",
+          "url": "https://www.compass.com/homedetails/1455-W-Fullerton-Ave-Unit-302-Chicago-IL-60614/1XO0KE_pid/"
+        }
+      ],
+      "status": "active",
+      "unit": "302",
+      "verdict": null
+    },
     "1474-n-milwaukee-3F": {
-      "address_raw": "1474 North Milwaukee Avenue, Unit 3F",
+      "address_raw": "1474 North Milwaukee Avenue",
       "all_in_monthly": 3600.0,
       "beds": 3,
       "first_seen": "2026-08-19",
       "key": "1474-n-milwaukee-3F",
       "key_type": "primary",
-      "last_seen": "2026-08-19",
+      "last_seen": "2026-08-20",
       "lat": 41.908511,
       "layout": null,
       "lng": -87.6750892,
@@ -1090,13 +1257,13 @@
       "verdict": null
     },
     "1512-n-artesian-1F": {
-      "address_raw": "1512 North Artesian Avenue, Unit 1F",
+      "address_raw": "1512 N Artesian Avenue #1F",
       "all_in_monthly": 2100.0,
       "beds": 2,
       "first_seen": "2026-08-18",
       "key": "1512-n-artesian-1F",
       "key_type": "primary",
-      "last_seen": "2026-08-19",
+      "last_seen": "2026-08-20",
       "lat": 41.9088976,
       "layout": null,
       "lng": -87.6886087,
@@ -1111,11 +1278,7 @@
       "sources": [
         {
           "source": "web",
-          "url": "https://www.compass.com/homedetails/1512-N-Artesian-Ave-Unit-1F-Chicago-IL-60622/2DBKLM_pid/"
-        },
-        {
-          "source": "web",
-          "url": "https://landstarchicago.com/wicker-park-apartments/"
+          "url": "https://landstarchicago.com/homes-for-sale-details/1512-N-ARTESIAN-AVENUE-1F-CHICAGO-IL-60622/12712969/34/"
         }
       ],
       "status": "active",
@@ -1126,6 +1289,7 @@
       "address_raw": "1513 N Milwaukee Ave, Chicago, IL",
       "all_in_monthly": 4000.0,
       "beds": 2,
+      "dead_since": "2026-08-20",
       "first_seen": "2026-08-13",
       "key": "1513-n-milwaukee-2br-4000",
       "key_type": "fallback",
@@ -1147,18 +1311,18 @@
           "url": "https://www.zillow.com/homedetails/80729578_zpid/"
         }
       ],
-      "status": "active",
+      "status": "dead",
       "unit": null,
       "verdict": null
     },
     "1514-n-wood-1N": {
-      "address_raw": "1514 North Wood Street, Unit 1N",
+      "address_raw": "1514 N Wood Street 1N, Chicago, IL 60622",
       "all_in_monthly": 5795.0,
       "beds": 4,
       "first_seen": "2026-08-19",
       "key": "1514-n-wood-1N",
       "key_type": "primary",
-      "last_seen": "2026-08-19",
+      "last_seen": "2026-08-20",
       "lat": 41.9092527,
       "layout": null,
       "lng": -87.6728455,
@@ -1173,11 +1337,7 @@
       "sources": [
         {
           "source": "web",
-          "url": "https://www.compass.com/homedetails/1514-N-Wood-St-Unit-1N-Chicago-IL-60622/1XBDFD_pid/"
-        },
-        {
-          "source": "web",
-          "url": "https://bestchicagoproperties.com/neighborhoods/wicker-park/wicker-park-rentals/"
+          "url": "https://bestchicagoproperties.com/listings/listing/MRED/12699324/Chicago/1514-N-Wood-Street-1N"
         }
       ],
       "status": "active",
@@ -1214,13 +1374,13 @@
       "verdict": null
     },
     "1522-n-bosworth-2": {
-      "address_raw": "1522 N Bosworth Ave #2",
+      "address_raw": "1522 N Bosworth Avenue 2, Chicago, IL 60642",
       "all_in_monthly": 2950.0,
       "beds": 2,
       "first_seen": "2026-08-19",
       "key": "1522-n-bosworth-2",
       "key_type": "primary",
-      "last_seen": "2026-08-19",
+      "last_seen": "2026-08-20",
       "lat": 41.9095441,
       "layout": null,
       "lng": -87.6667358,
@@ -1235,7 +1395,7 @@
       "sources": [
         {
           "source": "web",
-          "url": "https://bestchicagoproperties.com/neighborhoods/wicker-park/wicker-park-rentals/"
+          "url": "https://bestchicagoproperties.com/listings/listing/MRED/12723405/Chicago/1522-N-Bosworth-Avenue-2"
         }
       ],
       "status": "active",
@@ -1243,13 +1403,13 @@
       "verdict": null
     },
     "1528-n-ashland-2R": {
-      "address_raw": "1528 North Ashland Avenue, Unit 2R",
+      "address_raw": "1528 N Ashland Avenue #2R",
       "all_in_monthly": 2050.0,
       "beds": 2,
       "first_seen": "2026-08-18",
       "key": "1528-n-ashland-2R",
       "key_type": "primary",
-      "last_seen": "2026-08-19",
+      "last_seen": "2026-08-20",
       "lat": 41.9096919,
       "layout": null,
       "lng": -87.667994,
@@ -1264,11 +1424,7 @@
       "sources": [
         {
           "source": "web",
-          "url": "https://www.compass.com/homedetails/1528-N-Ashland-Ave-Unit-2R-Chicago-IL-60622/1VR0GV_pid/"
-        },
-        {
-          "source": "web",
-          "url": "https://landstarchicago.com/wicker-park-apartments/"
+          "url": "https://landstarchicago.com/homes-for-sale-details/1528-N-ASHLAND-AVENUE-2R-CHICAGO-IL-60622/12710210/34/"
         }
       ],
       "status": "active",
@@ -1340,7 +1496,7 @@
       "first_seen": "2026-08-19",
       "key": "1538-n-milwaukee-2F",
       "key_type": "primary",
-      "last_seen": "2026-08-19",
+      "last_seen": "2026-08-20",
       "lat": 41.909294,
       "layout": null,
       "lng": -87.6762095,
@@ -1355,7 +1511,7 @@
       "sources": [
         {
           "source": "zillow",
-          "url": "https://www.zillow.com/routing/email/property-notifications/zpid_target/2106525203_zpid/"
+          "url": "https://www.zillow.com/homedetails/2106525203_zpid/"
         }
       ],
       "status": "active",
@@ -1369,7 +1525,7 @@
       "first_seen": "2026-08-19",
       "key": "1538-n-milwaukee-3F",
       "key_type": "primary",
-      "last_seen": "2026-08-19",
+      "last_seen": "2026-08-20",
       "lat": 41.909294,
       "layout": null,
       "lng": -87.6762095,
@@ -1384,7 +1540,7 @@
       "sources": [
         {
           "source": "zillow",
-          "url": "https://www.zillow.com/routing/email/property-notifications/zpid_target/2105972281_zpid/"
+          "url": "https://www.zillow.com/homedetails/2105972281_zpid/"
         }
       ],
       "status": "active",
@@ -1450,13 +1606,13 @@
       "verdict": null
     },
     "1557-n-honore-G": {
-      "address_raw": "1557 North Honore Street, Unit G",
+      "address_raw": "1557 N Honore Street G, Chicago, IL 60622",
       "all_in_monthly": 2500.0,
       "beds": 2,
       "first_seen": "2026-08-13",
       "key": "1557-n-honore-G",
       "key_type": "primary",
-      "last_seen": "2026-08-19",
+      "last_seen": "2026-08-20",
       "lat": 41.9099825,
       "layout": null,
       "lng": -87.6735468,
@@ -1471,11 +1627,7 @@
       "sources": [
         {
           "source": "web",
-          "url": "https://www.compass.com/homedetails/1557-N-Honore-St-Unit-G-Chicago-IL-60622/1VMXS2_pid/"
-        },
-        {
-          "source": "web",
-          "url": "https://bestchicagoproperties.com/neighborhoods/wicker-park/wicker-park-rentals/"
+          "url": "https://bestchicagoproperties.com/listings/listing/MRED/12732665/Chicago/1557-N-Honore-Street-G"
         }
       ],
       "status": "active",
@@ -1512,13 +1664,13 @@
       "verdict": null
     },
     "1615-n-campbell-1S": {
-      "address_raw": "1615 North Campbell Avenue, Unit 1S",
+      "address_raw": "1615 North Campbell Avenue",
       "all_in_monthly": 4800.0,
       "beds": 4,
       "first_seen": "2026-08-19",
       "key": "1615-n-campbell-1S",
       "key_type": "primary",
-      "last_seen": "2026-08-19",
+      "last_seen": "2026-08-20",
       "lat": 41.9108725,
       "layout": null,
       "lng": -87.6894649,
@@ -1541,13 +1693,13 @@
       "verdict": null
     },
     "1616-w-le-moyne-2": {
-      "address_raw": "1616 West Le Moyne Street, Unit 2",
+      "address_raw": "1616 West Le Moyne Street",
       "all_in_monthly": 1750.0,
       "beds": 1,
       "first_seen": "2026-08-19",
       "key": "1616-w-le-moyne-2",
       "key_type": "primary",
-      "last_seen": "2026-08-19",
+      "last_seen": "2026-08-20",
       "lat": 41.9092654,
       "layout": null,
       "lng": -87.6683653,
@@ -1598,14 +1750,43 @@
       "unit": "3",
       "verdict": null
     },
+    "1636-n-wells-2214": {
+      "address_raw": "1636 North Wells Street",
+      "all_in_monthly": 2150.0,
+      "beds": 0,
+      "first_seen": "2026-08-20",
+      "key": "1636-n-wells-2214",
+      "key_type": "primary",
+      "last_seen": "2026-08-20",
+      "lat": 41.9123592,
+      "layout": null,
+      "lng": -87.6352327,
+      "loft_type": null,
+      "price_history": [
+        {
+          "date": "2026-08-20",
+          "rent": 2150
+        }
+      ],
+      "rent_gross": 2150,
+      "sources": [
+        {
+          "source": "web",
+          "url": "https://www.compass.com/homedetails/1636-N-Wells-St-Unit-2214-Chicago-IL-60614/1VKFMJ_pid/"
+        }
+      ],
+      "status": "active",
+      "unit": "2214",
+      "verdict": null
+    },
     "1638-w-blackhawk-3": {
-      "address_raw": "1638 West Blackhawk Street, Unit 3",
+      "address_raw": "1638 West Blackhawk Street",
       "all_in_monthly": 4000.0,
       "beds": 4,
       "first_seen": "2026-08-19",
       "key": "1638-w-blackhawk-3",
       "key_type": "primary",
-      "last_seen": "2026-08-19",
+      "last_seen": "2026-08-20",
       "lat": 41.9071493,
       "layout": null,
       "lng": -87.6690985,
@@ -1625,6 +1806,35 @@
       ],
       "status": "active",
       "unit": "3",
+      "verdict": null
+    },
+    "1640-n-bissell-2br-6500": {
+      "address_raw": "1640 North Bissell Street",
+      "all_in_monthly": 6500.0,
+      "beds": 2,
+      "first_seen": "2026-08-20",
+      "key": "1640-n-bissell-2br-6500",
+      "key_type": "fallback",
+      "last_seen": "2026-08-20",
+      "lat": 41.9121062,
+      "layout": null,
+      "lng": -87.649989,
+      "loft_type": null,
+      "price_history": [
+        {
+          "date": "2026-08-20",
+          "rent": 6500
+        }
+      ],
+      "rent_gross": 6500,
+      "sources": [
+        {
+          "source": "web",
+          "url": "https://www.compass.com/homedetails/1640-N-Bissell-St-Chicago-IL-60614/1LINV2_pid/"
+        }
+      ],
+      "status": "active",
+      "unit": null,
       "verdict": null
     },
     "1640-n-damen-1br-2700": {
@@ -1773,13 +1983,13 @@
       "verdict": null
     },
     "1647-n-milwaukee-503": {
-      "address_raw": "1647 North Milwaukee Avenue, Unit 503",
-      "all_in_monthly": 2230.0,
+      "address_raw": "1647 North Milwaukee Avenue",
+      "all_in_monthly": 2263.33,
       "beds": 0,
       "first_seen": "2026-08-19",
       "key": "1647-n-milwaukee-503",
       "key_type": "primary",
-      "last_seen": "2026-08-19",
+      "last_seen": "2026-08-20",
       "lat": 41.9115952,
       "layout": null,
       "lng": -87.6790597,
@@ -1795,14 +2005,126 @@
         {
           "source": "web",
           "url": "https://www.compass.com/homedetails/1647-N-Milwaukee-Ave-Unit-503-Chicago-IL-60647/1XV4H3_pid/"
-        },
-        {
-          "source": "web",
-          "url": "https://www.rentcafe.com/apartments/il/chicago/1643-n-milwaukee-avenue/default.aspx"
         }
       ],
       "status": "active",
       "unit": "503",
+      "verdict": null
+    },
+    "1649-w-cortland-401": {
+      "address_raw": "1649 West Cortland Street",
+      "all_in_monthly": 4200.0,
+      "beds": 3,
+      "first_seen": "2026-08-20",
+      "key": "1649-w-cortland-401",
+      "key_type": "primary",
+      "last_seen": "2026-08-20",
+      "lat": 41.9158845,
+      "layout": null,
+      "lng": -87.6697514,
+      "loft_type": null,
+      "price_history": [
+        {
+          "date": "2026-08-20",
+          "rent": 4200
+        }
+      ],
+      "rent_gross": 4200,
+      "sources": [
+        {
+          "source": "web",
+          "url": "https://www.compass.com/homedetails/1649-W-Cortland-St-Unit-401-Chicago-IL-60622/1W3JY2_pid/"
+        }
+      ],
+      "status": "active",
+      "unit": "401",
+      "verdict": null
+    },
+    "1660-n-lasalle-2306": {
+      "address_raw": "1660 North LaSalle Drive",
+      "all_in_monthly": 2750.0,
+      "beds": 1,
+      "first_seen": "2026-08-20",
+      "key": "1660-n-lasalle-2306",
+      "key_type": "primary",
+      "last_seen": "2026-08-20",
+      "lat": 41.9126095,
+      "layout": null,
+      "lng": -87.6335689,
+      "loft_type": null,
+      "price_history": [
+        {
+          "date": "2026-08-20",
+          "rent": 2750
+        }
+      ],
+      "rent_gross": 2750,
+      "sources": [
+        {
+          "source": "web",
+          "url": "https://www.compass.com/homedetails/1660-N-LaSalle-Dr-Unit-2306-Chicago-IL-60614/1XE4Q5_pid/"
+        }
+      ],
+      "status": "active",
+      "unit": "2306",
+      "verdict": null
+    },
+    "1701-n-halsted-E2": {
+      "address_raw": "1701 North Halsted Street",
+      "all_in_monthly": 6500.0,
+      "beds": 3,
+      "first_seen": "2026-08-20",
+      "key": "1701-n-halsted-E2",
+      "key_type": "primary",
+      "last_seen": "2026-08-20",
+      "lat": 41.9128051,
+      "layout": null,
+      "lng": -87.647769,
+      "loft_type": null,
+      "price_history": [
+        {
+          "date": "2026-08-20",
+          "rent": 6500
+        }
+      ],
+      "rent_gross": 6500,
+      "sources": [
+        {
+          "source": "web",
+          "url": "https://www.compass.com/homedetails/1701-N-Halsted-St-Unit-E2-Chicago-IL-60614/1WGY5B_pid/"
+        }
+      ],
+      "status": "active",
+      "unit": "E2",
+      "verdict": null
+    },
+    "1701-w-webster-205": {
+      "address_raw": "1701 West Webster Avenue",
+      "all_in_monthly": 4150.0,
+      "beds": 2,
+      "first_seen": "2026-08-20",
+      "key": "1701-w-webster-205",
+      "key_type": "primary",
+      "last_seen": "2026-08-20",
+      "lat": 41.9214292,
+      "layout": null,
+      "lng": -87.6708802,
+      "loft_type": null,
+      "price_history": [
+        {
+          "date": "2026-08-20",
+          "rent": 4150
+        }
+      ],
+      "rent_gross": 4150,
+      "sources": [
+        {
+          "source": "web",
+          "url": "https://www.compass.com/homedetails/1701-W-Webster-Ave-Unit-205-Chicago-IL-60614/1X0SPG_pid/"
+        }
+      ],
+      "status": "active",
+      "unit": "205",
       "verdict": null
     },
     "1717-s-michigan-804": {
@@ -1835,13 +2157,13 @@
       "verdict": null
     },
     "1718-w-pierce-GR": {
-      "address_raw": "1718 West Pierce Avenue, Unit GR",
+      "address_raw": "1718 West Pierce Avenue",
       "all_in_monthly": 2250.0,
       "beds": 1,
       "first_seen": "2026-08-19",
       "key": "1718-w-pierce-GR",
       "key_type": "primary",
-      "last_seen": "2026-08-19",
+      "last_seen": "2026-08-20",
       "lat": 41.9100281,
       "layout": null,
       "lng": -87.6709185,
@@ -1864,13 +2186,13 @@
       "verdict": null
     },
     "1721-w-pierce-2": {
-      "address_raw": "1721 West Pierce Avenue, Unit 2",
+      "address_raw": "1721 W Pierce Avenue 2, Chicago, IL 60622",
       "all_in_monthly": 3400.0,
       "beds": 2,
       "first_seen": "2026-08-19",
       "key": "1721-w-pierce-2",
       "key_type": "primary",
-      "last_seen": "2026-08-19",
+      "last_seen": "2026-08-20",
       "lat": 41.9096662,
       "layout": null,
       "lng": -87.6709971,
@@ -1885,11 +2207,7 @@
       "sources": [
         {
           "source": "web",
-          "url": "https://www.compass.com/homedetails/1721-W-Pierce-Ave-Unit-2-Chicago-IL-60622/2F5XOL_pid/"
-        },
-        {
-          "source": "web",
-          "url": "https://bestchicagoproperties.com/neighborhoods/wicker-park/wicker-park-rentals/"
+          "url": "https://bestchicagoproperties.com/listings/listing/MRED/12730302/Chicago/1721-W-Pierce-Avenue-2"
         }
       ],
       "status": "active",
@@ -1897,13 +2215,13 @@
       "verdict": null
     },
     "1721-w-pierce-3": {
-      "address_raw": "1721 West Pierce Avenue, Unit 3",
+      "address_raw": "1721 W Pierce Avenue 3, Chicago, IL 60622",
       "all_in_monthly": 3500.0,
       "beds": 2,
       "first_seen": "2026-08-19",
       "key": "1721-w-pierce-3",
       "key_type": "primary",
-      "last_seen": "2026-08-19",
+      "last_seen": "2026-08-20",
       "lat": 41.9096662,
       "layout": null,
       "lng": -87.6709971,
@@ -1918,11 +2236,7 @@
       "sources": [
         {
           "source": "web",
-          "url": "https://www.compass.com/homedetails/1721-W-Pierce-Ave-Unit-3-Chicago-IL-60622/2F5YLK_pid/"
-        },
-        {
-          "source": "web",
-          "url": "https://bestchicagoproperties.com/neighborhoods/wicker-park/wicker-park-rentals/"
+          "url": "https://bestchicagoproperties.com/listings/listing/MRED/12731515/Chicago/1721-W-Pierce-Avenue-3"
         }
       ],
       "status": "active",
@@ -1930,13 +2244,13 @@
       "verdict": null
     },
     "1723-w-north-1": {
-      "address_raw": "1723 West North Avenue, Unit 1",
+      "address_raw": "1723 West North Avenue",
       "all_in_monthly": 4200.0,
       "beds": 2,
       "first_seen": "2026-08-19",
       "key": "1723-w-north-1",
       "key_type": "primary",
-      "last_seen": "2026-08-19",
+      "last_seen": "2026-08-20",
       "lat": 41.9104276,
       "layout": null,
       "lng": -87.6711022,
@@ -1956,6 +2270,35 @@
       ],
       "status": "active",
       "unit": "1",
+      "verdict": null
+    },
+    "1730-n-clark-101": {
+      "address_raw": "1730 North Clark Street",
+      "all_in_monthly": 6223.0,
+      "beds": 2,
+      "first_seen": "2026-08-20",
+      "key": "1730-n-clark-101",
+      "key_type": "primary",
+      "last_seen": "2026-08-20",
+      "lat": 41.9137761,
+      "layout": null,
+      "lng": -87.6338377,
+      "loft_type": null,
+      "price_history": [
+        {
+          "date": "2026-08-20",
+          "rent": 6223
+        }
+      ],
+      "rent_gross": 6223,
+      "sources": [
+        {
+          "source": "web",
+          "url": "https://www.compass.com/homedetails/1730-N-Clark-St-Unit-101-Chicago-IL-60614/1XQUPA_pid/"
+        }
+      ],
+      "status": "active",
+      "unit": "101",
       "verdict": null
     },
     "1735-n-paulina-611": {
@@ -2016,6 +2359,180 @@
       "unit": null,
       "verdict": null
     },
+    "1781-w-altgeld-A": {
+      "address_raw": "1781 West Altgeld Street",
+      "all_in_monthly": 3100.0,
+      "beds": 1,
+      "first_seen": "2026-08-20",
+      "key": "1781-w-altgeld-A",
+      "key_type": "primary",
+      "last_seen": "2026-08-20",
+      "lat": 41.9285656,
+      "layout": null,
+      "lng": -87.6723015,
+      "loft_type": null,
+      "price_history": [
+        {
+          "date": "2026-08-20",
+          "rent": 3100
+        }
+      ],
+      "rent_gross": 3100,
+      "sources": [
+        {
+          "source": "web",
+          "url": "https://www.compass.com/homedetails/1781-W-Altgeld-St-Unit-A-Chicago-IL-60614/1XP24O_pid/"
+        }
+      ],
+      "status": "active",
+      "unit": "A",
+      "verdict": null
+    },
+    "1840-n-bissell-G": {
+      "address_raw": "1840 North Bissell Street",
+      "all_in_monthly": 1800.0,
+      "beds": 0,
+      "first_seen": "2026-08-20",
+      "key": "1840-n-bissell-G",
+      "key_type": "primary",
+      "last_seen": "2026-08-20",
+      "lat": 41.9149585,
+      "layout": null,
+      "lng": -87.6522551,
+      "loft_type": null,
+      "price_history": [
+        {
+          "date": "2026-08-20",
+          "rent": 1800
+        }
+      ],
+      "rent_gross": 1800,
+      "sources": [
+        {
+          "source": "web",
+          "url": "https://www.compass.com/homedetails/1840-N-Bissell-St-Unit-G-Chicago-IL-60614/2EXWWK_pid/"
+        }
+      ],
+      "status": "active",
+      "unit": "G",
+      "verdict": null
+    },
+    "1841-n-hermitage-CH1": {
+      "address_raw": "1841 North Hermitage Avenue",
+      "all_in_monthly": 1999.0,
+      "beds": 1,
+      "first_seen": "2026-08-20",
+      "key": "1841-n-hermitage-CH1",
+      "key_type": "primary",
+      "last_seen": "2026-08-20",
+      "lat": 41.9154717,
+      "layout": null,
+      "lng": -87.671259,
+      "loft_type": null,
+      "price_history": [
+        {
+          "date": "2026-08-20",
+          "rent": 1999
+        }
+      ],
+      "rent_gross": 1999,
+      "sources": [
+        {
+          "source": "web",
+          "url": "https://www.compass.com/homedetails/1841-N-Hermitage-Ave-Unit-CH1-Chicago-IL-60622/1W3F9O_pid/"
+        }
+      ],
+      "status": "active",
+      "unit": "CH1",
+      "verdict": null
+    },
+    "1850-n-clark-1205": {
+      "address_raw": "1850 North Clark Street",
+      "all_in_monthly": 3000.0,
+      "beds": 1,
+      "first_seen": "2026-08-20",
+      "key": "1850-n-clark-1205",
+      "key_type": "primary",
+      "last_seen": "2026-08-20",
+      "lat": 41.9159831,
+      "layout": null,
+      "lng": -87.6347018,
+      "loft_type": null,
+      "price_history": [
+        {
+          "date": "2026-08-20",
+          "rent": 3000
+        }
+      ],
+      "rent_gross": 3000,
+      "sources": [
+        {
+          "source": "web",
+          "url": "https://www.compass.com/homedetails/1850-N-Clark-St-Unit-1205-Chicago-IL-60614/1W26AB_pid/"
+        }
+      ],
+      "status": "active",
+      "unit": "1205",
+      "verdict": null
+    },
+    "1850-n-clark-2803": {
+      "address_raw": "1850 North Clark Street",
+      "all_in_monthly": 4500.0,
+      "beds": 2,
+      "first_seen": "2026-08-20",
+      "key": "1850-n-clark-2803",
+      "key_type": "primary",
+      "last_seen": "2026-08-20",
+      "lat": 41.9159831,
+      "layout": null,
+      "lng": -87.6347018,
+      "loft_type": null,
+      "price_history": [
+        {
+          "date": "2026-08-20",
+          "rent": 4500
+        }
+      ],
+      "rent_gross": 4500,
+      "sources": [
+        {
+          "source": "web",
+          "url": "https://www.compass.com/homedetails/1850-N-Clark-St-Unit-2803-Chicago-IL-60614/1VZPN8_pid/"
+        }
+      ],
+      "status": "active",
+      "unit": "2803",
+      "verdict": null
+    },
+    "1861-n-hoyne-1F": {
+      "address_raw": "1861 North Hoyne Avenue",
+      "all_in_monthly": 4500.0,
+      "beds": 2,
+      "first_seen": "2026-08-20",
+      "key": "1861-n-hoyne-1F",
+      "key_type": "primary",
+      "last_seen": "2026-08-20",
+      "lat": 41.9155525,
+      "layout": null,
+      "lng": -87.6798191,
+      "loft_type": null,
+      "price_history": [
+        {
+          "date": "2026-08-20",
+          "rent": 4500
+        }
+      ],
+      "rent_gross": 4500,
+      "sources": [
+        {
+          "source": "web",
+          "url": "https://www.compass.com/homedetails/1861-N-Hoyne-Ave-Unit-1F-Chicago-IL-60647/1X70ME_pid/"
+        }
+      ],
+      "status": "active",
+      "unit": "1F",
+      "verdict": null
+    },
     "1880-n-milwaukee-1br-2600": {
       "address_raw": "1880 N Milwaukee Ave, Chicago, IL 60647",
       "all_in_monthly": 2600.0,
@@ -2045,6 +2562,64 @@
       "unit": null,
       "verdict": null
     },
+    "1880-n-milwaukee-201": {
+      "address_raw": "1880 N Milwaukee Ave #201, Chicago, IL",
+      "all_in_monthly": 3670.0,
+      "beds": 2,
+      "first_seen": "2026-08-20",
+      "key": "1880-n-milwaukee-201",
+      "key_type": "primary",
+      "last_seen": "2026-08-20",
+      "lat": 41.9153979,
+      "layout": null,
+      "lng": -87.6856802,
+      "loft_type": null,
+      "price_history": [
+        {
+          "date": "2026-08-20",
+          "rent": 3670
+        }
+      ],
+      "rent_gross": 3670,
+      "sources": [
+        {
+          "source": "zillow",
+          "url": "https://www.zillow.com/apartments/chicago-il/1880-milwaukee/"
+        }
+      ],
+      "status": "active",
+      "unit": "201",
+      "verdict": null
+    },
+    "1914-n-wood-0": {
+      "address_raw": "1914 N Wood St #0, Chicago, IL",
+      "all_in_monthly": 3999.0,
+      "beds": 3,
+      "first_seen": "2026-08-20",
+      "key": "1914-n-wood-0",
+      "key_type": "primary",
+      "last_seen": "2026-08-20",
+      "lat": 41.9165246,
+      "layout": null,
+      "lng": -87.6730082,
+      "loft_type": null,
+      "price_history": [
+        {
+          "date": "2026-08-20",
+          "rent": 3999
+        }
+      ],
+      "rent_gross": 3999,
+      "sources": [
+        {
+          "source": "zillow",
+          "url": "https://www.zillow.com/homedetails/452815452_zpid/"
+        }
+      ],
+      "status": "active",
+      "unit": "0",
+      "verdict": null
+    },
     "1920-n-clark-14B": {
       "address_raw": "1920 N Clark St Unit 14B, Chicago, IL 60614",
       "all_in_monthly": 4000.0,
@@ -2052,7 +2627,7 @@
       "first_seen": "2026-08-18",
       "key": "1920-n-clark-14B",
       "key_type": "primary",
-      "last_seen": "2026-08-19",
+      "last_seen": "2026-08-20",
       "lat": 41.917211,
       "layout": null,
       "lng": -87.635714,
@@ -2132,6 +2707,35 @@
       "unit": null,
       "verdict": null
     },
+    "1920-n-milwaukee-306": {
+      "address_raw": "1920 North Milwaukee Avenue",
+      "all_in_monthly": 3603.33,
+      "beds": 2,
+      "first_seen": "2026-08-20",
+      "key": "1920-n-milwaukee-306",
+      "key_type": "primary",
+      "last_seen": "2026-08-20",
+      "lat": 41.9164129,
+      "layout": null,
+      "lng": -87.6870725,
+      "loft_type": null,
+      "price_history": [
+        {
+          "date": "2026-08-20",
+          "rent": 3570
+        }
+      ],
+      "rent_gross": 3570,
+      "sources": [
+        {
+          "source": "web",
+          "url": "https://www.compass.com/homedetails/1920-N-Milwaukee-Ave-Unit-306-Chicago-IL-60647/1WQP3L_pid/"
+        }
+      ],
+      "status": "active",
+      "unit": "306",
+      "verdict": null
+    },
     "1920-n-milwaukee-406": {
       "address_raw": "1920 N Milwaukee Ave Unit 406, Chicago, IL 60647",
       "all_in_monthly": 3580.0,
@@ -2139,7 +2743,7 @@
       "first_seen": "2026-08-19",
       "key": "1920-n-milwaukee-406",
       "key_type": "primary",
-      "last_seen": "2026-08-19",
+      "last_seen": "2026-08-20",
       "lat": 41.9164129,
       "layout": null,
       "lng": -87.6870725,
@@ -2161,14 +2765,43 @@
       "unit": "406",
       "verdict": null
     },
+    "1920-n-milwaukee-607": {
+      "address_raw": "1920 North Milwaukee Avenue",
+      "all_in_monthly": 3693.33,
+      "beds": 2,
+      "first_seen": "2026-08-20",
+      "key": "1920-n-milwaukee-607",
+      "key_type": "primary",
+      "last_seen": "2026-08-20",
+      "lat": 41.9164129,
+      "layout": null,
+      "lng": -87.6870725,
+      "loft_type": null,
+      "price_history": [
+        {
+          "date": "2026-08-20",
+          "rent": 3660
+        }
+      ],
+      "rent_gross": 3660,
+      "sources": [
+        {
+          "source": "web",
+          "url": "https://www.compass.com/homedetails/1920-N-Milwaukee-Ave-Unit-607-Chicago-IL-60647/1W613O_pid/"
+        }
+      ],
+      "status": "active",
+      "unit": "607",
+      "verdict": null
+    },
     "1931-w-evergreen-2": {
-      "address_raw": "1931 West Evergreen Avenue, Unit 2",
+      "address_raw": "1931 West Evergreen Avenue",
       "all_in_monthly": 2700.0,
       "beds": 2,
       "first_seen": "2026-08-19",
       "key": "1931-w-evergreen-2",
       "key_type": "primary",
-      "last_seen": "2026-08-19",
+      "last_seen": "2026-08-20",
       "lat": 41.9061663,
       "layout": null,
       "lng": -87.6753601,
@@ -2190,14 +2823,43 @@
       "unit": "2",
       "verdict": null
     },
+    "1933-n-damen-COACH": {
+      "address_raw": "1933 North Damen Avenue",
+      "all_in_monthly": 4500.0,
+      "beds": 1,
+      "first_seen": "2026-08-20",
+      "key": "1933-n-damen-COACH",
+      "key_type": "primary",
+      "last_seen": "2026-08-20",
+      "lat": 41.9169403,
+      "layout": null,
+      "lng": -87.6771016,
+      "loft_type": null,
+      "price_history": [
+        {
+          "date": "2026-08-20",
+          "rent": 4500
+        }
+      ],
+      "rent_gross": 4500,
+      "sources": [
+        {
+          "source": "web",
+          "url": "https://www.compass.com/homedetails/1933-N-Damen-Ave-Unit-COACH-Chicago-IL-60647/1VLCJA_pid/"
+        }
+      ],
+      "status": "active",
+      "unit": "COACH",
+      "verdict": null
+    },
     "1933-w-crystal-2A": {
-      "address_raw": "1933 W Crystal St #2A",
+      "address_raw": "1933 W Crystal Street #2A",
       "all_in_monthly": 1850.0,
       "beds": 1,
       "first_seen": "2026-08-18",
       "key": "1933-w-crystal-2A",
       "key_type": "primary",
-      "last_seen": "2026-08-19",
+      "last_seen": "2026-08-20",
       "lat": 41.9039326,
       "layout": null,
       "lng": -87.6763485,
@@ -2212,7 +2874,7 @@
       "sources": [
         {
           "source": "web",
-          "url": "https://landstarchicago.com/wicker-park-apartments/"
+          "url": "https://landstarchicago.com/homes-for-sale-details/1933-W-CRYSTAL-STREET-2A-CHICAGO-IL-60622/12709544/34/"
         }
       ],
       "status": "active",
@@ -2223,6 +2885,7 @@
       "address_raw": "1942 W Division St APT 3F, Chicago, IL",
       "all_in_monthly": 3000.0,
       "beds": 2,
+      "dead_since": "2026-08-20",
       "first_seen": "2026-08-13",
       "key": "1942-w-division-3F",
       "key_type": "primary",
@@ -2244,14 +2907,44 @@
           "url": "https://www.zillow.com/homedetails/2110712217_zpid/"
         }
       ],
-      "status": "active",
+      "status": "dead",
       "unit": "3F",
+      "verdict": null
+    },
+    "1952-n-hudson-1": {
+      "address_raw": "1952 North Hudson Avenue",
+      "all_in_monthly": 6500.0,
+      "beds": 3,
+      "first_seen": "2026-08-20",
+      "key": "1952-n-hudson-1",
+      "key_type": "primary",
+      "last_seen": "2026-08-20",
+      "lat": 41.9180511,
+      "layout": null,
+      "lng": -87.6403251,
+      "loft_type": null,
+      "price_history": [
+        {
+          "date": "2026-08-20",
+          "rent": 6500
+        }
+      ],
+      "rent_gross": 6500,
+      "sources": [
+        {
+          "source": "web",
+          "url": "https://www.compass.com/homedetails/1952-N-Hudson-Ave-Unit-1-Chicago-IL-60614/1XTGKO_pid/"
+        }
+      ],
+      "status": "active",
+      "unit": "1",
       "verdict": null
     },
     "1956-w-ohio-3br-3750": {
       "address_raw": "1956 W Ohio St #, Chicago, IL 60622",
       "all_in_monthly": 3750.0,
       "beds": 3,
+      "dead_since": "2026-08-20",
       "first_seen": "2026-08-13",
       "key": "1956-w-ohio-3br-3750",
       "key_type": "fallback",
@@ -2273,7 +2966,7 @@
           "url": "https://www.domu.com/chicago/west-side/east-village/1956-w-ohio-st-chicago-il-60622-17"
         }
       ],
-      "status": "active",
+      "status": "dead",
       "unit": null,
       "verdict": null
     },
@@ -2306,6 +2999,93 @@
       "unit": null,
       "verdict": null
     },
+    "2015-w-concord-C": {
+      "address_raw": "2015 W Concord Pl #C, Chicago, IL",
+      "all_in_monthly": 2400.0,
+      "beds": 1,
+      "first_seen": "2026-08-20",
+      "key": "2015-w-concord-C",
+      "key_type": "primary",
+      "last_seen": "2026-08-20",
+      "lat": 41.9114299,
+      "layout": null,
+      "lng": -87.678108,
+      "loft_type": null,
+      "price_history": [
+        {
+          "date": "2026-08-20",
+          "rent": 2400
+        }
+      ],
+      "rent_gross": 2400,
+      "sources": [
+        {
+          "source": "zillow",
+          "url": "https://www.zillow.com/homedetails/3733761_zpid/"
+        }
+      ],
+      "status": "active",
+      "unit": "C",
+      "verdict": null
+    },
+    "2019-n-damen-2F": {
+      "address_raw": "2019 North Damen Avenue",
+      "all_in_monthly": 3000.0,
+      "beds": 3,
+      "first_seen": "2026-08-20",
+      "key": "2019-n-damen-2F",
+      "key_type": "primary",
+      "last_seen": "2026-08-20",
+      "lat": 41.9184023,
+      "layout": null,
+      "lng": -87.6773755,
+      "loft_type": null,
+      "price_history": [
+        {
+          "date": "2026-08-20",
+          "rent": 3000
+        }
+      ],
+      "rent_gross": 3000,
+      "sources": [
+        {
+          "source": "web",
+          "url": "https://www.compass.com/homedetails/2019-N-Damen-Ave-Unit-2F-Chicago-IL-60647/2EYPTN_pid/"
+        }
+      ],
+      "status": "active",
+      "unit": "2F",
+      "verdict": null
+    },
+    "2029-n-damen-2FR": {
+      "address_raw": "2029 North Damen Avenue",
+      "all_in_monthly": 2295.0,
+      "beds": 1,
+      "first_seen": "2026-08-20",
+      "key": "2029-n-damen-2FR",
+      "key_type": "primary",
+      "last_seen": "2026-08-20",
+      "lat": 41.9186764,
+      "layout": null,
+      "lng": -87.6773758,
+      "loft_type": null,
+      "price_history": [
+        {
+          "date": "2026-08-20",
+          "rent": 2295
+        }
+      ],
+      "rent_gross": 2295,
+      "sources": [
+        {
+          "source": "web",
+          "url": "https://www.compass.com/homedetails/2029-N-Damen-Ave-Unit-2FR-Chicago-IL-60647/1XE6RV_pid/"
+        }
+      ],
+      "status": "active",
+      "unit": "2FR",
+      "verdict": null
+    },
     "2032-n-clybourn-3317": {
       "address_raw": "2032 N Clybourn Ave #3-317, Chicago, IL",
       "all_in_monthly": 2595.0,
@@ -2336,13 +3116,13 @@
       "verdict": null
     },
     "2032-w-division-202N": {
-      "address_raw": "2032 West Division Street, Unit 202N",
+      "address_raw": "2032 W Division Street 202N, Chicago, IL 60622",
       "all_in_monthly": 3350.0,
       "beds": 2,
       "first_seen": "2026-08-18",
       "key": "2032-w-division-202N",
       "key_type": "primary",
-      "last_seen": "2026-08-19",
+      "last_seen": "2026-08-20",
       "lat": 41.9034947,
       "layout": null,
       "lng": -87.678828,
@@ -2357,15 +3137,69 @@
       "sources": [
         {
           "source": "web",
-          "url": "https://www.compass.com/homedetails/2032-W-Division-St-Unit-202N-Chicago-IL-60622/1XD4X6_pid/"
-        },
-        {
-          "source": "web",
-          "url": "https://bestchicagoproperties.com/neighborhoods/wicker-park/wicker-park-rentals/"
+          "url": "https://bestchicagoproperties.com/listings/listing/MRED/12732383/Chicago/2032-W-Division-Street-202N"
         }
       ],
       "status": "active",
       "unit": "202N",
+      "verdict": null
+    },
+    "2036-n-larrabee-8206": {
+      "address_raw": "2036 North Larrabee Street",
+      "all_in_monthly": 4000.0,
+      "beds": 2,
+      "first_seen": "2026-08-20",
+      "key": "2036-n-larrabee-8206",
+      "key_type": "primary",
+      "last_seen": "2026-08-20",
+      "lat": 41.9190257,
+      "layout": null,
+      "lng": -87.6440216,
+      "loft_type": null,
+      "price_history": [
+        {
+          "date": "2026-08-20",
+          "rent": 4000
+        }
+      ],
+      "rent_gross": 4000,
+      "sources": [
+        {
+          "source": "web",
+          "url": "https://www.compass.com/homedetails/2036-N-Larrabee-St-Unit-8206-Chicago-IL-60614/1X6TEH_pid/"
+        }
+      ],
+      "status": "active",
+      "unit": "8206",
+      "verdict": null
+    },
+    "2038-n-seminary-G": {
+      "address_raw": "2038 North Seminary Avenue",
+      "all_in_monthly": 3600.0,
+      "beds": 2,
+      "first_seen": "2026-08-20",
+      "key": "2038-n-seminary-G",
+      "key_type": "primary",
+      "last_seen": "2026-08-20",
+      "lat": 41.9192164,
+      "layout": null,
+      "lng": -87.6561449,
+      "loft_type": null,
+      "price_history": [
+        {
+          "date": "2026-08-20",
+          "rent": 3600
+        }
+      ],
+      "rent_gross": 3600,
+      "sources": [
+        {
+          "source": "web",
+          "url": "https://www.compass.com/homedetails/2038-N-Seminary-Ave-Unit-G-Chicago-IL-60614/1WS7AW_pid/"
+        }
+      ],
+      "status": "active",
+      "unit": "G",
       "verdict": null
     },
     "2040-w-belmont-404": {
@@ -2453,6 +3287,64 @@
       ],
       "status": "active",
       "unit": "3",
+      "verdict": null
+    },
+    "2048-w-evergreen-1": {
+      "address_raw": "2048 W Evergreen Ave #1, Chicago, IL 60622",
+      "all_in_monthly": 2800.0,
+      "beds": 1,
+      "first_seen": "2026-08-20",
+      "key": "2048-w-evergreen-1",
+      "key_type": "primary",
+      "last_seen": "2026-08-20",
+      "lat": 41.9061028,
+      "layout": null,
+      "lng": -87.6792094,
+      "loft_type": "hard",
+      "price_history": [
+        {
+          "date": "2026-08-20",
+          "rent": 2800
+        }
+      ],
+      "rent_gross": 2800,
+      "sources": [
+        {
+          "source": "redfin",
+          "url": "https://www.redfin.com/IL/Chicago/2048-W-Evergreen-Ave-60622/unit-1/apartment/175917689"
+        }
+      ],
+      "status": "active",
+      "unit": "1",
+      "verdict": null
+    },
+    "2050-n-clark-301": {
+      "address_raw": "2050 North Clark Street",
+      "all_in_monthly": 4735.0,
+      "beds": 2,
+      "first_seen": "2026-08-20",
+      "key": "2050-n-clark-301",
+      "key_type": "primary",
+      "last_seen": "2026-08-20",
+      "lat": 41.9195062,
+      "layout": null,
+      "lng": -87.6368993,
+      "loft_type": null,
+      "price_history": [
+        {
+          "date": "2026-08-20",
+          "rent": 4735
+        }
+      ],
+      "rent_gross": 4735,
+      "sources": [
+        {
+          "source": "web",
+          "url": "https://www.compass.com/homedetails/2050-N-Clark-St-Unit-301-Chicago-IL-60614/1VPB4O_pid/"
+        }
+      ],
+      "status": "active",
+      "unit": "301",
       "verdict": null
     },
     "2052-n-dayton-6105634": {
@@ -2543,13 +3435,13 @@
       "verdict": null
     },
     "2105-w-caton-302": {
-      "address_raw": "2105 West Caton Street, Unit 302",
+      "address_raw": "2105 West Caton Street",
       "all_in_monthly": 3999.0,
       "beds": 2,
       "first_seen": "2026-08-19",
       "key": "2105-w-caton-302",
       "key_type": "primary",
-      "last_seen": "2026-08-19",
+      "last_seen": "2026-08-20",
       "lat": 41.9117099,
       "layout": null,
       "lng": -87.6802532,
@@ -2572,13 +3464,13 @@
       "verdict": null
     },
     "2105-w-concord-4": {
-      "address_raw": "2105 West Concord Place, Unit 4",
+      "address_raw": "2105 West Concord Place",
       "all_in_monthly": 3850.0,
       "beds": 2,
       "first_seen": "2026-08-19",
       "key": "2105-w-concord-4",
       "key_type": "primary",
-      "last_seen": "2026-08-19",
+      "last_seen": "2026-08-20",
       "lat": 41.9111604,
       "layout": null,
       "lng": -87.6802547,
@@ -2598,6 +3490,180 @@
       ],
       "status": "active",
       "unit": "4",
+      "verdict": null
+    },
+    "2107-n-clark-4br-9500": {
+      "address_raw": "2107 North Clark Street",
+      "all_in_monthly": 9500.0,
+      "beds": 4,
+      "first_seen": "2026-08-20",
+      "key": "2107-n-clark-4br-9500",
+      "key_type": "fallback",
+      "last_seen": "2026-08-20",
+      "lat": 41.9204714,
+      "layout": null,
+      "lng": -87.6370928,
+      "loft_type": null,
+      "price_history": [
+        {
+          "date": "2026-08-20",
+          "rent": 9500
+        }
+      ],
+      "rent_gross": 9500,
+      "sources": [
+        {
+          "source": "web",
+          "url": "https://www.compass.com/homedetails/2107-N-Clark-St-Chicago-IL-60614/2166053640229026657_lid/"
+        }
+      ],
+      "status": "active",
+      "unit": null,
+      "verdict": null
+    },
+    "2112-n-dayton-5br-8800": {
+      "address_raw": "2112 North Dayton Street",
+      "all_in_monthly": 8800.0,
+      "beds": 5,
+      "first_seen": "2026-08-20",
+      "key": "2112-n-dayton-5br-8800",
+      "key_type": "fallback",
+      "last_seen": "2026-08-20",
+      "lat": 41.9204072,
+      "layout": null,
+      "lng": -87.6500571,
+      "loft_type": null,
+      "price_history": [
+        {
+          "date": "2026-08-20",
+          "rent": 8800
+        }
+      ],
+      "rent_gross": 8800,
+      "sources": [
+        {
+          "source": "web",
+          "url": "https://www.compass.com/homedetails/2112-N-Dayton-St-Chicago-IL-60614/1WNN04_pid/"
+        }
+      ],
+      "status": "active",
+      "unit": null,
+      "verdict": null
+    },
+    "2113-n-kenmore-G": {
+      "address_raw": "2113 North Kenmore Avenue",
+      "all_in_monthly": 5845.0,
+      "beds": 3,
+      "first_seen": "2026-08-20",
+      "key": "2113-n-kenmore-G",
+      "key_type": "primary",
+      "last_seen": "2026-08-20",
+      "lat": 41.9203931,
+      "layout": null,
+      "lng": -87.6543885,
+      "loft_type": null,
+      "price_history": [
+        {
+          "date": "2026-08-20",
+          "rent": 5845
+        }
+      ],
+      "rent_gross": 5845,
+      "sources": [
+        {
+          "source": "web",
+          "url": "https://www.compass.com/homedetails/2113-N-Kenmore-Ave-Unit-G-Chicago-IL-60614/280IK7_pid/"
+        }
+      ],
+      "status": "active",
+      "unit": "G",
+      "verdict": null
+    },
+    "2119-n-damen-4": {
+      "address_raw": "2119 North Damen Avenue",
+      "all_in_monthly": 3950.0,
+      "beds": 2,
+      "first_seen": "2026-08-20",
+      "key": "2119-n-damen-4",
+      "key_type": "primary",
+      "last_seen": "2026-08-20",
+      "lat": 41.920221,
+      "layout": null,
+      "lng": -87.6774191,
+      "loft_type": null,
+      "price_history": [
+        {
+          "date": "2026-08-20",
+          "rent": 3950
+        }
+      ],
+      "rent_gross": 3950,
+      "sources": [
+        {
+          "source": "web",
+          "url": "https://www.compass.com/homedetails/2119-N-Damen-Ave-Unit-4-Chicago-IL-60647/1VSXCU_pid/"
+        }
+      ],
+      "status": "active",
+      "unit": "4",
+      "verdict": null
+    },
+    "2119-n-sedgwick-B6": {
+      "address_raw": "2119 North Sedgwick Street",
+      "all_in_monthly": 1750.0,
+      "beds": 0,
+      "first_seen": "2026-08-20",
+      "key": "2119-n-sedgwick-B6",
+      "key_type": "primary",
+      "last_seen": "2026-08-20",
+      "lat": 41.9207761,
+      "layout": null,
+      "lng": -87.6385543,
+      "loft_type": null,
+      "price_history": [
+        {
+          "date": "2026-08-20",
+          "rent": 1750
+        }
+      ],
+      "rent_gross": 1750,
+      "sources": [
+        {
+          "source": "web",
+          "url": "https://www.compass.com/homedetails/2119-N-Sedgwick-St-Unit-B6-Chicago-IL-60614/2F064M_pid/"
+        }
+      ],
+      "status": "active",
+      "unit": "B6",
+      "verdict": null
+    },
+    "2119-n-sedgwick-C4": {
+      "address_raw": "2119 North Sedgwick Street",
+      "all_in_monthly": 1650.0,
+      "beds": 0,
+      "first_seen": "2026-08-20",
+      "key": "2119-n-sedgwick-C4",
+      "key_type": "primary",
+      "last_seen": "2026-08-20",
+      "lat": 41.9207761,
+      "layout": null,
+      "lng": -87.6385543,
+      "loft_type": null,
+      "price_history": [
+        {
+          "date": "2026-08-20",
+          "rent": 1650
+        }
+      ],
+      "rent_gross": 1650,
+      "sources": [
+        {
+          "source": "web",
+          "url": "https://www.compass.com/homedetails/2119-N-Sedgwick-St-Unit-C4-Chicago-IL-60614/2FAH19_pid/"
+        }
+      ],
+      "status": "active",
+      "unit": "C4",
       "verdict": null
     },
     "2120-w-washington-406": {
@@ -2627,6 +3693,64 @@
       ],
       "status": "active",
       "unit": "406",
+      "verdict": null
+    },
+    "2124-n-hudson-104": {
+      "address_raw": "2124 North Hudson Avenue",
+      "all_in_monthly": 3500.0,
+      "beds": 2,
+      "first_seen": "2026-08-20",
+      "key": "2124-n-hudson-104",
+      "key_type": "primary",
+      "last_seen": "2026-08-20",
+      "lat": 41.9209189,
+      "layout": null,
+      "lng": -87.640321,
+      "loft_type": null,
+      "price_history": [
+        {
+          "date": "2026-08-20",
+          "rent": 3500
+        }
+      ],
+      "rent_gross": 3500,
+      "sources": [
+        {
+          "source": "web",
+          "url": "https://www.compass.com/homedetails/2124-N-Hudson-Ave-Unit-104-Chicago-IL-60614/1X15QU_pid/"
+        }
+      ],
+      "status": "active",
+      "unit": "104",
+      "verdict": null
+    },
+    "2134-n-damen-2": {
+      "address_raw": "2134 North Damen Avenue",
+      "all_in_monthly": 4000.0,
+      "beds": 3,
+      "first_seen": "2026-08-20",
+      "key": "2134-n-damen-2",
+      "key_type": "primary",
+      "last_seen": "2026-08-20",
+      "lat": 41.9205489,
+      "layout": null,
+      "lng": -87.6780199,
+      "loft_type": null,
+      "price_history": [
+        {
+          "date": "2026-08-20",
+          "rent": 4000
+        }
+      ],
+      "rent_gross": 4000,
+      "sources": [
+        {
+          "source": "web",
+          "url": "https://www.compass.com/homedetails/2134-N-Damen-Ave-Unit-2-Chicago-IL-60647/21KYMH_pid/"
+        }
+      ],
+      "status": "active",
+      "unit": "2",
       "verdict": null
     },
     "2140-n-lincoln-park-807": {
@@ -2685,6 +3809,93 @@
       ],
       "status": "active",
       "unit": "807",
+      "verdict": null
+    },
+    "2140-n-lincoln-park-west-1001": {
+      "address_raw": "2140 N Lincoln Park W APT 1001, Chicago, IL",
+      "all_in_monthly": 3250.0,
+      "beds": 1,
+      "first_seen": "2026-08-20",
+      "key": "2140-n-lincoln-park-west-1001",
+      "key_type": "primary",
+      "last_seen": "2026-08-20",
+      "lat": 41.9213092,
+      "layout": null,
+      "lng": -87.6368508,
+      "loft_type": null,
+      "price_history": [
+        {
+          "date": "2026-08-20",
+          "rent": 3250
+        }
+      ],
+      "rent_gross": 3250,
+      "sources": [
+        {
+          "source": "zillow",
+          "url": "https://www.zillow.com/homedetails/464607265_zpid/"
+        }
+      ],
+      "status": "active",
+      "unit": "1001",
+      "verdict": null
+    },
+    "2140-n-lincoln-park-west-501": {
+      "address_raw": "2140 N Lincoln Park W APT 501, Chicago, IL",
+      "all_in_monthly": 3950.0,
+      "beds": 2,
+      "first_seen": "2026-08-20",
+      "key": "2140-n-lincoln-park-west-501",
+      "key_type": "primary",
+      "last_seen": "2026-08-20",
+      "lat": 41.9213092,
+      "layout": null,
+      "lng": -87.6368508,
+      "loft_type": null,
+      "price_history": [
+        {
+          "date": "2026-08-20",
+          "rent": 3950
+        }
+      ],
+      "rent_gross": 3950,
+      "sources": [
+        {
+          "source": "zillow",
+          "url": "https://www.zillow.com/homedetails/464607265_zpid/"
+        }
+      ],
+      "status": "active",
+      "unit": "501",
+      "verdict": null
+    },
+    "2149-n-racine-1": {
+      "address_raw": "2149 North Racine Avenue",
+      "all_in_monthly": 5500.0,
+      "beds": 3,
+      "first_seen": "2026-08-20",
+      "key": "2149-n-racine-1",
+      "key_type": "primary",
+      "last_seen": "2026-08-20",
+      "lat": 41.9212931,
+      "layout": null,
+      "lng": -87.6581178,
+      "loft_type": null,
+      "price_history": [
+        {
+          "date": "2026-08-20",
+          "rent": 5500
+        }
+      ],
+      "rent_gross": 5500,
+      "sources": [
+        {
+          "source": "web",
+          "url": "https://www.compass.com/homedetails/2149-N-Racine-Ave-Unit-1-Chicago-IL-60614/1WCYTW_pid/"
+        }
+      ],
+      "status": "active",
+      "unit": "1",
       "verdict": null
     },
     "2155-n-elston-11": {
@@ -2774,6 +3985,35 @@
       "unit": "STUDIO",
       "verdict": null
     },
+    "2212-n-leavitt-1": {
+      "address_raw": "2212 North Leavitt Street",
+      "all_in_monthly": 2400.0,
+      "beds": 2,
+      "first_seen": "2026-08-20",
+      "key": "2212-n-leavitt-1",
+      "key_type": "primary",
+      "last_seen": "2026-08-20",
+      "lat": 41.9217333,
+      "layout": null,
+      "lng": -87.6828947,
+      "loft_type": null,
+      "price_history": [
+        {
+          "date": "2026-08-20",
+          "rent": 2400
+        }
+      ],
+      "rent_gross": 2400,
+      "sources": [
+        {
+          "source": "web",
+          "url": "https://www.compass.com/homedetails/2212-N-Leavitt-St-Unit-1-Chicago-IL-60647/1WBPEN_pid/"
+        }
+      ],
+      "status": "active",
+      "unit": "1",
+      "verdict": null
+    },
     "2237-n-bissell-2237": {
       "address_raw": "2237 N Bissell St #2237, Chicago, IL",
       "all_in_monthly": 2395.0,
@@ -2781,7 +4021,7 @@
       "first_seen": "2026-08-19",
       "key": "2237-n-bissell-2237",
       "key_type": "primary",
-      "last_seen": "2026-08-19",
+      "last_seen": "2026-08-20",
       "lat": 41.92291,
       "layout": null,
       "lng": -87.6517751,
@@ -2796,7 +4036,7 @@
       "sources": [
         {
           "source": "zillow",
-          "url": "https://www.zillow.com/homedetails/zpid_target/"
+          "url": "https://www.zillow.com/apartments/chicago-il/2237-41-n.-bissell/"
         }
       ],
       "status": "active",
@@ -2810,7 +4050,7 @@
       "first_seen": "2026-08-19",
       "key": "2237-n-bissell-22375",
       "key_type": "primary",
-      "last_seen": "2026-08-19",
+      "last_seen": "2026-08-20",
       "lat": 41.92291,
       "layout": null,
       "lng": -87.6517751,
@@ -2825,11 +4065,40 @@
       "sources": [
         {
           "source": "zillow",
-          "url": "https://www.zillow.com/homedetails/zpid_target/"
+          "url": "https://www.zillow.com/apartments/chicago-il/2237-41-n.-bissell/"
         }
       ],
       "status": "active",
       "unit": "2237.5",
+      "verdict": null
+    },
+    "2239-n-western-2F": {
+      "address_raw": "2239 North Western Avenue",
+      "all_in_monthly": 2000.0,
+      "beds": 2,
+      "first_seen": "2026-08-20",
+      "key": "2239-n-western-2F",
+      "key_type": "primary",
+      "last_seen": "2026-08-20",
+      "lat": 41.9228996,
+      "layout": null,
+      "lng": -87.687353,
+      "loft_type": null,
+      "price_history": [
+        {
+          "date": "2026-08-20",
+          "rent": 2000
+        }
+      ],
+      "rent_gross": 2000,
+      "sources": [
+        {
+          "source": "web",
+          "url": "https://www.compass.com/homedetails/2239-N-Western-Ave-Unit-2F-Chicago-IL-60647/2FB46W_pid/"
+        }
+      ],
+      "status": "active",
+      "unit": "2F",
       "verdict": null
     },
     "2241-n-bissell-1br-2800": {
@@ -2919,14 +4188,72 @@
       "unit": null,
       "verdict": null
     },
+    "2250-n-lincoln-201": {
+      "address_raw": "2250 North Lincoln Avenue",
+      "all_in_monthly": 2400.0,
+      "beds": 1,
+      "first_seen": "2026-08-20",
+      "key": "2250-n-lincoln-201",
+      "key_type": "primary",
+      "last_seen": "2026-08-20",
+      "lat": 41.9228266,
+      "layout": null,
+      "lng": -87.6452584,
+      "loft_type": null,
+      "price_history": [
+        {
+          "date": "2026-08-20",
+          "rent": 2400
+        }
+      ],
+      "rent_gross": 2400,
+      "sources": [
+        {
+          "source": "web",
+          "url": "https://www.compass.com/homedetails/2250-N-Lincoln-Ave-Unit-201-Chicago-IL-60614/2FAH7V_pid/"
+        }
+      ],
+      "status": "active",
+      "unit": "201",
+      "verdict": null
+    },
+    "2250-n-lincoln-308": {
+      "address_raw": "2250 North Lincoln Avenue",
+      "all_in_monthly": 1895.0,
+      "beds": 0,
+      "first_seen": "2026-08-20",
+      "key": "2250-n-lincoln-308",
+      "key_type": "primary",
+      "last_seen": "2026-08-20",
+      "lat": 41.9228266,
+      "layout": null,
+      "lng": -87.6452584,
+      "loft_type": null,
+      "price_history": [
+        {
+          "date": "2026-08-20",
+          "rent": 1895
+        }
+      ],
+      "rent_gross": 1895,
+      "sources": [
+        {
+          "source": "web",
+          "url": "https://www.compass.com/homedetails/2250-N-Lincoln-Ave-Unit-308-Chicago-IL-60614/2F9O11_pid/"
+        }
+      ],
+      "status": "active",
+      "unit": "308",
+      "verdict": null
+    },
     "2257-w-hirsch-1E": {
-      "address_raw": "2257 West Hirsch Street, Unit 1E",
+      "address_raw": "2257 W Hirsch Street 1E, Chicago, IL 60622",
       "all_in_monthly": 2725.0,
       "beds": 2,
       "first_seen": "2026-08-18",
       "key": "2257-w-hirsch-1E",
       "key_type": "primary",
-      "last_seen": "2026-08-19",
+      "last_seen": "2026-08-20",
       "lat": 41.9065906,
       "layout": null,
       "lng": -87.6843398,
@@ -2941,27 +4268,52 @@
       "sources": [
         {
           "source": "web",
-          "url": "https://www.compass.com/homedetails/2257-W-Hirsch-St-Unit-1E-Chicago-IL-60622/1VPKGY_pid/"
-        },
-        {
-          "source": "web",
-          "url": "https://bestchicagoproperties.com/neighborhoods/wicker-park/wicker-park-rentals/"
+          "url": "https://bestchicagoproperties.com/listings/listing/MRED/12735456/Chicago/2257-W-Hirsch-Street-1E"
         }
       ],
       "status": "active",
       "unit": "1E",
       "verdict": null
     },
+    "2300-n-commonwealth-2C": {
+      "address_raw": "2300 North Commonwealth Avenue",
+      "all_in_monthly": 2500.0,
+      "beds": 1,
+      "first_seen": "2026-08-20",
+      "key": "2300-n-commonwealth-2C",
+      "key_type": "primary",
+      "last_seen": "2026-08-20",
+      "lat": 41.9241602,
+      "layout": null,
+      "lng": -87.6383697,
+      "loft_type": null,
+      "price_history": [
+        {
+          "date": "2026-08-20",
+          "rent": 2500
+        }
+      ],
+      "rent_gross": 2500,
+      "sources": [
+        {
+          "source": "web",
+          "url": "https://www.compass.com/homedetails/2300-N-Commonwealth-Ave-Unit-2C-Chicago-IL-60614/1WNFHG_pid/"
+        }
+      ],
+      "status": "active",
+      "unit": "2C",
+      "verdict": null
+    },
     "2300-w-wabansia-231": {
-      "address_raw": "2300 W Wabansia Ave APT 231, Chicago, IL",
-      "all_in_monthly": 3800.0,
+      "address_raw": "2300 W Wabansia Ave",
+      "all_in_monthly": 3960.0,
       "beds": 2,
       "first_seen": "2026-08-18",
       "key": "2300-w-wabansia-231",
       "key_type": "primary",
-      "last_seen": "2026-08-19",
+      "last_seen": "2026-08-20",
       "lat": 41.9128445,
-      "layout": null,
+      "layout": "single_floor",
       "lng": -87.6844055,
       "loft_type": null,
       "price_history": [
@@ -2973,10 +4325,6 @@
       "rent_gross": 3800,
       "sources": [
         {
-          "source": "zillow",
-          "url": "https://www.zillow.com/routing/email/property-notifications/zpid_target/3733079_zpid/"
-        },
-        {
           "source": "web",
           "url": "https://www.compass.com/homedetails/2300-W-Wabansia-Ave-Unit-231-Chicago-IL-60647/1W4PZF_pid/"
         }
@@ -2986,13 +4334,13 @@
       "verdict": null
     },
     "2307-w-north-STOREFRONT": {
-      "address_raw": "2307 West North Avenue, Unit STOREFRONT",
+      "address_raw": "2307 West North Avenue",
       "all_in_monthly": 4400.0,
       "beds": 1,
       "first_seen": "2026-08-19",
       "key": "2307-w-north-STOREFRONT",
       "key_type": "primary",
-      "last_seen": "2026-08-19",
+      "last_seen": "2026-08-20",
       "lat": 41.9100333,
       "layout": null,
       "lng": -87.6851188,
@@ -3012,6 +4360,64 @@
       ],
       "status": "active",
       "unit": "STOREFRONT",
+      "verdict": null
+    },
+    "2309-n-leavitt-1": {
+      "address_raw": "2309 North Leavitt Street",
+      "all_in_monthly": 3200.0,
+      "beds": 2,
+      "first_seen": "2026-08-20",
+      "key": "2309-n-leavitt-1",
+      "key_type": "primary",
+      "last_seen": "2026-08-20",
+      "lat": 41.923026,
+      "layout": null,
+      "lng": -87.6824508,
+      "loft_type": null,
+      "price_history": [
+        {
+          "date": "2026-08-20",
+          "rent": 3200
+        }
+      ],
+      "rent_gross": 3200,
+      "sources": [
+        {
+          "source": "web",
+          "url": "https://www.compass.com/homedetails/2309-N-Leavitt-St-Unit-1-Chicago-IL-60647/1X6XL7_pid/"
+        }
+      ],
+      "status": "active",
+      "unit": "1",
+      "verdict": null
+    },
+    "2323-n-lister-2": {
+      "address_raw": "2323 North Lister Avenue",
+      "all_in_monthly": 7950.0,
+      "beds": 4,
+      "first_seen": "2026-08-20",
+      "key": "2323-n-lister-2",
+      "key_type": "primary",
+      "last_seen": "2026-08-20",
+      "lat": 41.9232993,
+      "layout": null,
+      "lng": -87.6763575,
+      "loft_type": null,
+      "price_history": [
+        {
+          "date": "2026-08-20",
+          "rent": 7950
+        }
+      ],
+      "rent_gross": 7950,
+      "sources": [
+        {
+          "source": "web",
+          "url": "https://www.compass.com/homedetails/2323-N-Lister-Ave-Unit-2-Chicago-IL-60614/26YUZF_pid/"
+        }
+      ],
+      "status": "active",
+      "unit": "2",
       "verdict": null
     },
     "2335-w-moffat-2": {
@@ -3044,13 +4450,13 @@
       "verdict": null
     },
     "2342-w-north-401": {
-      "address_raw": "2342 West North Avenue, Unit 401",
+      "address_raw": "2342 W North Avenue 401, Chicago, IL 60647",
       "all_in_monthly": 4000.0,
       "beds": 3,
       "first_seen": "2026-08-19",
       "key": "2342-w-north-401",
       "key_type": "primary",
-      "last_seen": "2026-08-19",
+      "last_seen": "2026-08-20",
       "lat": 41.910543,
       "layout": null,
       "lng": -87.6865398,
@@ -3065,11 +4471,7 @@
       "sources": [
         {
           "source": "web",
-          "url": "https://www.compass.com/homedetails/2342-W-North-Ave-Unit-401-Chicago-IL-60647/1XW93H_pid/"
-        },
-        {
-          "source": "web",
-          "url": "https://bestchicagoproperties.com/neighborhoods/wicker-park/wicker-park-rentals/"
+          "url": "https://bestchicagoproperties.com/listings/listing/MRED/12698202/Chicago/2342-W-NORTH-Avenue-401"
         }
       ],
       "status": "active",
@@ -3134,14 +4536,101 @@
       "unit": "A2-1602",
       "verdict": null
     },
+    "2347-w-altgeld-3br-5000": {
+      "address_raw": "2347 West Altgeld Street",
+      "all_in_monthly": 5000.0,
+      "beds": 3,
+      "first_seen": "2026-08-20",
+      "key": "2347-w-altgeld-3br-5000",
+      "key_type": "fallback",
+      "last_seen": "2026-08-20",
+      "lat": 41.9262615,
+      "layout": null,
+      "lng": -87.68697,
+      "loft_type": null,
+      "price_history": [
+        {
+          "date": "2026-08-20",
+          "rent": 5000
+        }
+      ],
+      "rent_gross": 5000,
+      "sources": [
+        {
+          "source": "web",
+          "url": "https://www.compass.com/homedetails/2347-W-Altgeld-St-Chicago-IL-60647/1VNB1S_pid/"
+        }
+      ],
+      "status": "active",
+      "unit": null,
+      "verdict": null
+    },
+    "2365-n-wayne-3br-6500": {
+      "address_raw": "2365 North Wayne Avenue",
+      "all_in_monthly": 6500.0,
+      "beds": 3,
+      "first_seen": "2026-08-20",
+      "key": "2365-n-wayne-3br-6500",
+      "key_type": "fallback",
+      "last_seen": "2026-08-20",
+      "lat": 41.9242891,
+      "layout": null,
+      "lng": -87.6619628,
+      "loft_type": null,
+      "price_history": [
+        {
+          "date": "2026-08-20",
+          "rent": 6500
+        }
+      ],
+      "rent_gross": 6500,
+      "sources": [
+        {
+          "source": "web",
+          "url": "https://www.compass.com/homedetails/2365-N-Wayne-Ave-Chicago-IL-60614/1XF31M_pid/"
+        }
+      ],
+      "status": "active",
+      "unit": null,
+      "verdict": null
+    },
+    "2400-n-lakeview-61415": {
+      "address_raw": "2400 North Lakeview Avenue",
+      "all_in_monthly": 4800.0,
+      "beds": 3,
+      "first_seen": "2026-08-20",
+      "key": "2400-n-lakeview-61415",
+      "key_type": "primary",
+      "last_seen": "2026-08-20",
+      "lat": 41.9258607,
+      "layout": null,
+      "lng": -87.6394269,
+      "loft_type": null,
+      "price_history": [
+        {
+          "date": "2026-08-20",
+          "rent": 4800
+        }
+      ],
+      "rent_gross": 4800,
+      "sources": [
+        {
+          "source": "web",
+          "url": "https://www.compass.com/homedetails/2400-N-Lakeview-Ave-Unit-61415-Chicago-IL-60614/1WO0G5_pid/"
+        }
+      ],
+      "status": "active",
+      "unit": "61415",
+      "verdict": null
+    },
     "2412-w-north-4R": {
-      "address_raw": "2412 West North Avenue, Unit 4R",
+      "address_raw": "2412 W North Avenue 4R, Chicago, IL 60647",
       "all_in_monthly": 3995.0,
       "beds": 0,
       "first_seen": "2026-08-13",
       "key": "2412-w-north-4R",
       "key_type": "primary",
-      "last_seen": "2026-08-19",
+      "last_seen": "2026-08-20",
       "lat": 41.910589,
       "layout": null,
       "lng": -87.68788,
@@ -3156,25 +4645,51 @@
       "sources": [
         {
           "source": "web",
-          "url": "https://www.compass.com/homedetails/2412-W-North-Ave-Unit-4R-Chicago-IL-60647/1XJ653_pid/"
+          "url": "https://bestchicagoproperties.com/listings/listing/MRED/12707769/Chicago/2412-W-North-Avenue-4R"
         },
         {
           "source": "web",
-          "url": "https://landstarchicago.com/wicker-park-apartments/"
-        },
-        {
-          "source": "web",
-          "url": "https://bestchicagoproperties.com/neighborhoods/wicker-park/wicker-park-rentals/"
+          "url": "https://landstarchicago.com/homes-for-sale-details/2412-W-NORTH-AVENUE-4R-CHICAGO-IL-60647/12707769/34/"
         }
       ],
       "status": "active",
       "unit": "4R",
       "verdict": null
     },
+    "2416-n-greenview-G": {
+      "address_raw": "2416 North Greenview Avenue",
+      "all_in_monthly": 2800.0,
+      "beds": 2,
+      "first_seen": "2026-08-20",
+      "key": "2416-n-greenview-G",
+      "key_type": "primary",
+      "last_seen": "2026-08-20",
+      "lat": 41.9257552,
+      "layout": null,
+      "lng": -87.6660276,
+      "loft_type": null,
+      "price_history": [
+        {
+          "date": "2026-08-20",
+          "rent": 2800
+        }
+      ],
+      "rent_gross": 2800,
+      "sources": [
+        {
+          "source": "web",
+          "url": "https://www.compass.com/homedetails/2416-N-Greenview-Ave-Unit-G-Chicago-IL-60614/1X1D8F_pid/"
+        }
+      ],
+      "status": "active",
+      "unit": "G",
+      "verdict": null
+    },
     "2428-30-w-walton-3": {
       "address_raw": "2428-30 W. Walton",
       "all_in_monthly": 2595.0,
       "beds": 3,
+      "dead_since": "2026-08-20",
       "first_seen": "2026-08-13",
       "key": "2428-30-w-walton-3",
       "key_type": "primary",
@@ -3196,7 +4711,7 @@
           "url": "https://wickerparkapartments.com/AvailableNow.php/index.php"
         }
       ],
-      "status": "active",
+      "status": "dead",
       "unit": "3",
       "verdict": null
     },
@@ -3204,6 +4719,7 @@
       "address_raw": "2428-30 W. Walton, Unit #3",
       "all_in_monthly": 2595.0,
       "beds": 3,
+      "dead_since": "2026-08-20",
       "first_seen": "2026-08-13",
       "key": "2428-w-walton-3",
       "key_type": "primary",
@@ -3225,7 +4741,7 @@
           "url": "https://www.wickerparkapartments.com/AvailableNow.php/index.php"
         }
       ],
-      "status": "active",
+      "status": "dead",
       "unit": "3",
       "verdict": null
     },
@@ -3233,6 +4749,7 @@
       "address_raw": "2465 N Lincoln Ave #T3, Chicago, IL",
       "all_in_monthly": 3975.0,
       "beds": 2,
+      "dead_since": "2026-08-20",
       "first_seen": "2026-08-13",
       "key": "2465-n-lincoln-T3",
       "key_type": "primary",
@@ -3254,8 +4771,501 @@
           "url": "https://www.zillow.com/homedetails/464518234_zpid/"
         }
       ],
-      "status": "active",
+      "status": "dead",
       "unit": "T3",
+      "verdict": null
+    },
+    "2510-n-wayne-211": {
+      "address_raw": "2510 North Wayne Avenue",
+      "all_in_monthly": 2700.0,
+      "beds": 1,
+      "first_seen": "2026-08-20",
+      "key": "2510-n-wayne-211",
+      "key_type": "primary",
+      "last_seen": "2026-08-20",
+      "lat": 41.9272593,
+      "layout": null,
+      "lng": -87.6626696,
+      "loft_type": null,
+      "price_history": [
+        {
+          "date": "2026-08-20",
+          "rent": 2700
+        }
+      ],
+      "rent_gross": 2700,
+      "sources": [
+        {
+          "source": "web",
+          "url": "https://www.compass.com/homedetails/2510-N-Wayne-Ave-Unit-211-Chicago-IL-60614/1BZIUI_pid/"
+        }
+      ],
+      "status": "active",
+      "unit": "211",
+      "verdict": null
+    },
+    "2525-n-orchard-2S": {
+      "address_raw": "2525 North Orchard Street",
+      "all_in_monthly": 3250.0,
+      "beds": 1,
+      "first_seen": "2026-08-20",
+      "key": "2525-n-orchard-2S",
+      "key_type": "primary",
+      "last_seen": "2026-08-20",
+      "lat": 41.9285676,
+      "layout": null,
+      "lng": -87.6461474,
+      "loft_type": null,
+      "price_history": [
+        {
+          "date": "2026-08-20",
+          "rent": 3250
+        }
+      ],
+      "rent_gross": 3250,
+      "sources": [
+        {
+          "source": "web",
+          "url": "https://www.compass.com/homedetails/2525-N-Orchard-St-Unit-2S-Chicago-IL-60614/1XB81A_pid/"
+        }
+      ],
+      "status": "active",
+      "unit": "2S",
+      "verdict": null
+    },
+    "2541-n-southport-1R": {
+      "address_raw": "2541 North Southport Avenue",
+      "all_in_monthly": 3600.0,
+      "beds": 2,
+      "first_seen": "2026-08-20",
+      "key": "2541-n-southport-1R",
+      "key_type": "primary",
+      "last_seen": "2026-08-20",
+      "lat": 41.9282565,
+      "layout": null,
+      "lng": -87.6631285,
+      "loft_type": null,
+      "price_history": [
+        {
+          "date": "2026-08-20",
+          "rent": 3600
+        }
+      ],
+      "rent_gross": 3600,
+      "sources": [
+        {
+          "source": "web",
+          "url": "https://www.compass.com/homedetails/2541-N-Southport-Ave-Unit-1R-Chicago-IL-60614/1VTGUH_pid/"
+        }
+      ],
+      "status": "active",
+      "unit": "1R",
+      "verdict": null
+    },
+    "2541-n-southport-2R": {
+      "address_raw": "2541 North Southport Avenue",
+      "all_in_monthly": 3600.0,
+      "beds": 2,
+      "first_seen": "2026-08-20",
+      "key": "2541-n-southport-2R",
+      "key_type": "primary",
+      "last_seen": "2026-08-20",
+      "lat": 41.9282565,
+      "layout": null,
+      "lng": -87.6631285,
+      "loft_type": null,
+      "price_history": [
+        {
+          "date": "2026-08-20",
+          "rent": 3600
+        }
+      ],
+      "rent_gross": 3600,
+      "sources": [
+        {
+          "source": "web",
+          "url": "https://www.compass.com/homedetails/2541-N-Southport-Ave-Unit-2R-Chicago-IL-60614/1WXN6G_pid/"
+        }
+      ],
+      "status": "active",
+      "unit": "2R",
+      "verdict": null
+    },
+    "2542-n-seminary-2": {
+      "address_raw": "2542 North Seminary Avenue",
+      "all_in_monthly": 4500.0,
+      "beds": 2,
+      "first_seen": "2026-08-20",
+      "key": "2542-n-seminary-2",
+      "key_type": "primary",
+      "last_seen": "2026-08-20",
+      "lat": 41.9284504,
+      "layout": null,
+      "lng": -87.6564144,
+      "loft_type": null,
+      "price_history": [
+        {
+          "date": "2026-08-20",
+          "rent": 4500
+        }
+      ],
+      "rent_gross": 4500,
+      "sources": [
+        {
+          "source": "web",
+          "url": "https://www.compass.com/homedetails/2542-N-Seminary-Ave-Unit-2-Chicago-IL-60614/1WR87C_pid/"
+        }
+      ],
+      "status": "active",
+      "unit": "2",
+      "verdict": null
+    },
+    "2550-n-lakeview-N803": {
+      "address_raw": "2550 North Lakeview Avenue",
+      "all_in_monthly": 8100.0,
+      "beds": 2,
+      "first_seen": "2026-08-20",
+      "key": "2550-n-lakeview-N803",
+      "key_type": "primary",
+      "last_seen": "2026-08-20",
+      "lat": 41.9289235,
+      "layout": null,
+      "lng": -87.639883,
+      "loft_type": null,
+      "price_history": [
+        {
+          "date": "2026-08-20",
+          "rent": 8100
+        }
+      ],
+      "rent_gross": 8100,
+      "sources": [
+        {
+          "source": "web",
+          "url": "https://www.compass.com/homedetails/2550-N-Lakeview-Ave-Unit-N803-Chicago-IL-60614/1WOQ4Q_pid/"
+        }
+      ],
+      "status": "active",
+      "unit": "N803",
+      "verdict": null
+    },
+    "2555-n-clark-1105": {
+      "address_raw": "2555 N Clark St Unit 1105, Chicago, IL 60614",
+      "all_in_monthly": 2895.0,
+      "beds": 1,
+      "first_seen": "2026-08-20",
+      "key": "2555-n-clark-1105",
+      "key_type": "primary",
+      "last_seen": "2026-08-20",
+      "lat": 41.9296542,
+      "layout": null,
+      "lng": -87.6422914,
+      "loft_type": null,
+      "price_history": [
+        {
+          "date": "2026-08-20",
+          "rent": 2895
+        }
+      ],
+      "rent_gross": 2895,
+      "sources": [
+        {
+          "source": "redfin",
+          "url": "https://www.redfin.com/IL/Chicago/2555-N-Clark-St-60614/unit-1105/home/197253454"
+        }
+      ],
+      "status": "active",
+      "unit": "1105",
+      "verdict": null
+    },
+    "2555-n-clark-14": {
+      "address_raw": "2555 N Clark St Unit 14, Chicago, IL 60614",
+      "all_in_monthly": 4150.0,
+      "beds": 2,
+      "first_seen": "2026-08-20",
+      "key": "2555-n-clark-14",
+      "key_type": "primary",
+      "last_seen": "2026-08-20",
+      "lat": 41.9296542,
+      "layout": null,
+      "lng": -87.6422914,
+      "loft_type": null,
+      "price_history": [
+        {
+          "date": "2026-08-20",
+          "rent": 4150
+        }
+      ],
+      "rent_gross": 4150,
+      "sources": [
+        {
+          "source": "redfin",
+          "url": "https://www.redfin.com/IL/Chicago/2555-N-Clark-St-60614/unit-14/home/200201132"
+        }
+      ],
+      "status": "active",
+      "unit": "14",
+      "verdict": null
+    },
+    "2555-n-clark-2": {
+      "address_raw": "2555 N Clark St Unit 2, Chicago, IL 60614",
+      "all_in_monthly": 2135.0,
+      "beds": 0,
+      "first_seen": "2026-08-20",
+      "key": "2555-n-clark-2",
+      "key_type": "primary",
+      "last_seen": "2026-08-20",
+      "lat": 41.9296542,
+      "layout": null,
+      "lng": -87.6422914,
+      "loft_type": null,
+      "price_history": [
+        {
+          "date": "2026-08-20",
+          "rent": 2135
+        }
+      ],
+      "rent_gross": 2135,
+      "sources": [
+        {
+          "source": "redfin",
+          "url": "https://www.redfin.com/IL/Chicago/2555-N-Clark-St-60614/unit-2/home/200200677"
+        }
+      ],
+      "status": "active",
+      "unit": "2",
+      "verdict": null
+    },
+    "2629-n-hampden-409": {
+      "address_raw": "2629 North Hampden Court",
+      "all_in_monthly": 1550.0,
+      "beds": 0,
+      "first_seen": "2026-08-20",
+      "key": "2629-n-hampden-409",
+      "key_type": "primary",
+      "last_seen": "2026-08-20",
+      "lat": 41.9301663,
+      "layout": null,
+      "lng": -87.6407819,
+      "loft_type": null,
+      "price_history": [
+        {
+          "date": "2026-08-20",
+          "rent": 1550
+        }
+      ],
+      "rent_gross": 1550,
+      "sources": [
+        {
+          "source": "web",
+          "url": "https://www.compass.com/homedetails/2629-N-Hampden-Ct-Unit-409-Chicago-IL-60614/1WFIMY_pid/"
+        }
+      ],
+      "status": "active",
+      "unit": "409",
+      "verdict": null
+    },
+    "2636-n-clark-3S": {
+      "address_raw": "2636 North Clark Street",
+      "all_in_monthly": 4300.0,
+      "beds": 3,
+      "first_seen": "2026-08-20",
+      "key": "2636-n-clark-3S",
+      "key_type": "primary",
+      "last_seen": "2026-08-20",
+      "lat": 41.9305262,
+      "layout": null,
+      "lng": -87.6440605,
+      "loft_type": null,
+      "price_history": [
+        {
+          "date": "2026-08-20",
+          "rent": 4300
+        }
+      ],
+      "rent_gross": 4300,
+      "sources": [
+        {
+          "source": "web",
+          "url": "https://www.compass.com/homedetails/2636-N-Clark-St-Unit-3S-Chicago-IL-60614/1XKWUC_pid/"
+        }
+      ],
+      "status": "active",
+      "unit": "3S",
+      "verdict": null
+    },
+    "2643-n-mildred-2": {
+      "address_raw": "2643 North Mildred Avenue",
+      "all_in_monthly": 5700.0,
+      "beds": 4,
+      "first_seen": "2026-08-20",
+      "key": "2643-n-mildred-2",
+      "key_type": "primary",
+      "last_seen": "2026-08-20",
+      "lat": 41.9303288,
+      "layout": null,
+      "lng": -87.6510686,
+      "loft_type": null,
+      "price_history": [
+        {
+          "date": "2026-08-20",
+          "rent": 5700
+        }
+      ],
+      "rent_gross": 5700,
+      "sources": [
+        {
+          "source": "web",
+          "url": "https://www.compass.com/homedetails/2643-N-Mildred-Ave-Unit-2-Chicago-IL-60614/1XVLZ4_pid/"
+        }
+      ],
+      "status": "active",
+      "unit": "2",
+      "verdict": null
+    },
+    "2643-n-southport-CH": {
+      "address_raw": "2643 North Southport Avenue",
+      "all_in_monthly": 4750.0,
+      "beds": 3,
+      "first_seen": "2026-08-20",
+      "key": "2643-n-southport-CH",
+      "key_type": "primary",
+      "last_seen": "2026-08-20",
+      "lat": 41.9301237,
+      "layout": null,
+      "lng": -87.663205,
+      "loft_type": null,
+      "price_history": [
+        {
+          "date": "2026-08-20",
+          "rent": 4750
+        }
+      ],
+      "rent_gross": 4750,
+      "sources": [
+        {
+          "source": "web",
+          "url": "https://www.compass.com/homedetails/2643-N-Southport-Ave-Unit-CH-Chicago-IL-60614/2FAHLF_pid/"
+        }
+      ],
+      "status": "active",
+      "unit": "CH",
+      "verdict": null
+    },
+    "2654-n-lincoln-2": {
+      "address_raw": "2654 North Lincoln Avenue",
+      "all_in_monthly": 3995.0,
+      "beds": 3,
+      "first_seen": "2026-08-20",
+      "key": "2654-n-lincoln-2",
+      "key_type": "primary",
+      "last_seen": "2026-08-20",
+      "lat": 41.9300575,
+      "layout": null,
+      "lng": -87.6555383,
+      "loft_type": null,
+      "price_history": [
+        {
+          "date": "2026-08-20",
+          "rent": 3995
+        }
+      ],
+      "rent_gross": 3995,
+      "sources": [
+        {
+          "source": "web",
+          "url": "https://www.compass.com/homedetails/2654-N-Lincoln-Ave-Unit-2-Chicago-IL-60614/2EXNYB_pid/"
+        }
+      ],
+      "status": "active",
+      "unit": "2",
+      "verdict": null
+    },
+    "2740-n-hampden-4E": {
+      "address_raw": "2740 North Hampden Court",
+      "all_in_monthly": 1905.0,
+      "beds": 0,
+      "first_seen": "2026-08-20",
+      "key": "2740-n-hampden-4E",
+      "key_type": "primary",
+      "last_seen": "2026-08-20",
+      "lat": 41.9317294,
+      "layout": null,
+      "lng": -87.6430821,
+      "loft_type": null,
+      "price_history": [
+        {
+          "date": "2026-08-20",
+          "rent": 1905
+        }
+      ],
+      "rent_gross": 1905,
+      "sources": [
+        {
+          "source": "web",
+          "url": "https://www.compass.com/homedetails/2740-N-Hampden-Ct-Unit-4E-Chicago-IL-60614/1WO5GD_pid/"
+        }
+      ],
+      "status": "active",
+      "unit": "4E",
+      "verdict": null
+    },
+    "2750-n-kenmore-GF": {
+      "address_raw": "2750 North Kenmore Avenue",
+      "all_in_monthly": 2000.0,
+      "beds": 1,
+      "first_seen": "2026-08-20",
+      "key": "2750-n-kenmore-GF",
+      "key_type": "primary",
+      "last_seen": "2026-08-20",
+      "lat": 41.9314302,
+      "layout": null,
+      "lng": -87.6553677,
+      "loft_type": null,
+      "price_history": [
+        {
+          "date": "2026-08-20",
+          "rent": 2000
+        }
+      ],
+      "rent_gross": 2000,
+      "sources": [
+        {
+          "source": "web",
+          "url": "https://www.compass.com/homedetails/2750-N-Kenmore-Ave-Unit-GF-Chicago-IL-60614/1WYTE5_pid/"
+        }
+      ],
+      "status": "active",
+      "unit": "GF",
+      "verdict": null
+    },
+    "2811-n-bell-101": {
+      "address_raw": "2811 North Bell Avenue",
+      "all_in_monthly": 3400.0,
+      "beds": 2,
+      "first_seen": "2026-08-20",
+      "key": "2811-n-bell-101",
+      "key_type": "primary",
+      "last_seen": "2026-08-20",
+      "lat": 41.9325028,
+      "layout": null,
+      "lng": -87.6847828,
+      "loft_type": null,
+      "price_history": [
+        {
+          "date": "2026-08-20",
+          "rent": 3400
+        }
+      ],
+      "rent_gross": 3400,
+      "sources": [
+        {
+          "source": "web",
+          "url": "https://www.compass.com/homedetails/2811-N-Bell-Ave-Unit-101-Chicago-IL-60618/1WL82Q_pid/"
+        }
+      ],
+      "status": "active",
+      "unit": "101",
       "verdict": null
     },
     "2970-n-sheridan-0br-1450": {
@@ -3345,6 +5355,35 @@
       "unit": "101",
       "verdict": null
     },
+    "345-w-fullerton-801": {
+      "address_raw": "345 West Fullerton Parkway",
+      "all_in_monthly": 4450.0,
+      "beds": 2,
+      "first_seen": "2026-08-20",
+      "key": "345-w-fullerton-801",
+      "key_type": "primary",
+      "last_seen": "2026-08-20",
+      "lat": 41.9252991,
+      "layout": null,
+      "lng": -87.6385026,
+      "loft_type": null,
+      "price_history": [
+        {
+          "date": "2026-08-20",
+          "rent": 4450
+        }
+      ],
+      "rent_gross": 4450,
+      "sources": [
+        {
+          "source": "web",
+          "url": "https://www.compass.com/homedetails/345-W-Fullerton-Pkwy-Unit-801-Chicago-IL-60614/2148780443804882313_lid/"
+        }
+      ],
+      "status": "active",
+      "unit": "801",
+      "verdict": null
+    },
     "3740-n-halsted-1024": {
       "address_raw": "3740 N Halsted St #1024, Chicago, IL 60613",
       "all_in_monthly": 2840.0,
@@ -3372,6 +5411,35 @@
       ],
       "status": "active",
       "unit": "1024",
+      "verdict": null
+    },
+    "424-w-diversey-0br-1200": {
+      "address_raw": "424 W Diversey Pkwy, Chicago, IL 60614",
+      "all_in_monthly": 1195.0,
+      "beds": 0,
+      "first_seen": "2026-08-20",
+      "key": "424-w-diversey-0br-1200",
+      "key_type": "fallback",
+      "last_seen": "2026-08-20",
+      "lat": 41.932562,
+      "layout": null,
+      "lng": -87.6584665,
+      "loft_type": null,
+      "price_history": [
+        {
+          "date": "2026-08-20",
+          "rent": 1195
+        }
+      ],
+      "rent_gross": 1195,
+      "sources": [
+        {
+          "source": "redfin",
+          "url": "https://www.redfin.com/IL/Chicago/424-W-Diversey-Pkwy-60614/apartment/64232081"
+        }
+      ],
+      "status": "active",
+      "unit": null,
       "verdict": null
     },
     "427-w-belden-0br-1700": {
@@ -3490,6 +5558,35 @@
       "unit": "2",
       "verdict": null
     },
+    "452-w-st-james-3": {
+      "address_raw": "452 West St James Place",
+      "all_in_monthly": 2000.0,
+      "beds": 1,
+      "first_seen": "2026-08-20",
+      "key": "452-w-st-james-3",
+      "key_type": "primary",
+      "last_seen": "2026-08-20",
+      "lat": 41.9281795,
+      "layout": null,
+      "lng": -87.6411428,
+      "loft_type": null,
+      "price_history": [
+        {
+          "date": "2026-08-20",
+          "rent": 2000
+        }
+      ],
+      "rent_gross": 2000,
+      "sources": [
+        {
+          "source": "web",
+          "url": "https://www.compass.com/homedetails/452-W-St-James-Pl-Unit-3-Chicago-IL-60614/1W5UOF_pid/"
+        }
+      ],
+      "status": "active",
+      "unit": "3",
+      "verdict": null
+    },
     "4520-n-clarendon-403": {
       "address_raw": "4520 N Clarendon Ave #403, Chicago, IL 60640",
       "all_in_monthly": 2550.0,
@@ -3575,6 +5672,35 @@
       ],
       "status": "active",
       "unit": "1",
+      "verdict": null
+    },
+    "534-w-dickens-2": {
+      "address_raw": "534 West Dickens Avenue",
+      "all_in_monthly": 6000.0,
+      "beds": 3,
+      "first_seen": "2026-08-20",
+      "key": "534-w-dickens-2",
+      "key_type": "primary",
+      "last_seen": "2026-08-20",
+      "lat": 41.9202756,
+      "layout": null,
+      "lng": -87.6427466,
+      "loft_type": null,
+      "price_history": [
+        {
+          "date": "2026-08-20",
+          "rent": 6000
+        }
+      ],
+      "rent_gross": 6000,
+      "sources": [
+        {
+          "source": "web",
+          "url": "https://www.compass.com/homedetails/534-W-Dickens-Ave-Unit-2-Chicago-IL-60614/2EXWMT_pid/"
+        }
+      ],
+      "status": "active",
+      "unit": "2",
       "verdict": null
     },
     "535-w-arlington-1br-2250": {
@@ -3780,6 +5906,122 @@
       "unit": "20F",
       "verdict": null
     },
+    "617-w-drummond-3BW": {
+      "address_raw": "617 West Drummond Place",
+      "all_in_monthly": 3310.0,
+      "beds": 2,
+      "first_seen": "2026-08-20",
+      "key": "617-w-drummond-3BW",
+      "key_type": "primary",
+      "last_seen": "2026-08-20",
+      "lat": 41.9302817,
+      "layout": null,
+      "lng": -87.6444464,
+      "loft_type": null,
+      "price_history": [
+        {
+          "date": "2026-08-20",
+          "rent": 3310
+        }
+      ],
+      "rent_gross": 3310,
+      "sources": [
+        {
+          "source": "web",
+          "url": "https://www.compass.com/homedetails/617-W-Drummond-Pl-Unit-3BW-Chicago-IL-60614/1VNWRT_pid/"
+        }
+      ],
+      "status": "active",
+      "unit": "3BW",
+      "verdict": null
+    },
+    "640-w-wrightwood-201": {
+      "address_raw": "640 West Wrightwood Avenue",
+      "all_in_monthly": 1620.0,
+      "beds": 0,
+      "first_seen": "2026-08-20",
+      "key": "640-w-wrightwood-201",
+      "key_type": "primary",
+      "last_seen": "2026-08-20",
+      "lat": 41.9296848,
+      "layout": null,
+      "lng": -87.6445738,
+      "loft_type": null,
+      "price_history": [
+        {
+          "date": "2026-08-20",
+          "rent": 1620
+        }
+      ],
+      "rent_gross": 1620,
+      "sources": [
+        {
+          "source": "web",
+          "url": "https://www.compass.com/homedetails/640-W-Wrightwood-Ave-Unit-201-Chicago-IL-60614/1X4KZH_pid/"
+        }
+      ],
+      "status": "active",
+      "unit": "201",
+      "verdict": null
+    },
+    "640-w-wrightwood-216": {
+      "address_raw": "640 West Wrightwood Avenue",
+      "all_in_monthly": 1620.0,
+      "beds": 0,
+      "first_seen": "2026-08-20",
+      "key": "640-w-wrightwood-216",
+      "key_type": "primary",
+      "last_seen": "2026-08-20",
+      "lat": 41.9296848,
+      "layout": null,
+      "lng": -87.6445738,
+      "loft_type": null,
+      "price_history": [
+        {
+          "date": "2026-08-20",
+          "rent": 1620
+        }
+      ],
+      "rent_gross": 1620,
+      "sources": [
+        {
+          "source": "web",
+          "url": "https://www.compass.com/homedetails/640-W-Wrightwood-Ave-Unit-216-Chicago-IL-60614/1VPFQL_pid/"
+        }
+      ],
+      "status": "active",
+      "unit": "216",
+      "verdict": null
+    },
+    "640-w-wrightwood-303": {
+      "address_raw": "640 West Wrightwood Avenue",
+      "all_in_monthly": 1620.0,
+      "beds": 0,
+      "first_seen": "2026-08-20",
+      "key": "640-w-wrightwood-303",
+      "key_type": "primary",
+      "last_seen": "2026-08-20",
+      "lat": 41.9296848,
+      "layout": null,
+      "lng": -87.6445738,
+      "loft_type": null,
+      "price_history": [
+        {
+          "date": "2026-08-20",
+          "rent": 1620
+        }
+      ],
+      "rent_gross": 1620,
+      "sources": [
+        {
+          "source": "web",
+          "url": "https://www.compass.com/homedetails/640-W-Wrightwood-Ave-Unit-303-Chicago-IL-60614/1WZRLW_pid/"
+        }
+      ],
+      "status": "active",
+      "unit": "303",
+      "verdict": null
+    },
     "649-51-n-wolcott-1": {
       "address_raw": "649-51 N. Wolcott, Unit #1",
       "all_in_monthly": 2395.0,
@@ -3787,7 +6029,7 @@
       "first_seen": "2026-08-18",
       "key": "649-51-n-wolcott-1",
       "key_type": "primary",
-      "last_seen": "2026-08-19",
+      "last_seen": "2026-08-20",
       "lat": 41.8937385,
       "layout": "duplex_down",
       "lng": -87.6743465,
@@ -3803,6 +6045,64 @@
         {
           "source": "web",
           "url": "https://www.wickerparkapartments.com/AvailableNow.php"
+        }
+      ],
+      "status": "active",
+      "unit": "1",
+      "verdict": null
+    },
+    "744-w-fullerton-404": {
+      "address_raw": "744 West Fullerton Avenue",
+      "all_in_monthly": 4700.0,
+      "beds": 2,
+      "first_seen": "2026-08-20",
+      "key": "744-w-fullerton-404",
+      "key_type": "primary",
+      "last_seen": "2026-08-20",
+      "lat": 41.9256292,
+      "layout": null,
+      "lng": -87.6482095,
+      "loft_type": null,
+      "price_history": [
+        {
+          "date": "2026-08-20",
+          "rent": 4700
+        }
+      ],
+      "rent_gross": 4700,
+      "sources": [
+        {
+          "source": "web",
+          "url": "https://www.compass.com/homedetails/744-W-Fullerton-Ave-Unit-404-Chicago-IL-60614/1XEF6W_pid/"
+        }
+      ],
+      "status": "active",
+      "unit": "404",
+      "verdict": null
+    },
+    "746-w-belden-1": {
+      "address_raw": "746 West Belden Avenue",
+      "all_in_monthly": 10000.0,
+      "beds": 4,
+      "first_seen": "2026-08-20",
+      "key": "746-w-belden-1",
+      "key_type": "primary",
+      "last_seen": "2026-08-20",
+      "lat": 41.9239142,
+      "layout": null,
+      "lng": -87.6480751,
+      "loft_type": null,
+      "price_history": [
+        {
+          "date": "2026-08-20",
+          "rent": 10000
+        }
+      ],
+      "rent_gross": 10000,
+      "sources": [
+        {
+          "source": "web",
+          "url": "https://www.compass.com/homedetails/746-W-Belden-Ave-Unit-1-Chicago-IL-60614/1X8JG5_pid/"
         }
       ],
       "status": "active",
@@ -3865,6 +6165,93 @@
       ],
       "status": "active",
       "unit": "1",
+      "verdict": null
+    },
+    "845-w-altgeld-4D": {
+      "address_raw": "845 West Altgeld Street",
+      "all_in_monthly": 5250.0,
+      "beds": 2,
+      "first_seen": "2026-08-20",
+      "key": "845-w-altgeld-4D",
+      "key_type": "primary",
+      "last_seen": "2026-08-20",
+      "lat": 41.9270452,
+      "layout": null,
+      "lng": -87.6506933,
+      "loft_type": null,
+      "price_history": [
+        {
+          "date": "2026-08-20",
+          "rent": 5250
+        }
+      ],
+      "rent_gross": 5250,
+      "sources": [
+        {
+          "source": "web",
+          "url": "https://www.compass.com/homedetails/845-W-Altgeld-St-Unit-4D-Chicago-IL-60614/1WTFKG_pid/"
+        }
+      ],
+      "status": "active",
+      "unit": "4D",
+      "verdict": null
+    },
+    "900-w-wrightwood-2W": {
+      "address_raw": "900 West Wrightwood Avenue",
+      "all_in_monthly": 3700.0,
+      "beds": 2,
+      "first_seen": "2026-08-20",
+      "key": "900-w-wrightwood-2W",
+      "key_type": "primary",
+      "last_seen": "2026-08-20",
+      "lat": 41.9292296,
+      "layout": null,
+      "lng": -87.6515221,
+      "loft_type": null,
+      "price_history": [
+        {
+          "date": "2026-08-20",
+          "rent": 3700
+        }
+      ],
+      "rent_gross": 3700,
+      "sources": [
+        {
+          "source": "web",
+          "url": "https://www.compass.com/homedetails/900-W-Wrightwood-Ave-Unit-2W-Chicago-IL-60614/1XGDU8_pid/"
+        }
+      ],
+      "status": "active",
+      "unit": "2W",
+      "verdict": null
+    },
+    "901-w-altgeld-1B": {
+      "address_raw": "901 West Altgeld Street",
+      "all_in_monthly": 2400.0,
+      "beds": 1,
+      "first_seen": "2026-08-20",
+      "key": "901-w-altgeld-1B",
+      "key_type": "primary",
+      "last_seen": "2026-08-20",
+      "lat": 41.927148,
+      "layout": null,
+      "lng": -87.651387,
+      "loft_type": null,
+      "price_history": [
+        {
+          "date": "2026-08-20",
+          "rent": 2400
+        }
+      ],
+      "rent_gross": 2400,
+      "sources": [
+        {
+          "source": "web",
+          "url": "https://www.compass.com/homedetails/901-W-Altgeld-St-Unit-1B-Chicago-IL-60614/1WOLQ0_pid/"
+        }
+      ],
+      "status": "active",
+      "unit": "1B",
       "verdict": null
     },
     "913-w-belden-2br-5450": {
@@ -3952,6 +6339,93 @@
       ],
       "status": "active",
       "unit": "504",
+      "verdict": null
+    },
+    "935-w-armitage-3B": {
+      "address_raw": "935 West Armitage Avenue",
+      "all_in_monthly": 4595.0,
+      "beds": 2,
+      "first_seen": "2026-08-20",
+      "key": "935-w-armitage-3B",
+      "key_type": "primary",
+      "last_seen": "2026-08-20",
+      "lat": 41.9179527,
+      "layout": null,
+      "lng": -87.6523585,
+      "loft_type": null,
+      "price_history": [
+        {
+          "date": "2026-08-20",
+          "rent": 4595
+        }
+      ],
+      "rent_gross": 4595,
+      "sources": [
+        {
+          "source": "web",
+          "url": "https://www.compass.com/homedetails/935-W-Armitage-Ave-Unit-3B-Chicago-IL-60614/2EXWVQ_pid/"
+        }
+      ],
+      "status": "active",
+      "unit": "3B",
+      "verdict": null
+    },
+    "937-w-armitage-3B": {
+      "address_raw": "937 West Armitage Avenue",
+      "all_in_monthly": 4795.0,
+      "beds": 2,
+      "first_seen": "2026-08-20",
+      "key": "937-w-armitage-3B",
+      "key_type": "primary",
+      "last_seen": "2026-08-20",
+      "lat": 41.9180373,
+      "layout": null,
+      "lng": -87.6523607,
+      "loft_type": null,
+      "price_history": [
+        {
+          "date": "2026-08-20",
+          "rent": 4795
+        }
+      ],
+      "rent_gross": 4795,
+      "sources": [
+        {
+          "source": "web",
+          "url": "https://www.compass.com/homedetails/937-W-Armitage-Ave-Unit-3B-Chicago-IL-60614/1WEXAR_pid/"
+        }
+      ],
+      "status": "active",
+      "unit": "3B",
+      "verdict": null
+    },
+    "939-w-armitage-B": {
+      "address_raw": "939 West Armitage Avenue",
+      "all_in_monthly": 5500.0,
+      "beds": 3,
+      "first_seen": "2026-08-20",
+      "key": "939-w-armitage-B",
+      "key_type": "primary",
+      "last_seen": "2026-08-20",
+      "lat": 41.9179227,
+      "layout": null,
+      "lng": -87.6524715,
+      "loft_type": null,
+      "price_history": [
+        {
+          "date": "2026-08-20",
+          "rent": 5500
+        }
+      ],
+      "rent_gross": 5500,
+      "sources": [
+        {
+          "source": "web",
+          "url": "https://www.compass.com/homedetails/939-W-Armitage-Ave-Unit-B-Chicago-IL-60614/1VUU5Q_pid/"
+        }
+      ],
+      "status": "active",
+      "unit": "B",
       "verdict": null
     },
     "948-w-armitage-2S": {
@@ -4098,11 +6572,40 @@
       "status": "active",
       "unit": "309",
       "verdict": null
+    },
+    "953-w-montana-3": {
+      "address_raw": "953 West Montana Street",
+      "all_in_monthly": 6750.0,
+      "beds": 3,
+      "first_seen": "2026-08-20",
+      "key": "953-w-montana-3",
+      "key_type": "primary",
+      "last_seen": "2026-08-20",
+      "lat": 41.9261487,
+      "layout": null,
+      "lng": -87.6523561,
+      "loft_type": null,
+      "price_history": [
+        {
+          "date": "2026-08-20",
+          "rent": 6750
+        }
+      ],
+      "rent_gross": 6750,
+      "sources": [
+        {
+          "source": "web",
+          "url": "https://www.compass.com/homedetails/953-W-Montana-St-Unit-3-Chicago-IL-60614/1WBBG9_pid/"
+        }
+      ],
+      "status": "active",
+      "unit": "3",
+      "verdict": null
     }
   },
   "meta": {
     "created": "2026-08-13",
-    "last_output_date": "2026-08-19",
-    "last_run": "2026-08-19"
+    "last_output_date": "2026-08-20",
+    "last_run": "2026-08-20"
   }
 }
