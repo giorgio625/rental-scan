@@ -276,6 +276,20 @@ agent must call each one out explicitly when present.
 - **Bait listings.** Craigslist and some Zillow FSBO posts in WP are bait.
   Any listing more than 20% below the running median for its bed count gets
   tagged `suspect_pricing` rather than scored as a great deal.
+
+  **The median is computed over in-bounds records only.** The ledger holds
+  every record the harvesters ever returned — filtering is downstream's job,
+  and deliberately so — so 46 of the live records sit in the South Loop,
+  Hyde Park, and Humboldt Park. Letting them set the comp moved the
+  2-bedroom median $170 and the 1-bedroom $102, which meant out-of-area
+  rents were quietly deciding whether a Wicker Park listing looked like a
+  deal. Records are excluded on the §2 geography test against their cached
+  coordinates, never on `neighborhood_claimed`.
+
+  A record with no cached coordinates still counts. The geocoder runs after
+  `dedupe.py`, so every listing is uncoordinated on its first pass;
+  excluding those would drop each new record from the comps it is being
+  judged against. Only records provably out of bounds are dropped.
 - **"Loft" as a marketing word.** The single most common mislabel in this
   search. A conventional 1BR with a sleeping mezzanine gets listed as a "loft"
   constantly. Run the §4a test every time.
@@ -407,13 +421,52 @@ Normalization rules:
 3. Strip street suffixes: `st`, `street`, `ave`, `avenue`, `blvd`, `dr`, `pl`,
    `ct`, `pkwy`, `ter`.
 4. Strip all punctuation and collapse whitespace to single hyphens.
-5. Unit: strip `unit`, `apt`, `apartment`, `#`, `suite`. Uppercase what remains.
-   `Unit 2R` → `2R`. `#3-N` → `3N`.
+5. Unit: strip `unit`, `apt`, `apartment`, `#`, `suite` **wherever the word
+   sits, not only at the front**. `Unit 2R` → `2R`, `#3-N` → `3N`, and
+   `Garden Unit` → `GARDEN` rather than `GARDENUNIT`.
+6. **A range address keys off its low number.** `649-51 N. Wolcott` →
+   `649-n-wolcott`. Sources are inconsistent about ranges — the same
+   building arrives as `649-51 N. Wolcott` from one and `649 N Wolcott`
+   from another — so this is applied to the structured `street_number`
+   field as well as to a parsed one.
+7. **A trailing directional is part of the street name, and collapses to
+   its one-letter form.** `Lincoln Park West` and `Lincoln Park W` both
+   become `lincoln-park-w`. Only a *leading* directional is the address
+   directional of rule 2; `North Avenue` is a street, not a direction.
 
 Example: `1547 N. Damen Ave, Unit 3W` → `1547-n-damen-3W`
 
+**A structured `street_name` is not automatically clean.** When a harvester
+supplies both `street_number` and `street_name`, `address_raw` is never
+parsed — so a harvester that writes `street_name: "Fullerton Ave APT 3"`
+with `unit: null` puts the unit straight into the key. Where the unit is
+otherwise missing and the street name carries unit vocabulary, recover it.
+A harvester that filled both fields is believed.
+
 **Fallback key** when unit is null:
 `{street_number}-{directional}-{normalized_street}-{beds}br-{rent rounded to nearest 50}`
+
+**The rent in a fallback key is the rent at first sighting, and stays.** It
+is an identity anchor, not a current price — read the record's `rent_gross`
+for that. Recomputing it every run means a unit with no published unit
+number changes identity the moment its rent crosses a $50 boundary: $2,974
+keys to `...-2950` and $2,975 to `...-3000`. The old key then goes absent,
+dies seven days later, and the same apartment returns as `new` with a fresh
+`first_seen` and an empty `price_history` — the price change, the days on
+market, and any `verdict` all lost, with nothing reporting that it happened.
+
+So before minting a fallback key, check the ledger one bucket either side and
+adopt a live entry found there. Guards, in order:
+
+- the exact bucket always wins;
+- the stored rent must be within one bucket of the observed rent — anything
+  further apart is a different apartment;
+- **dead entries are never adopted**, so a genuine relist stays a relist;
+- **each ledger entry can be claimed once**, by the listing whose rent is
+  closest, ties broken on the key string. Two unit-less listings in one
+  building whose rents straddle a boundary must not both collapse onto one
+  entry — losing a real apartment silently is worse than the phantom relist
+  this rule exists to prevent.
 
 **Death is measured in calendar days, not runs.** `DAYS_ABSENT_UNTIL_DEAD`
 in `dedupe.py` is compared against `last_seen`, so a listing dies 7 days after
@@ -436,6 +489,37 @@ different known units are different apartments — neither case is ambiguous.)
 | Key in ledger, unchanged | `seen` — suppress from report |
 | Key absent 7+ days | `dead` — mark, stop reporting |
 | Key returns after `dead` 30+ days | `relist` — not `new` |
+
+---
+
+## 7a. What the ledger stores
+
+`ledger.json` is the only artifact here that cannot be rebuilt, and it has
+to be able to rebuild `shortlist.json` on its own. `dedupe.py` rewrites every
+record each run, so which fields survive that rewrite is a spec decision,
+not an implementation detail. Three classes:
+
+**Current state — overwritten every run.** `rent_gross`, `all_in_monthly`,
+`net_effective`, `suspect_pricing`, `key_type`, `last_seen`, `status`,
+`price_history`, `sources`. These describe the listing as of today's harvest.
+
+**Descriptive — a non-null observation wins; a null one leaves the stored
+value alone.** `address_raw`, `unit`, `beds`, `baths`, `sqft`, `url`,
+`neighborhood_claimed`, `loft_type`, `loft_signals`, `ceiling_height_ft`,
+`layout`, `outdoor_space`, `outdoor_space_sqft`, `laundry`, `parking_type`,
+`parking_cost`, `heat_included`, `available_date`, `lease_term_months`,
+`unit_level`, `concession`.
+
+Sticky because §6 is explicit that harvesters emit `null` for "not stated",
+never for "known absent" — absence of evidence is not evidence of absence.
+A thinner email on day 5 that simply doesn't mention square footage is not a
+correction to what day 1 reported, and overwriting the known value with
+today's silence reads it as one.
+
+**Never written by `dedupe.py`:** `verdict` is the human's ruling and
+`lat`/`lng` are the geocoder's cache. Both outlive any single harvest.
+Anything else placed in a ledger record is erased on the next scan — which
+is why enrichment evidence lives in `enrichment.json` and not here.
 
 ---
 

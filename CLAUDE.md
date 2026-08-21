@@ -99,12 +99,27 @@ enrichment.json      cached listing-page evidence, §4b — a cache, not state
 active.md            rolling shortlist, my status column is preserved
 raw/                 per-run intermediate JSON
 reports/             daily reports
+tests/               regression suite for dedupe.py — stdlib unittest
+migrations/          one-time ledger rewrites, kept for provenance
 ```
+
+Run the tests after touching `dedupe.py` or `enrich_select.py`:
+
+```
+python -m unittest discover -s tests
+```
+
+`unittest` rather than pytest because both scripts advertise "stdlib only"
+and the scan runs in a sandbox with no outbound network — a suite needing
+`pip install` first is a suite that does not run where it matters.
 
 ## Standing constraints
 
 - Never edit `dedupe.py` or `enrich_select.py` to work around an error.
-  Report it and stop.
+  Report it and stop. If either is changed deliberately, `python -m unittest
+  discover -s tests` must pass before the run continues — the suite exists
+  because these two files are the deterministic layer everything downstream
+  trusts without re-checking.
 - Never write enrichment data into `ledger.json`. `dedupe.py` rewrites every
   ledger record each run and preserves only `verdict`, `lat`, and `lng`, so
   anything else put there is erased on the next scan.

@@ -80,93 +80,25 @@ EXCLUDED_HOSTS = ()
 # --------------------------------------------------------------------------
 # Chicago grid -> lat/lng
 #
-# The grid is anchored at State & Madison, 800 address units to the mile.
-# Expressing the section 2 boundaries as address numbers rather than raw
-# decimals keeps this readable against criteria.md: `lat_north(1800)` is
-# Bloomingdale, and stays Bloomingdale when someone re-reads it in six months.
+# Defined in dedupe.py and imported here. `running_medians` needs the same
+# section 2 boundaries to scope its comps, and two copies of this geography
+# would drift the moment one of them was corrected.
 # --------------------------------------------------------------------------
 
-_MADISON_LAT = 41.8819
-_STATE_LNG = -87.6278
-_LAT_PER_800 = 0.0145        # one mile of latitude
-_LNG_PER_800 = 0.0195        # one mile of longitude at Chicago's latitude
-
-
-def lat_north(address_number):
-    return _MADISON_LAT + (address_number / 800.0) * _LAT_PER_800
-
-
-def lng_west(address_number):
-    return _STATE_LNG - (address_number / 800.0) * _LNG_PER_800
-
-
-# Section 2 zones. `primary` is the target; everything else takes the -5.
-ZONES = {
-    "wicker_park": {
-        "primary": True,
-        "south": lat_north(1200),   # Division
-        "north": lat_north(1800),   # Bloomingdale
-        "east":  lng_west(1600),    # Ashland
-        "west":  lng_west(2400),    # Western
-    },
-    "bucktown": {
-        "primary": False,
-        "south": lat_north(1800),   # Bloomingdale
-        "north": lat_north(2400),   # Fullerton
-        "east":  lng_west(1600),
-        "west":  lng_west(2400),
-    },
-    "east_village": {
-        "primary": False,
-        "south": lat_north(800),    # Chicago Ave
-        "north": lat_north(1200),   # Division
-        "east":  lng_west(1600),
-        "west":  lng_west(2400),
-    },
-    "lincoln_park": {
-        "primary": False,
-        "south": lat_north(1600),   # North Ave
-        "north": lat_north(2800),   # Diversey
-        "east":  -87.6100,          # the lake
-        "west":  lng_west(1600),    # Clybourn corridor, boxed generously
-    },
-}
+from dedupe import (                                    # noqa: E402
+    BOUNDARY_TOLERANCE_LAT,
+    BOUNDARY_TOLERANCE_LNG,
+    ZONES,
+    lat_north,
+    lng_west,
+    zone_of,
+)
 
 # The 606 / Bloomingdale Trail runs along 1800 N. Three blocks either way.
 TRAIL_LAT = lat_north(1800)
 TRAIL_BLOCKS_LAT = lat_north(300) - lat_north(0)
 
-# Half a block of slack on every boundary. A geocode lands mid-building, and
-# a building fronting the boundary street itself geocodes a hair outside the
-# line -- Division St addresses sit ~0.0003 south of the computed 1200 N
-# line. criteria.md already treats those as in bounds in practice: the
-# reports repeatedly place addresses like 1420 N Western and 1449 N Ashland
-# inside the boundary they sit on. Without this, the zone test would be
-# stricter than the spec it implements, and would silently drop exactly the
-# Wicker Park edge stock this search most wants.
-BOUNDARY_TOLERANCE_LAT = lat_north(50) - lat_north(0)
-BOUNDARY_TOLERANCE_LNG = lng_west(0) - lng_west(50)
-
 ARTERIALS = ("milwaukee", "damen", "north", "division", "ashland", "western")
-
-
-def zone_of(lat, lng):
-    """Which section 2 zone a coordinate falls in, or None if out of bounds.
-
-    This is a budget pre-filter, NOT the authoritative section 2 test. The
-    reporter still applies section 2 in full. The point here is to avoid
-    spending a fetch on something already out of bounds -- and to do it from
-    the geocoder's cached coordinates rather than `neighborhood_claimed`,
-    which listings get wrong constantly.
-    """
-    if lat is None or lng is None:
-        return "unknown"
-    tlat, tlng = BOUNDARY_TOLERANCE_LAT, BOUNDARY_TOLERANCE_LNG
-    for name, box in ZONES.items():
-        if (box["south"] - tlat <= lat <= box["north"] + tlat
-                and box["west"] - tlng <= lng <= box["east"] + tlng):
-            return name
-    return None
 
 
 # --------------------------------------------------------------------------

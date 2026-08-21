@@ -824,12 +824,12 @@
       "unit": null,
       "verdict": null
     },
-    "1413-15-e-57th-3br-3500": {
+    "1413-e-57th-3br-3500": {
       "address_raw": "1413-15 E. 57th, Chicago, IL 60637",
       "all_in_monthly": 3499.0,
       "beds": 3,
       "first_seen": "2026-08-17",
-      "key": "1413-15-e-57th-3br-3500",
+      "key": "1413-e-57th-3br-3500",
       "key_type": "fallback",
       "last_seen": "2026-08-17",
       "lat": 41.7913202,
@@ -3877,6 +3877,64 @@
       "unit": "807",
       "verdict": null
     },
+    "2140-n-lincoln-park-w-1001": {
+      "address_raw": "2140 N Lincoln Park W APT 1001, Chicago, IL",
+      "all_in_monthly": 3250.0,
+      "beds": 1,
+      "first_seen": "2026-08-20",
+      "key": "2140-n-lincoln-park-w-1001",
+      "key_type": "primary",
+      "last_seen": "2026-08-20",
+      "lat": 41.9213092,
+      "layout": null,
+      "lng": -87.6368508,
+      "loft_type": null,
+      "price_history": [
+        {
+          "date": "2026-08-20",
+          "rent": 3250
+        }
+      ],
+      "rent_gross": 3250,
+      "sources": [
+        {
+          "source": "zillow",
+          "url": "https://www.zillow.com/homedetails/464607265_zpid/"
+        }
+      ],
+      "status": "active",
+      "unit": "1001",
+      "verdict": null
+    },
+    "2140-n-lincoln-park-w-501": {
+      "address_raw": "2140 N Lincoln Park W APT 501, Chicago, IL",
+      "all_in_monthly": 3950.0,
+      "beds": 2,
+      "first_seen": "2026-08-20",
+      "key": "2140-n-lincoln-park-w-501",
+      "key_type": "primary",
+      "last_seen": "2026-08-20",
+      "lat": 41.9213092,
+      "layout": null,
+      "lng": -87.6368508,
+      "loft_type": null,
+      "price_history": [
+        {
+          "date": "2026-08-20",
+          "rent": 3950
+        }
+      ],
+      "rent_gross": 3950,
+      "sources": [
+        {
+          "source": "zillow",
+          "url": "https://www.zillow.com/homedetails/464607265_zpid/"
+        }
+      ],
+      "status": "active",
+      "unit": "501",
+      "verdict": null
+    },
     "2140-n-lincoln-park-w-807": {
       "address_raw": "2140 N Lincoln Park W #807, Chicago, IL 60614",
       "all_in_monthly": 2750.0,
@@ -3904,64 +3962,6 @@
       ],
       "status": "active",
       "unit": "807",
-      "verdict": null
-    },
-    "2140-n-lincoln-park-west-1001": {
-      "address_raw": "2140 N Lincoln Park W APT 1001, Chicago, IL",
-      "all_in_monthly": 3250.0,
-      "beds": 1,
-      "first_seen": "2026-08-20",
-      "key": "2140-n-lincoln-park-west-1001",
-      "key_type": "primary",
-      "last_seen": "2026-08-20",
-      "lat": 41.9213092,
-      "layout": null,
-      "lng": -87.6368508,
-      "loft_type": null,
-      "price_history": [
-        {
-          "date": "2026-08-20",
-          "rent": 3250
-        }
-      ],
-      "rent_gross": 3250,
-      "sources": [
-        {
-          "source": "zillow",
-          "url": "https://www.zillow.com/homedetails/464607265_zpid/"
-        }
-      ],
-      "status": "active",
-      "unit": "1001",
-      "verdict": null
-    },
-    "2140-n-lincoln-park-west-501": {
-      "address_raw": "2140 N Lincoln Park W APT 501, Chicago, IL",
-      "all_in_monthly": 3950.0,
-      "beds": 2,
-      "first_seen": "2026-08-20",
-      "key": "2140-n-lincoln-park-west-501",
-      "key_type": "primary",
-      "last_seen": "2026-08-20",
-      "lat": 41.9213092,
-      "layout": null,
-      "lng": -87.6368508,
-      "loft_type": null,
-      "price_history": [
-        {
-          "date": "2026-08-20",
-          "rent": 3950
-        }
-      ],
-      "rent_gross": 3950,
-      "sources": [
-        {
-          "source": "zillow",
-          "url": "https://www.zillow.com/homedetails/464607265_zpid/"
-        }
-      ],
-      "status": "active",
-      "unit": "501",
       "verdict": null
     },
     "2149-n-racine-1": {
@@ -4780,36 +4780,6 @@
       "unit": "G",
       "verdict": null
     },
-    "2428-30-w-walton-3": {
-      "address_raw": "2428-30 W. Walton",
-      "all_in_monthly": 2595.0,
-      "beds": 3,
-      "dead_since": "2026-08-20",
-      "first_seen": "2026-08-13",
-      "key": "2428-30-w-walton-3",
-      "key_type": "primary",
-      "last_seen": "2026-08-13",
-      "lat": 41.8986434,
-      "layout": null,
-      "lng": -87.6881412,
-      "loft_type": null,
-      "price_history": [
-        {
-          "date": "2026-08-13",
-          "rent": 2595
-        }
-      ],
-      "rent_gross": 2595,
-      "sources": [
-        {
-          "source": "web",
-          "url": "https://wickerparkapartments.com/AvailableNow.php/index.php"
-        }
-      ],
-      "status": "dead",
-      "unit": "3",
-      "verdict": null
-    },
     "2428-w-walton-3": {
       "address_raw": "2428-30 W. Walton, Unit #3",
       "all_in_monthly": 2595.0,
@@ -4834,6 +4804,10 @@
         {
           "source": "web",
           "url": "https://www.wickerparkapartments.com/AvailableNow.php/index.php"
+        },
+        {
+          "source": "web",
+          "url": "https://wickerparkapartments.com/AvailableNow.php/index.php"
         }
       ],
       "status": "dead",
@@ -6146,12 +6120,12 @@
       "unit": "303",
       "verdict": null
     },
-    "649-51-n-wolcott-1": {
+    "649-n-wolcott-1": {
       "address_raw": "649-51 N. Wolcott, Unit #1",
       "all_in_monthly": 2395.0,
       "beds": 2,
       "first_seen": "2026-08-18",
-      "key": "649-51-n-wolcott-1",
+      "key": "649-n-wolcott-1",
       "key_type": "primary",
       "last_seen": "2026-08-20",
       "lat": 41.8937385,
@@ -6407,12 +6381,12 @@
       "unit": null,
       "verdict": null
     },
-    "916-w-fullerton-ave-apt-3-2br-3000": {
+    "916-w-fullerton-3": {
       "address_raw": "916 W Fullerton Ave APT 3, Chicago, IL",
       "all_in_monthly": 3000.0,
       "beds": 2,
       "first_seen": "2026-08-21",
-      "key": "916-w-fullerton-ave-apt-3-2br-3000",
+      "key": "916-w-fullerton-3",
       "key_type": "fallback",
       "last_seen": "2026-08-21",
       "lat": 41.92561,

@@ -40,6 +40,19 @@ access to again. Commit it every run.
 
 ## Phase 3 — Prove out dedupe (30 min)
 
+> **Superseded 2026-08-21 — this is now a test suite.** Every check below,
+> including the five in the table, lives in `tests/test_dedupe.py`:
+>
+> ```bash
+> python -m unittest discover -s tests
+> ```
+>
+> The manual read-through was right about what to verify and wrong about
+> how often. It ran once, at build time, and nothing re-checked it across
+> four subsequent changes to `dedupe.py`. Keep the prose below for the
+> reasoning — it explains *why* each expectation is what it is, which the
+> assertions can only gesture at.
+
 Do this before touching agents. If `dedupe.py` is wrong, every downstream
 agent inherits the error invisibly.
 
