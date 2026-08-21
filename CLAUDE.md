@@ -94,16 +94,20 @@ here just means it gets read twice.
 criteria.md          the spec — everything reads this, edit it not the agents
 dedupe.py            deterministic matching, §7
 enrich_select.py     deterministic fetch-candidate selection, §4b
+render_dashboard.py  deterministic HTML rendering, HTML-TOOL-SPEC §3
+mockup.html          the dashboard template — layout, styles, all page JS
 ledger.json          persistent state, every key ever seen
 enrichment.json      cached listing-page evidence, §4b — a cache, not state
 active.md            rolling shortlist, my status column is preserved
 raw/                 per-run intermediate JSON
 reports/             daily reports
-tests/               regression suite for dedupe.py — stdlib unittest
+tests/               regression suite, stdlib unittest — dedupe +
+                     render_dashboard
 migrations/          one-time ledger rewrites, kept for provenance
 ```
 
-Run the tests after touching `dedupe.py` or `enrich_select.py`:
+Run the tests after touching `dedupe.py`, `enrich_select.py`, or
+`render_dashboard.py`:
 
 ```
 python -m unittest discover -s tests
@@ -115,11 +119,16 @@ and the scan runs in a sandbox with no outbound network — a suite needing
 
 ## Standing constraints
 
-- Never edit `dedupe.py` or `enrich_select.py` to work around an error.
-  Report it and stop. If either is changed deliberately, `python -m unittest
-  discover -s tests` must pass before the run continues — the suite exists
-  because these two files are the deterministic layer everything downstream
-  trusts without re-checking.
+- Never edit `dedupe.py`, `enrich_select.py`, or `render_dashboard.py` to
+  work around an error. Report it and stop. If any is changed deliberately,
+  `python -m unittest discover -s tests` must pass before the run continues —
+  the suite exists because these three files are the deterministic layer
+  everything downstream trusts without re-checking.
+- `reporter` judges; `render_dashboard.py` renders. The reporter writes
+  `raw/dashboard-{date}.json` and runs the script — it does not write HTML.
+  Both dashboard failures so far (2026-08-20's blank board, 2026-08-21's five
+  `href="null"` links) were transcription errors in that mechanical step, not
+  judgment errors, which is why the step is a script now.
 - Never write enrichment data into `ledger.json`. `dedupe.py` rewrites every
   ledger record each run and preserves only `verdict`, `lat`, and `lng`, so
   anything else put there is erased on the next scan.

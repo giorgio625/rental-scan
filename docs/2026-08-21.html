@@ -113,6 +113,14 @@
   .price-note{font-size:11px;color:var(--muted);}
   .all-in{font-size:11.5px;color:var(--brick-dark);margin-top:2px;}
 
+  /* Bed/bath/sqft line. Every part is independently optional: sources state
+     beds far more often than baths, and §6 says a field the email never
+     mentioned is null, not zero. An unstated part says so rather than
+     rendering a plausible-looking blank. */
+  .specs{display:flex;flex-wrap:wrap;gap:5px;margin-top:6px;font-size:11.5px;color:var(--ink);}
+  .specs .sep{color:var(--line);}
+  .specs .unstated{color:#a8917a;font-style:italic;}
+
   .tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px;}
   .tag{
     font-size:11px;padding:4px 8px;border-radius:4px;background:var(--paper-2);
@@ -127,6 +135,13 @@
   .sources{font-size:10.5px;color:var(--muted);display:flex;gap:8px;flex-wrap:wrap;}
   .source-link{color:var(--brick-dark);text-decoration:none;}
   .source-link:hover{text-decoration:underline;}
+  /* A source whose email carried no listing link. Rendered as an <a> with a
+     null href it became a dead link indistinguishable from a live one — the
+     2026-08-21 board shipped five. It is now visibly not a link. */
+  .source-link.nolink{
+    color:var(--muted);text-decoration:none;cursor:help;
+    border-bottom:1px dotted var(--line);
+  }
   .loft-sig{font-size:10.5px;color:var(--green);font-style:italic;margin-top:10px;line-height:1.45;}
 
   /* ---------- CARD ACTIONS: favorite / dismiss ---------- */
@@ -166,6 +181,59 @@
     text-align:center;padding:60px 20px;color:var(--muted);font-size:13px;
   }
 
+  /* ---------- LEFT PANE TABS: board <-> past 7 days ---------- */
+  /* Not folded into .filters: the board's filter pills are a subset of one
+     tab's contents, and a "past 7 days" pill sitting among them would read as
+     another filter on the same list rather than a different list entirely. */
+  .pane-tabs{
+    display:flex;padding:0 24px;border-bottom:1px solid var(--line);
+    background:var(--paper);flex-shrink:0;
+  }
+  .pane-tab{
+    appearance:none;background:none;border:none;padding:11px 0;margin-right:22px;
+    font:inherit;font-size:12.5px;color:var(--muted);cursor:pointer;
+    border-bottom:2px solid transparent;transition:color .12s ease;
+  }
+  .pane-tab:hover{color:var(--ink);}
+  .pane-tab.active{color:var(--ink);font-weight:600;border-bottom-color:var(--brick);}
+
+  .week-scroll{display:none;flex:1;overflow-y:auto;padding:18px 24px 40px;}
+  body.view-week .week-scroll{display:block;}
+  body.view-week .list-scroll,
+  body.view-week #tierFilters,
+  body.view-week #priceFilters,
+  body.view-week #outdoorFilters,
+  body.view-week .dismissed-bar{display:none !important;}
+
+  .week-note{font-size:11.5px;color:var(--muted);line-height:1.5;margin-bottom:16px;}
+  .week-day{margin-bottom:24px;}
+  .week-day-head{
+    display:flex;align-items:baseline;justify-content:space-between;gap:10px;
+    padding-bottom:7px;margin-bottom:8px;border-bottom:1px solid var(--line);
+  }
+  .week-day-head b{font-family:'Fraunces',serif;font-size:14px;font-weight:600;}
+  .week-day-head span{font-size:10.5px;color:var(--muted);letter-spacing:0.04em;text-transform:uppercase;}
+  .week-row{
+    display:flex;justify-content:space-between;align-items:flex-start;gap:12px;
+    padding:9px 0;border-bottom:1px solid var(--paper-2);cursor:pointer;
+  }
+  .week-row:last-child{border-bottom:none;}
+  .week-row:hover .week-addr{color:var(--brick-dark);}
+  .week-addr{font-size:13px;font-weight:500;line-height:1.35;}
+  .week-meta{font-size:11px;color:var(--muted);margin-top:3px;line-height:1.5;}
+  .week-right{text-align:right;flex-shrink:0;}
+  .week-rent{font-family:'Fraunces',serif;font-size:14.5px;font-weight:600;white-space:nowrap;}
+  .week-allin{font-size:10.5px;color:var(--brick-dark);margin-top:2px;white-space:nowrap;}
+  .week-flag{
+    display:inline-block;font-size:9.5px;letter-spacing:0.04em;text-transform:uppercase;
+    padding:2px 6px;border-radius:3px;background:var(--paper-2);color:var(--muted);
+    margin-top:4px;
+  }
+  .week-flag.board{background:#f5e6d8;color:var(--brick-dark);}
+  .week-row.gone{opacity:.55;}
+  .week-row.gone .week-addr{text-decoration:line-through;text-decoration-color:var(--muted);}
+  .week-empty{text-align:center;padding:60px 20px;color:var(--muted);font-size:13px;}
+
   /* ---------- RIGHT PANE / MAP ---------- */
   .map-pane{position:relative;}
   #map{height:100vh;width:100%;background:#e4ddce;}
@@ -197,6 +265,13 @@
   .pin.priority{background:var(--priority);}
   .pin.worth{background:var(--worth);}
   .pin.near{background:var(--near);}
+  /* Past-7-days pins carry no score — they are everything captured, scored or
+     not — so they get a dot rather than a numbered teardrop. */
+  .pin.week{
+    width:16px;height:16px;border-radius:50%;transform:none;
+    background:var(--muted);border:2px solid #fff;
+  }
+  .pin.week.gone{background:#c9c2b6;}
 
   .leaflet-popup-content-wrapper{border-radius:6px;font-family:'Inter',sans-serif;}
   .popup-addr{font-weight:600;font-size:13px;}
@@ -274,6 +349,11 @@
       <a href="2026-08-13.html">2026-08-13</a>
     </div>
 
+    <div class="pane-tabs" id="paneTabs" role="tablist">
+      <button class="pane-tab active" data-pane="board" role="tab" aria-selected="true">Board</button>
+      <button class="pane-tab" data-pane="week" role="tab" aria-selected="false">Past 7 days</button>
+    </div>
+
     <div class="filters" id="tierFilters">
       <div class="filter-pill active" data-tier="all">All</div>
       <div class="filter-pill" data-tier="priority">Priority</div>
@@ -303,6 +383,7 @@
     </div>
 
     <div class="list-scroll" id="listScroll"></div>
+    <div class="week-scroll" id="weekScroll"></div>
   </div>
 
   <div class="map-pane">
@@ -326,60 +407,4749 @@
 <script>
 const listings = [
   {
-    id:1, key:'1538-n-milwaukee-2br-3200', tier:'near', score:0,
-    address:'1538 N Milwaukee Ave, Chicago, IL 60622', zone:'Wicker Park',
-    rent:3200, allIn:3200, lat:41.909294, lng:-87.6762095,
-    loft:'Not a loft (0 signals)', layout:'Layout not listed',
-    tags:[],
-    warn:'Fails style only — 0 loft signals recorded; listing arrived with no URL (harvester capture gap), so it could not be enriched this run. Wicker Park primary zone. Heat inclusion unknown, not priced in.',
-    signals:'No loft signals extracted — no URL to check',
-    sources:[{label:'Redfin (no link captured)', url:null}],
-    available:null, outdoor:'other'
+    "id": 1,
+    "key": "1538-n-milwaukee-2br-3200",
+    "tier": "near",
+    "score": 0,
+    "address": "1538 N Milwaukee Ave, Chicago, IL 60622",
+    "zone": "Wicker Park",
+    "rent": 3200,
+    "allIn": 3200,
+    "beds": 2,
+    "baths": 1,
+    "sqft": null,
+    "lat": 41.909294,
+    "lng": -87.6762095,
+    "loft": "Not a loft (0 signals)",
+    "layout": "Layout not listed",
+    "tags": [],
+    "warn": "Fails style only — 0 loft signals recorded. The listing page was never fetched this run, so the §4a evidence gap is unclosed rather than closed against it. Wicker Park primary zone. Heat inclusion unknown, not priced in.",
+    "signals": "No loft signals extracted — listing page not fetched this run",
+    "sources": [
+      {
+        "label": "Redfin",
+        "url": "https://www.redfin.com/IL/Chicago/1538-N-Milwaukee-Ave-60622/apartment/14108561"
+      }
+    ],
+    "available": null,
+    "outdoor": "other"
   },
   {
-    id:2, key:'325-w-fullerton-1br-3750', tier:'near', score:0,
-    address:'325 W Fullerton Pkwy, Chicago, IL 60614', zone:'Lincoln Park',
-    rent:3749, allIn:3749, lat:41.9252985, lng:-87.6375658,
-    loft:'Not a loft (0 signals)', layout:'Layout not listed',
-    tags:[],
-    warn:'Fails style only — 0 loft signals recorded; no URL captured, could not be enriched. $51 under the $3,800 ceiling. Lincoln Park secondary zone (−5 if it ever scored). Heat inclusion unknown, not priced in.',
-    signals:'No loft signals extracted — no URL to check',
-    sources:[{label:'Redfin (no link captured)', url:null}],
-    available:null, outdoor:'other'
+    "id": 2,
+    "key": "325-w-fullerton-1br-3750",
+    "tier": "near",
+    "score": 0,
+    "address": "325 W Fullerton Pkwy, Chicago, IL 60614",
+    "zone": "Lincoln Park",
+    "rent": 3749,
+    "allIn": 3749,
+    "beds": 1,
+    "baths": 1,
+    "sqft": null,
+    "lat": 41.9252985,
+    "lng": -87.6375658,
+    "loft": "Not a loft (0 signals)",
+    "layout": "Layout not listed",
+    "tags": [],
+    "warn": "Fails style only — 0 loft signals recorded, and the listing page was never fetched this run. $51 under the $3,800 ceiling. Lincoln Park secondary zone (−5 if it ever scored). Heat inclusion unknown, not priced in.",
+    "signals": "No loft signals extracted — listing page not fetched this run",
+    "sources": [
+      {
+        "label": "Redfin",
+        "url": "https://www.redfin.com/IL/Chicago/Park-Fullerton-by-Reside/apartment/13349484"
+      }
+    ],
+    "available": null,
+    "outdoor": "other"
   },
   {
-    id:3, key:'916-w-fullerton-ave-apt-3-2br-3000', tier:'near', score:0,
-    address:'916 W Fullerton Ave, Apt 3, Chicago, IL', zone:'Lincoln Park',
-    rent:3000, allIn:3000, lat:41.92561, lng:-87.6519867,
-    loft:'Not a loft (0 signals)', layout:'Layout not listed',
-    tags:[],
-    warn:'Fails style only — 0 loft signals recorded; no URL captured, could not be enriched. Lincoln Park secondary zone (−5 if it ever scored). Heat inclusion unknown, not priced in.',
-    signals:'No loft signals extracted — no URL to check',
-    sources:[{label:'Zillow (no link captured)', url:null}],
-    available:null, outdoor:'other'
+    "id": 3,
+    "key": "916-w-fullerton-3",
+    "tier": "near",
+    "score": 0,
+    "address": "916 W Fullerton Ave, Apt 3, Chicago, IL",
+    "zone": "Lincoln Park",
+    "rent": 3000,
+    "allIn": 3000,
+    "beds": 2,
+    "baths": 1,
+    "sqft": null,
+    "lat": 41.92561,
+    "lng": -87.6519867,
+    "loft": "Not a loft (0 signals)",
+    "layout": "Layout not listed",
+    "tags": [],
+    "warn": "Fails style only — 0 loft signals recorded, and the listing page was never fetched this run. Lincoln Park secondary zone (−5 if it ever scored). Heat inclusion unknown, not priced in.",
+    "signals": "No loft signals extracted — listing page not fetched this run",
+    "sources": [
+      {
+        "label": "Zillow",
+        "url": "https://www.zillow.com/homedetails/113965405_zpid/"
+      }
+    ],
+    "available": null,
+    "outdoor": "other"
   },
   {
-    id:4, key:'1921-n-sedgwick-3F', tier:'near', score:0,
-    address:'1921 N Sedgwick St, Unit 3F, Chicago, IL 60614', zone:'Lincoln Park',
-    rent:3150, allIn:3150, lat:41.9171593, lng:-87.6384712,
-    loft:'Not a loft (0 signals)', layout:'Layout not listed',
-    tags:[],
-    warn:'Fails style only — 0 loft signals recorded; no URL captured, could not be enriched. Lincoln Park secondary zone (−5 if it ever scored). Heat inclusion unknown, not priced in.',
-    signals:'No loft signals extracted — no URL to check',
-    sources:[{label:'Redfin (no link captured)', url:null}],
-    available:null, outdoor:'other'
+    "id": 4,
+    "key": "1921-n-sedgwick-3F",
+    "tier": "near",
+    "score": 0,
+    "address": "1921 N Sedgwick St, Unit 3F, Chicago, IL 60614",
+    "zone": "Lincoln Park",
+    "rent": 3150,
+    "allIn": 3150,
+    "beds": 2,
+    "baths": 1,
+    "sqft": null,
+    "lat": 41.9171593,
+    "lng": -87.6384712,
+    "loft": "Not a loft (0 signals)",
+    "layout": "Layout not listed",
+    "tags": [],
+    "warn": "Fails style only — 0 loft signals recorded, and the listing page was never fetched this run. Lincoln Park secondary zone (−5 if it ever scored). Heat inclusion unknown, not priced in.",
+    "signals": "No loft signals extracted — listing page not fetched this run",
+    "sources": [
+      {
+        "label": "Redfin",
+        "url": "https://www.redfin.com/IL/Chicago/1921-N-Sedgwick-St-60614/unit-3F/home/187331303"
+      }
+    ],
+    "available": null,
+    "outdoor": "other"
   },
   {
-    id:5, key:'1944-n-bissell-2br-2300', tier:'near', score:0,
-    address:'1944 N Bissell St, Chicago, IL 60614', zone:'Lincoln Park',
-    rent:2295, allIn:2295, lat:41.917271, lng:-87.6523514,
-    loft:'Not a loft (0 signals)', layout:'Layout not listed',
-    tags:['Suspect pricing'],
-    warn:'Fails style only — 0 loft signals recorded; no URL captured, could not be enriched. Flagged suspect_pricing — more than 20% below the running median for 2BR (§5 bait-listing check). Lincoln Park secondary zone (−5 if it ever scored). Heat inclusion unknown, not priced in.',
-    signals:'No loft signals extracted — no URL to check',
-    sources:[{label:'Redfin (no link captured)', url:null}],
-    available:null, outdoor:'other'
+    "id": 5,
+    "key": "1944-n-bissell-2br-2300",
+    "tier": "near",
+    "score": 0,
+    "address": "1944 N Bissell St, Chicago, IL 60614",
+    "zone": "Lincoln Park",
+    "rent": 2295,
+    "allIn": 2295,
+    "beds": 2,
+    "baths": 1,
+    "sqft": null,
+    "lat": 41.917271,
+    "lng": -87.6523514,
+    "loft": "Not a loft (0 signals)",
+    "layout": "Layout not listed",
+    "tags": [
+      "Suspect pricing"
+    ],
+    "warn": "Fails style only — 0 loft signals recorded, and the listing page was never fetched this run. Flagged suspect_pricing — more than 20% below the running median for 2BR (§5 bait-listing check). Lincoln Park secondary zone (−5 if it ever scored). Heat inclusion unknown, not priced in.",
+    "signals": "No loft signals extracted — listing page not fetched this run",
+    "sources": [
+      {
+        "label": "Redfin",
+        "url": "https://www.redfin.com/IL/Chicago/1944-N-Bissell-St-60614/home/13350699"
+      }
+    ],
+    "available": null,
+    "outdoor": "other"
+  }
+];
+
+// ---------------------------------------------------------------------------
+// Past 7 days.
+//
+// `weekly` is every canonical key whose `first_seen` falls in the trailing
+// 7-day window, taken straight from ledger.json: scored and unscored, still
+// live and already dead. That is deliberately a different question from the
+// board above, which carries only what currently qualifies. This is the "what
+// did the scan actually see this week" view, and narrowing it to qualifiers
+// would answer the board's question twice instead.
+//
+// `render_dashboard.py` replaces this array and `weekWindow` together with
+// `listings`. Both are data; nothing below this line is.
+// ---------------------------------------------------------------------------
+const weekWindow = {
+  "start": "2026-08-15",
+  "end": "2026-08-21"
+};
+const weekly = [
+  {
+    "key": "1944-n-bissell-2br-2300",
+    "date": "2026-08-21",
+    "status": "active",
+    "onBoard": false,
+    "address": "1944 N Bissell St, Chicago, IL 60614",
+    "unit": null,
+    "rent": 2295,
+    "allIn": 2295.0,
+    "beds": 2,
+    "baths": 1,
+    "sqft": null,
+    "lat": 41.917271,
+    "lng": -87.6523514,
+    "sources": [
+      {
+        "label": "Redfin",
+        "url": "https://www.redfin.com/IL/Chicago/1944-N-Bissell-St-60614/home/13350699"
+      }
+    ]
   },
+  {
+    "key": "916-w-fullerton-3",
+    "date": "2026-08-21",
+    "status": "active",
+    "onBoard": false,
+    "address": "916 W Fullerton Ave APT 3, Chicago, IL",
+    "unit": null,
+    "rent": 3000,
+    "allIn": 3000.0,
+    "beds": 2,
+    "baths": 1,
+    "sqft": null,
+    "lat": 41.92561,
+    "lng": -87.6519867,
+    "sources": [
+      {
+        "label": "Zillow",
+        "url": "https://www.zillow.com/homedetails/113965405_zpid/"
+      }
+    ]
+  },
+  {
+    "key": "1921-n-sedgwick-3F",
+    "date": "2026-08-21",
+    "status": "active",
+    "onBoard": false,
+    "address": "1921 N Sedgwick St Unit 3F, Chicago, IL 60614",
+    "unit": "3F",
+    "rent": 3150,
+    "allIn": 3150.0,
+    "beds": 2,
+    "baths": 1,
+    "sqft": null,
+    "lat": 41.9171593,
+    "lng": -87.6384712,
+    "sources": [
+      {
+        "label": "Redfin",
+        "url": "https://www.redfin.com/IL/Chicago/1921-N-Sedgwick-St-60614/unit-3F/home/187331303"
+      }
+    ]
+  },
+  {
+    "key": "1538-n-milwaukee-2br-3200",
+    "date": "2026-08-21",
+    "status": "active",
+    "onBoard": false,
+    "address": "1538 N Milwaukee Ave, Chicago, IL 60622",
+    "unit": null,
+    "rent": 3200,
+    "allIn": 3200.0,
+    "beds": 2,
+    "baths": 1,
+    "sqft": null,
+    "lat": 41.909294,
+    "lng": -87.6762095,
+    "sources": [
+      {
+        "label": "Redfin",
+        "url": "https://www.redfin.com/IL/Chicago/1538-N-Milwaukee-Ave-60622/apartment/14108561"
+      }
+    ]
+  },
+  {
+    "key": "325-w-fullerton-1br-3750",
+    "date": "2026-08-21",
+    "status": "active",
+    "onBoard": false,
+    "address": "325 W Fullerton Pkwy, Chicago, IL 60614",
+    "unit": null,
+    "rent": 3749,
+    "allIn": 3749.0,
+    "beds": 1,
+    "baths": 1,
+    "sqft": null,
+    "lat": 41.9252985,
+    "lng": -87.6375658,
+    "sources": [
+      {
+        "label": "Redfin",
+        "url": "https://www.redfin.com/IL/Chicago/Park-Fullerton-by-Reside/apartment/13349484"
+      }
+    ]
+  },
+  {
+    "key": "1407-n-milwaukee-UNKNOWN",
+    "date": "2026-08-20",
+    "status": "active",
+    "onBoard": false,
+    "address": "1407 N Milwaukee Avenue, Chicago, IL 60622",
+    "unit": null,
+    "rent": null,
+    "allIn": null,
+    "beds": null,
+    "baths": null,
+    "sqft": null,
+    "lat": 41.9074766,
+    "lng": -87.6726773,
+    "sources": [
+      {
+        "label": "Web",
+        "url": "https://bestchicagoproperties.com/listings/listing/MRED/12693495/Chicago/1407-N-Milwaukee-Avenue"
+      }
+    ]
+  },
+  {
+    "key": "424-w-diversey-0br-1200",
+    "date": "2026-08-20",
+    "status": "active",
+    "onBoard": false,
+    "address": "424 W Diversey Pkwy, Chicago, IL 60614",
+    "unit": null,
+    "rent": 1195,
+    "allIn": 1195.0,
+    "beds": 0,
+    "baths": 1.0,
+    "sqft": null,
+    "lat": 41.932562,
+    "lng": -87.6584665,
+    "sources": [
+      {
+        "label": "Redfin",
+        "url": "https://www.redfin.com/IL/Chicago/424-W-Diversey-Pkwy-60614/apartment/64232081"
+      }
+    ]
+  },
+  {
+    "key": "2629-n-hampden-409",
+    "date": "2026-08-20",
+    "status": "active",
+    "onBoard": false,
+    "address": "2629 North Hampden Court",
+    "unit": "409",
+    "rent": 1550,
+    "allIn": 1550.0,
+    "beds": 0,
+    "baths": 1.0,
+    "sqft": 400,
+    "lat": 41.9301663,
+    "lng": -87.6407819,
+    "sources": [
+      {
+        "label": "Web",
+        "url": "https://www.compass.com/homedetails/2629-N-Hampden-Ct-Unit-409-Chicago-IL-60614/1WFIMY_pid/"
+      }
+    ]
+  },
+  {
+    "key": "640-w-wrightwood-303",
+    "date": "2026-08-20",
+    "status": "active",
+    "onBoard": false,
+    "address": "640 West Wrightwood Avenue",
+    "unit": "303",
+    "rent": 1620,
+    "allIn": 1620.0,
+    "beds": 0,
+    "baths": 1.0,
+    "sqft": 350,
+    "lat": 41.9296848,
+    "lng": -87.6445738,
+    "sources": [
+      {
+        "label": "Web",
+        "url": "https://www.compass.com/homedetails/640-W-Wrightwood-Ave-Unit-303-Chicago-IL-60614/1WZRLW_pid/"
+      }
+    ]
+  },
+  {
+    "key": "640-w-wrightwood-216",
+    "date": "2026-08-20",
+    "status": "active",
+    "onBoard": false,
+    "address": "640 West Wrightwood Avenue",
+    "unit": "216",
+    "rent": 1620,
+    "allIn": 1620.0,
+    "beds": 0,
+    "baths": 1.0,
+    "sqft": 350,
+    "lat": 41.9296848,
+    "lng": -87.6445738,
+    "sources": [
+      {
+        "label": "Web",
+        "url": "https://www.compass.com/homedetails/640-W-Wrightwood-Ave-Unit-216-Chicago-IL-60614/1VPFQL_pid/"
+      }
+    ]
+  },
+  {
+    "key": "640-w-wrightwood-201",
+    "date": "2026-08-20",
+    "status": "active",
+    "onBoard": false,
+    "address": "640 West Wrightwood Avenue",
+    "unit": "201",
+    "rent": 1620,
+    "allIn": 1620.0,
+    "beds": 0,
+    "baths": 1.0,
+    "sqft": 350,
+    "lat": 41.9296848,
+    "lng": -87.6445738,
+    "sources": [
+      {
+        "label": "Web",
+        "url": "https://www.compass.com/homedetails/640-W-Wrightwood-Ave-Unit-201-Chicago-IL-60614/1X4KZH_pid/"
+      }
+    ]
+  },
+  {
+    "key": "2119-n-sedgwick-C4",
+    "date": "2026-08-20",
+    "status": "active",
+    "onBoard": false,
+    "address": "2119 North Sedgwick Street",
+    "unit": "C4",
+    "rent": 1650,
+    "allIn": 1650.0,
+    "beds": 0,
+    "baths": 1.0,
+    "sqft": 350,
+    "lat": 41.9207761,
+    "lng": -87.6385543,
+    "sources": [
+      {
+        "label": "Web",
+        "url": "https://www.compass.com/homedetails/2119-N-Sedgwick-St-Unit-C4-Chicago-IL-60614/2FAH19_pid/"
+      }
+    ]
+  },
+  {
+    "key": "2119-n-sedgwick-B6",
+    "date": "2026-08-20",
+    "status": "active",
+    "onBoard": false,
+    "address": "2119 North Sedgwick Street",
+    "unit": "B6",
+    "rent": 1750,
+    "allIn": 1750.0,
+    "beds": 0,
+    "baths": 1.0,
+    "sqft": 350,
+    "lat": 41.9207761,
+    "lng": -87.6385543,
+    "sources": [
+      {
+        "label": "Web",
+        "url": "https://www.compass.com/homedetails/2119-N-Sedgwick-St-Unit-B6-Chicago-IL-60614/2F064M_pid/"
+      }
+    ]
+  },
+  {
+    "key": "1840-n-bissell-G",
+    "date": "2026-08-20",
+    "status": "active",
+    "onBoard": false,
+    "address": "1840 North Bissell Street",
+    "unit": "G",
+    "rent": 1800,
+    "allIn": 1800.0,
+    "beds": 0,
+    "baths": 1.0,
+    "sqft": 605,
+    "lat": 41.9149585,
+    "lng": -87.6522551,
+    "sources": [
+      {
+        "label": "Web",
+        "url": "https://www.compass.com/homedetails/1840-N-Bissell-St-Unit-G-Chicago-IL-60614/2EXWWK_pid/"
+      }
+    ]
+  },
+  {
+    "key": "2250-n-lincoln-308",
+    "date": "2026-08-20",
+    "status": "active",
+    "onBoard": false,
+    "address": "2250 North Lincoln Avenue",
+    "unit": "308",
+    "rent": 1895,
+    "allIn": 1895.0,
+    "beds": 0,
+    "baths": 1.0,
+    "sqft": null,
+    "lat": 41.9228266,
+    "lng": -87.6452584,
+    "sources": [
+      {
+        "label": "Web",
+        "url": "https://www.compass.com/homedetails/2250-N-Lincoln-Ave-Unit-308-Chicago-IL-60614/2F9O11_pid/"
+      }
+    ]
+  },
+  {
+    "key": "2740-n-hampden-4E",
+    "date": "2026-08-20",
+    "status": "active",
+    "onBoard": false,
+    "address": "2740 North Hampden Court",
+    "unit": "4E",
+    "rent": 1905,
+    "allIn": 1905.0,
+    "beds": 0,
+    "baths": 1.0,
+    "sqft": 350,
+    "lat": 41.9317294,
+    "lng": -87.6430821,
+    "sources": [
+      {
+        "label": "Web",
+        "url": "https://www.compass.com/homedetails/2740-N-Hampden-Ct-Unit-4E-Chicago-IL-60614/1WO5GD_pid/"
+      }
+    ]
+  },
+  {
+    "key": "1841-n-hermitage-CH1",
+    "date": "2026-08-20",
+    "status": "active",
+    "onBoard": false,
+    "address": "1841 North Hermitage Avenue",
+    "unit": "CH1",
+    "rent": 1999,
+    "allIn": 1999.0,
+    "beds": 1,
+    "baths": 1.0,
+    "sqft": 700,
+    "lat": 41.9154717,
+    "lng": -87.671259,
+    "sources": [
+      {
+        "label": "Web",
+        "url": "https://www.compass.com/homedetails/1841-N-Hermitage-Ave-Unit-CH1-Chicago-IL-60622/1W3F9O_pid/"
+      }
+    ]
+  },
+  {
+    "key": "452-w-st-james-3",
+    "date": "2026-08-20",
+    "status": "active",
+    "onBoard": false,
+    "address": "452 West St James Place",
+    "unit": "3",
+    "rent": 2000,
+    "allIn": 2000.0,
+    "beds": 1,
+    "baths": 1.0,
+    "sqft": null,
+    "lat": 41.9281795,
+    "lng": -87.6411428,
+    "sources": [
+      {
+        "label": "Web",
+        "url": "https://www.compass.com/homedetails/452-W-St-James-Pl-Unit-3-Chicago-IL-60614/1W5UOF_pid/"
+      }
+    ]
+  },
+  {
+    "key": "2750-n-kenmore-GF",
+    "date": "2026-08-20",
+    "status": "active",
+    "onBoard": false,
+    "address": "2750 North Kenmore Avenue",
+    "unit": "GF",
+    "rent": 2000,
+    "allIn": 2000.0,
+    "beds": 1,
+    "baths": 1.0,
+    "sqft": null,
+    "lat": 41.9314302,
+    "lng": -87.6553677,
+    "sources": [
+      {
+        "label": "Web",
+        "url": "https://www.compass.com/homedetails/2750-N-Kenmore-Ave-Unit-GF-Chicago-IL-60614/1WYTE5_pid/"
+      }
+    ]
+  },
+  {
+    "key": "2239-n-western-2F",
+    "date": "2026-08-20",
+    "status": "active",
+    "onBoard": false,
+    "address": "2239 North Western Avenue",
+    "unit": "2F",
+    "rent": 2000,
+    "allIn": 2000.0,
+    "beds": 2,
+    "baths": 1.0,
+    "sqft": null,
+    "lat": 41.9228996,
+    "lng": -87.687353,
+    "sources": [
+      {
+        "label": "Web",
+        "url": "https://www.compass.com/homedetails/2239-N-Western-Ave-Unit-2F-Chicago-IL-60647/2FB46W_pid/"
+      }
+    ]
+  },
+  {
+    "key": "2555-n-clark-2",
+    "date": "2026-08-20",
+    "status": "active",
+    "onBoard": false,
+    "address": "2555 N Clark St Unit 2, Chicago, IL 60614",
+    "unit": "2",
+    "rent": 2135,
+    "allIn": 2135.0,
+    "beds": 0,
+    "baths": 1.0,
+    "sqft": 500,
+    "lat": 41.9296542,
+    "lng": -87.6422914,
+    "sources": [
+      {
+        "label": "Redfin",
+        "url": "https://www.redfin.com/IL/Chicago/2555-N-Clark-St-60614/unit-2/home/200200677"
+      }
+    ]
+  },
+  {
+    "key": "1636-n-wells-2214",
+    "date": "2026-08-20",
+    "status": "active",
+    "onBoard": false,
+    "address": "1636 North Wells Street",
+    "unit": "2214",
+    "rent": 2150,
+    "allIn": 2150.0,
+    "beds": 0,
+    "baths": 1.0,
+    "sqft": 550,
+    "lat": 41.9123592,
+    "lng": -87.6352327,
+    "sources": [
+      {
+        "label": "Web",
+        "url": "https://www.compass.com/homedetails/1636-N-Wells-St-Unit-2214-Chicago-IL-60614/1VKFMJ_pid/"
+      }
+    ]
+  },
+  {
+    "key": "2029-n-damen-2FR",
+    "date": "2026-08-20",
+    "status": "active",
+    "onBoard": false,
+    "address": "2029 North Damen Avenue",
+    "unit": "2FR",
+    "rent": 2295,
+    "allIn": 2295.0,
+    "beds": 1,
+    "baths": 1.0,
+    "sqft": null,
+    "lat": 41.9186764,
+    "lng": -87.6773758,
+    "sources": [
+      {
+        "label": "Web",
+        "url": "https://www.compass.com/homedetails/2029-N-Damen-Ave-Unit-2FR-Chicago-IL-60647/1XE6RV_pid/"
+      }
+    ]
+  },
+  {
+    "key": "901-w-altgeld-1B",
+    "date": "2026-08-20",
+    "status": "active",
+    "onBoard": false,
+    "address": "901 West Altgeld Street",
+    "unit": "1B",
+    "rent": 2400,
+    "allIn": 2400.0,
+    "beds": 1,
+    "baths": 1.0,
+    "sqft": 800,
+    "lat": 41.927148,
+    "lng": -87.651387,
+    "sources": [
+      {
+        "label": "Web",
+        "url": "https://www.compass.com/homedetails/901-W-Altgeld-St-Unit-1B-Chicago-IL-60614/1WOLQ0_pid/"
+      }
+    ]
+  },
+  {
+    "key": "2250-n-lincoln-201",
+    "date": "2026-08-20",
+    "status": "active",
+    "onBoard": false,
+    "address": "2250 North Lincoln Avenue",
+    "unit": "201",
+    "rent": 2400,
+    "allIn": 2400.0,
+    "beds": 1,
+    "baths": 1.0,
+    "sqft": null,
+    "lat": 41.9228266,
+    "lng": -87.6452584,
+    "sources": [
+      {
+        "label": "Web",
+        "url": "https://www.compass.com/homedetails/2250-N-Lincoln-Ave-Unit-201-Chicago-IL-60614/2FAH7V_pid/"
+      }
+    ]
+  },
+  {
+    "key": "2212-n-leavitt-1",
+    "date": "2026-08-20",
+    "status": "active",
+    "onBoard": false,
+    "address": "2212 North Leavitt Street",
+    "unit": "1",
+    "rent": 2400,
+    "allIn": 2400.0,
+    "beds": 2,
+    "baths": 1.0,
+    "sqft": null,
+    "lat": 41.9217333,
+    "lng": -87.6828947,
+    "sources": [
+      {
+        "label": "Web",
+        "url": "https://www.compass.com/homedetails/2212-N-Leavitt-St-Unit-1-Chicago-IL-60647/1WBPEN_pid/"
+      }
+    ]
+  },
+  {
+    "key": "2015-w-concord-C",
+    "date": "2026-08-20",
+    "status": "active",
+    "onBoard": false,
+    "address": "2015 W Concord Pl #C, Chicago, IL",
+    "unit": "C",
+    "rent": 2400,
+    "allIn": 2400.0,
+    "beds": 1,
+    "baths": 1.0,
+    "sqft": null,
+    "lat": 41.9114299,
+    "lng": -87.678108,
+    "sources": [
+      {
+        "label": "Zillow",
+        "url": "https://www.zillow.com/homedetails/3733761_zpid/"
+      }
+    ]
+  },
+  {
+    "key": "2300-n-commonwealth-2C",
+    "date": "2026-08-20",
+    "status": "active",
+    "onBoard": false,
+    "address": "2300 North Commonwealth Avenue",
+    "unit": "2C",
+    "rent": 2500,
+    "allIn": 2500.0,
+    "beds": 1,
+    "baths": 1.0,
+    "sqft": 700,
+    "lat": 41.9241602,
+    "lng": -87.6383697,
+    "sources": [
+      {
+        "label": "Web",
+        "url": "https://www.compass.com/homedetails/2300-N-Commonwealth-Ave-Unit-2C-Chicago-IL-60614/1WNFHG_pid/"
+      }
+    ]
+  },
+  {
+    "key": "1358-n-artesian-2F",
+    "date": "2026-08-20",
+    "status": "active",
+    "onBoard": false,
+    "address": "1358 North Artesian Avenue",
+    "unit": "2F",
+    "rent": 2600,
+    "allIn": 2600.0,
+    "beds": 1,
+    "baths": 1.0,
+    "sqft": null,
+    "lat": 41.9065292,
+    "lng": -87.6886477,
+    "sources": [
+      {
+        "label": "Web",
+        "url": "https://www.compass.com/homedetails/1358-N-Artesian-Ave-Unit-2F-Chicago-IL-60622/1XKO9M_pid/"
+      }
+    ]
+  },
+  {
+    "key": "2510-n-wayne-211",
+    "date": "2026-08-20",
+    "status": "active",
+    "onBoard": false,
+    "address": "2510 North Wayne Avenue",
+    "unit": "211",
+    "rent": 2700,
+    "allIn": 2700.0,
+    "beds": 1,
+    "baths": 1.0,
+    "sqft": 750,
+    "lat": 41.9272593,
+    "lng": -87.6626696,
+    "sources": [
+      {
+        "label": "Web",
+        "url": "https://www.compass.com/homedetails/2510-N-Wayne-Ave-Unit-211-Chicago-IL-60614/1BZIUI_pid/"
+      }
+    ]
+  },
+  {
+    "key": "1660-n-lasalle-2306",
+    "date": "2026-08-20",
+    "status": "active",
+    "onBoard": false,
+    "address": "1660 North LaSalle Drive",
+    "unit": "2306",
+    "rent": 2750,
+    "allIn": 2750.0,
+    "beds": 1,
+    "baths": 1.0,
+    "sqft": null,
+    "lat": 41.9126095,
+    "lng": -87.6335689,
+    "sources": [
+      {
+        "label": "Web",
+        "url": "https://www.compass.com/homedetails/1660-N-LaSalle-Dr-Unit-2306-Chicago-IL-60614/1XE4Q5_pid/"
+      }
+    ]
+  },
+  {
+    "key": "2416-n-greenview-G",
+    "date": "2026-08-20",
+    "status": "active",
+    "onBoard": false,
+    "address": "2416 North Greenview Avenue",
+    "unit": "G",
+    "rent": 2800,
+    "allIn": 2800.0,
+    "beds": 2,
+    "baths": 1.0,
+    "sqft": 1200,
+    "lat": 41.9257552,
+    "lng": -87.6660276,
+    "sources": [
+      {
+        "label": "Web",
+        "url": "https://www.compass.com/homedetails/2416-N-Greenview-Ave-Unit-G-Chicago-IL-60614/1X1D8F_pid/"
+      }
+    ]
+  },
+  {
+    "key": "2048-w-evergreen-1",
+    "date": "2026-08-20",
+    "status": "active",
+    "onBoard": false,
+    "address": "2048 W Evergreen Ave #1, Chicago, IL 60622",
+    "unit": "1",
+    "rent": 2800,
+    "allIn": 2800.0,
+    "beds": 1,
+    "baths": 1.0,
+    "sqft": 1200,
+    "lat": 41.9061028,
+    "lng": -87.6792094,
+    "sources": [
+      {
+        "label": "Redfin",
+        "url": "https://www.redfin.com/IL/Chicago/2048-W-Evergreen-Ave-60622/unit-1/apartment/175917689"
+      }
+    ]
+  },
+  {
+    "key": "2555-n-clark-1105",
+    "date": "2026-08-20",
+    "status": "active",
+    "onBoard": false,
+    "address": "2555 N Clark St Unit 1105, Chicago, IL 60614",
+    "unit": "1105",
+    "rent": 2895,
+    "allIn": 2895.0,
+    "beds": 1,
+    "baths": 1.0,
+    "sqft": 900,
+    "lat": 41.9296542,
+    "lng": -87.6422914,
+    "sources": [
+      {
+        "label": "Redfin",
+        "url": "https://www.redfin.com/IL/Chicago/2555-N-Clark-St-60614/unit-1105/home/197253454"
+      }
+    ]
+  },
+  {
+    "key": "2019-n-damen-2F",
+    "date": "2026-08-20",
+    "status": "active",
+    "onBoard": false,
+    "address": "2019 North Damen Avenue",
+    "unit": "2F",
+    "rent": 3000,
+    "allIn": 3000.0,
+    "beds": 3,
+    "baths": 1.0,
+    "sqft": 1500,
+    "lat": 41.9184023,
+    "lng": -87.6773755,
+    "sources": [
+      {
+        "label": "Web",
+        "url": "https://www.compass.com/homedetails/2019-N-Damen-Ave-Unit-2F-Chicago-IL-60647/2EYPTN_pid/"
+      }
+    ]
+  },
+  {
+    "key": "1850-n-clark-1205",
+    "date": "2026-08-20",
+    "status": "active",
+    "onBoard": false,
+    "address": "1850 North Clark Street",
+    "unit": "1205",
+    "rent": 3000,
+    "allIn": 3000.0,
+    "beds": 1,
+    "baths": 1.0,
+    "sqft": 813,
+    "lat": 41.9159831,
+    "lng": -87.6347018,
+    "sources": [
+      {
+        "label": "Web",
+        "url": "https://www.compass.com/homedetails/1850-N-Clark-St-Unit-1205-Chicago-IL-60614/1W26AB_pid/"
+      }
+    ]
+  },
+  {
+    "key": "1781-w-altgeld-A",
+    "date": "2026-08-20",
+    "status": "active",
+    "onBoard": false,
+    "address": "1781 West Altgeld Street",
+    "unit": "A",
+    "rent": 3100,
+    "allIn": 3100.0,
+    "beds": 1,
+    "baths": 1.0,
+    "sqft": 750,
+    "lat": 41.9285656,
+    "lng": -87.6723015,
+    "sources": [
+      {
+        "label": "Web",
+        "url": "https://www.compass.com/homedetails/1781-W-Altgeld-St-Unit-A-Chicago-IL-60614/1XP24O_pid/"
+      }
+    ]
+  },
+  {
+    "key": "2309-n-leavitt-1",
+    "date": "2026-08-20",
+    "status": "active",
+    "onBoard": false,
+    "address": "2309 North Leavitt Street",
+    "unit": "1",
+    "rent": 3200,
+    "allIn": 3200.0,
+    "beds": 2,
+    "baths": 2.0,
+    "sqft": 1100,
+    "lat": 41.923026,
+    "lng": -87.6824508,
+    "sources": [
+      {
+        "label": "Web",
+        "url": "https://www.compass.com/homedetails/2309-N-Leavitt-St-Unit-1-Chicago-IL-60647/1X6XL7_pid/"
+      }
+    ]
+  },
+  {
+    "key": "1455-w-fullerton-302",
+    "date": "2026-08-20",
+    "status": "active",
+    "onBoard": false,
+    "address": "1455 West Fullerton Avenue",
+    "unit": "302",
+    "rent": 3200,
+    "allIn": 3200.0,
+    "beds": 2,
+    "baths": 2.0,
+    "sqft": 1200,
+    "lat": 41.9250083,
+    "lng": -87.66547,
+    "sources": [
+      {
+        "label": "Web",
+        "url": "https://www.compass.com/homedetails/1455-W-Fullerton-Ave-Unit-302-Chicago-IL-60614/1XO0KE_pid/"
+      }
+    ]
+  },
+  {
+    "key": "2525-n-orchard-2S",
+    "date": "2026-08-20",
+    "status": "active",
+    "onBoard": false,
+    "address": "2525 North Orchard Street",
+    "unit": "2S",
+    "rent": 3250,
+    "allIn": 3250.0,
+    "beds": 1,
+    "baths": 1.0,
+    "sqft": null,
+    "lat": 41.9285676,
+    "lng": -87.6461474,
+    "sources": [
+      {
+        "label": "Web",
+        "url": "https://www.compass.com/homedetails/2525-N-Orchard-St-Unit-2S-Chicago-IL-60614/1XB81A_pid/"
+      }
+    ]
+  },
+  {
+    "key": "2140-n-lincoln-park-w-1001",
+    "date": "2026-08-20",
+    "status": "active",
+    "onBoard": false,
+    "address": "2140 N Lincoln Park W APT 1001, Chicago, IL",
+    "unit": "1001",
+    "rent": 3250,
+    "allIn": 3250.0,
+    "beds": 1,
+    "baths": null,
+    "sqft": null,
+    "lat": 41.9213092,
+    "lng": -87.6368508,
+    "sources": [
+      {
+        "label": "Zillow",
+        "url": "https://www.zillow.com/homedetails/464607265_zpid/"
+      }
+    ]
+  },
+  {
+    "key": "617-w-drummond-3BW",
+    "date": "2026-08-20",
+    "status": "active",
+    "onBoard": false,
+    "address": "617 West Drummond Place",
+    "unit": "3BW",
+    "rent": 3310,
+    "allIn": 3310.0,
+    "beds": 2,
+    "baths": 1.0,
+    "sqft": 900,
+    "lat": 41.9302817,
+    "lng": -87.6444464,
+    "sources": [
+      {
+        "label": "Web",
+        "url": "https://www.compass.com/homedetails/617-W-Drummond-Pl-Unit-3BW-Chicago-IL-60614/1VNWRT_pid/"
+      }
+    ]
+  },
+  {
+    "key": "2811-n-bell-101",
+    "date": "2026-08-20",
+    "status": "active",
+    "onBoard": false,
+    "address": "2811 North Bell Avenue",
+    "unit": "101",
+    "rent": 3400,
+    "allIn": 3400.0,
+    "beds": 2,
+    "baths": 2.0,
+    "sqft": 1630,
+    "lat": 41.9325028,
+    "lng": -87.6847828,
+    "sources": [
+      {
+        "label": "Web",
+        "url": "https://www.compass.com/homedetails/2811-N-Bell-Ave-Unit-101-Chicago-IL-60618/1WL82Q_pid/"
+      }
+    ]
+  },
+  {
+    "key": "1255-w-belden-2B",
+    "date": "2026-08-20",
+    "status": "active",
+    "onBoard": false,
+    "address": "1255 West Belden Avenue",
+    "unit": "2B",
+    "rent": 3400,
+    "allIn": 3400.0,
+    "beds": 2,
+    "baths": 2.0,
+    "sqft": 1200,
+    "lat": 41.9233308,
+    "lng": -87.6605808,
+    "sources": [
+      {
+        "label": "Web",
+        "url": "https://www.compass.com/homedetails/1255-W-Belden-Ave-Unit-2B-Chicago-IL-60614/1VV90Q_pid/"
+      }
+    ]
+  },
+  {
+    "key": "2124-n-hudson-104",
+    "date": "2026-08-20",
+    "status": "active",
+    "onBoard": false,
+    "address": "2124 North Hudson Avenue",
+    "unit": "104",
+    "rent": 3500,
+    "allIn": 3500.0,
+    "beds": 2,
+    "baths": 2.0,
+    "sqft": 1095,
+    "lat": 41.9209189,
+    "lng": -87.640321,
+    "sources": [
+      {
+        "label": "Web",
+        "url": "https://www.compass.com/homedetails/2124-N-Hudson-Ave-Unit-104-Chicago-IL-60614/1X15QU_pid/"
+      }
+    ]
+  },
+  {
+    "key": "1920-n-milwaukee-306",
+    "date": "2026-08-20",
+    "status": "active",
+    "onBoard": false,
+    "address": "1920 North Milwaukee Avenue",
+    "unit": "306",
+    "rent": 3570,
+    "allIn": 3603.33,
+    "beds": 2,
+    "baths": 2.0,
+    "sqft": 1079,
+    "lat": 41.9164129,
+    "lng": -87.6870725,
+    "sources": [
+      {
+        "label": "Web",
+        "url": "https://www.compass.com/homedetails/1920-N-Milwaukee-Ave-Unit-306-Chicago-IL-60647/1WQP3L_pid/"
+      }
+    ]
+  },
+  {
+    "key": "2541-n-southport-2R",
+    "date": "2026-08-20",
+    "status": "active",
+    "onBoard": false,
+    "address": "2541 North Southport Avenue",
+    "unit": "2R",
+    "rent": 3600,
+    "allIn": 3600.0,
+    "beds": 2,
+    "baths": 1.0,
+    "sqft": null,
+    "lat": 41.9282565,
+    "lng": -87.6631285,
+    "sources": [
+      {
+        "label": "Web",
+        "url": "https://www.compass.com/homedetails/2541-N-Southport-Ave-Unit-2R-Chicago-IL-60614/1WXN6G_pid/"
+      }
+    ]
+  },
+  {
+    "key": "2541-n-southport-1R",
+    "date": "2026-08-20",
+    "status": "active",
+    "onBoard": false,
+    "address": "2541 North Southport Avenue",
+    "unit": "1R",
+    "rent": 3600,
+    "allIn": 3600.0,
+    "beds": 2,
+    "baths": 1.0,
+    "sqft": null,
+    "lat": 41.9282565,
+    "lng": -87.6631285,
+    "sources": [
+      {
+        "label": "Web",
+        "url": "https://www.compass.com/homedetails/2541-N-Southport-Ave-Unit-1R-Chicago-IL-60614/1VTGUH_pid/"
+      }
+    ]
+  },
+  {
+    "key": "2038-n-seminary-G",
+    "date": "2026-08-20",
+    "status": "active",
+    "onBoard": false,
+    "address": "2038 North Seminary Avenue",
+    "unit": "G",
+    "rent": 3600,
+    "allIn": 3600.0,
+    "beds": 2,
+    "baths": 1.0,
+    "sqft": 1066,
+    "lat": 41.9192164,
+    "lng": -87.6561449,
+    "sources": [
+      {
+        "label": "Web",
+        "url": "https://www.compass.com/homedetails/2038-N-Seminary-Ave-Unit-G-Chicago-IL-60614/1WS7AW_pid/"
+      }
+    ]
+  },
+  {
+    "key": "1920-n-milwaukee-607",
+    "date": "2026-08-20",
+    "status": "active",
+    "onBoard": false,
+    "address": "1920 North Milwaukee Avenue",
+    "unit": "607",
+    "rent": 3660,
+    "allIn": 3693.33,
+    "beds": 2,
+    "baths": 2.0,
+    "sqft": 1230,
+    "lat": 41.9164129,
+    "lng": -87.6870725,
+    "sources": [
+      {
+        "label": "Web",
+        "url": "https://www.compass.com/homedetails/1920-N-Milwaukee-Ave-Unit-607-Chicago-IL-60647/1W613O_pid/"
+      }
+    ]
+  },
+  {
+    "key": "1880-n-milwaukee-201",
+    "date": "2026-08-20",
+    "status": "active",
+    "onBoard": false,
+    "address": "1880 N Milwaukee Ave #201, Chicago, IL",
+    "unit": "201",
+    "rent": 3670,
+    "allIn": 3670.0,
+    "beds": 2,
+    "baths": 2.0,
+    "sqft": 989,
+    "lat": 41.9153979,
+    "lng": -87.6856802,
+    "sources": [
+      {
+        "label": "Zillow",
+        "url": "https://www.zillow.com/apartments/chicago-il/1880-milwaukee/"
+      }
+    ]
+  },
+  {
+    "key": "900-w-wrightwood-2W",
+    "date": "2026-08-20",
+    "status": "active",
+    "onBoard": false,
+    "address": "900 West Wrightwood Avenue",
+    "unit": "2W",
+    "rent": 3700,
+    "allIn": 3700.0,
+    "beds": 2,
+    "baths": 1.0,
+    "sqft": 1200,
+    "lat": 41.9292296,
+    "lng": -87.6515221,
+    "sources": [
+      {
+        "label": "Web",
+        "url": "https://www.compass.com/homedetails/900-W-Wrightwood-Ave-Unit-2W-Chicago-IL-60614/1XGDU8_pid/"
+      }
+    ]
+  },
+  {
+    "key": "2140-n-lincoln-park-w-501",
+    "date": "2026-08-20",
+    "status": "active",
+    "onBoard": false,
+    "address": "2140 N Lincoln Park W APT 501, Chicago, IL",
+    "unit": "501",
+    "rent": 3950,
+    "allIn": 3950.0,
+    "beds": 2,
+    "baths": null,
+    "sqft": null,
+    "lat": 41.9213092,
+    "lng": -87.6368508,
+    "sources": [
+      {
+        "label": "Zillow",
+        "url": "https://www.zillow.com/homedetails/464607265_zpid/"
+      }
+    ]
+  },
+  {
+    "key": "2119-n-damen-4",
+    "date": "2026-08-20",
+    "status": "active",
+    "onBoard": false,
+    "address": "2119 North Damen Avenue",
+    "unit": "4",
+    "rent": 3950,
+    "allIn": 3950.0,
+    "beds": 2,
+    "baths": 2.0,
+    "sqft": null,
+    "lat": 41.920221,
+    "lng": -87.6774191,
+    "sources": [
+      {
+        "label": "Web",
+        "url": "https://www.compass.com/homedetails/2119-N-Damen-Ave-Unit-4-Chicago-IL-60647/1VSXCU_pid/"
+      }
+    ]
+  },
+  {
+    "key": "2654-n-lincoln-2",
+    "date": "2026-08-20",
+    "status": "active",
+    "onBoard": false,
+    "address": "2654 North Lincoln Avenue",
+    "unit": "2",
+    "rent": 3995,
+    "allIn": 3995.0,
+    "beds": 3,
+    "baths": 2.0,
+    "sqft": null,
+    "lat": 41.9300575,
+    "lng": -87.6555383,
+    "sources": [
+      {
+        "label": "Web",
+        "url": "https://www.compass.com/homedetails/2654-N-Lincoln-Ave-Unit-2-Chicago-IL-60614/2EXNYB_pid/"
+      }
+    ]
+  },
+  {
+    "key": "1914-n-wood-0",
+    "date": "2026-08-20",
+    "status": "active",
+    "onBoard": false,
+    "address": "1914 N Wood St #0, Chicago, IL",
+    "unit": "0",
+    "rent": 3999,
+    "allIn": 3999.0,
+    "beds": 3,
+    "baths": 2.0,
+    "sqft": 1400,
+    "lat": 41.9165246,
+    "lng": -87.6730082,
+    "sources": [
+      {
+        "label": "Zillow",
+        "url": "https://www.zillow.com/homedetails/452815452_zpid/"
+      }
+    ]
+  },
+  {
+    "key": "2134-n-damen-2",
+    "date": "2026-08-20",
+    "status": "active",
+    "onBoard": false,
+    "address": "2134 North Damen Avenue",
+    "unit": "2",
+    "rent": 4000,
+    "allIn": 4000.0,
+    "beds": 3,
+    "baths": 2.0,
+    "sqft": null,
+    "lat": 41.9205489,
+    "lng": -87.6780199,
+    "sources": [
+      {
+        "label": "Web",
+        "url": "https://www.compass.com/homedetails/2134-N-Damen-Ave-Unit-2-Chicago-IL-60647/21KYMH_pid/"
+      }
+    ]
+  },
+  {
+    "key": "2036-n-larrabee-8206",
+    "date": "2026-08-20",
+    "status": "active",
+    "onBoard": false,
+    "address": "2036 North Larrabee Street",
+    "unit": "8206",
+    "rent": 4000,
+    "allIn": 4000.0,
+    "beds": 2,
+    "baths": 2.0,
+    "sqft": null,
+    "lat": 41.9190257,
+    "lng": -87.6440216,
+    "sources": [
+      {
+        "label": "Web",
+        "url": "https://www.compass.com/homedetails/2036-N-Larrabee-St-Unit-8206-Chicago-IL-60614/1X6TEH_pid/"
+      }
+    ]
+  },
+  {
+    "key": "2555-n-clark-14",
+    "date": "2026-08-20",
+    "status": "active",
+    "onBoard": false,
+    "address": "2555 N Clark St Unit 14, Chicago, IL 60614",
+    "unit": "14",
+    "rent": 4150,
+    "allIn": 4150.0,
+    "beds": 2,
+    "baths": 2.0,
+    "sqft": 1100,
+    "lat": 41.9296542,
+    "lng": -87.6422914,
+    "sources": [
+      {
+        "label": "Redfin",
+        "url": "https://www.redfin.com/IL/Chicago/2555-N-Clark-St-60614/unit-14/home/200201132"
+      }
+    ]
+  },
+  {
+    "key": "1701-w-webster-205",
+    "date": "2026-08-20",
+    "status": "active",
+    "onBoard": false,
+    "address": "1701 West Webster Avenue",
+    "unit": "205",
+    "rent": 4150,
+    "allIn": 4150.0,
+    "beds": 2,
+    "baths": 2.0,
+    "sqft": 1438,
+    "lat": 41.9214292,
+    "lng": -87.6708802,
+    "sources": [
+      {
+        "label": "Web",
+        "url": "https://www.compass.com/homedetails/1701-W-Webster-Ave-Unit-205-Chicago-IL-60614/1X0SPG_pid/"
+      }
+    ]
+  },
+  {
+    "key": "1649-w-cortland-401",
+    "date": "2026-08-20",
+    "status": "active",
+    "onBoard": false,
+    "address": "1649 West Cortland Street",
+    "unit": "401",
+    "rent": 4200,
+    "allIn": 4200.0,
+    "beds": 3,
+    "baths": 2.0,
+    "sqft": null,
+    "lat": 41.9158845,
+    "lng": -87.6697514,
+    "sources": [
+      {
+        "label": "Web",
+        "url": "https://www.compass.com/homedetails/1649-W-Cortland-St-Unit-401-Chicago-IL-60622/1W3JY2_pid/"
+      }
+    ]
+  },
+  {
+    "key": "2636-n-clark-3S",
+    "date": "2026-08-20",
+    "status": "active",
+    "onBoard": false,
+    "address": "2636 North Clark Street",
+    "unit": "3S",
+    "rent": 4300,
+    "allIn": 4300.0,
+    "beds": 3,
+    "baths": 2.0,
+    "sqft": null,
+    "lat": 41.9305262,
+    "lng": -87.6440605,
+    "sources": [
+      {
+        "label": "Web",
+        "url": "https://www.compass.com/homedetails/2636-N-Clark-St-Unit-3S-Chicago-IL-60614/1XKWUC_pid/"
+      }
+    ]
+  },
+  {
+    "key": "345-w-fullerton-801",
+    "date": "2026-08-20",
+    "status": "active",
+    "onBoard": false,
+    "address": "345 West Fullerton Parkway",
+    "unit": "801",
+    "rent": 4450,
+    "allIn": 4450.0,
+    "beds": 2,
+    "baths": 2.0,
+    "sqft": 1150,
+    "lat": 41.9252991,
+    "lng": -87.6385026,
+    "sources": [
+      {
+        "label": "Web",
+        "url": "https://www.compass.com/homedetails/345-W-Fullerton-Pkwy-Unit-801-Chicago-IL-60614/2148780443804882313_lid/"
+      }
+    ]
+  },
+  {
+    "key": "2542-n-seminary-2",
+    "date": "2026-08-20",
+    "status": "active",
+    "onBoard": false,
+    "address": "2542 North Seminary Avenue",
+    "unit": "2",
+    "rent": 4500,
+    "allIn": 4500.0,
+    "beds": 2,
+    "baths": 2.0,
+    "sqft": 1200,
+    "lat": 41.9284504,
+    "lng": -87.6564144,
+    "sources": [
+      {
+        "label": "Web",
+        "url": "https://www.compass.com/homedetails/2542-N-Seminary-Ave-Unit-2-Chicago-IL-60614/1WR87C_pid/"
+      }
+    ]
+  },
+  {
+    "key": "1933-n-damen-COACH",
+    "date": "2026-08-20",
+    "status": "active",
+    "onBoard": false,
+    "address": "1933 North Damen Avenue",
+    "unit": "COACH",
+    "rent": 4500,
+    "allIn": 4500.0,
+    "beds": 1,
+    "baths": 2.0,
+    "sqft": 1785,
+    "lat": 41.9169403,
+    "lng": -87.6771016,
+    "sources": [
+      {
+        "label": "Web",
+        "url": "https://www.compass.com/homedetails/1933-N-Damen-Ave-Unit-COACH-Chicago-IL-60647/1VLCJA_pid/"
+      }
+    ]
+  },
+  {
+    "key": "1861-n-hoyne-1F",
+    "date": "2026-08-20",
+    "status": "active",
+    "onBoard": false,
+    "address": "1861 North Hoyne Avenue",
+    "unit": "1F",
+    "rent": 4500,
+    "allIn": 4500.0,
+    "beds": 2,
+    "baths": 2.0,
+    "sqft": null,
+    "lat": 41.9155525,
+    "lng": -87.6798191,
+    "sources": [
+      {
+        "label": "Web",
+        "url": "https://www.compass.com/homedetails/1861-N-Hoyne-Ave-Unit-1F-Chicago-IL-60647/1X70ME_pid/"
+      }
+    ]
+  },
+  {
+    "key": "1850-n-clark-2803",
+    "date": "2026-08-20",
+    "status": "active",
+    "onBoard": false,
+    "address": "1850 North Clark Street",
+    "unit": "2803",
+    "rent": 4500,
+    "allIn": 4500.0,
+    "beds": 2,
+    "baths": 2.0,
+    "sqft": 1100,
+    "lat": 41.9159831,
+    "lng": -87.6347018,
+    "sources": [
+      {
+        "label": "Web",
+        "url": "https://www.compass.com/homedetails/1850-N-Clark-St-Unit-2803-Chicago-IL-60614/1VZPN8_pid/"
+      }
+    ]
+  },
+  {
+    "key": "935-w-armitage-3B",
+    "date": "2026-08-20",
+    "status": "active",
+    "onBoard": false,
+    "address": "935 West Armitage Avenue",
+    "unit": "3B",
+    "rent": 4595,
+    "allIn": 4595.0,
+    "beds": 2,
+    "baths": 2.0,
+    "sqft": 1200,
+    "lat": 41.9179527,
+    "lng": -87.6523585,
+    "sources": [
+      {
+        "label": "Web",
+        "url": "https://www.compass.com/homedetails/935-W-Armitage-Ave-Unit-3B-Chicago-IL-60614/2EXWVQ_pid/"
+      }
+    ]
+  },
+  {
+    "key": "744-w-fullerton-404",
+    "date": "2026-08-20",
+    "status": "active",
+    "onBoard": false,
+    "address": "744 West Fullerton Avenue",
+    "unit": "404",
+    "rent": 4700,
+    "allIn": 4700.0,
+    "beds": 2,
+    "baths": 2.0,
+    "sqft": null,
+    "lat": 41.9256292,
+    "lng": -87.6482095,
+    "sources": [
+      {
+        "label": "Web",
+        "url": "https://www.compass.com/homedetails/744-W-Fullerton-Ave-Unit-404-Chicago-IL-60614/1XEF6W_pid/"
+      }
+    ]
+  },
+  {
+    "key": "2050-n-clark-301",
+    "date": "2026-08-20",
+    "status": "active",
+    "onBoard": false,
+    "address": "2050 North Clark Street",
+    "unit": "301",
+    "rent": 4735,
+    "allIn": 4735.0,
+    "beds": 2,
+    "baths": 2.0,
+    "sqft": 1200,
+    "lat": 41.9195062,
+    "lng": -87.6368993,
+    "sources": [
+      {
+        "label": "Web",
+        "url": "https://www.compass.com/homedetails/2050-N-Clark-St-Unit-301-Chicago-IL-60614/1VPB4O_pid/"
+      }
+    ]
+  },
+  {
+    "key": "2643-n-southport-CH",
+    "date": "2026-08-20",
+    "status": "active",
+    "onBoard": false,
+    "address": "2643 North Southport Avenue",
+    "unit": "CH",
+    "rent": 4750,
+    "allIn": 4750.0,
+    "beds": 3,
+    "baths": 3.0,
+    "sqft": 2200,
+    "lat": 41.9301237,
+    "lng": -87.663205,
+    "sources": [
+      {
+        "label": "Web",
+        "url": "https://www.compass.com/homedetails/2643-N-Southport-Ave-Unit-CH-Chicago-IL-60614/2FAHLF_pid/"
+      }
+    ]
+  },
+  {
+    "key": "937-w-armitage-3B",
+    "date": "2026-08-20",
+    "status": "active",
+    "onBoard": false,
+    "address": "937 West Armitage Avenue",
+    "unit": "3B",
+    "rent": 4795,
+    "allIn": 4795.0,
+    "beds": 2,
+    "baths": 2.0,
+    "sqft": 1200,
+    "lat": 41.9180373,
+    "lng": -87.6523607,
+    "sources": [
+      {
+        "label": "Web",
+        "url": "https://www.compass.com/homedetails/937-W-Armitage-Ave-Unit-3B-Chicago-IL-60614/1WEXAR_pid/"
+      }
+    ]
+  },
+  {
+    "key": "2400-n-lakeview-61415",
+    "date": "2026-08-20",
+    "status": "active",
+    "onBoard": false,
+    "address": "2400 North Lakeview Avenue",
+    "unit": "61415",
+    "rent": 4800,
+    "allIn": 4800.0,
+    "beds": 3,
+    "baths": 2.0,
+    "sqft": null,
+    "lat": 41.9258607,
+    "lng": -87.6394269,
+    "sources": [
+      {
+        "label": "Web",
+        "url": "https://www.compass.com/homedetails/2400-N-Lakeview-Ave-Unit-61415-Chicago-IL-60614/1WO0G5_pid/"
+      }
+    ]
+  },
+  {
+    "key": "2347-w-altgeld-3br-5000",
+    "date": "2026-08-20",
+    "status": "active",
+    "onBoard": false,
+    "address": "2347 West Altgeld Street",
+    "unit": null,
+    "rent": 5000,
+    "allIn": 5000.0,
+    "beds": 3,
+    "baths": 4.0,
+    "sqft": 2100,
+    "lat": 41.9262615,
+    "lng": -87.68697,
+    "sources": [
+      {
+        "label": "Web",
+        "url": "https://www.compass.com/homedetails/2347-W-Altgeld-St-Chicago-IL-60647/1VNB1S_pid/"
+      }
+    ]
+  },
+  {
+    "key": "845-w-altgeld-4D",
+    "date": "2026-08-20",
+    "status": "active",
+    "onBoard": false,
+    "address": "845 West Altgeld Street",
+    "unit": "4D",
+    "rent": 5250,
+    "allIn": 5250.0,
+    "beds": 2,
+    "baths": 2.0,
+    "sqft": 1760,
+    "lat": 41.9270452,
+    "lng": -87.6506933,
+    "sources": [
+      {
+        "label": "Web",
+        "url": "https://www.compass.com/homedetails/845-W-Altgeld-St-Unit-4D-Chicago-IL-60614/1WTFKG_pid/"
+      }
+    ]
+  },
+  {
+    "key": "939-w-armitage-B",
+    "date": "2026-08-20",
+    "status": "active",
+    "onBoard": false,
+    "address": "939 West Armitage Avenue",
+    "unit": "B",
+    "rent": 5500,
+    "allIn": 5500.0,
+    "beds": 3,
+    "baths": 2.0,
+    "sqft": null,
+    "lat": 41.9179227,
+    "lng": -87.6524715,
+    "sources": [
+      {
+        "label": "Web",
+        "url": "https://www.compass.com/homedetails/939-W-Armitage-Ave-Unit-B-Chicago-IL-60614/1VUU5Q_pid/"
+      }
+    ]
+  },
+  {
+    "key": "2149-n-racine-1",
+    "date": "2026-08-20",
+    "status": "active",
+    "onBoard": false,
+    "address": "2149 North Racine Avenue",
+    "unit": "1",
+    "rent": 5500,
+    "allIn": 5500.0,
+    "beds": 3,
+    "baths": 3.0,
+    "sqft": null,
+    "lat": 41.9212931,
+    "lng": -87.6581178,
+    "sources": [
+      {
+        "label": "Web",
+        "url": "https://www.compass.com/homedetails/2149-N-Racine-Ave-Unit-1-Chicago-IL-60614/1WCYTW_pid/"
+      }
+    ]
+  },
+  {
+    "key": "2643-n-mildred-2",
+    "date": "2026-08-20",
+    "status": "active",
+    "onBoard": false,
+    "address": "2643 North Mildred Avenue",
+    "unit": "2",
+    "rent": 5700,
+    "allIn": 5700.0,
+    "beds": 4,
+    "baths": 2.0,
+    "sqft": 2100,
+    "lat": 41.9303288,
+    "lng": -87.6510686,
+    "sources": [
+      {
+        "label": "Web",
+        "url": "https://www.compass.com/homedetails/2643-N-Mildred-Ave-Unit-2-Chicago-IL-60614/1XVLZ4_pid/"
+      }
+    ]
+  },
+  {
+    "key": "2113-n-kenmore-G",
+    "date": "2026-08-20",
+    "status": "active",
+    "onBoard": false,
+    "address": "2113 North Kenmore Avenue",
+    "unit": "G",
+    "rent": 5845,
+    "allIn": 5845.0,
+    "beds": 3,
+    "baths": 2.0,
+    "sqft": 1200,
+    "lat": 41.9203931,
+    "lng": -87.6543885,
+    "sources": [
+      {
+        "label": "Web",
+        "url": "https://www.compass.com/homedetails/2113-N-Kenmore-Ave-Unit-G-Chicago-IL-60614/280IK7_pid/"
+      }
+    ]
+  },
+  {
+    "key": "534-w-dickens-2",
+    "date": "2026-08-20",
+    "status": "active",
+    "onBoard": false,
+    "address": "534 West Dickens Avenue",
+    "unit": "2",
+    "rent": 6000,
+    "allIn": 6000.0,
+    "beds": 3,
+    "baths": 3.0,
+    "sqft": 1500,
+    "lat": 41.9202756,
+    "lng": -87.6427466,
+    "sources": [
+      {
+        "label": "Web",
+        "url": "https://www.compass.com/homedetails/534-W-Dickens-Ave-Unit-2-Chicago-IL-60614/2EXWMT_pid/"
+      }
+    ]
+  },
+  {
+    "key": "1450-w-webster-2",
+    "date": "2026-08-20",
+    "status": "active",
+    "onBoard": false,
+    "address": "1450 West Webster Avenue",
+    "unit": "2",
+    "rent": 6200,
+    "allIn": 6200.0,
+    "beds": 4,
+    "baths": 3.0,
+    "sqft": 2400,
+    "lat": 41.9217431,
+    "lng": -87.6651378,
+    "sources": [
+      {
+        "label": "Web",
+        "url": "https://www.compass.com/homedetails/1450-W-Webster-Ave-Unit-2-Chicago-IL-60614/1X4SHR_pid/"
+      }
+    ]
+  },
+  {
+    "key": "1730-n-clark-101",
+    "date": "2026-08-20",
+    "status": "active",
+    "onBoard": false,
+    "address": "1730 North Clark Street",
+    "unit": "101",
+    "rent": 6223,
+    "allIn": 6223.0,
+    "beds": 2,
+    "baths": 3.0,
+    "sqft": 1795,
+    "lat": 41.9137761,
+    "lng": -87.6338377,
+    "sources": [
+      {
+        "label": "Web",
+        "url": "https://www.compass.com/homedetails/1730-N-Clark-St-Unit-101-Chicago-IL-60614/1XQUPA_pid/"
+      }
+    ]
+  },
+  {
+    "key": "2365-n-wayne-3br-6500",
+    "date": "2026-08-20",
+    "status": "active",
+    "onBoard": false,
+    "address": "2365 North Wayne Avenue",
+    "unit": null,
+    "rent": 6500,
+    "allIn": 6500.0,
+    "beds": 3,
+    "baths": 3.0,
+    "sqft": null,
+    "lat": 41.9242891,
+    "lng": -87.6619628,
+    "sources": [
+      {
+        "label": "Web",
+        "url": "https://www.compass.com/homedetails/2365-N-Wayne-Ave-Chicago-IL-60614/1XF31M_pid/"
+      }
+    ]
+  },
+  {
+    "key": "1952-n-hudson-1",
+    "date": "2026-08-20",
+    "status": "active",
+    "onBoard": false,
+    "address": "1952 North Hudson Avenue",
+    "unit": "1",
+    "rent": 6500,
+    "allIn": 6500.0,
+    "beds": 3,
+    "baths": 3.0,
+    "sqft": 2400,
+    "lat": 41.9180511,
+    "lng": -87.6403251,
+    "sources": [
+      {
+        "label": "Web",
+        "url": "https://www.compass.com/homedetails/1952-N-Hudson-Ave-Unit-1-Chicago-IL-60614/1XTGKO_pid/"
+      }
+    ]
+  },
+  {
+    "key": "1701-n-halsted-E2",
+    "date": "2026-08-20",
+    "status": "active",
+    "onBoard": false,
+    "address": "1701 North Halsted Street",
+    "unit": "E2",
+    "rent": 6500,
+    "allIn": 6500.0,
+    "beds": 3,
+    "baths": 3.0,
+    "sqft": 2325,
+    "lat": 41.9128051,
+    "lng": -87.647769,
+    "sources": [
+      {
+        "label": "Web",
+        "url": "https://www.compass.com/homedetails/1701-N-Halsted-St-Unit-E2-Chicago-IL-60614/1WGY5B_pid/"
+      }
+    ]
+  },
+  {
+    "key": "1640-n-bissell-2br-6500",
+    "date": "2026-08-20",
+    "status": "active",
+    "onBoard": false,
+    "address": "1640 North Bissell Street",
+    "unit": null,
+    "rent": 6500,
+    "allIn": 6500.0,
+    "beds": 2,
+    "baths": 2.0,
+    "sqft": null,
+    "lat": 41.9121062,
+    "lng": -87.649989,
+    "sources": [
+      {
+        "label": "Web",
+        "url": "https://www.compass.com/homedetails/1640-N-Bissell-St-Chicago-IL-60614/1LINV2_pid/"
+      }
+    ]
+  },
+  {
+    "key": "953-w-montana-3",
+    "date": "2026-08-20",
+    "status": "active",
+    "onBoard": false,
+    "address": "953 West Montana Street",
+    "unit": "3",
+    "rent": 6750,
+    "allIn": 6750.0,
+    "beds": 3,
+    "baths": 2.0,
+    "sqft": 1900,
+    "lat": 41.9261487,
+    "lng": -87.6523561,
+    "sources": [
+      {
+        "label": "Web",
+        "url": "https://www.compass.com/homedetails/953-W-Montana-St-Unit-3-Chicago-IL-60614/1WBBG9_pid/"
+      }
+    ]
+  },
+  {
+    "key": "1046-w-altgeld-1N",
+    "date": "2026-08-20",
+    "status": "active",
+    "onBoard": false,
+    "address": "1046 West Altgeld Street",
+    "unit": "1N",
+    "rent": 7000,
+    "allIn": 7000.0,
+    "beds": 3,
+    "baths": 3.0,
+    "sqft": 1830,
+    "lat": 41.9272408,
+    "lng": -87.6556816,
+    "sources": [
+      {
+        "label": "Web",
+        "url": "https://www.compass.com/homedetails/1046-W-Altgeld-St-Unit-1N-Chicago-IL-60614/1WR3VS_pid/"
+      }
+    ]
+  },
+  {
+    "key": "2323-n-lister-2",
+    "date": "2026-08-20",
+    "status": "active",
+    "onBoard": false,
+    "address": "2323 North Lister Avenue",
+    "unit": "2",
+    "rent": 7950,
+    "allIn": 7950.0,
+    "beds": 4,
+    "baths": 3.0,
+    "sqft": 2820,
+    "lat": 41.9232993,
+    "lng": -87.6763575,
+    "sources": [
+      {
+        "label": "Web",
+        "url": "https://www.compass.com/homedetails/2323-N-Lister-Ave-Unit-2-Chicago-IL-60614/26YUZF_pid/"
+      }
+    ]
+  },
+  {
+    "key": "2550-n-lakeview-N803",
+    "date": "2026-08-20",
+    "status": "active",
+    "onBoard": false,
+    "address": "2550 North Lakeview Avenue",
+    "unit": "N803",
+    "rent": 8100,
+    "allIn": 8100.0,
+    "beds": 2,
+    "baths": 2.0,
+    "sqft": 1411,
+    "lat": 41.9289235,
+    "lng": -87.639883,
+    "sources": [
+      {
+        "label": "Web",
+        "url": "https://www.compass.com/homedetails/2550-N-Lakeview-Ave-Unit-N803-Chicago-IL-60614/1WOQ4Q_pid/"
+      }
+    ]
+  },
+  {
+    "key": "2112-n-dayton-5br-8800",
+    "date": "2026-08-20",
+    "status": "active",
+    "onBoard": false,
+    "address": "2112 North Dayton Street",
+    "unit": null,
+    "rent": 8800,
+    "allIn": 8800.0,
+    "beds": 5,
+    "baths": 3.0,
+    "sqft": null,
+    "lat": 41.9204072,
+    "lng": -87.6500571,
+    "sources": [
+      {
+        "label": "Web",
+        "url": "https://www.compass.com/homedetails/2112-N-Dayton-St-Chicago-IL-60614/1WNN04_pid/"
+      }
+    ]
+  },
+  {
+    "key": "2107-n-clark-4br-9500",
+    "date": "2026-08-20",
+    "status": "active",
+    "onBoard": false,
+    "address": "2107 North Clark Street",
+    "unit": null,
+    "rent": 9500,
+    "allIn": 9500.0,
+    "beds": 4,
+    "baths": 4.0,
+    "sqft": null,
+    "lat": 41.9204714,
+    "lng": -87.6370928,
+    "sources": [
+      {
+        "label": "Web",
+        "url": "https://www.compass.com/homedetails/2107-N-Clark-St-Chicago-IL-60614/2166053640229026657_lid/"
+      }
+    ]
+  },
+  {
+    "key": "746-w-belden-1",
+    "date": "2026-08-20",
+    "status": "active",
+    "onBoard": false,
+    "address": "746 West Belden Avenue",
+    "unit": "1",
+    "rent": 10000,
+    "allIn": 10000.0,
+    "beds": 4,
+    "baths": 4.0,
+    "sqft": 2700,
+    "lat": 41.9239142,
+    "lng": -87.6480751,
+    "sources": [
+      {
+        "label": "Web",
+        "url": "https://www.compass.com/homedetails/746-W-Belden-Ave-Unit-1-Chicago-IL-60614/1X8JG5_pid/"
+      }
+    ]
+  },
+  {
+    "key": "1450-n-maplewood-2F",
+    "date": "2026-08-19",
+    "status": "active",
+    "onBoard": false,
+    "address": "1450 North Maplewood Avenue",
+    "unit": "2F",
+    "rent": 1350,
+    "allIn": 1350.0,
+    "beds": 2,
+    "baths": 1.0,
+    "sqft": 950,
+    "lat": 41.9081281,
+    "lng": -87.6911627,
+    "sources": [
+      {
+        "label": "Web",
+        "url": "https://www.compass.com/homedetails/1450-N-Maplewood-Ave-Unit-2F-Chicago-IL-60622/1XAYGC_pid/"
+      }
+    ]
+  },
+  {
+    "key": "2970-n-sheridan-0br-1450",
+    "date": "2026-08-19",
+    "status": "active",
+    "onBoard": false,
+    "address": "2970 N Sheridan Rd, Chicago, IL 60657",
+    "unit": null,
+    "rent": 1439,
+    "allIn": 1439.0,
+    "beds": 0,
+    "baths": 1.0,
+    "sqft": 310,
+    "lat": 41.9363124,
+    "lng": -87.6399529,
+    "sources": [
+      {
+        "label": "Redfin",
+        "url": "https://www.redfin.com/IL/Chicago/2970-N-Sheridan-Rd-60657/apartment/13373419"
+      }
+    ]
+  },
+  {
+    "key": "1616-w-le-moyne-2",
+    "date": "2026-08-19",
+    "status": "active",
+    "onBoard": false,
+    "address": "1616 West Le Moyne Street",
+    "unit": "2",
+    "rent": 1750,
+    "allIn": 1750.0,
+    "beds": 1,
+    "baths": 1.0,
+    "sqft": null,
+    "lat": 41.9092654,
+    "lng": -87.6683653,
+    "sources": [
+      {
+        "label": "Web",
+        "url": "https://www.compass.com/homedetails/1616-W-Le-Moyne-St-Unit-2-Chicago-IL-60622/2EYY3S_pid/"
+      }
+    ]
+  },
+  {
+    "key": "1226-n-maplewood-2",
+    "date": "2026-08-19",
+    "status": "active",
+    "onBoard": false,
+    "address": "1226 North Maplewood Avenue",
+    "unit": "2",
+    "rent": 1895,
+    "allIn": 1895.0,
+    "beds": 2,
+    "baths": 1.0,
+    "sqft": 1000,
+    "lat": 41.9038694,
+    "lng": -87.6910007,
+    "sources": [
+      {
+        "label": "Web",
+        "url": "https://www.compass.com/homedetails/1226-N-Maplewood-Ave-Unit-2-Chicago-IL-60622/1Y0MGP_pid/"
+      }
+    ]
+  },
+  {
+    "key": "1420-n-western-2R",
+    "date": "2026-08-19",
+    "status": "active",
+    "onBoard": false,
+    "address": "1420 North Western Avenue",
+    "unit": "2R",
+    "rent": 1995,
+    "allIn": 1995.0,
+    "beds": 2,
+    "baths": 1.0,
+    "sqft": null,
+    "lat": 41.9073431,
+    "lng": -87.6874873,
+    "sources": [
+      {
+        "label": "Web",
+        "url": "https://www.compass.com/homedetails/1420-N-Western-Ave-Unit-2R-Chicago-IL-60622/1Y1X9U_pid/"
+      }
+    ]
+  },
+  {
+    "key": "1980-n-milwaukee-0br-2050",
+    "date": "2026-08-19",
+    "status": "active",
+    "onBoard": false,
+    "address": "1980 N Milwaukee Ave, Chicago, IL 60647",
+    "unit": null,
+    "rent": 2050,
+    "allIn": 2050.0,
+    "beds": 0,
+    "baths": 1.0,
+    "sqft": 538,
+    "lat": 41.9172003,
+    "lng": -87.6884237,
+    "sources": [
+      {
+        "label": "Redfin",
+        "url": "https://www.redfin.com/IL/Chicago/The-Weyland/apartment/13414770"
+      }
+    ]
+  },
+  {
+    "key": "1647-n-milwaukee-503",
+    "date": "2026-08-19",
+    "status": "active",
+    "onBoard": false,
+    "address": "1647 North Milwaukee Avenue",
+    "unit": "503",
+    "rent": 2230,
+    "allIn": 2263.33,
+    "beds": 0,
+    "baths": 1.0,
+    "sqft": 623,
+    "lat": 41.9115952,
+    "lng": -87.6790597,
+    "sources": [
+      {
+        "label": "Web",
+        "url": "https://www.compass.com/homedetails/1647-N-Milwaukee-Ave-Unit-503-Chicago-IL-60647/1XV4H3_pid/"
+      }
+    ]
+  },
+  {
+    "key": "1718-w-pierce-GR",
+    "date": "2026-08-19",
+    "status": "active",
+    "onBoard": false,
+    "address": "1718 West Pierce Avenue",
+    "unit": "GR",
+    "rent": 2250,
+    "allIn": 2250.0,
+    "beds": 1,
+    "baths": 1.0,
+    "sqft": 800,
+    "lat": 41.9100281,
+    "lng": -87.6709185,
+    "sources": [
+      {
+        "label": "Web",
+        "url": "https://www.compass.com/homedetails/1718-W-Pierce-Ave-Unit-GR-Chicago-IL-60622/1WSJ1X_pid/"
+      }
+    ]
+  },
+  {
+    "key": "2237-n-bissell-22375",
+    "date": "2026-08-19",
+    "status": "active",
+    "onBoard": false,
+    "address": "2237 N Bissell St #2237.5, Chicago, IL",
+    "unit": "2237.5",
+    "rent": 2295,
+    "allIn": 2295.0,
+    "beds": 1,
+    "baths": 1.0,
+    "sqft": 419,
+    "lat": 41.92291,
+    "lng": -87.6517751,
+    "sources": [
+      {
+        "label": "Zillow",
+        "url": "https://www.zillow.com/apartments/chicago-il/2237-41-n.-bissell/"
+      }
+    ]
+  },
+  {
+    "key": "2237-n-bissell-2237",
+    "date": "2026-08-19",
+    "status": "active",
+    "onBoard": false,
+    "address": "2237 N Bissell St #2237, Chicago, IL",
+    "unit": "2237",
+    "rent": 2395,
+    "allIn": 2395.0,
+    "beds": 1,
+    "baths": 1.0,
+    "sqft": null,
+    "lat": 41.92291,
+    "lng": -87.6517751,
+    "sources": [
+      {
+        "label": "Zillow",
+        "url": "https://www.zillow.com/apartments/chicago-il/2237-41-n.-bissell/"
+      }
+    ]
+  },
+  {
+    "key": "1449-n-ashland-2F",
+    "date": "2026-08-19",
+    "status": "active",
+    "onBoard": false,
+    "address": "1449 N Ashland Avenue 2F, Chicago, IL 60622",
+    "unit": "2F",
+    "rent": 2400,
+    "allIn": 2400.0,
+    "beds": 2,
+    "baths": 1.0,
+    "sqft": 700,
+    "lat": 41.9084453,
+    "lng": -87.6672541,
+    "sources": [
+      {
+        "label": "Web",
+        "url": "https://bestchicagoproperties.com/listings/listing/MRED/12723524/Chicago/1449-N-Ashland-Avenue-2F"
+      }
+    ]
+  },
+  {
+    "key": "1880-n-milwaukee-1br-2600",
+    "date": "2026-08-19",
+    "status": "active",
+    "onBoard": false,
+    "address": "1880 N Milwaukee Ave, Chicago, IL 60647",
+    "unit": null,
+    "rent": 2600,
+    "allIn": 2600.0,
+    "beds": 1,
+    "baths": 1.0,
+    "sqft": 531,
+    "lat": 41.9153979,
+    "lng": -87.6856802,
+    "sources": [
+      {
+        "label": "Redfin",
+        "url": "https://www.redfin.com/IL/Chicago/1880-N-Milwaukee-Ave-60647/apartment/202072999"
+      }
+    ]
+  },
+  {
+    "key": "1931-w-evergreen-2",
+    "date": "2026-08-19",
+    "status": "active",
+    "onBoard": false,
+    "address": "1931 West Evergreen Avenue",
+    "unit": "2",
+    "rent": 2700,
+    "allIn": 2700.0,
+    "beds": 2,
+    "baths": 1.0,
+    "sqft": 1200,
+    "lat": 41.9061663,
+    "lng": -87.6753601,
+    "sources": [
+      {
+        "label": "Web",
+        "url": "https://www.compass.com/homedetails/1931-W-Evergreen-Ave-Unit-2-Chicago-IL-60622/2FC8QL_pid/"
+      }
+    ]
+  },
+  {
+    "key": "1350-n-bell-1",
+    "date": "2026-08-19",
+    "status": "active",
+    "onBoard": false,
+    "address": "1350 N Bell Avenue 1, Chicago, IL 60622",
+    "unit": "1",
+    "rent": 2850,
+    "allIn": 2850.0,
+    "beds": 3,
+    "baths": 1.0,
+    "sqft": 1200,
+    "lat": 41.9063965,
+    "lng": -87.6837595,
+    "sources": [
+      {
+        "label": "Web",
+        "url": "https://bestchicagoproperties.com/listings/listing/MRED/12710490/Chicago/1350-N-Bell-Avenue-1"
+      }
+    ]
+  },
+  {
+    "key": "1415-n-campbell-1",
+    "date": "2026-08-19",
+    "status": "active",
+    "onBoard": false,
+    "address": "1415 North Campbell Avenue",
+    "unit": "1",
+    "rent": 2900,
+    "allIn": 2900.0,
+    "beds": 2,
+    "baths": 2.0,
+    "sqft": 1445,
+    "lat": 41.9071944,
+    "lng": -87.6893318,
+    "sources": [
+      {
+        "label": "Web",
+        "url": "https://www.compass.com/homedetails/1415-N-Campbell-Ave-Unit-1-Chicago-IL-60622/2EQDRO_pid/"
+      }
+    ]
+  },
+  {
+    "key": "1522-n-bosworth-2",
+    "date": "2026-08-19",
+    "status": "active",
+    "onBoard": false,
+    "address": "1522 N Bosworth Avenue 2, Chicago, IL 60642",
+    "unit": "2",
+    "rent": 2950,
+    "allIn": 2950.0,
+    "beds": 2,
+    "baths": 2.0,
+    "sqft": 1100,
+    "lat": 41.9095441,
+    "lng": -87.6667358,
+    "sources": [
+      {
+        "label": "Web",
+        "url": "https://bestchicagoproperties.com/listings/listing/MRED/12723405/Chicago/1522-N-Bosworth-Avenue-2"
+      }
+    ]
+  },
+  {
+    "key": "1343-n-leavitt-1",
+    "date": "2026-08-19",
+    "status": "active",
+    "onBoard": false,
+    "address": "1343 North Leavitt Street",
+    "unit": "1",
+    "rent": 3100,
+    "allIn": 3100.0,
+    "beds": 3,
+    "baths": 2.0,
+    "sqft": 1250,
+    "lat": 41.906268,
+    "lng": -87.6818951,
+    "sources": [
+      {
+        "label": "Web",
+        "url": "https://www.compass.com/homedetails/1343-N-Leavitt-St-Unit-1-Chicago-IL-60622/1WO14P_pid/"
+      }
+    ]
+  },
+  {
+    "key": "1538-n-milwaukee-3F",
+    "date": "2026-08-19",
+    "status": "active",
+    "onBoard": false,
+    "address": "1538 N Milwaukee Ave APT 3F, Chicago, IL",
+    "unit": "3F",
+    "rent": 3200,
+    "allIn": 3200.0,
+    "beds": 2,
+    "baths": 1.0,
+    "sqft": 1100,
+    "lat": 41.909294,
+    "lng": -87.6762095,
+    "sources": [
+      {
+        "label": "Zillow",
+        "url": "https://www.zillow.com/homedetails/2105972281_zpid/"
+      }
+    ]
+  },
+  {
+    "key": "1538-n-milwaukee-2F",
+    "date": "2026-08-19",
+    "status": "active",
+    "onBoard": false,
+    "address": "1538 N Milwaukee Ave APT 2F, Chicago, IL",
+    "unit": "2F",
+    "rent": 3200,
+    "allIn": 3200.0,
+    "beds": 2,
+    "baths": 1.0,
+    "sqft": 1100,
+    "lat": 41.909294,
+    "lng": -87.6762095,
+    "sources": [
+      {
+        "label": "Zillow",
+        "url": "https://www.zillow.com/homedetails/2106525203_zpid/"
+      }
+    ]
+  },
+  {
+    "key": "1721-w-pierce-2",
+    "date": "2026-08-19",
+    "status": "active",
+    "onBoard": false,
+    "address": "1721 W Pierce Avenue 2, Chicago, IL 60622",
+    "unit": "2",
+    "rent": 3400,
+    "allIn": 3400.0,
+    "beds": 2,
+    "baths": 1.0,
+    "sqft": null,
+    "lat": 41.9096662,
+    "lng": -87.6709971,
+    "sources": [
+      {
+        "label": "Web",
+        "url": "https://bestchicagoproperties.com/listings/listing/MRED/12730302/Chicago/1721-W-Pierce-Avenue-2"
+      }
+    ]
+  },
+  {
+    "key": "1721-w-pierce-3",
+    "date": "2026-08-19",
+    "status": "active",
+    "onBoard": false,
+    "address": "1721 W Pierce Avenue 3, Chicago, IL 60622",
+    "unit": "3",
+    "rent": 3500,
+    "allIn": 3500.0,
+    "beds": 2,
+    "baths": 1.0,
+    "sqft": null,
+    "lat": 41.9096662,
+    "lng": -87.6709971,
+    "sources": [
+      {
+        "label": "Web",
+        "url": "https://bestchicagoproperties.com/listings/listing/MRED/12731515/Chicago/1721-W-Pierce-Avenue-3"
+      }
+    ]
+  },
+  {
+    "key": "1920-n-milwaukee-406",
+    "date": "2026-08-19",
+    "status": "active",
+    "onBoard": false,
+    "address": "1920 N Milwaukee Ave Unit 406, Chicago, IL 60647",
+    "unit": "406",
+    "rent": 3580,
+    "allIn": 3580.0,
+    "beds": 2,
+    "baths": 2.0,
+    "sqft": 1079,
+    "lat": 41.9164129,
+    "lng": -87.6870725,
+    "sources": [
+      {
+        "label": "Redfin",
+        "url": "https://www.redfin.com/IL/Chicago/1920-N-Milwaukee-Ave-60647/unit-406/home/184072285"
+      }
+    ]
+  },
+  {
+    "key": "1474-n-milwaukee-3F",
+    "date": "2026-08-19",
+    "status": "active",
+    "onBoard": false,
+    "address": "1474 North Milwaukee Avenue",
+    "unit": "3F",
+    "rent": 3600,
+    "allIn": 3600.0,
+    "beds": 3,
+    "baths": 2.0,
+    "sqft": 1600,
+    "lat": 41.908511,
+    "lng": -87.6750892,
+    "sources": [
+      {
+        "label": "Web",
+        "url": "https://www.compass.com/homedetails/1474-N-Milwaukee-Ave-Unit-3F-Chicago-IL-60622/1Y1U11_pid/"
+      }
+    ]
+  },
+  {
+    "key": "2105-w-concord-4",
+    "date": "2026-08-19",
+    "status": "active",
+    "onBoard": false,
+    "address": "2105 West Concord Place",
+    "unit": "4",
+    "rent": 3850,
+    "allIn": 3850.0,
+    "beds": 2,
+    "baths": 2.0,
+    "sqft": 1300,
+    "lat": 41.9111604,
+    "lng": -87.6802547,
+    "sources": [
+      {
+        "label": "Web",
+        "url": "https://www.compass.com/homedetails/2105-W-Concord-Pl-Unit-4-Chicago-IL-60647/1WJVBX_pid/"
+      }
+    ]
+  },
+  {
+    "key": "2105-w-caton-302",
+    "date": "2026-08-19",
+    "status": "active",
+    "onBoard": false,
+    "address": "2105 West Caton Street",
+    "unit": "302",
+    "rent": 3999,
+    "allIn": 3999.0,
+    "beds": 2,
+    "baths": 2.0,
+    "sqft": null,
+    "lat": 41.9117099,
+    "lng": -87.6802532,
+    "sources": [
+      {
+        "label": "Web",
+        "url": "https://www.compass.com/homedetails/2105-W-Caton-St-Unit-302-Chicago-IL-60647/1XWLN8_pid/"
+      }
+    ]
+  },
+  {
+    "key": "2342-w-north-401",
+    "date": "2026-08-19",
+    "status": "active",
+    "onBoard": false,
+    "address": "2342 W North Avenue 401, Chicago, IL 60647",
+    "unit": "401",
+    "rent": 4000,
+    "allIn": 4000.0,
+    "beds": 3,
+    "baths": 2.0,
+    "sqft": 1367,
+    "lat": 41.910543,
+    "lng": -87.6865398,
+    "sources": [
+      {
+        "label": "Web",
+        "url": "https://bestchicagoproperties.com/listings/listing/MRED/12698202/Chicago/2342-W-NORTH-Avenue-401"
+      }
+    ]
+  },
+  {
+    "key": "1638-w-blackhawk-3",
+    "date": "2026-08-19",
+    "status": "active",
+    "onBoard": false,
+    "address": "1638 West Blackhawk Street",
+    "unit": "3",
+    "rent": 4000,
+    "allIn": 4000.0,
+    "beds": 4,
+    "baths": 2.0,
+    "sqft": null,
+    "lat": 41.9071493,
+    "lng": -87.6690985,
+    "sources": [
+      {
+        "label": "Web",
+        "url": "https://www.compass.com/homedetails/1638-W-Blackhawk-St-Unit-3-Chicago-IL-60622/1X0QHR_pid/"
+      }
+    ]
+  },
+  {
+    "key": "1301-n-oakley-2B",
+    "date": "2026-08-19",
+    "status": "active",
+    "onBoard": false,
+    "address": "1301 North Oakley Boulevard",
+    "unit": "2B",
+    "rent": 4000,
+    "allIn": 4000.0,
+    "beds": 3,
+    "baths": 3.0,
+    "sqft": 2022,
+    "lat": 41.9050087,
+    "lng": -87.6842543,
+    "sources": [
+      {
+        "label": "Web",
+        "url": "https://www.compass.com/homedetails/1301-N-Oakley-Blvd-Unit-2B-Chicago-IL-60622/2EXWXM_pid/"
+      }
+    ]
+  },
+  {
+    "key": "1723-w-north-1",
+    "date": "2026-08-19",
+    "status": "active",
+    "onBoard": false,
+    "address": "1723 West North Avenue",
+    "unit": "1",
+    "rent": 4200,
+    "allIn": 4200.0,
+    "beds": 2,
+    "baths": 2.0,
+    "sqft": 1400,
+    "lat": 41.9104276,
+    "lng": -87.6711022,
+    "sources": [
+      {
+        "label": "Web",
+        "url": "https://www.compass.com/homedetails/1723-W-North-Ave-Unit-1-Chicago-IL-60622/1W6RXC_pid/"
+      }
+    ]
+  },
+  {
+    "key": "2307-w-north-STOREFRONT",
+    "date": "2026-08-19",
+    "status": "active",
+    "onBoard": false,
+    "address": "2307 West North Avenue",
+    "unit": "STOREFRONT",
+    "rent": 4400,
+    "allIn": 4400.0,
+    "beds": 1,
+    "baths": 1.0,
+    "sqft": 4000,
+    "lat": 41.9100333,
+    "lng": -87.6851188,
+    "sources": [
+      {
+        "label": "Web",
+        "url": "https://www.compass.com/homedetails/2307-W-North-Ave-Unit-STOREFRONT-Chicago-IL-60647/2FBHT5_pid/"
+      }
+    ]
+  },
+  {
+    "key": "1235-n-ashland-502",
+    "date": "2026-08-19",
+    "status": "active",
+    "onBoard": false,
+    "address": "1235 N Ashland Avenue 502, Chicago, IL 60622",
+    "unit": "502",
+    "rent": 4600,
+    "allIn": 4600.0,
+    "beds": 2,
+    "baths": 2.0,
+    "sqft": 1235,
+    "lat": 41.9044676,
+    "lng": -87.667162,
+    "sources": [
+      {
+        "label": "Web",
+        "url": "https://bestchicagoproperties.com/listings/listing/MRED/12717993/Chicago/1235-N-ASHLAND-Avenue-502"
+      }
+    ]
+  },
+  {
+    "key": "1257-n-ashland-402",
+    "date": "2026-08-19",
+    "status": "active",
+    "onBoard": false,
+    "address": "1257 N Ashland Avenue 402, Chicago, IL 60622",
+    "unit": "402",
+    "rent": 4700,
+    "allIn": 4700.0,
+    "beds": 2,
+    "baths": 2.0,
+    "sqft": 1193,
+    "lat": 41.9050592,
+    "lng": -87.6671395,
+    "sources": [
+      {
+        "label": "Web",
+        "url": "https://bestchicagoproperties.com/listings/listing/MRED/12730223/Chicago/1257-N-ASHLAND-Avenue-402"
+      }
+    ]
+  },
+  {
+    "key": "1615-n-campbell-1S",
+    "date": "2026-08-19",
+    "status": "active",
+    "onBoard": false,
+    "address": "1615 North Campbell Avenue",
+    "unit": "1S",
+    "rent": 4800,
+    "allIn": 4800.0,
+    "beds": 4,
+    "baths": 3.0,
+    "sqft": 2500,
+    "lat": 41.9108725,
+    "lng": -87.6894649,
+    "sources": [
+      {
+        "label": "Web",
+        "url": "https://www.compass.com/homedetails/1615-N-Campbell-Ave-Unit-1S-Chicago-IL-60647/1VLZFW_pid/"
+      }
+    ]
+  },
+  {
+    "key": "1257-n-ashland-502",
+    "date": "2026-08-19",
+    "status": "active",
+    "onBoard": false,
+    "address": "1257 N Ashland Avenue 502, Chicago, IL 60622",
+    "unit": "502",
+    "rent": 4800,
+    "allIn": 4800.0,
+    "beds": 2,
+    "baths": 2.0,
+    "sqft": 1193,
+    "lat": 41.9050592,
+    "lng": -87.6671395,
+    "sources": [
+      {
+        "label": "Web",
+        "url": "https://bestchicagoproperties.com/listings/listing/MRED/12730269/Chicago/1257-N-ASHLAND-Avenue-502"
+      }
+    ]
+  },
+  {
+    "key": "1451-n-ashland-S",
+    "date": "2026-08-19",
+    "status": "active",
+    "onBoard": false,
+    "address": "1451 N Ashland Avenue S, Chicago, IL 60622",
+    "unit": "S",
+    "rent": 5000,
+    "allIn": 5000.0,
+    "beds": 3,
+    "baths": 2.0,
+    "sqft": 2400,
+    "lat": 41.90854,
+    "lng": -87.6673039,
+    "sources": [
+      {
+        "label": "Web",
+        "url": "https://bestchicagoproperties.com/listings/listing/MRED/12728542/Chicago/1451-N-ASHLAND-Avenue-S"
+      }
+    ]
+  },
+  {
+    "key": "913-w-belden-2br-5450",
+    "date": "2026-08-19",
+    "status": "active",
+    "onBoard": false,
+    "address": "913 W Belden Ave, Chicago, IL 60614",
+    "unit": null,
+    "rent": 5454,
+    "allIn": 5454.0,
+    "beds": 2,
+    "baths": 2.0,
+    "sqft": null,
+    "lat": 41.9233689,
+    "lng": -87.6517275,
+    "sources": [
+      {
+        "label": "Redfin",
+        "url": "https://www.redfin.com/IL/Chicago/913-W-Belden-Ave-60614/home/13352864"
+      }
+    ]
+  },
+  {
+    "key": "1514-n-wood-1N",
+    "date": "2026-08-19",
+    "status": "active",
+    "onBoard": false,
+    "address": "1514 N Wood Street 1N, Chicago, IL 60622",
+    "unit": "1N",
+    "rent": 5595,
+    "allIn": 5595.0,
+    "beds": 4,
+    "baths": 3.0,
+    "sqft": 1930,
+    "lat": 41.9092527,
+    "lng": -87.6728455,
+    "sources": [
+      {
+        "label": "Web",
+        "url": "https://bestchicagoproperties.com/listings/listing/MRED/12699324/Chicago/1514-N-Wood-Street-1N"
+      }
+    ]
+  },
+  {
+    "key": "2244-n-cleveland-0br-1550",
+    "date": "2026-08-18",
+    "status": "active",
+    "onBoard": false,
+    "address": "2244 N Cleveland Ave, Chicago, IL 60614",
+    "unit": null,
+    "rent": 1545,
+    "allIn": 1545.0,
+    "beds": 0,
+    "baths": 1.0,
+    "sqft": null,
+    "lat": 41.923301,
+    "lng": -87.641745,
+    "sources": [
+      {
+        "label": "Redfin",
+        "url": "https://www.redfin.com/IL/Chicago/2244-N-Cleveland-Ave-60614/apartment/13348646"
+      }
+    ]
+  },
+  {
+    "key": "1530-w-thomas-1R",
+    "date": "2026-08-18",
+    "status": "active",
+    "onBoard": false,
+    "address": "1530 W Thomas St #1R, Chicago, IL 60642",
+    "unit": "1R",
+    "rent": 1655,
+    "allIn": 1655.0,
+    "beds": 1,
+    "baths": null,
+    "sqft": null,
+    "lat": 41.9017076,
+    "lng": -87.6662448,
+    "sources": [
+      {
+        "label": "Domu",
+        "url": "https://www.domu.com/node/322499"
+      }
+    ]
+  },
+  {
+    "key": "427-w-belden-0br-1700",
+    "date": "2026-08-18",
+    "status": "active",
+    "onBoard": false,
+    "address": "427 W Belden Ave, Chicago, IL 60614",
+    "unit": null,
+    "rent": 1695,
+    "allIn": 1695.0,
+    "beds": 0,
+    "baths": 1.0,
+    "sqft": 10,
+    "lat": 41.923542,
+    "lng": -87.6402927,
+    "sources": [
+      {
+        "label": "Redfin",
+        "url": "https://www.redfin.com/IL/Chicago/427-W-Belden-Ave-60614/apartment/13348633"
+      }
+    ]
+  },
+  {
+    "key": "1608-w-sherwin-610",
+    "date": "2026-08-18",
+    "status": "active",
+    "onBoard": false,
+    "address": "1608 W Sherwin Ave #610, Chicago, IL 60626",
+    "unit": "610",
+    "rent": 1700,
+    "allIn": 1700.0,
+    "beds": 1,
+    "baths": null,
+    "sqft": null,
+    "lat": 42.0152652,
+    "lng": -87.6707421,
+    "sources": [
+      {
+        "label": "Domu",
+        "url": "https://www.domu.com/chicago/far-north-side/rogers-park/1608-w-sherwin-ave-610-chicago-il-60626"
+      }
+    ]
+  },
+  {
+    "key": "541-w-oakdale-1br-1800",
+    "date": "2026-08-18",
+    "status": "active",
+    "onBoard": false,
+    "address": "541 W Oakdale Ave, Chicago, IL 60657",
+    "unit": null,
+    "rent": 1795,
+    "allIn": 1795.0,
+    "beds": 1,
+    "baths": null,
+    "sqft": null,
+    "lat": 41.9351941,
+    "lng": -87.64347,
+    "sources": [
+      {
+        "label": "Redfin",
+        "url": "https://www.redfin.com/IL/Chicago/541-W-Oakdale-Ave-60657/apartment/13371287"
+      }
+    ]
+  },
+  {
+    "key": "541-w-oakdale-0br-1800",
+    "date": "2026-08-18",
+    "status": "active",
+    "onBoard": false,
+    "address": "541 W Oakdale Ave, Chicago, IL 60657",
+    "unit": null,
+    "rent": 1795,
+    "allIn": 1795.0,
+    "beds": 0,
+    "baths": 1.0,
+    "sqft": null,
+    "lat": 41.9351941,
+    "lng": -87.64347,
+    "sources": [
+      {
+        "label": "Redfin",
+        "url": "https://www.redfin.com/IL/Chicago/541-W-Oakdale-Ave-60657/apartment/13371287"
+      }
+    ]
+  },
+  {
+    "key": "1225-n-cleaver-FB2R",
+    "date": "2026-08-18",
+    "status": "active",
+    "onBoard": false,
+    "address": "1225 N Cleaver St #Fb2r, Chicago, IL",
+    "unit": "Fb2r",
+    "rent": 1800,
+    "allIn": 1800.0,
+    "beds": 1,
+    "baths": 1.0,
+    "sqft": 700,
+    "lat": 41.9042254,
+    "lng": -87.6635039,
+    "sources": [
+      {
+        "label": "Zillow",
+        "url": "https://www.zillow.com/homedetails/2108647401_zpid/"
+      }
+    ]
+  },
+  {
+    "key": "6029-n-winthrop-303",
+    "date": "2026-08-18",
+    "status": "active",
+    "onBoard": false,
+    "address": "6029 N Winthrop Ave #303, Chicago, IL 60660",
+    "unit": "303",
+    "rent": 1850,
+    "allIn": 1850.0,
+    "beds": 1,
+    "baths": null,
+    "sqft": null,
+    "lat": 41.9918352,
+    "lng": -87.6579014,
+    "sources": [
+      {
+        "label": "Domu",
+        "url": "https://www.domu.com/chicago/far-north-side/edgewater/6029-n-winthrop-ave-303-chicago-il-60660"
+      }
+    ]
+  },
+  {
+    "key": "1933-w-crystal-2A",
+    "date": "2026-08-18",
+    "status": "active",
+    "onBoard": false,
+    "address": "1933 W Crystal Street #2A",
+    "unit": "2A",
+    "rent": 1850,
+    "allIn": 1850.0,
+    "beds": 1,
+    "baths": 1.0,
+    "sqft": 750,
+    "lat": 41.9039326,
+    "lng": -87.6763485,
+    "sources": [
+      {
+        "label": "Web",
+        "url": "https://landstarchicago.com/homes-for-sale-details/1933-W-CRYSTAL-STREET-2A-CHICAGO-IL-60622/12709544/34/"
+      }
+    ]
+  },
+  {
+    "key": "1521-w-sherwin-601",
+    "date": "2026-08-18",
+    "status": "active",
+    "onBoard": false,
+    "address": "1521 W Sherwin Ave #601, Chicago, IL 60626",
+    "unit": "601",
+    "rent": 1850,
+    "allIn": 1850.0,
+    "beds": 1,
+    "baths": null,
+    "sqft": null,
+    "lat": 42.0146049,
+    "lng": -87.6690708,
+    "sources": [
+      {
+        "label": "Domu",
+        "url": "https://www.domu.com/chicago/far-north-side/rogers-park/1521-w-sherwin-ave-601-chicago-il-60626-0"
+      }
+    ]
+  },
+  {
+    "key": "6007-n-kenmore-204",
+    "date": "2026-08-18",
+    "status": "active",
+    "onBoard": false,
+    "address": "6007 N Kenmore Ave #204, Chicago, IL 60660",
+    "unit": "204",
+    "rent": 1900,
+    "allIn": 1900.0,
+    "beds": 1,
+    "baths": null,
+    "sqft": null,
+    "lat": 41.991229,
+    "lng": -87.6565032,
+    "sources": [
+      {
+        "label": "Domu",
+        "url": "https://www.domu.com/chicago/far-north-side/edgewater/6007-n-kenmore-ave-204-chicago-il-60660"
+      }
+    ]
+  },
+  {
+    "key": "2155-n-elston-STUDIO",
+    "date": "2026-08-18",
+    "status": "active",
+    "onBoard": false,
+    "address": "2155 N Elston Ave #STUDIO, Chicago, IL 60614",
+    "unit": "STUDIO",
+    "rent": 1938,
+    "allIn": 1938.0,
+    "beds": 0,
+    "baths": null,
+    "sqft": null,
+    "lat": 41.9204923,
+    "lng": -87.6702316,
+    "sources": [
+      {
+        "label": "Domu",
+        "url": "https://www.domu.com/chicago/north-side/lincoln-park/2155-n-elston-ave-studio-chicago-il-60614-0"
+      }
+    ]
+  },
+  {
+    "key": "1318-n-cleaver-CH1",
+    "date": "2026-08-18",
+    "status": "active",
+    "onBoard": false,
+    "address": "1318 N Cleaver St #Ch1, Chicago, IL",
+    "unit": "Ch1",
+    "rent": 1995,
+    "allIn": 1995.0,
+    "beds": 2,
+    "baths": 1.0,
+    "sqft": null,
+    "lat": 41.9057476,
+    "lng": -87.6641708,
+    "sources": [
+      {
+        "label": "Zillow",
+        "url": "https://www.zillow.com/homedetails/2099254681_zpid/"
+      }
+    ]
+  },
+  {
+    "key": "1314-n-damen-1",
+    "date": "2026-08-18",
+    "status": "active",
+    "onBoard": false,
+    "address": "1314 N Damen Ave APT 1, Chicago, IL",
+    "unit": "1",
+    "rent": 2005,
+    "allIn": 2005.0,
+    "beds": 1,
+    "baths": 1.0,
+    "sqft": 1000,
+    "lat": 41.9057001,
+    "lng": -87.677543,
+    "sources": [
+      {
+        "label": "Zillow",
+        "url": "https://www.zillow.com/apartments/chicago-il/1314-28-n.-damen-ave.-2001-2003-w.-evergreen-ave./"
+      }
+    ]
+  },
+  {
+    "key": "1528-n-ashland-2R",
+    "date": "2026-08-18",
+    "status": "active",
+    "onBoard": false,
+    "address": "1528 N Ashland Avenue #2R",
+    "unit": "2R",
+    "rent": 2050,
+    "allIn": 2050.0,
+    "beds": 2,
+    "baths": 1.0,
+    "sqft": 900,
+    "lat": 41.9096919,
+    "lng": -87.667994,
+    "sources": [
+      {
+        "label": "Web",
+        "url": "https://landstarchicago.com/homes-for-sale-details/1528-N-ASHLAND-AVENUE-2R-CHICAGO-IL-60622/12710210/34/"
+      }
+    ]
+  },
+  {
+    "key": "1512-n-artesian-1F",
+    "date": "2026-08-18",
+    "status": "active",
+    "onBoard": false,
+    "address": "1512 N Artesian Avenue #1F",
+    "unit": "1F",
+    "rent": 2100,
+    "allIn": 2100.0,
+    "beds": 2,
+    "baths": 1.0,
+    "sqft": 950,
+    "lat": 41.9088976,
+    "lng": -87.6886087,
+    "sources": [
+      {
+        "label": "Web",
+        "url": "https://landstarchicago.com/homes-for-sale-details/1512-N-ARTESIAN-AVENUE-1F-CHICAGO-IL-60622/12712969/34/"
+      }
+    ]
+  },
+  {
+    "key": "1444-n-milwaukee-3R",
+    "date": "2026-08-18",
+    "status": "active",
+    "onBoard": false,
+    "address": "1444 N Milwaukee Ave #3R, Chicago, IL",
+    "unit": "3R",
+    "rent": 2100,
+    "allIn": 2100.0,
+    "beds": 1,
+    "baths": null,
+    "sqft": null,
+    "lat": 41.9080045,
+    "lng": -87.6742146,
+    "sources": [
+      {
+        "label": "Zillow",
+        "url": "https://www.zillow.com/homedetails/2077358598_zpid/"
+      }
+    ]
+  },
+  {
+    "key": "535-w-arlington-1br-2250",
+    "date": "2026-08-18",
+    "status": "active",
+    "onBoard": false,
+    "address": "535 W Arlington Pl, Chicago, IL",
+    "unit": null,
+    "rent": 2250,
+    "allIn": 2250.0,
+    "beds": 1,
+    "baths": null,
+    "sqft": null,
+    "lat": 41.9264679,
+    "lng": -87.6426203,
+    "sources": [
+      {
+        "label": "Zillow",
+        "url": "https://www.zillow.com/homedetails/3725373_zpid/"
+      }
+    ]
+  },
+  {
+    "key": "1550-w-juneway-1D",
+    "date": "2026-08-18",
+    "status": "active",
+    "onBoard": false,
+    "address": "1550 W Juneway Terrace #1D, Chicago, IL 60626",
+    "unit": "1D",
+    "rent": 2250,
+    "allIn": 2250.0,
+    "beds": 2,
+    "baths": null,
+    "sqft": null,
+    "lat": 42.0223461,
+    "lng": -87.6702618,
+    "sources": [
+      {
+        "label": "Domu",
+        "url": "https://www.domu.com/chicago/far-north-side/rogers-park/1550-w-juneway-terrace-1d-chicago-il-60626"
+      }
+    ]
+  },
+  {
+    "key": "2120-w-washington-406",
+    "date": "2026-08-18",
+    "status": "active",
+    "onBoard": false,
+    "address": "2120 W Washington Blvd, Chicago, IL 60612, Unit #406",
+    "unit": "406",
+    "rent": 2300,
+    "allIn": 2400.0,
+    "beds": 2,
+    "baths": 1.5,
+    "sqft": null,
+    "lat": 41.8834005,
+    "lng": -87.6801339,
+    "sources": [
+      {
+        "label": "Web",
+        "url": "https://www.millerchicagorealestate.com/west-town-recent-rehab-apartments-for-lease-2120-w-washington-blvd-3/"
+      }
+    ]
+  },
+  {
+    "key": "1401-s-state-1912",
+    "date": "2026-08-18",
+    "status": "active",
+    "onBoard": false,
+    "address": "1401 S State St #1912, Chicago, IL 60605",
+    "unit": "1912",
+    "rent": 2335,
+    "allIn": 2335.0,
+    "beds": 1,
+    "baths": null,
+    "sqft": null,
+    "lat": 41.8636755,
+    "lng": -87.6269095,
+    "sources": [
+      {
+        "label": "Domu",
+        "url": "https://www.domu.com/chicago/central/south-loop/1401-s-state-st-1912-chicago-il-60605"
+      }
+    ]
+  },
+  {
+    "key": "6026-n-winthrop-6F",
+    "date": "2026-08-18",
+    "status": "active",
+    "onBoard": false,
+    "address": "6026 N Winthrop Ave #6F, Chicago, IL 60660",
+    "unit": "6F",
+    "rent": 2350,
+    "allIn": 2350.0,
+    "beds": 2,
+    "baths": null,
+    "sqft": null,
+    "lat": 41.9917186,
+    "lng": -87.658685,
+    "sources": [
+      {
+        "label": "Domu",
+        "url": "https://www.domu.com/chicago/far-north-side/edgewater/6026-n-winthrop-ave-6f-chicago-il-60660-0"
+      }
+    ]
+  },
+  {
+    "key": "649-n-wolcott-1",
+    "date": "2026-08-18",
+    "status": "active",
+    "onBoard": false,
+    "address": "649-51 N. Wolcott, Unit #1",
+    "unit": "1",
+    "rent": 2395,
+    "allIn": 2395.0,
+    "beds": 2,
+    "baths": null,
+    "sqft": null,
+    "lat": 41.8937385,
+    "lng": -87.6743465,
+    "sources": [
+      {
+        "label": "Web",
+        "url": "https://www.wickerparkapartments.com/AvailableNow.php"
+      }
+    ]
+  },
+  {
+    "key": "2335-w-moffat-2",
+    "date": "2026-08-18",
+    "status": "active",
+    "onBoard": false,
+    "address": "2335 W Moffat St #2, Chicago, IL",
+    "unit": "2",
+    "rent": 2400,
+    "allIn": 2400.0,
+    "beds": 2,
+    "baths": null,
+    "sqft": null,
+    "lat": 41.9145545,
+    "lng": -87.6861953,
+    "sources": [
+      {
+        "label": "Zillow",
+        "url": "https://www.zillow.com/homedetails/2071463361_zpid/"
+      }
+    ]
+  },
+  {
+    "key": "1247-n-cleaver-R",
+    "date": "2026-08-18",
+    "status": "active",
+    "onBoard": false,
+    "address": "1247 N Cleaver St #R, Chicago, IL",
+    "unit": "R",
+    "rent": 2450,
+    "allIn": 2450.0,
+    "beds": 2,
+    "baths": null,
+    "sqft": null,
+    "lat": 41.9048392,
+    "lng": -87.6635857,
+    "sources": [
+      {
+        "label": "Zillow",
+        "url": "https://www.zillow.com/homedetails/462802208_zpid/"
+      }
+    ]
+  },
+  {
+    "key": "1247-n-cleaver-1R",
+    "date": "2026-08-18",
+    "status": "active",
+    "onBoard": false,
+    "address": "1247 N Cleaver St #1R, Chicago, IL",
+    "unit": "1R",
+    "rent": 2450,
+    "allIn": 2450.0,
+    "beds": 1,
+    "baths": null,
+    "sqft": null,
+    "lat": 41.9048392,
+    "lng": -87.6635857,
+    "sources": [
+      {
+        "label": "Zillow",
+        "url": "https://www.zillow.com/homedetails/464192814_zpid/"
+      }
+    ]
+  },
+  {
+    "key": "6166-n-sheridan-20F",
+    "date": "2026-08-18",
+    "status": "active",
+    "onBoard": false,
+    "address": "6166 N Sheridan Rd #20F, Chicago, IL 60660",
+    "unit": "20F",
+    "rent": 2500,
+    "allIn": 2500.0,
+    "beds": 1,
+    "baths": null,
+    "sqft": null,
+    "lat": 41.9943038,
+    "lng": -87.6559718,
+    "sources": [
+      {
+        "label": "Domu",
+        "url": "https://www.domu.com/chicago/far-north-side/edgewater/6166-n-sheridan-rd-20f-chicago-il-60660"
+      }
+    ]
+  },
+  {
+    "key": "4520-n-clarendon-403",
+    "date": "2026-08-18",
+    "status": "active",
+    "onBoard": false,
+    "address": "4520 N Clarendon Ave #403, Chicago, IL 60640",
+    "unit": "403",
+    "rent": 2550,
+    "allIn": 2550.0,
+    "beds": 2,
+    "baths": null,
+    "sqft": null,
+    "lat": 41.9642643,
+    "lng": -87.650185,
+    "sources": [
+      {
+        "label": "Domu",
+        "url": "https://www.domu.com/chicago/far-north-side/uptown/4520-n-clarendon-ave-403-chicago-il-60640"
+      }
+    ]
+  },
+  {
+    "key": "927-w-irving-park-504",
+    "date": "2026-08-18",
+    "status": "active",
+    "onBoard": false,
+    "address": "927 W Irving Park Rd #504, Chicago, IL 60613",
+    "unit": "504",
+    "rent": 2575,
+    "allIn": 2575.0,
+    "beds": 1,
+    "baths": null,
+    "sqft": null,
+    "lat": 41.9542625,
+    "lng": -87.65329,
+    "sources": [
+      {
+        "label": "Domu",
+        "url": "https://www.domu.com/chicago/north-side/lakeview/927-w-irving-park-rd-504-chicago-il-60613"
+      }
+    ]
+  },
+  {
+    "key": "1140-n-wells-615",
+    "date": "2026-08-18",
+    "status": "active",
+    "onBoard": false,
+    "address": "1140 N Wells St #615, Chicago, IL 60610",
+    "unit": "615",
+    "rent": 2600,
+    "allIn": 2600.0,
+    "beds": 1,
+    "baths": null,
+    "sqft": null,
+    "lat": 41.9035671,
+    "lng": -87.6350261,
+    "sources": [
+      {
+        "label": "Domu",
+        "url": "https://www.domu.com/chicago/central/old-town/1140-n-wells-st-615-chicago-il-60610"
+      }
+    ]
+  },
+  {
+    "key": "1500-n-western-2R",
+    "date": "2026-08-18",
+    "status": "active",
+    "onBoard": false,
+    "address": "1500 N Western Ave Unit 2R, Chicago, IL 60622",
+    "unit": "2R",
+    "rent": 2650,
+    "allIn": 2650.0,
+    "beds": 1,
+    "baths": null,
+    "sqft": null,
+    "lat": 41.9086078,
+    "lng": -87.6874979,
+    "sources": [
+      {
+        "label": "Redfin",
+        "url": "https://www.redfin.com/IL/Chicago/1500-N-Western-Ave-60622/unit-2R/home/201674988"
+      }
+    ]
+  },
+  {
+    "key": "1640-n-damen-1br-2700",
+    "date": "2026-08-18",
+    "status": "active",
+    "onBoard": false,
+    "address": "1640 N Damen Ave, Chicago, IL 60647",
+    "unit": null,
+    "rent": 2695,
+    "allIn": 2695.0,
+    "beds": 1,
+    "baths": null,
+    "sqft": null,
+    "lat": 41.9116834,
+    "lng": -87.6777618,
+    "sources": [
+      {
+        "label": "Redfin",
+        "url": "https://www.redfin.com/IL/Chicago/1640-N-Damen-Ave-60647/apartment/195899697"
+      }
+    ]
+  },
+  {
+    "key": "839-w-lill-1",
+    "date": "2026-08-18",
+    "status": "active",
+    "onBoard": false,
+    "address": "839 W Lill Ave #1, Chicago, IL",
+    "unit": "1",
+    "rent": 2700,
+    "allIn": 2700.0,
+    "beds": 2,
+    "baths": null,
+    "sqft": null,
+    "lat": 41.9279481,
+    "lng": -87.6503764,
+    "sources": [
+      {
+        "label": "Zillow",
+        "url": "https://www.zillow.com/homedetails/2085384840_zpid/"
+      }
+    ]
+  },
+  {
+    "key": "2257-w-hirsch-1E",
+    "date": "2026-08-18",
+    "status": "active",
+    "onBoard": false,
+    "address": "2257 W Hirsch Street 1E, Chicago, IL 60622",
+    "unit": "1E",
+    "rent": 2725,
+    "allIn": 2725.0,
+    "beds": 2,
+    "baths": null,
+    "sqft": null,
+    "lat": 41.9065906,
+    "lng": -87.6843398,
+    "sources": [
+      {
+        "label": "Web",
+        "url": "https://bestchicagoproperties.com/listings/listing/MRED/12735456/Chicago/2257-W-Hirsch-Street-1E"
+      }
+    ]
+  },
+  {
+    "key": "2140-n-lincoln-park-w-807",
+    "date": "2026-08-18",
+    "status": "active",
+    "onBoard": false,
+    "address": "2140 N Lincoln Park W #807, Chicago, IL 60614",
+    "unit": "807",
+    "rent": 2750,
+    "allIn": 2750.0,
+    "beds": 1,
+    "baths": null,
+    "sqft": null,
+    "lat": 41.9213092,
+    "lng": -87.6368508,
+    "sources": [
+      {
+        "label": "Domu",
+        "url": "https://www.domu.com/chicago/north-side/lincoln-park/2140-n-lincoln-park-w-807-chicago-il-60614-0"
+      }
+    ]
+  },
+  {
+    "key": "2140-n-lincoln-park-807",
+    "date": "2026-08-18",
+    "status": "active",
+    "onBoard": false,
+    "address": "2140 N Lincoln Park W #807, Chicago, IL 60614",
+    "unit": "807",
+    "rent": 2750,
+    "allIn": 2750.0,
+    "beds": 1,
+    "baths": null,
+    "sqft": null,
+    "lat": 41.9213092,
+    "lng": -87.6368508,
+    "sources": [
+      {
+        "label": "Domu",
+        "url": "https://www.domu.com/chicago/north-side/lincoln-park/2140-n-lincoln-park-w-807-chicago-il-60614-0"
+      }
+    ]
+  },
+  {
+    "key": "2241-n-bissell-GDN",
+    "date": "2026-08-18",
+    "status": "active",
+    "onBoard": false,
+    "address": "2241 N Bissell St Apt Gdn, Chicago, IL 60614",
+    "unit": "Gdn",
+    "rent": 2795,
+    "allIn": 2795.0,
+    "beds": 1,
+    "baths": null,
+    "sqft": null,
+    "lat": 41.92291,
+    "lng": -87.6517751,
+    "sources": [
+      {
+        "label": "Redfin",
+        "url": "https://www.redfin.com/IL/Chicago/2241-N-Bissell-St-60614/unit-Gdn/home/202283288"
+      }
+    ]
+  },
+  {
+    "key": "3740-n-halsted-1024",
+    "date": "2026-08-18",
+    "status": "active",
+    "onBoard": false,
+    "address": "3740 N Halsted St #1024, Chicago, IL 60613",
+    "unit": "1024",
+    "rent": 2840,
+    "allIn": 2840.0,
+    "beds": 1,
+    "baths": null,
+    "sqft": null,
+    "lat": 41.9504993,
+    "lng": -87.6501987,
+    "sources": [
+      {
+        "label": "Domu",
+        "url": "https://www.domu.com/chicago/north-side/lakeview/3740-n-halsted-st-1024-chicago-il-60613"
+      }
+    ]
+  },
+  {
+    "key": "1425-n-milwaukee-301",
+    "date": "2026-08-18",
+    "status": "active",
+    "onBoard": false,
+    "address": "1425 N Milwaukee Ave #301, Chicago, IL",
+    "unit": "301",
+    "rent": 2889,
+    "allIn": 2889.0,
+    "beds": 1,
+    "baths": null,
+    "sqft": null,
+    "lat": 41.9079245,
+    "lng": -87.6731706,
+    "sources": [
+      {
+        "label": "Zillow",
+        "url": "https://www.zillow.com/homedetails/457601837_zpid/"
+      }
+    ]
+  },
+  {
+    "key": "449-w-belden-2",
+    "date": "2026-08-18",
+    "status": "active",
+    "onBoard": false,
+    "address": "449 W Belden Ave #2, Chicago, IL",
+    "unit": "2",
+    "rent": 2930,
+    "allIn": 2930.0,
+    "beds": 1,
+    "baths": null,
+    "sqft": null,
+    "lat": 41.9235095,
+    "lng": -87.6409315,
+    "sources": [
+      {
+        "label": "Zillow",
+        "url": "https://www.zillow.com/homedetails/464660264_zpid/"
+      }
+    ]
+  },
+  {
+    "key": "2052-n-dayton-6105634",
+    "date": "2026-08-18",
+    "status": "active",
+    "onBoard": false,
+    "address": "2052 N Dayton St #6105634, Chicago, IL",
+    "unit": "6105634",
+    "rent": 2995,
+    "allIn": 2995.0,
+    "beds": 3,
+    "baths": null,
+    "sqft": null,
+    "lat": 41.9197093,
+    "lng": -87.6502626,
+    "sources": [
+      {
+        "label": "Zillow",
+        "url": "https://www.zillow.com/apartments/chicago-il/2052-n-dayton-st/5XfdyB/"
+      }
+    ]
+  },
+  {
+    "key": "1446-n-leavitt-2",
+    "date": "2026-08-18",
+    "status": "active",
+    "onBoard": false,
+    "address": "1446 N Leavitt St #2, Chicago, IL",
+    "unit": "2",
+    "rent": 2995,
+    "allIn": 2995.0,
+    "beds": 3,
+    "baths": null,
+    "sqft": null,
+    "lat": 41.9080976,
+    "lng": -87.6825993,
+    "sources": [
+      {
+        "label": "Zillow",
+        "url": "https://www.zillow.com/homedetails/2093323140_zpid/"
+      }
+    ]
+  },
+  {
+    "key": "1444-n-leavitt-14462",
+    "date": "2026-08-18",
+    "status": "active",
+    "onBoard": false,
+    "address": "1444 N Leavitt St #1446-2, Chicago, IL",
+    "unit": "1446-2",
+    "rent": 2995,
+    "allIn": 2995.0,
+    "beds": 3,
+    "baths": null,
+    "sqft": null,
+    "lat": 41.9080294,
+    "lng": -87.6825039,
+    "sources": [
+      {
+        "label": "Zillow",
+        "url": "https://www.zillow.com/homedetails/464043632_zpid/"
+      }
+    ]
+  },
+  {
+    "key": "1530-s-state-417",
+    "date": "2026-08-18",
+    "status": "active",
+    "onBoard": false,
+    "address": "1530 S State St #417, Chicago, IL 60605",
+    "unit": "417",
+    "rent": 3000,
+    "allIn": 3000.0,
+    "beds": 2,
+    "baths": null,
+    "sqft": null,
+    "lat": 41.8609585,
+    "lng": -87.6280749,
+    "sources": [
+      {
+        "label": "Domu",
+        "url": "https://www.domu.com/chicago/central/dearborn-park/dearborn-tower/1530-s-state-st-417-chicago-il-60605-0"
+      }
+    ]
+  },
+  {
+    "key": "1355-n-milwaukee-203",
+    "date": "2026-08-18",
+    "status": "active",
+    "onBoard": false,
+    "address": "1355 N Milwaukee Ave #203, Chicago, IL",
+    "unit": "203",
+    "rent": 3000,
+    "allIn": 3000.0,
+    "beds": 2,
+    "baths": null,
+    "sqft": null,
+    "lat": 41.9066248,
+    "lng": -87.6711058,
+    "sources": [
+      {
+        "label": "Zillow",
+        "url": "https://www.zillow.com/homedetails/2070266075_zpid/"
+      }
+    ]
+  },
+  {
+    "key": "1548-n-milwaukee-2F",
+    "date": "2026-08-18",
+    "status": "active",
+    "onBoard": false,
+    "address": "1548 N Milwaukee Ave #2F, Chicago, IL",
+    "unit": "2F",
+    "rent": 3100,
+    "allIn": 3100.0,
+    "beds": 2,
+    "baths": null,
+    "sqft": null,
+    "lat": 41.9094433,
+    "lng": -87.6765902,
+    "sources": [
+      {
+        "label": "Zillow",
+        "url": "https://www.zillow.com/homedetails/464628938_zpid/"
+      }
+    ]
+  },
+  {
+    "key": "1241-n-milwaukee-401",
+    "date": "2026-08-18",
+    "status": "active",
+    "onBoard": false,
+    "address": "1241 North Milwaukee Avenue",
+    "unit": "401",
+    "rent": 3195,
+    "allIn": 3228.33,
+    "beds": 1,
+    "baths": null,
+    "sqft": null,
+    "lat": 41.9042757,
+    "lng": -87.6677455,
+    "sources": [
+      {
+        "label": "Web",
+        "url": "https://www.compass.com/homedetails/1241-N-Milwaukee-Ave-Unit-401-Chicago-IL-60622/1XPJW7_pid/"
+      }
+    ]
+  },
+  {
+    "key": "1247-w-erie-1",
+    "date": "2026-08-18",
+    "status": "active",
+    "onBoard": false,
+    "address": "1247 W Erie St #1, Chicago, IL 60642",
+    "unit": "1",
+    "rent": 3300,
+    "allIn": 3300.0,
+    "beds": 2,
+    "baths": null,
+    "sqft": null,
+    "lat": 41.8932527,
+    "lng": -87.6592921,
+    "sources": [
+      {
+        "label": "Domu",
+        "url": "https://www.domu.com/chicago/west-side/noble-square/1247-w-erie-st-1-chicago-il-60642-1"
+      }
+    ]
+  },
+  {
+    "key": "1401-s-state-515",
+    "date": "2026-08-18",
+    "status": "active",
+    "onBoard": false,
+    "address": "1401 S State St #515, Chicago, IL 60605",
+    "unit": "515",
+    "rent": 3345,
+    "allIn": 3345.0,
+    "beds": 2,
+    "baths": null,
+    "sqft": null,
+    "lat": 41.8636755,
+    "lng": -87.6269095,
+    "sources": [
+      {
+        "label": "Domu",
+        "url": "https://www.domu.com/chicago/central/south-loop/1401-s-state-st-515-chicago-il-60605"
+      }
+    ]
+  },
+  {
+    "key": "2032-w-division-202N",
+    "date": "2026-08-18",
+    "status": "active",
+    "onBoard": false,
+    "address": "2032 W Division Street 202N, Chicago, IL 60622",
+    "unit": "202N",
+    "rent": 3350,
+    "allIn": 3350.0,
+    "beds": 2,
+    "baths": null,
+    "sqft": null,
+    "lat": 41.9034947,
+    "lng": -87.678828,
+    "sources": [
+      {
+        "label": "Web",
+        "url": "https://bestchicagoproperties.com/listings/listing/MRED/12732383/Chicago/2032-W-Division-Street-202N"
+      }
+    ]
+  },
+  {
+    "key": "1717-s-michigan-804",
+    "date": "2026-08-18",
+    "status": "active",
+    "onBoard": false,
+    "address": "1717 S Michigan Ave #804, Chicago, IL 60616",
+    "unit": "804",
+    "rent": 3440,
+    "allIn": 3440.0,
+    "beds": 2,
+    "baths": null,
+    "sqft": null,
+    "lat": 41.8584761,
+    "lng": -87.6235425,
+    "sources": [
+      {
+        "label": "Domu",
+        "url": "https://www.domu.com/chicago/central/south-loop/1717-s-michigan-ave-804-chicago-il-60616"
+      }
+    ]
+  },
+  {
+    "key": "1642-w-bryn-mawr-1",
+    "date": "2026-08-18",
+    "status": "active",
+    "onBoard": false,
+    "address": "1642 W Bryn Mawr Ave #1, Chicago, IL 60660",
+    "unit": "1",
+    "rent": 3500,
+    "allIn": 3500.0,
+    "beds": 3,
+    "baths": null,
+    "sqft": null,
+    "lat": 41.98363,
+    "lng": -87.6715399,
+    "sources": [
+      {
+        "label": "Domu",
+        "url": "https://www.domu.com/chicago/far-north-side/edgewater/1642-w-bryn-mawr-ave-1-chicago-il-60660-0-8"
+      }
+    ]
+  },
+  {
+    "key": "2345-n-lincoln-A21602",
+    "date": "2026-08-18",
+    "status": "active",
+    "onBoard": false,
+    "address": "2345 N Lincoln Ave #A2-1602, Chicago, IL",
+    "unit": "A2-1602",
+    "rent": 3512,
+    "allIn": 3512.0,
+    "beds": 1,
+    "baths": null,
+    "sqft": null,
+    "lat": 41.9251282,
+    "lng": -87.6471954,
+    "sources": [
+      {
+        "label": "Zillow",
+        "url": "https://www.zillow.com/apartments/chicago-il/the-apartments-at-lincoln-common/CgH9W3/"
+      }
+    ]
+  },
+  {
+    "key": "2040-w-belmont-404",
+    "date": "2026-08-18",
+    "status": "active",
+    "onBoard": false,
+    "address": "2040 W Belmont Ave #404, Chicago, IL 60618",
+    "unit": "404",
+    "rent": 3600,
+    "allIn": 3600.0,
+    "beds": 2,
+    "baths": null,
+    "sqft": null,
+    "lat": 41.9397538,
+    "lng": -87.6799026,
+    "sources": [
+      {
+        "label": "Domu",
+        "url": "https://www.domu.com/chicago/north-side/roscoe-village/2040-w-belmont-ave-404-chicago-il-60618"
+      }
+    ]
+  },
+  {
+    "key": "2300-w-wabansia-231",
+    "date": "2026-08-18",
+    "status": "active",
+    "onBoard": false,
+    "address": "2300 W Wabansia Avenue, Unit 231, Chicago, IL 60647",
+    "unit": "231",
+    "rent": 3800,
+    "allIn": 3960.0,
+    "beds": 2,
+    "baths": null,
+    "sqft": null,
+    "lat": 41.9128445,
+    "lng": -87.6844055,
+    "sources": [
+      {
+        "label": "Web",
+        "url": "https://www.propertyrocks.com/properties/listing/MRED/12734684/Chicago/2300-W-WABANSIA-Avenue-231"
+      }
+    ]
+  },
+  {
+    "key": "1622-w-wabansia-3",
+    "date": "2026-08-18",
+    "status": "active",
+    "onBoard": false,
+    "address": "1622 W Wabansia Ave Unit 3, Chicago, IL",
+    "unit": "3",
+    "rent": 3900,
+    "allIn": 3900.0,
+    "beds": 3,
+    "baths": null,
+    "sqft": null,
+    "lat": 41.9126085,
+    "lng": -87.6687159,
+    "sources": [
+      {
+        "label": "Zillow",
+        "url": "https://www.zillow.com/homedetails/464639219_zpid/"
+      }
+    ]
+  },
+  {
+    "key": "1920-n-clark-14B",
+    "date": "2026-08-18",
+    "status": "active",
+    "onBoard": false,
+    "address": "1920 N Clark St Unit 14B, Chicago, IL 60614",
+    "unit": "14B",
+    "rent": 4000,
+    "allIn": 4000.0,
+    "beds": 2,
+    "baths": 2.0,
+    "sqft": null,
+    "lat": 41.917211,
+    "lng": -87.635714,
+    "sources": [
+      {
+        "label": "Redfin",
+        "url": "https://www.redfin.com/IL/Chicago/1920-N-Clark-St-60614/unit-14B/home/13344655"
+      }
+    ]
+  },
+  {
+    "key": "1317-n-leavitt-1br-4300",
+    "date": "2026-08-18",
+    "status": "active",
+    "onBoard": false,
+    "address": "1317 N Leavitt Street",
+    "unit": null,
+    "rent": 4300,
+    "allIn": 4300.0,
+    "beds": 1,
+    "baths": 1.0,
+    "sqft": 700,
+    "lat": 41.9056017,
+    "lng": -87.6823248,
+    "sources": [
+      {
+        "label": "Web",
+        "url": "https://landstarchicago.com/homes-for-sale-details/1317-N-LEAVITT-STREET-CHICAGO-IL-60622/12682086/34/"
+      },
+      {
+        "label": "Web",
+        "url": "https://www.propertyrocks.com/properties/listing/MRED/12682086/Chicago/1317-N-Leavitt-Street"
+      }
+    ]
+  },
+  {
+    "key": "1241-n-milwaukee-701",
+    "date": "2026-08-18",
+    "status": "active",
+    "onBoard": false,
+    "address": "1241 North Milwaukee Avenue",
+    "unit": "701",
+    "rent": 5141,
+    "allIn": 5141.0,
+    "beds": 3,
+    "baths": null,
+    "sqft": null,
+    "lat": 41.9042757,
+    "lng": -87.6677455,
+    "sources": [
+      {
+        "label": "Web",
+        "url": "https://www.compass.com/homedetails/1241-N-Milwaukee-Ave-Unit-701-Chicago-IL-60622/1XYIC7_pid/"
+      }
+    ]
+  },
+  {
+    "key": "8041-w-bluemound-412",
+    "date": "2026-08-17",
+    "status": "active",
+    "onBoard": false,
+    "address": "8041 W Bluemound Rd #412, Milwaukee, IL 53213",
+    "unit": "412",
+    "rent": 1682,
+    "allIn": 1682.0,
+    "beds": 1,
+    "baths": 1.0,
+    "sqft": null,
+    "lat": null,
+    "lng": null,
+    "sources": [
+      {
+        "label": "Domu",
+        "url": "https://www.domu.com/chicago/8041-w-bluemound-rd-412-milwaukee-il-53213"
+      }
+    ]
+  },
+  {
+    "key": "439-w-melrose-1br-2250",
+    "date": "2026-08-17",
+    "status": "active",
+    "onBoard": false,
+    "address": "439 W Melrose, Chicago, IL 60657",
+    "unit": null,
+    "rent": 2227,
+    "allIn": 2227.0,
+    "beds": 1,
+    "baths": 1.0,
+    "sqft": null,
+    "lat": 41.9408422,
+    "lng": -87.641276,
+    "sources": [
+      {
+        "label": "Domu",
+        "url": "https://www.domu.com/chicago/north-side/lakeview/439-w-melrose"
+      }
+    ]
+  },
+  {
+    "key": "2061-n-southport-308",
+    "date": "2026-08-17",
+    "status": "active",
+    "onBoard": false,
+    "address": "2061-2071 N. Southport Ave.",
+    "unit": "308",
+    "rent": 2280,
+    "allIn": 2280.0,
+    "beds": 1,
+    "baths": 1.0,
+    "sqft": 545,
+    "lat": 41.9179324,
+    "lng": -87.6629699,
+    "sources": [
+      {
+        "label": "Web",
+        "url": "https://www.rentcafe.com/apartments/il/chicago/southport-lofts/default.aspx"
+      }
+    ]
+  },
+  {
+    "key": "2155-n-elston-CONVERTIBLE",
+    "date": "2026-08-17",
+    "status": "active",
+    "onBoard": false,
+    "address": "2155 N Elston Ave #CONVERTIBLE, Chicago, IL 60614",
+    "unit": "CONVERTIBLE",
+    "rent": 2295,
+    "allIn": 2295.0,
+    "beds": 1,
+    "baths": 1.0,
+    "sqft": null,
+    "lat": 41.9204923,
+    "lng": -87.6702316,
+    "sources": [
+      {
+        "label": "Domu",
+        "url": "https://www.domu.com/chicago/north-side/lincoln-park/2155-n-elston-ave-convertible-chicago-il-60614-0"
+      }
+    ]
+  },
+  {
+    "key": "2061-n-southport-410",
+    "date": "2026-08-17",
+    "status": "active",
+    "onBoard": false,
+    "address": "2061-2071 N. Southport Ave.",
+    "unit": "410",
+    "rent": 2305,
+    "allIn": 2305.0,
+    "beds": 1,
+    "baths": 1.0,
+    "sqft": 545,
+    "lat": 41.9179324,
+    "lng": -87.6629699,
+    "sources": [
+      {
+        "label": "Web",
+        "url": "https://www.rentcafe.com/apartments/il/chicago/southport-lofts/default.aspx"
+      }
+    ]
+  },
+  {
+    "key": "1255-s-michigan-1704",
+    "date": "2026-08-17",
+    "status": "active",
+    "onBoard": false,
+    "address": "1255 S Michigan Ave #1704, Chicago, IL 60605",
+    "unit": "1704",
+    "rent": 2355,
+    "allIn": 2355.0,
+    "beds": 1,
+    "baths": 1.0,
+    "sqft": null,
+    "lat": 41.8660156,
+    "lng": -87.6236006,
+    "sources": [
+      {
+        "label": "Domu",
+        "url": "https://www.domu.com/chicago/central/south-loop/1255-s-michigan-ave-1704-chicago-il-60605"
+      }
+    ]
+  },
+  {
+    "key": "299-pembridge-D2",
+    "date": "2026-08-17",
+    "status": "active",
+    "onBoard": false,
+    "address": "299 Pembridge Ln #D2, Schaumburg, IL 60193",
+    "unit": "D2",
+    "rent": 2400,
+    "allIn": 2400.0,
+    "beds": 2,
+    "baths": 1.0,
+    "sqft": null,
+    "lat": null,
+    "lng": null,
+    "sources": [
+      {
+        "label": "Domu",
+        "url": "https://www.domu.com/chicago/northwestern-suburbs/schaumburg/299-pembridge-ln-d2-schaumburg-il-60193"
+      }
+    ]
+  },
+  {
+    "key": "2040-w-crystal-1",
+    "date": "2026-08-17",
+    "status": "active",
+    "onBoard": false,
+    "address": "2040 W Crystal St #1, Chicago, IL",
+    "unit": "1",
+    "rent": 2400,
+    "allIn": 2400.0,
+    "beds": 2,
+    "baths": 2.0,
+    "sqft": 1150,
+    "lat": 41.9043074,
+    "lng": -87.6789087,
+    "sources": [
+      {
+        "label": "Zillow",
+        "url": "https://www.zillow.com/homedetails/2072705889_zpid/"
+      }
+    ]
+  },
+  {
+    "key": "429-w-belden-GN",
+    "date": "2026-08-17",
+    "status": "active",
+    "onBoard": false,
+    "address": "429 W Belden Ave Unit GN, Chicago, IL 60614",
+    "unit": "GN",
+    "rent": 2450,
+    "allIn": 2450.0,
+    "beds": 1,
+    "baths": 1.0,
+    "sqft": 600,
+    "lat": 41.9236725,
+    "lng": -87.6403392,
+    "sources": [
+      {
+        "label": "Redfin",
+        "url": "https://www.redfin.com/IL/Chicago/429-W-Belden-Ave-60614/unit-GN/apartment/196954529"
+      }
+    ]
+  },
+  {
+    "key": "952-w-carmen-309",
+    "date": "2026-08-17",
+    "status": "active",
+    "onBoard": false,
+    "address": "952 W Carmen Ave #309, Chicago, IL 60640",
+    "unit": "309",
+    "rent": 2550,
+    "allIn": 2550.0,
+    "beds": 1,
+    "baths": 1.0,
+    "sqft": null,
+    "lat": 41.9744012,
+    "lng": -87.6535156,
+    "sources": [
+      {
+        "label": "Domu",
+        "url": "https://www.domu.com/chicago/far-north-side/margate-park/952-w-carmen-ave-952-309-chicago-il-60640"
+      }
+    ]
+  },
+  {
+    "key": "5208-n-sawyer-1",
+    "date": "2026-08-17",
+    "status": "active",
+    "onBoard": false,
+    "address": "5208 N Sawyer Ave #1, Chicago, IL 60625",
+    "unit": "1",
+    "rent": 2550,
+    "allIn": 2550.0,
+    "beds": 2,
+    "baths": 1.0,
+    "sqft": null,
+    "lat": 41.9759937,
+    "lng": -87.710013,
+    "sources": [
+      {
+        "label": "Domu",
+        "url": "https://www.domu.com/chicago/far-north-side/north-park/5208-n-sawyer-ave-1-chicago-il-60625"
+      }
+    ]
+  },
+  {
+    "key": "2032-n-clybourn-3317",
+    "date": "2026-08-17",
+    "status": "active",
+    "onBoard": false,
+    "address": "2032 N Clybourn Ave #3-317, Chicago, IL",
+    "unit": "3-317",
+    "rent": 2595,
+    "allIn": 2595.0,
+    "beds": 1,
+    "baths": 1.0,
+    "sqft": 609,
+    "lat": 41.918244,
+    "lng": -87.659887,
+    "sources": [
+      {
+        "label": "Zillow",
+        "url": "https://www.zillow.com/apartments/chicago-il/the-ludlow"
+      }
+    ]
+  },
+  {
+    "key": "2155-n-elston-11",
+    "date": "2026-08-17",
+    "status": "active",
+    "onBoard": false,
+    "address": "2155 N Elston Ave #1/1, Chicago, IL 60614",
+    "unit": "1/1",
+    "rent": 2677,
+    "allIn": 2677.0,
+    "beds": 1,
+    "baths": 1.0,
+    "sqft": null,
+    "lat": 41.9204923,
+    "lng": -87.6702316,
+    "sources": [
+      {
+        "label": "Domu",
+        "url": "https://www.domu.com/chicago/north-side/lincoln-park/2155-n-elston-ave-1/1-chicago-il-60614-0"
+      }
+    ]
+  },
+  {
+    "key": "506-w-deming-1br-2700",
+    "date": "2026-08-17",
+    "status": "active",
+    "onBoard": false,
+    "address": "506 W Deming Pl, Chicago, IL 60614",
+    "unit": null,
+    "rent": 2700,
+    "allIn": 2700.0,
+    "beds": 1,
+    "baths": 1.0,
+    "sqft": 508,
+    "lat": 41.9287172,
+    "lng": -87.6431829,
+    "sources": [
+      {
+        "label": "Redfin",
+        "url": "https://www.redfin.com/IL/Chicago/The-Deming/apartment/13366693"
+      }
+    ]
+  },
+  {
+    "key": "927-w-irving-park-503",
+    "date": "2026-08-17",
+    "status": "active",
+    "onBoard": false,
+    "address": "927 W Irving Park Rd #503, Chicago, IL IL",
+    "unit": "503",
+    "rent": 2750,
+    "allIn": 2750.0,
+    "beds": 1,
+    "baths": 1.0,
+    "sqft": null,
+    "lat": 41.9542625,
+    "lng": -87.65329,
+    "sources": [
+      {
+        "label": "Domu",
+        "url": "https://www.domu.com/chicago/north-side/lakeview/927-w-irving-park-rd-927-503-chicago-il-60613"
+      }
+    ]
+  },
+  {
+    "key": "2241-n-bissell-1br-2800",
+    "date": "2026-08-17",
+    "status": "active",
+    "onBoard": false,
+    "address": "2241 N Bissell St, Chicago, IL",
+    "unit": null,
+    "rent": 2795,
+    "allIn": 2795.0,
+    "beds": 1,
+    "baths": 1.0,
+    "sqft": 649,
+    "lat": 41.92291,
+    "lng": -87.6517751,
+    "sources": [
+      {
+        "label": "Zillow",
+        "url": "https://www.zillow.com/homedetails/2106492726_zpid/"
+      }
+    ]
+  },
+  {
+    "key": "1743-n-leavitt-UNKNOWN",
+    "date": "2026-08-17",
+    "status": "active",
+    "onBoard": false,
+    "address": "1743 N Leavitt St, Chicago, IL 60647",
+    "unit": null,
+    "rent": 2795,
+    "allIn": 2795.0,
+    "beds": null,
+    "baths": null,
+    "sqft": null,
+    "lat": 41.9136405,
+    "lng": -87.6819906,
+    "sources": [
+      {
+        "label": "Redfin",
+        "url": "https://www.redfin.com/IL/Chicago/606-Blue/apartment/171313176"
+      }
+    ]
+  },
+  {
+    "key": "325-w-fullerton-101",
+    "date": "2026-08-17",
+    "status": "active",
+    "onBoard": false,
+    "address": "325 W Fullerton Pkwy #101, Chicago, IL",
+    "unit": "101",
+    "rent": 2873,
+    "allIn": 2873.0,
+    "beds": 1,
+    "baths": 1.0,
+    "sqft": 731,
+    "lat": 41.9252985,
+    "lng": -87.6375658,
+    "sources": [
+      {
+        "label": "Zillow",
+        "url": "https://www.zillow.com/apartments/chicago-il/park-fullerton-by-reside"
+      }
+    ]
+  },
+  {
+    "key": "1241-n-milwaukee-1br-2900",
+    "date": "2026-08-17",
+    "status": "active",
+    "onBoard": false,
+    "address": "1241 N. Milwaukee Ave",
+    "unit": null,
+    "rent": 2898,
+    "allIn": 2898.0,
+    "beds": 1,
+    "baths": 1.0,
+    "sqft": 986,
+    "lat": 41.9042757,
+    "lng": -87.6677455,
+    "sources": [
+      {
+        "label": "Web",
+        "url": "https://1241milwaukee.com/floorplans/1-bed-den2-bath/"
+      }
+    ]
+  },
+  {
+    "key": "948-w-armitage-2S",
+    "date": "2026-08-17",
+    "status": "active",
+    "onBoard": false,
+    "address": "948 W Armitage Ave APT 2S, Chicago, IL",
+    "unit": "2S",
+    "rent": 3200,
+    "allIn": 3200.0,
+    "beds": 2,
+    "baths": 2.0,
+    "sqft": 1018,
+    "lat": 41.9183706,
+    "lng": -87.6528232,
+    "sources": [
+      {
+        "label": "Zillow",
+        "url": "https://www.zillow.com/homedetails/2102308204_zpid/"
+      }
+    ]
+  },
+  {
+    "key": "1249-n-damen-2",
+    "date": "2026-08-17",
+    "status": "active",
+    "onBoard": false,
+    "address": "1249 N Damen Ave APT 2, Chicago, IL",
+    "unit": "2",
+    "rent": 3200,
+    "allIn": 3200.0,
+    "beds": 2,
+    "baths": 1.0,
+    "sqft": null,
+    "lat": 41.9047378,
+    "lng": -87.6770416,
+    "sources": [
+      {
+        "label": "Zillow",
+        "url": "https://www.zillow.com/homedetails/464607265_zpid/"
+      }
+    ]
+  },
+  {
+    "key": "1241-n-milwaukee-1br-3200",
+    "date": "2026-08-17",
+    "status": "active",
+    "onBoard": false,
+    "address": "1241 North Milwaukee",
+    "unit": null,
+    "rent": 3225,
+    "allIn": 3225.0,
+    "beds": 1,
+    "baths": 1.0,
+    "sqft": 1131,
+    "lat": 41.9042757,
+    "lng": -87.6677455,
+    "sources": [
+      {
+        "label": "Web",
+        "url": "https://www.downtownapartmentcollective.com/luxury-rentals/150-apt/"
+      }
+    ]
+  },
+  {
+    "key": "2345-n-lincoln-A10805",
+    "date": "2026-08-17",
+    "status": "active",
+    "onBoard": false,
+    "address": "2345 N Lincoln Ave #A1-0805, Chicago, IL",
+    "unit": "A1-0805",
+    "rent": 3379,
+    "allIn": 3379.0,
+    "beds": 1,
+    "baths": 1.0,
+    "sqft": 564,
+    "lat": 41.9251282,
+    "lng": -87.6471954,
+    "sources": [
+      {
+        "label": "Zillow",
+        "url": "https://www.zillow.com/apartments/chicago-il/the-apartments-at-lincoln-common"
+      }
+    ]
+  },
+  {
+    "key": "1413-e-57th-3br-3500",
+    "date": "2026-08-17",
+    "status": "active",
+    "onBoard": false,
+    "address": "1413-15 E. 57th, Chicago, IL 60637",
+    "unit": null,
+    "rent": 3499,
+    "allIn": 3499.0,
+    "beds": 3,
+    "baths": null,
+    "sqft": null,
+    "lat": 41.7913202,
+    "lng": -87.5909554,
+    "sources": [
+      {
+        "label": "Domu",
+        "url": "https://www.domu.com/chicago/south-side/hyde-park/1413-15-e-57th"
+      }
+    ]
+  },
+  {
+    "key": "952-w-carmen-211",
+    "date": "2026-08-17",
+    "status": "active",
+    "onBoard": false,
+    "address": "952 W Carmen Ave #211, Chicago, IL 60640",
+    "unit": "211",
+    "rent": 3500,
+    "allIn": 3500.0,
+    "beds": 2,
+    "baths": 1.0,
+    "sqft": null,
+    "lat": 41.9744012,
+    "lng": -87.6535156,
+    "sources": [
+      {
+        "label": "Domu",
+        "url": "https://www.domu.com/chicago/far-north-side/margate-park/952-w-carmen-ave-952-211-chicago-il-60640"
+      }
+    ]
+  },
+  {
+    "key": "952-w-carmen-205",
+    "date": "2026-08-17",
+    "status": "active",
+    "onBoard": false,
+    "address": "952 W Carmen Ave #205, Chicago, IL 60640",
+    "unit": "205",
+    "rent": 3550,
+    "allIn": 3550.0,
+    "beds": 2,
+    "baths": 1.0,
+    "sqft": null,
+    "lat": 41.9744012,
+    "lng": -87.6535156,
+    "sources": [
+      {
+        "label": "Domu",
+        "url": "https://www.domu.com/chicago/far-north-side/margate-park/952-w-carmen-ave-952-205-chicago-il-60640"
+      }
+    ]
+  },
+  {
+    "key": "952-w-carmen-202",
+    "date": "2026-08-17",
+    "status": "active",
+    "onBoard": false,
+    "address": "952 W Carmen Ave #202, Chicago, IL 60640",
+    "unit": "202",
+    "rent": 3650,
+    "allIn": 3650.0,
+    "beds": 2,
+    "baths": 1.0,
+    "sqft": null,
+    "lat": 41.9744012,
+    "lng": -87.6535156,
+    "sources": [
+      {
+        "label": "Domu",
+        "url": "https://www.domu.com/chicago/far-north-side/margate-park/952-w-carmen-ave-952-202-chicago-il-60640"
+      }
+    ]
+  },
+  {
+    "key": "1735-n-paulina-611",
+    "date": "2026-08-17",
+    "status": "active",
+    "onBoard": false,
+    "address": "1735 N Paulina St APT 611, Chicago, IL",
+    "unit": "611",
+    "rent": 3895,
+    "allIn": 3895.0,
+    "beds": 2,
+    "baths": 2.0,
+    "sqft": 935,
+    "lat": 41.9131986,
+    "lng": -87.6699883,
+    "sources": [
+      {
+        "label": "Zillow",
+        "url": "https://www.zillow.com/homedetails/89923653_zpid/"
+      }
+    ]
+  },
+  {
+    "key": "2046-n-bissell-3",
+    "date": "2026-08-17",
+    "status": "active",
+    "onBoard": false,
+    "address": "2046 N Bissell St #3, Chicago, IL",
+    "unit": "3",
+    "rent": 3960,
+    "allIn": 3960.0,
+    "beds": 3,
+    "baths": 1.0,
+    "sqft": 950,
+    "lat": 41.9195283,
+    "lng": -87.6524771,
+    "sources": [
+      {
+        "label": "Zillow",
+        "url": "https://www.zillow.com/homedetails/2057862026_zpid/"
+      }
+    ]
+  }
 ];
 
 const tierColor = {priority:'var(--priority)', worth:'var(--worth)', near:'var(--near)'};
@@ -436,6 +5206,34 @@ function formatDate(iso){
   return d.toLocaleDateString('en-US', {month:'short', day:'numeric'});
 }
 
+// A source that carried no listing link renders as text, never as an anchor.
+// `href="${null}"` yields href="null", a relative link to a file that does not
+// exist — it looks exactly like a working link until it is tapped, which is
+// how the 2026-08-21 board shipped five dead ones. §6a is explicit that a link
+// has to still work a week later; a link that was never captured has to say so.
+function sourceChips(sources, sep){
+  return (sources || []).map(s => s.url
+    ? `<a class="source-link" href="${s.url}" target="_blank" rel="noopener" onclick="event.stopPropagation()">${s.label}</a>`
+    : `<span class="source-link nolink" title="The alert email for this listing carried no link — nothing to open">${s.label} · no link</span>`
+  ).join(sep);
+}
+
+// Beds/baths/sqft. Each part is independently optional because §6 has sources
+// emit null for "not stated", never for "known absent" — so an unstated bath
+// count says "not listed" rather than rendering a confident blank.
+function specsHtml(l){
+  const parts = [
+    l.beds == null
+      ? '<span class="unstated">beds not listed</span>'
+      : `<span>${l.beds === 0 ? 'Studio' : l.beds + ' bd'}</span>`,
+    l.baths == null
+      ? '<span class="unstated">baths not listed</span>'
+      : `<span>${l.baths} ba</span>`
+  ];
+  if(l.sqft != null) parts.push(`<span>${l.sqft.toLocaleString()} sf</span>`);
+  return parts.join('<span class="sep">·</span>');
+}
+
 function priceBucket(l){
   if(l.allIn < 2750) return 'low';
   if(l.allIn <= 3250) return 'mid';
@@ -467,6 +5265,7 @@ listings.forEach(l => {
       <div class="price-note">/mo</div>
     </div>
     ${l.allIn !== l.rent ? `<div class="all-in">All-in: $${l.allIn.toLocaleString()}/mo</div>` : ''}
+    <div class="specs">${specsHtml(l)}</div>
     <div class="avail-row ${dateStr ? '' : 'unknown'}">
       <div class="avail-dot"></div>
       ${dateStr ? `Available ${dateStr}` : 'Move-in date not listed'}
@@ -479,7 +5278,7 @@ listings.forEach(l => {
     </div>
     <div class="loft-sig">${l.signals}</div>
     <div class="card-foot">
-      <div class="sources">${l.sources.map(s => `<a class="source-link" href="${s.url}" target="_blank" rel="noopener" onclick="event.stopPropagation()">${s.label}</a>`).join('')}</div>
+      <div class="sources">${sourceChips(l.sources, '')}</div>
       <div class="card-actions">
         <button class="act fav" data-act="fav" title="Save" aria-label="Save this listing">★</button>
         <button class="act dismiss" data-act="dismiss" title="Remove" aria-label="Remove this listing">✕</button>
@@ -641,7 +5440,8 @@ listings.forEach(l => {
     <div class="popup-price">$${l.rent.toLocaleString()}/mo</div>
     <div class="popup-tags">${l.loft} · ${l.layout} · ${l.zone}</div>
     <div class="popup-tags">${popupDate ? 'Available ' + popupDate : 'Move-in date not listed'}</div>
-    <div class="popup-tags">${l.sources.map(s => `<a class="source-link" href="${s.url}" target="_blank" rel="noopener">${s.label}</a>`).join(' · ')}</div>
+    <div class="popup-tags">${specsHtml(l)}</div>
+    <div class="popup-tags">${sourceChips(l.sources, ' · ')}</div>
   `);
   marker.on('click', () => selectListing(l.id));
   markers[l.id] = marker;
@@ -657,6 +5457,133 @@ function selectListing(id){
   map.flyTo([l.lat, l.lng], 16, {duration:0.6});
   markers[id].openPopup();
 }
+
+// ---------------------------------------------------------------------------
+// Past-7-days pane.
+//
+// Grouped by capture date, newest day first, so the shape of the week is
+// readable at a glance — a day with nothing under it is a visible hole rather
+// than an absence you have to infer from a total.
+// ---------------------------------------------------------------------------
+const weekScroll = document.getElementById('weekScroll');
+const weekMarkers = {};
+const weekLayer = L.layerGroup();
+
+// address_raw is whatever the source printed, and roughly half the sources
+// already spell the unit into it ("1921 N Sedgwick St Unit 3F"). Appending the
+// unit unconditionally rendered that one twice.
+function weekTitle(w){
+  if(!w.unit) return w.address;
+  const unit = String(w.unit).toLowerCase();
+  const haystack = w.address.toLowerCase();
+  const already = haystack.includes('unit ' + unit)
+    || haystack.includes('apt ' + unit)
+    || haystack.includes('#' + unit)
+    || haystack.endsWith(' ' + unit)
+    || haystack.endsWith(', ' + unit);
+  return already ? w.address : `${w.address}, Unit ${w.unit}`;
+}
+
+function weekRow(w){
+  const gone = w.status === 'dead';
+  const flags = [
+    w.onBoard ? '<span class="week-flag board">on the board</span>' : '',
+    gone ? '<span class="week-flag">no longer listed</span>' : ''
+  ].join(' ');
+  return `<div class="week-row${gone ? ' gone' : ''}" data-key="${w.key}">
+    <div>
+      <div class="week-addr">${weekTitle(w)}</div>
+      <div class="week-meta">${specsHtml(w)}</div>
+      <div class="week-meta">${sourceChips(w.sources, ' · ')}</div>
+      ${flags}
+    </div>
+    <div class="week-right">
+      <div class="week-rent">${w.rent != null ? '$' + w.rent.toLocaleString() : 'no rent given'}</div>
+      ${w.allIn != null && w.allIn !== w.rent
+        ? `<div class="week-allin">all-in $${w.allIn.toLocaleString()}</div>` : ''}
+    </div>
+  </div>`;
+}
+
+function renderWeek(){
+  const span = `${formatDate(weekWindow.start) || weekWindow.start} – ${formatDate(weekWindow.end) || weekWindow.end}`;
+  if(!weekly.length){
+    weekScroll.innerHTML =
+      `<div class="week-empty">Nothing new captured between ${span}.<br>` +
+      `Every listing the scan saw this week was one it had already seen.</div>`;
+    return;
+  }
+  const byDay = new Map();
+  weekly.forEach(w => {
+    if(!byDay.has(w.date)) byDay.set(w.date, []);
+    byDay.get(w.date).push(w);
+  });
+  const live = weekly.filter(w => w.status !== 'dead').length;
+  let html = `<div class="week-note">
+    <b>${weekly.length}</b> listing${weekly.length === 1 ? '' : 's'} first seen ${span} —
+    ${live} still live, ${weekly.length - live} since gone.
+    Everything captured, scored or not, so a week that looks thin here really was thin.
+  </div>`;
+  [...byDay.keys()].sort().reverse().forEach(day => {
+    const rows = byDay.get(day).slice().sort((a, b) => (b.rent || 0) - (a.rent || 0));
+    html += `<div class="week-day">
+      <div class="week-day-head">
+        <b>${formatDate(day) || day}</b><span>${rows.length} captured</span>
+      </div>
+      ${rows.map(weekRow).join('')}
+    </div>`;
+  });
+  weekScroll.innerHTML = html;
+
+  weekScroll.querySelectorAll('.week-row').forEach(row => {
+    row.addEventListener('click', () => {
+      const marker = weekMarkers[row.dataset.key];
+      if(!marker) return;                  // ungeocoded: nothing to fly to
+      map.flyTo(marker.getLatLng(), 16, {duration:0.6});
+      marker.openPopup();
+    });
+  });
+}
+
+// Built lazily: the pane is usually never opened, and every marker costs a DOM
+// node whether or not it is ever looked at.
+let weekPinsBuilt = false;
+function buildWeekPins(){
+  if(weekPinsBuilt) return;
+  weekPinsBuilt = true;
+  weekly.forEach(w => {
+    if(w.lat == null || w.lng == null) return;
+    const gone = w.status === 'dead';
+    const marker = L.marker([w.lat, w.lng], {
+      icon: L.divIcon({className:'', html:`<div class="pin week${gone ? ' gone' : ''}"></div>`,
+                       iconSize:[16,16], iconAnchor:[8,8]})
+    });
+    marker.bindPopup(`
+      <div class="popup-addr">${weekTitle(w)}</div>
+      <div class="popup-price">${w.rent != null ? '$' + w.rent.toLocaleString() + '/mo' : 'no rent given'}</div>
+      <div class="popup-tags">${specsHtml(w)}</div>
+      <div class="popup-tags">First seen ${formatDate(w.date) || w.date}${gone ? ' · no longer listed' : ''}</div>
+      <div class="popup-tags">${sourceChips(w.sources, ' · ')}</div>
+    `);
+    weekMarkers[w.key] = marker;
+    weekLayer.addLayer(marker);
+  });
+}
+
+document.getElementById('paneTabs').addEventListener('click', e => {
+  const tab = e.target.closest('.pane-tab');
+  if(!tab) return;
+  const wantWeek = tab.dataset.pane === 'week';
+  document.body.classList.toggle('view-week', wantWeek);
+  document.querySelectorAll('.pane-tab').forEach(t => {
+    const on = t === tab;
+    t.classList.toggle('active', on);
+    t.setAttribute('aria-selected', String(on));
+  });
+  if(wantWeek){ buildWeekPins(); weekLayer.addTo(map); }
+  else { map.removeLayer(weekLayer); }
+  requestAnimationFrame(() => map.invalidateSize());
+});
 
 // ---------------------------------------------------------------------------
 // Mobile list <-> map toggle.
@@ -684,6 +5611,7 @@ window.addEventListener('resize', () => map.invalidateSize());
 
 paintState();
 applyFilters();
+renderWeek();
 </script>
 
 </body>

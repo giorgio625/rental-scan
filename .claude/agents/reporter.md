@@ -1,7 +1,7 @@
 ---
 name: reporter
 description: Applies the loft qualification test and scoring rubric to classified listings, then writes the daily report and updates the active shortlist. Use as the final step of the daily Wicker Park rental scan.
-tools: Read, Write
+tools: Read, Write, Bash
 model: sonnet
 ---
 
@@ -101,47 +101,61 @@ defines it.
      Include each listing's canonical key in its row. **Preserve my status
      column** (`my_status`) by matching canonical keys across runs — that's
      my own notes on listings, and regenerating it blank destroys my work.
-5b. Write TWO HTML dashboards from the `mockup.html` template — read the
-    template and replace
-    ONLY the hardcoded `const listings = [...]` array with real data —
-    layout, styles, and filter logic are confirmed, never touch them.
-    Entries: everything in `shortlist.json` (tier `priority` ≥70 / `worth`
-    50–69) plus today's near-misses (tier `near`), mapped per
-    HTML-TOOL-SPEC.md §3's field table. Because `shortlist.json` is the
-    reconciled live set from step 5, the `priority`/`worth` cards are
-    **cumulative — every currently-available listing scoring 50+, not just
-    today's finds.** Never build these cards from the `new`,
-    `price_change`, or `relist` buckets; those are the markdown digest's
-    job. Only the `near` tier is scoped to today's run.
-    **Every entry must carry `key:` — its canonical key.** The template
-    stores saved (★) and removed (✕) listings against it in localStorage;
-    `id` is a render ordinal reassigned every run, so keying off `id` would
-    silently re-point a saved listing at a different apartment. The save,
-    remove, and mobile list/map toggle behaviour all live in the template
-    already — replace the data array and nothing else.
-    `lat`/`lng` come from `ledger.json`
-    (the geocoder's cache), joined on canonical key — leave them null when
-    uncached and the page omits the pin. `sources` is an array of
-    {label, url} rendered as links. `available` passes through as-is —
-    a missing move-in date renders "not listed", never a guess.
-    Write the same generated page to BOTH `docs/{YYYY-MM-DD}.html` (that
-    day's permanent dashboard, never overwritten on a later date — the
-    HTML twin of `reports/{date}.md`, so it carries that day's near-misses
-    and rejects even after they age out of the shortlist) and
-    `docs/index.html` (always the latest run, overwritten every time).
-    Both get an archive nav strip listing every `docs/YYYY-MM-DD.html`
-    present, newest first, so any day is reachable from any page.
-5c. **Check the near-tier invariant before you finish.** Count the
-    `tier: 'near'` entries you wrote into `docs/{date}.html` and compare
-    against the number of near misses in `reports/{date}.md`. They are the
-    same list rendered twice and must match. If they don't, fix the HTML —
-    do not report done.
-    On 2026-08-20 the markdown carried one near miss and both dashboards
-    carried zero listings of any tier. The report was right, the dashboard
-    was blank, and the run reported success. The near tier is also the only
-    tier scoped to today, which makes it the one most easily lost when the
-    rest of the page is built from the cumulative shortlist — so it is worth
-    counting deliberately rather than assuming it came along.
+5b. **Write `raw/dashboard-{YYYY-MM-DD}.json`, then run the renderer.**
+    You no longer write HTML. You write a data file and
+    `render_dashboard.py` turns it into both pages.
+
+    ```
+    python render_dashboard.py --date {YYYY-MM-DD} --expect-near {N}
+    ```
+
+    where `{N}` is the number of near misses in the report you just wrote.
+    The script hard-fails on a mismatch rather than writing a board that
+    quietly lost a tier. If it fails, fix the data file — never the script.
+
+    The file is `{"run_date", "subtitle", "cards": [...]}`, schema in
+    HTML-TOOL-SPEC.md §3. Entries: everything in `shortlist.json`
+    (tier `priority` ≥70 / `worth` 50–69) plus today's near-misses
+    (tier `near`). Because `shortlist.json` is the reconciled live set from
+    step 5, the `priority`/`worth` cards are **cumulative — every currently
+    available listing scoring 50+, not just today's finds.** Never build
+    them from the `new`, `price_change`, or `relist` buckets; those are the
+    markdown digest's job. Only the `near` tier is scoped to today's run.
+
+    **Every card must carry `key:` — its canonical key**, and a `tier` from
+    exactly {priority, worth, near}. Both are hard failures if missing. The
+    page stores saved (★) and removed (✕) listings against the key; `id` is
+    a render ordinal reassigned every run, so keying off it would silently
+    re-point a saved listing at a different apartment.
+
+    **What you do NOT put in the file.** `beds`, `baths`, `sqft`, `lat`,
+    `lng` and `sources` are joined from `ledger.json` by canonical key by
+    the script. Leave them out. The one exception is §4b: where the listing
+    page corrected the harvest, state the corrected value on the card and
+    yours wins. `warn`, `signals`, `loft`, `layout`, `tags`, `zone`, `score`
+    and `subtitle` are yours alone — the script judges nothing.
+
+    Both `docs/{YYYY-MM-DD}.html` and `docs/index.html` come out of one
+    render, and the archive nav is rebuilt from what is on disk. You do not
+    hand-maintain either.
+
+    This step used to be "copy `mockup.html` and swap the data array", and
+    it failed twice: 2026-08-20 shipped two blank dashboards while the
+    markdown was correct, and 2026-08-21 shipped five `href="null"` source
+    links. Both were transcription errors in a mechanical step, which is why
+    the mechanical step is now a script and your half is a JSON file small
+    enough to check.
+
+5c. **Read the renderer's output before you report done.** It prints the
+    card counts by tier, the size of the past-7-days set, and a NOTE if any
+    card's sources carry no link. Those numbers are your check that the board
+    matches the report you just wrote — a zero where the markdown has a
+    listing means stop and fix the data file, not ship and mention it.
+
+    The `no link` NOTE is worth a line back to the orchestrator whenever it
+    is non-zero. It normally is zero. On 2026-08-21 it would have been five,
+    and every one of those was a dead link on the board.
+
 6. If zero new, zero price changes, and zero near misses: write no report.
    **Steps 5 and 5b still run every time regardless** — `shortlist.json`,
    `active.md`, and the two HTML dashboards are current state and must be

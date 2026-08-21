@@ -94,6 +94,85 @@ once and never overwritten by a later run. Both carry the same archive nav
 strip linking every `docs/YYYY-MM-DD.html` on disk, newest first, so either
 page can reach any day.
 
+### Rendering is a script, not a transcription — added 2026-08-21
+
+`reporter` no longer writes HTML. It writes `raw/dashboard-{date}.json` and
+`render_dashboard.py` turns that into both pages.
+
+The split: **`reporter` judges, the script renders.** Tier, score, zone, the
+loft call, signals, warnings, tags and the subtitle are §4/§4a judgments and
+only `reporter` makes them. Everything mechanical — joining `lat`/`lng`,
+`beds`/`baths`/`sqft` and source links from `ledger.json` by canonical key,
+building the past-7-days set, normalizing URLs per §6a, the archive nav —
+belongs to the script, which decides nothing.
+
+This exists because both dashboard failures to date were transcription
+errors, not judgment errors:
+
+- **2026-08-20** — both pages rendered with zero listings of any tier while
+  `reports/2026-08-20.md` correctly carried a near miss. The run reported
+  success.
+- **2026-08-21** — every source link on the board was `href="null"`. Five
+  dead links that look live until tapped, which is the exact failure mode
+  §6a warns about.
+
+A 700-line hand-copy every day will keep producing those. A 90-line JSON
+file will not, and it is countable, diffable, and cheap to validate.
+
+```
+python render_dashboard.py --date 2026-08-21 --expect-near 5
+```
+
+`--expect-near` is the 2026-08-20 invariant made mechanical: pass the near-miss
+count from `reports/{date}.md` and a disagreement is a hard failure that writes
+nothing, rather than a blank board that reports success. `--no-index` renders
+only the dated page, for backfilling an old day without disturbing the live one.
+
+**`raw/dashboard-{date}.json`:**
+
+```json
+{
+  "run_date": "2026-08-21",
+  "subtitle": "…the header line under the brand…",
+  "cards": [
+    {"key": "…", "tier": "priority|worth|near", "score": 0,
+     "address": "…", "zone": "…", "rent": 0, "allIn": 0,
+     "loft": "…", "layout": "…", "tags": [], "warn": "…", "signals": "…",
+     "available": null, "outdoor": "private|other"}
+  ]
+}
+```
+
+`key` and a valid `tier` are required — a card missing either is a hard
+failure, because saved/removed state is stored against the canonical key.
+Omit `beds`/`baths`/`sqft`/`lat`/`lng`/`sources` and the script joins them
+from the ledger; state one and yours wins, which is how §4b enrichment
+corrections reach the page.
+
+### Beds, baths, and the past-7-days pane — added 2026-08-21
+
+**Bed/bath/sqft line on every card and every week row.** Each part is
+independently optional: §6 has sources emit `null` for "not stated", so an
+unstated bath count renders "baths not listed" rather than a confident blank.
+`beds: 0` is a studio, not a missing value — a truthiness test here turns
+every studio into "not listed". `baths` and `sqft` were absent from every
+ledger record until 2026-08-21 despite being on the §7a sticky list; the
+`dedupe.py` that wrote them predated the widened field list, and
+`migrations/2026-08-21-url-and-baths-backfill.py` recovered them from the
+archived `raw/classified-*.json` files.
+
+**Past 7 days pane**, a tab in the left pane beside Board. Every canonical
+key whose `first_seen` falls in the trailing 7 days, straight from
+`ledger.json`, grouped by capture date, newest day first — scored and
+unscored, still live and already dead, with pins on the map.
+
+Deliberately unfiltered. The board answers "what should I look at"; this
+answers "what did the scan actually see this week", and narrowing it to
+qualifiers would answer the board's question twice. It is also the fastest
+way to tell a genuinely quiet week from a broken harvester — a day with
+nothing under it is a visible hole rather than an absence you infer from an
+empty board.
+
 **Do not touch the file structure of `mockup.html` beyond the data-loading
 change.** The layout, filters, and styling are confirmed. If `reporter`
 wants to change the visual design, that's a separate conversation, not

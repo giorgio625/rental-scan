@@ -113,6 +113,14 @@
   .price-note{font-size:11px;color:var(--muted);}
   .all-in{font-size:11.5px;color:var(--brick-dark);margin-top:2px;}
 
+  /* Bed/bath/sqft line. Every part is independently optional: sources state
+     beds far more often than baths, and §6 says a field the email never
+     mentioned is null, not zero. An unstated part says so rather than
+     rendering a plausible-looking blank. */
+  .specs{display:flex;flex-wrap:wrap;gap:5px;margin-top:6px;font-size:11.5px;color:var(--ink);}
+  .specs .sep{color:var(--line);}
+  .specs .unstated{color:#a8917a;font-style:italic;}
+
   .tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px;}
   .tag{
     font-size:11px;padding:4px 8px;border-radius:4px;background:var(--paper-2);
@@ -127,6 +135,13 @@
   .sources{font-size:10.5px;color:var(--muted);display:flex;gap:8px;flex-wrap:wrap;}
   .source-link{color:var(--brick-dark);text-decoration:none;}
   .source-link:hover{text-decoration:underline;}
+  /* A source whose email carried no listing link. Rendered as an <a> with a
+     null href it became a dead link indistinguishable from a live one — the
+     2026-08-21 board shipped five. It is now visibly not a link. */
+  .source-link.nolink{
+    color:var(--muted);text-decoration:none;cursor:help;
+    border-bottom:1px dotted var(--line);
+  }
   .loft-sig{font-size:10.5px;color:var(--green);font-style:italic;margin-top:10px;line-height:1.45;}
 
   /* ---------- CARD ACTIONS: favorite / dismiss ---------- */
@@ -166,6 +181,59 @@
     text-align:center;padding:60px 20px;color:var(--muted);font-size:13px;
   }
 
+  /* ---------- LEFT PANE TABS: board <-> past 7 days ---------- */
+  /* Not folded into .filters: the board's filter pills are a subset of one
+     tab's contents, and a "past 7 days" pill sitting among them would read as
+     another filter on the same list rather than a different list entirely. */
+  .pane-tabs{
+    display:flex;padding:0 24px;border-bottom:1px solid var(--line);
+    background:var(--paper);flex-shrink:0;
+  }
+  .pane-tab{
+    appearance:none;background:none;border:none;padding:11px 0;margin-right:22px;
+    font:inherit;font-size:12.5px;color:var(--muted);cursor:pointer;
+    border-bottom:2px solid transparent;transition:color .12s ease;
+  }
+  .pane-tab:hover{color:var(--ink);}
+  .pane-tab.active{color:var(--ink);font-weight:600;border-bottom-color:var(--brick);}
+
+  .week-scroll{display:none;flex:1;overflow-y:auto;padding:18px 24px 40px;}
+  body.view-week .week-scroll{display:block;}
+  body.view-week .list-scroll,
+  body.view-week #tierFilters,
+  body.view-week #priceFilters,
+  body.view-week #outdoorFilters,
+  body.view-week .dismissed-bar{display:none !important;}
+
+  .week-note{font-size:11.5px;color:var(--muted);line-height:1.5;margin-bottom:16px;}
+  .week-day{margin-bottom:24px;}
+  .week-day-head{
+    display:flex;align-items:baseline;justify-content:space-between;gap:10px;
+    padding-bottom:7px;margin-bottom:8px;border-bottom:1px solid var(--line);
+  }
+  .week-day-head b{font-family:'Fraunces',serif;font-size:14px;font-weight:600;}
+  .week-day-head span{font-size:10.5px;color:var(--muted);letter-spacing:0.04em;text-transform:uppercase;}
+  .week-row{
+    display:flex;justify-content:space-between;align-items:flex-start;gap:12px;
+    padding:9px 0;border-bottom:1px solid var(--paper-2);cursor:pointer;
+  }
+  .week-row:last-child{border-bottom:none;}
+  .week-row:hover .week-addr{color:var(--brick-dark);}
+  .week-addr{font-size:13px;font-weight:500;line-height:1.35;}
+  .week-meta{font-size:11px;color:var(--muted);margin-top:3px;line-height:1.5;}
+  .week-right{text-align:right;flex-shrink:0;}
+  .week-rent{font-family:'Fraunces',serif;font-size:14.5px;font-weight:600;white-space:nowrap;}
+  .week-allin{font-size:10.5px;color:var(--brick-dark);margin-top:2px;white-space:nowrap;}
+  .week-flag{
+    display:inline-block;font-size:9.5px;letter-spacing:0.04em;text-transform:uppercase;
+    padding:2px 6px;border-radius:3px;background:var(--paper-2);color:var(--muted);
+    margin-top:4px;
+  }
+  .week-flag.board{background:#f5e6d8;color:var(--brick-dark);}
+  .week-row.gone{opacity:.55;}
+  .week-row.gone .week-addr{text-decoration:line-through;text-decoration-color:var(--muted);}
+  .week-empty{text-align:center;padding:60px 20px;color:var(--muted);font-size:13px;}
+
   /* ---------- RIGHT PANE / MAP ---------- */
   .map-pane{position:relative;}
   #map{height:100vh;width:100%;background:#e4ddce;}
@@ -197,6 +265,13 @@
   .pin.priority{background:var(--priority);}
   .pin.worth{background:var(--worth);}
   .pin.near{background:var(--near);}
+  /* Past-7-days pins carry no score — they are everything captured, scored or
+     not — so they get a dot rather than a numbered teardrop. */
+  .pin.week{
+    width:16px;height:16px;border-radius:50%;transform:none;
+    background:var(--muted);border:2px solid #fff;
+  }
+  .pin.week.gone{background:#c9c2b6;}
 
   .leaflet-popup-content-wrapper{border-radius:6px;font-family:'Inter',sans-serif;}
   .popup-addr{font-weight:600;font-size:13px;}
@@ -269,6 +344,11 @@
       <span class="current">2026-08-17</span>
     </div>
 
+    <div class="pane-tabs" id="paneTabs" role="tablist">
+      <button class="pane-tab active" data-pane="board" role="tab" aria-selected="true">Board</button>
+      <button class="pane-tab" data-pane="week" role="tab" aria-selected="false">Past 7 days</button>
+    </div>
+
     <div class="filters" id="tierFilters">
       <div class="filter-pill active" data-tier="all">All</div>
       <div class="filter-pill" data-tier="priority">Priority</div>
@@ -298,6 +378,7 @@
     </div>
 
     <div class="list-scroll" id="listScroll"></div>
+    <div class="week-scroll" id="weekScroll"></div>
   </div>
 
   <div class="map-pane">
@@ -382,6 +463,35 @@ const listings = [
   },
 ];
 
+// ---------------------------------------------------------------------------
+// Past 7 days.
+//
+// `weekly` is every canonical key whose `first_seen` falls in the trailing
+// 7-day window, taken straight from ledger.json: scored and unscored, still
+// live and already dead. That is deliberately a different question from the
+// board above, which carries only what currently qualifies. This is the "what
+// did the scan actually see this week" view, and narrowing it to qualifiers
+// would answer the board's question twice instead.
+//
+// `render_dashboard.py` replaces this array and `weekWindow` together with
+// `listings`. Both are data; nothing below this line is.
+// ---------------------------------------------------------------------------
+const weekWindow = {start:'2026-08-12', end:'2026-08-18'};
+const weekly = [
+  {
+    key:'1620-n-damen-4c', date:'2026-08-18', status:'active', onBoard:true,
+    address:'1620 N Damen Ave', unit:'4C', rent:3150, allIn:3150,
+    beds:2, baths:2, sqft:1400, lat:41.9105, lng:-87.6772,
+    sources:[{label:'Domu', url:'https://www.domu.com/'}]
+  },
+  {
+    key:'2038-w-north-3', date:'2026-08-17', status:'dead', onBoard:false,
+    address:'2038 W North Ave', unit:'3', rent:2650, allIn:2890,
+    beds:1, baths:1, sqft:null, lat:41.9103, lng:-87.6795,
+    sources:[{label:'Craigslist', url:null}]
+  },
+];
+
 const tierColor = {priority:'var(--priority)', worth:'var(--worth)', near:'var(--near)'};
 const tierLabel = {priority:'Priority', worth:'Worth a look', near:'Near miss'};
 
@@ -436,6 +546,34 @@ function formatDate(iso){
   return d.toLocaleDateString('en-US', {month:'short', day:'numeric'});
 }
 
+// A source that carried no listing link renders as text, never as an anchor.
+// `href="${null}"` yields href="null", a relative link to a file that does not
+// exist — it looks exactly like a working link until it is tapped, which is
+// how the 2026-08-21 board shipped five dead ones. §6a is explicit that a link
+// has to still work a week later; a link that was never captured has to say so.
+function sourceChips(sources, sep){
+  return (sources || []).map(s => s.url
+    ? `<a class="source-link" href="${s.url}" target="_blank" rel="noopener" onclick="event.stopPropagation()">${s.label}</a>`
+    : `<span class="source-link nolink" title="The alert email for this listing carried no link — nothing to open">${s.label} · no link</span>`
+  ).join(sep);
+}
+
+// Beds/baths/sqft. Each part is independently optional because §6 has sources
+// emit null for "not stated", never for "known absent" — so an unstated bath
+// count says "not listed" rather than rendering a confident blank.
+function specsHtml(l){
+  const parts = [
+    l.beds == null
+      ? '<span class="unstated">beds not listed</span>'
+      : `<span>${l.beds === 0 ? 'Studio' : l.beds + ' bd'}</span>`,
+    l.baths == null
+      ? '<span class="unstated">baths not listed</span>'
+      : `<span>${l.baths} ba</span>`
+  ];
+  if(l.sqft != null) parts.push(`<span>${l.sqft.toLocaleString()} sf</span>`);
+  return parts.join('<span class="sep">·</span>');
+}
+
 function priceBucket(l){
   if(l.allIn < 2750) return 'low';
   if(l.allIn <= 3250) return 'mid';
@@ -467,6 +605,7 @@ listings.forEach(l => {
       <div class="price-note">/mo</div>
     </div>
     ${l.allIn !== l.rent ? `<div class="all-in">All-in: $${l.allIn.toLocaleString()}/mo</div>` : ''}
+    <div class="specs">${specsHtml(l)}</div>
     <div class="avail-row ${dateStr ? '' : 'unknown'}">
       <div class="avail-dot"></div>
       ${dateStr ? `Available ${dateStr}` : 'Move-in date not listed'}
@@ -479,7 +618,7 @@ listings.forEach(l => {
     </div>
     <div class="loft-sig">${l.signals}</div>
     <div class="card-foot">
-      <div class="sources">${l.sources.map(s => `<a class="source-link" href="${s.url}" target="_blank" rel="noopener" onclick="event.stopPropagation()">${s.label}</a>`).join('')}</div>
+      <div class="sources">${sourceChips(l.sources, '')}</div>
       <div class="card-actions">
         <button class="act fav" data-act="fav" title="Save" aria-label="Save this listing">★</button>
         <button class="act dismiss" data-act="dismiss" title="Remove" aria-label="Remove this listing">✕</button>
@@ -641,7 +780,8 @@ listings.forEach(l => {
     <div class="popup-price">$${l.rent.toLocaleString()}/mo</div>
     <div class="popup-tags">${l.loft} · ${l.layout} · ${l.zone}</div>
     <div class="popup-tags">${popupDate ? 'Available ' + popupDate : 'Move-in date not listed'}</div>
-    <div class="popup-tags">${l.sources.map(s => `<a class="source-link" href="${s.url}" target="_blank" rel="noopener">${s.label}</a>`).join(' · ')}</div>
+    <div class="popup-tags">${specsHtml(l)}</div>
+    <div class="popup-tags">${sourceChips(l.sources, ' · ')}</div>
   `);
   marker.on('click', () => selectListing(l.id));
   markers[l.id] = marker;
@@ -657,6 +797,133 @@ function selectListing(id){
   map.flyTo([l.lat, l.lng], 16, {duration:0.6});
   markers[id].openPopup();
 }
+
+// ---------------------------------------------------------------------------
+// Past-7-days pane.
+//
+// Grouped by capture date, newest day first, so the shape of the week is
+// readable at a glance — a day with nothing under it is a visible hole rather
+// than an absence you have to infer from a total.
+// ---------------------------------------------------------------------------
+const weekScroll = document.getElementById('weekScroll');
+const weekMarkers = {};
+const weekLayer = L.layerGroup();
+
+// address_raw is whatever the source printed, and roughly half the sources
+// already spell the unit into it ("1921 N Sedgwick St Unit 3F"). Appending the
+// unit unconditionally rendered that one twice.
+function weekTitle(w){
+  if(!w.unit) return w.address;
+  const unit = String(w.unit).toLowerCase();
+  const haystack = w.address.toLowerCase();
+  const already = haystack.includes('unit ' + unit)
+    || haystack.includes('apt ' + unit)
+    || haystack.includes('#' + unit)
+    || haystack.endsWith(' ' + unit)
+    || haystack.endsWith(', ' + unit);
+  return already ? w.address : `${w.address}, Unit ${w.unit}`;
+}
+
+function weekRow(w){
+  const gone = w.status === 'dead';
+  const flags = [
+    w.onBoard ? '<span class="week-flag board">on the board</span>' : '',
+    gone ? '<span class="week-flag">no longer listed</span>' : ''
+  ].join(' ');
+  return `<div class="week-row${gone ? ' gone' : ''}" data-key="${w.key}">
+    <div>
+      <div class="week-addr">${weekTitle(w)}</div>
+      <div class="week-meta">${specsHtml(w)}</div>
+      <div class="week-meta">${sourceChips(w.sources, ' · ')}</div>
+      ${flags}
+    </div>
+    <div class="week-right">
+      <div class="week-rent">${w.rent != null ? '$' + w.rent.toLocaleString() : 'no rent given'}</div>
+      ${w.allIn != null && w.allIn !== w.rent
+        ? `<div class="week-allin">all-in $${w.allIn.toLocaleString()}</div>` : ''}
+    </div>
+  </div>`;
+}
+
+function renderWeek(){
+  const span = `${formatDate(weekWindow.start) || weekWindow.start} – ${formatDate(weekWindow.end) || weekWindow.end}`;
+  if(!weekly.length){
+    weekScroll.innerHTML =
+      `<div class="week-empty">Nothing new captured between ${span}.<br>` +
+      `Every listing the scan saw this week was one it had already seen.</div>`;
+    return;
+  }
+  const byDay = new Map();
+  weekly.forEach(w => {
+    if(!byDay.has(w.date)) byDay.set(w.date, []);
+    byDay.get(w.date).push(w);
+  });
+  const live = weekly.filter(w => w.status !== 'dead').length;
+  let html = `<div class="week-note">
+    <b>${weekly.length}</b> listing${weekly.length === 1 ? '' : 's'} first seen ${span} —
+    ${live} still live, ${weekly.length - live} since gone.
+    Everything captured, scored or not, so a week that looks thin here really was thin.
+  </div>`;
+  [...byDay.keys()].sort().reverse().forEach(day => {
+    const rows = byDay.get(day).slice().sort((a, b) => (b.rent || 0) - (a.rent || 0));
+    html += `<div class="week-day">
+      <div class="week-day-head">
+        <b>${formatDate(day) || day}</b><span>${rows.length} captured</span>
+      </div>
+      ${rows.map(weekRow).join('')}
+    </div>`;
+  });
+  weekScroll.innerHTML = html;
+
+  weekScroll.querySelectorAll('.week-row').forEach(row => {
+    row.addEventListener('click', () => {
+      const marker = weekMarkers[row.dataset.key];
+      if(!marker) return;                  // ungeocoded: nothing to fly to
+      map.flyTo(marker.getLatLng(), 16, {duration:0.6});
+      marker.openPopup();
+    });
+  });
+}
+
+// Built lazily: the pane is usually never opened, and every marker costs a DOM
+// node whether or not it is ever looked at.
+let weekPinsBuilt = false;
+function buildWeekPins(){
+  if(weekPinsBuilt) return;
+  weekPinsBuilt = true;
+  weekly.forEach(w => {
+    if(w.lat == null || w.lng == null) return;
+    const gone = w.status === 'dead';
+    const marker = L.marker([w.lat, w.lng], {
+      icon: L.divIcon({className:'', html:`<div class="pin week${gone ? ' gone' : ''}"></div>`,
+                       iconSize:[16,16], iconAnchor:[8,8]})
+    });
+    marker.bindPopup(`
+      <div class="popup-addr">${weekTitle(w)}</div>
+      <div class="popup-price">${w.rent != null ? '$' + w.rent.toLocaleString() + '/mo' : 'no rent given'}</div>
+      <div class="popup-tags">${specsHtml(w)}</div>
+      <div class="popup-tags">First seen ${formatDate(w.date) || w.date}${gone ? ' · no longer listed' : ''}</div>
+      <div class="popup-tags">${sourceChips(w.sources, ' · ')}</div>
+    `);
+    weekMarkers[w.key] = marker;
+    weekLayer.addLayer(marker);
+  });
+}
+
+document.getElementById('paneTabs').addEventListener('click', e => {
+  const tab = e.target.closest('.pane-tab');
+  if(!tab) return;
+  const wantWeek = tab.dataset.pane === 'week';
+  document.body.classList.toggle('view-week', wantWeek);
+  document.querySelectorAll('.pane-tab').forEach(t => {
+    const on = t === tab;
+    t.classList.toggle('active', on);
+    t.setAttribute('aria-selected', String(on));
+  });
+  if(wantWeek){ buildWeekPins(); weekLayer.addTo(map); }
+  else { map.removeLayer(weekLayer); }
+  requestAnimationFrame(() => map.invalidateSize());
+});
 
 // ---------------------------------------------------------------------------
 // Mobile list <-> map toggle.
@@ -684,6 +951,7 @@ window.addEventListener('resize', () => map.invalidateSize());
 
 paintState();
 applyFilters();
+renderWeek();
 </script>
 
 </body>

@@ -1,0 +1,8 @@
+{
+  "agent": "inbox-harvester",
+  "run_date": "2026-08-21",
+  "file": "raw/2026-08-21-inbox-backfill.json",
+  "count": 10,
+  "sources_present": ["craigslist", "redfin", "zillow", "domu"],
+  "sources_zero": ["apartments"]
+}
