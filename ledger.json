@@ -123,7 +123,7 @@
       "first_seen": "2026-08-19",
       "key": "1235-n-ashland-502",
       "key_type": "primary",
-      "last_seen": "2026-08-20",
+      "last_seen": "2026-08-21",
       "lat": 41.9044676,
       "layout": null,
       "lng": -87.667162,
@@ -450,7 +450,7 @@
       "first_seen": "2026-08-19",
       "key": "1257-n-ashland-402",
       "key_type": "primary",
-      "last_seen": "2026-08-20",
+      "last_seen": "2026-08-21",
       "lat": 41.9050592,
       "layout": null,
       "lng": -87.6671395,
@@ -479,7 +479,7 @@
       "first_seen": "2026-08-19",
       "key": "1257-n-ashland-502",
       "key_type": "primary",
-      "last_seen": "2026-08-20",
+      "last_seen": "2026-08-21",
       "lat": 41.9050592,
       "layout": null,
       "lng": -87.6671395,
@@ -566,7 +566,7 @@
       "first_seen": "2026-08-18",
       "key": "1317-n-leavitt-1br-4300",
       "key_type": "fallback",
-      "last_seen": "2026-08-20",
+      "last_seen": "2026-08-21",
       "lat": 41.9056017,
       "layout": null,
       "lng": -87.6823248,
@@ -582,6 +582,10 @@
         {
           "source": "web",
           "url": "https://landstarchicago.com/homes-for-sale-details/1317-N-LEAVITT-STREET-CHICAGO-IL-60622/12682086/34/"
+        },
+        {
+          "source": "web",
+          "url": "https://www.propertyrocks.com/properties/listing/MRED/12682086/Chicago/1317-N-Leavitt-Street"
         }
       ],
       "status": "active",
@@ -798,7 +802,7 @@
       "first_seen": "2026-08-20",
       "key": "1407-n-milwaukee-UNKNOWN",
       "key_type": "weak",
-      "last_seen": "2026-08-20",
+      "last_seen": "2026-08-21",
       "lat": 41.9074766,
       "layout": null,
       "lng": -87.6726773,
@@ -1060,7 +1064,7 @@
       "first_seen": "2026-08-19",
       "key": "1449-n-ashland-2F",
       "key_type": "primary",
-      "last_seen": "2026-08-20",
+      "last_seen": "2026-08-21",
       "lat": 41.9084453,
       "layout": null,
       "lng": -87.6672541,
@@ -1147,7 +1151,7 @@
       "first_seen": "2026-08-19",
       "key": "1451-n-ashland-S",
       "key_type": "primary",
-      "last_seen": "2026-08-20",
+      "last_seen": "2026-08-21",
       "lat": 41.90854,
       "layout": null,
       "lng": -87.6673039,
@@ -1263,7 +1267,7 @@
       "first_seen": "2026-08-18",
       "key": "1512-n-artesian-1F",
       "key_type": "primary",
-      "last_seen": "2026-08-20",
+      "last_seen": "2026-08-21",
       "lat": 41.9088976,
       "layout": null,
       "lng": -87.6886087,
@@ -1317,12 +1321,12 @@
     },
     "1514-n-wood-1N": {
       "address_raw": "1514 N Wood Street 1N, Chicago, IL 60622",
-      "all_in_monthly": 5795.0,
+      "all_in_monthly": 5595.0,
       "beds": 4,
       "first_seen": "2026-08-19",
       "key": "1514-n-wood-1N",
       "key_type": "primary",
-      "last_seen": "2026-08-20",
+      "last_seen": "2026-08-21",
       "lat": 41.9092527,
       "layout": null,
       "lng": -87.6728455,
@@ -1331,9 +1335,13 @@
         {
           "date": "2026-08-19",
           "rent": 5795
+        },
+        {
+          "date": "2026-08-21",
+          "rent": 5595
         }
       ],
-      "rent_gross": 5795,
+      "rent_gross": 5595,
       "sources": [
         {
           "source": "web",
@@ -1380,7 +1388,7 @@
       "first_seen": "2026-08-19",
       "key": "1522-n-bosworth-2",
       "key_type": "primary",
-      "last_seen": "2026-08-20",
+      "last_seen": "2026-08-21",
       "lat": 41.9095441,
       "layout": null,
       "lng": -87.6667358,
@@ -1409,7 +1417,7 @@
       "first_seen": "2026-08-18",
       "key": "1528-n-ashland-2R",
       "key_type": "primary",
-      "last_seen": "2026-08-20",
+      "last_seen": "2026-08-21",
       "lat": 41.9096919,
       "layout": null,
       "lng": -87.667994,
@@ -1518,6 +1526,35 @@
       "unit": "2F",
       "verdict": null
     },
+    "1538-n-milwaukee-2br-3200": {
+      "address_raw": "1538 N Milwaukee Ave, Chicago, IL 60622",
+      "all_in_monthly": 3200.0,
+      "beds": 2,
+      "first_seen": "2026-08-21",
+      "key": "1538-n-milwaukee-2br-3200",
+      "key_type": "fallback",
+      "last_seen": "2026-08-21",
+      "lat": 41.909294,
+      "layout": null,
+      "lng": -87.6762095,
+      "loft_type": null,
+      "price_history": [
+        {
+          "date": "2026-08-21",
+          "rent": 3200
+        }
+      ],
+      "rent_gross": 3200,
+      "sources": [
+        {
+          "source": "redfin",
+          "url": null
+        }
+      ],
+      "status": "active",
+      "unit": null,
+      "verdict": null
+    },
     "1538-n-milwaukee-3F": {
       "address_raw": "1538 N Milwaukee Ave APT 3F, Chicago, IL",
       "all_in_monthly": 3200.0,
@@ -1612,7 +1649,7 @@
       "first_seen": "2026-08-13",
       "key": "1557-n-honore-G",
       "key_type": "primary",
-      "last_seen": "2026-08-20",
+      "last_seen": "2026-08-21",
       "lat": 41.9099825,
       "layout": null,
       "lng": -87.6735468,
@@ -2192,7 +2229,7 @@
       "first_seen": "2026-08-19",
       "key": "1721-w-pierce-2",
       "key_type": "primary",
-      "last_seen": "2026-08-20",
+      "last_seen": "2026-08-21",
       "lat": 41.9096662,
       "layout": null,
       "lng": -87.6709971,
@@ -2221,7 +2258,7 @@
       "first_seen": "2026-08-19",
       "key": "1721-w-pierce-3",
       "key_type": "primary",
-      "last_seen": "2026-08-20",
+      "last_seen": "2026-08-21",
       "lat": 41.9096662,
       "layout": null,
       "lng": -87.6709971,
@@ -2794,6 +2831,35 @@
       "unit": "607",
       "verdict": null
     },
+    "1921-n-sedgwick-3F": {
+      "address_raw": "1921 N Sedgwick St Unit 3F, Chicago, IL 60614",
+      "all_in_monthly": 3150.0,
+      "beds": 2,
+      "first_seen": "2026-08-21",
+      "key": "1921-n-sedgwick-3F",
+      "key_type": "primary",
+      "last_seen": "2026-08-21",
+      "lat": 41.9171593,
+      "layout": null,
+      "lng": -87.6384712,
+      "loft_type": null,
+      "price_history": [
+        {
+          "date": "2026-08-21",
+          "rent": 3150
+        }
+      ],
+      "rent_gross": 3150,
+      "sources": [
+        {
+          "source": "redfin",
+          "url": null
+        }
+      ],
+      "status": "active",
+      "unit": "3F",
+      "verdict": null
+    },
     "1931-w-evergreen-2": {
       "address_raw": "1931 West Evergreen Avenue",
       "all_in_monthly": 2700.0,
@@ -2859,7 +2925,7 @@
       "first_seen": "2026-08-18",
       "key": "1933-w-crystal-2A",
       "key_type": "primary",
-      "last_seen": "2026-08-20",
+      "last_seen": "2026-08-21",
       "lat": 41.9039326,
       "layout": null,
       "lng": -87.6763485,
@@ -2909,6 +2975,35 @@
       ],
       "status": "dead",
       "unit": "3F",
+      "verdict": null
+    },
+    "1944-n-bissell-2br-2300": {
+      "address_raw": "1944 N Bissell St, Chicago, IL 60614",
+      "all_in_monthly": 2295.0,
+      "beds": 2,
+      "first_seen": "2026-08-21",
+      "key": "1944-n-bissell-2br-2300",
+      "key_type": "fallback",
+      "last_seen": "2026-08-21",
+      "lat": 41.917271,
+      "layout": null,
+      "lng": -87.6523514,
+      "loft_type": null,
+      "price_history": [
+        {
+          "date": "2026-08-21",
+          "rent": 2295
+        }
+      ],
+      "rent_gross": 2295,
+      "sources": [
+        {
+          "source": "redfin",
+          "url": null
+        }
+      ],
+      "status": "active",
+      "unit": null,
       "verdict": null
     },
     "1952-n-hudson-1": {
@@ -3122,7 +3217,7 @@
       "first_seen": "2026-08-18",
       "key": "2032-w-division-202N",
       "key_type": "primary",
-      "last_seen": "2026-08-20",
+      "last_seen": "2026-08-21",
       "lat": 41.9034947,
       "layout": null,
       "lng": -87.678828,
@@ -4253,7 +4348,7 @@
       "first_seen": "2026-08-18",
       "key": "2257-w-hirsch-1E",
       "key_type": "primary",
-      "last_seen": "2026-08-20",
+      "last_seen": "2026-08-21",
       "lat": 41.9065906,
       "layout": null,
       "lng": -87.6843398,
@@ -4305,15 +4400,15 @@
       "verdict": null
     },
     "2300-w-wabansia-231": {
-      "address_raw": "2300 W Wabansia Ave",
+      "address_raw": "2300 W Wabansia Avenue, Unit 231, Chicago, IL 60647",
       "all_in_monthly": 3960.0,
       "beds": 2,
       "first_seen": "2026-08-18",
       "key": "2300-w-wabansia-231",
       "key_type": "primary",
-      "last_seen": "2026-08-20",
+      "last_seen": "2026-08-21",
       "lat": 41.9128445,
-      "layout": "single_floor",
+      "layout": null,
       "lng": -87.6844055,
       "loft_type": null,
       "price_history": [
@@ -4326,7 +4421,7 @@
       "sources": [
         {
           "source": "web",
-          "url": "https://www.compass.com/homedetails/2300-W-Wabansia-Ave-Unit-231-Chicago-IL-60647/1W4PZF_pid/"
+          "url": "https://www.propertyrocks.com/properties/listing/MRED/12734684/Chicago/2300-W-WABANSIA-Avenue-231"
         }
       ],
       "status": "active",
@@ -4456,7 +4551,7 @@
       "first_seen": "2026-08-19",
       "key": "2342-w-north-401",
       "key_type": "primary",
-      "last_seen": "2026-08-20",
+      "last_seen": "2026-08-21",
       "lat": 41.910543,
       "layout": null,
       "lng": -87.6865398,
@@ -4630,7 +4725,7 @@
       "first_seen": "2026-08-13",
       "key": "2412-w-north-4R",
       "key_type": "primary",
-      "last_seen": "2026-08-20",
+      "last_seen": "2026-08-21",
       "lat": 41.910589,
       "layout": null,
       "lng": -87.68788,
@@ -5353,6 +5448,35 @@
       ],
       "status": "active",
       "unit": "101",
+      "verdict": null
+    },
+    "325-w-fullerton-1br-3750": {
+      "address_raw": "325 W Fullerton Pkwy, Chicago, IL 60614",
+      "all_in_monthly": 3749.0,
+      "beds": 1,
+      "first_seen": "2026-08-21",
+      "key": "325-w-fullerton-1br-3750",
+      "key_type": "fallback",
+      "last_seen": "2026-08-21",
+      "lat": 41.9252985,
+      "layout": null,
+      "lng": -87.6375658,
+      "loft_type": null,
+      "price_history": [
+        {
+          "date": "2026-08-21",
+          "rent": 3749
+        }
+      ],
+      "rent_gross": 3749,
+      "sources": [
+        {
+          "source": "redfin",
+          "url": null
+        }
+      ],
+      "status": "active",
+      "unit": null,
       "verdict": null
     },
     "345-w-fullerton-801": {
@@ -6283,6 +6407,35 @@
       "unit": null,
       "verdict": null
     },
+    "916-w-fullerton-ave-apt-3-2br-3000": {
+      "address_raw": "916 W Fullerton Ave APT 3, Chicago, IL",
+      "all_in_monthly": 3000.0,
+      "beds": 2,
+      "first_seen": "2026-08-21",
+      "key": "916-w-fullerton-ave-apt-3-2br-3000",
+      "key_type": "fallback",
+      "last_seen": "2026-08-21",
+      "lat": 41.92561,
+      "layout": null,
+      "lng": -87.6519867,
+      "loft_type": null,
+      "price_history": [
+        {
+          "date": "2026-08-21",
+          "rent": 3000
+        }
+      ],
+      "rent_gross": 3000,
+      "sources": [
+        {
+          "source": "zillow",
+          "url": null
+        }
+      ],
+      "status": "active",
+      "unit": null,
+      "verdict": null
+    },
     "927-w-irving-park-503": {
       "address_raw": "927 W Irving Park Rd #503, Chicago, IL IL",
       "all_in_monthly": 2750.0,
@@ -6605,7 +6758,7 @@
   },
   "meta": {
     "created": "2026-08-13",
-    "last_output_date": "2026-08-20",
-    "last_run": "2026-08-20"
+    "last_output_date": "2026-08-21",
+    "last_run": "2026-08-21"
   }
 }

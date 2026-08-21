@@ -1,0 +1,15 @@
+{
+  "agent": "inbox-harvester",
+  "run_date": "2026-08-21",
+  "file": "raw/2026-08-21-inbox.json",
+  "count": 6,
+  "sources_present": [
+    "craigslist",
+    "redfin",
+    "zillow"
+  ],
+  "sources_zero": [
+    "apartments",
+    "domu"
+  ]
+}

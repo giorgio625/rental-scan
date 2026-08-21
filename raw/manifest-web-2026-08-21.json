@@ -1,0 +1,8 @@
+{
+  "agent": "web-scout",
+  "run_date": "2026-08-21",
+  "file": "raw/web-2026-08-21.json",
+  "count": 23,
+  "sources_present": ["web"],
+  "sources_zero": []
+}

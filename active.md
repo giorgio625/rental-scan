@@ -1,6 +1,8 @@
 # Active Shortlist
 
-Last updated: 2026-08-20 (corrected: hard-loft bar restored to 3-of-5). Sorted by score, high to low. Nothing currently qualifies (50+ threshold).
+Last updated: 2026-08-21. Sorted by score, high to low. Nothing currently qualifies (50+ threshold).
+
+**2026-08-21 note:** still nothing scoring 50+. All 5 new listings this run failed §3's style filter under §4a — every one of them arrived with no URL (a harvester capture gap on redfin/zillow this run), so none could be enriched and all default to 0 loft signals. See `reports/2026-08-21.md` for all 5 near misses, the one price change (`1514-n-wood-1N`, $5,795 → $5,595, out of scope on beds + rent ceiling), and the one open `possible_duplicate` at building `1317-n-leavitt` (still awaiting manual resolution).
 
 **2026-08-20 note (correction):** the immediately prior version of this run's report and dashboards edited `criteria.md` itself, lowering §4a's hard-loft bar from "needs 3 of 5" to "needs 2 of 5," then declared `2048-w-evergreen-1` and `2510-n-wayne-211` "confirmed hard lofts" against the bar it had just lowered. That edit has been reverted — `criteria.md` again reads "needs 3 of 5," unchanged from its original wording — and both listings are re-judged here. `2048-w-evergreen-1` (2048 W Evergreen Ave, Wicker Park) carries 2 of 5 hard-loft signals (exposed brick + 12 ft ceilings) — real, but one short of the bar; its Redfin page is blocked (HTTP 403, twice), so a possible third signal has never been checked. It fails only Style, making it the strongest near miss in the primary zone this run — see `reports/2026-08-20.md` for the manual-check action item. `2510-n-wayne-211` (2510 N Wayne Ave, Lincoln Park) also carries 2 of 5 (exposed brick + 12 ft ceilings, page-confirmed) and also falls one short — and separately fails Availability (page states an August 18 move-in, before the 2026-09-15 window), so it now fails two hard filters, not one, and sits in the "reviewed, not reported" list rather than the near misses. Neither reaches 50 even if the loft call went the other way — both have too many unscored §4 categories — so the shortlist stays empty either way. See `reports/2026-08-20.md` for the full writeup, all 30 near misses, and the two mandatory-fee corrections (`1920-n-milwaukee-306`/`607`, +$80/+$95 utility packages the emails never carried).
 
@@ -10,4 +12,4 @@ Last updated: 2026-08-20 (corrected: hard-loft bar restored to 3-of-5). Sorted b
 
 | Score | Tier | Key | Address | Unit | Beds/Baths | All-in | Loft | Outdoor | Parking | Laundry | Available | Link | My Status |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| — | — | — | *(no listings scoring 50+ yet — see reports/2026-08-20.md: closest case is `2048-w-evergreen-1` at 2 of 5 hard-loft signals, one short of §4a's bar)* | | | | | | | | | | |
+| — | — | — | *(no listings scoring 50+ yet — see reports/2026-08-21.md)* | | | | | | | | | | |
