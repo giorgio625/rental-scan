@@ -126,17 +126,29 @@
     "1235-n-ashland-502": {
       "address_raw": "1235 N Ashland Avenue 502, Chicago, IL 60622",
       "all_in_monthly": 4600.0,
+      "available_date": null,
       "baths": 2.0,
       "beds": 2,
+      "ceiling_height_ft": null,
+      "concession": null,
       "first_seen": "2026-08-19",
+      "heat_included": null,
       "key": "1235-n-ashland-502",
       "key_type": "primary",
-      "last_seen": "2026-08-21",
+      "last_seen": "2026-08-22",
       "lat": 41.9044676,
+      "laundry": null,
       "layout": null,
+      "lease_term_months": null,
       "lng": -87.667162,
+      "loft_signals": null,
       "loft_type": null,
       "neighborhood_claimed": "Wicker Park",
+      "net_effective": null,
+      "outdoor_space": null,
+      "outdoor_space_sqft": null,
+      "parking_cost": null,
+      "parking_type": null,
       "price_history": [
         {
           "date": "2026-08-19",
@@ -147,12 +159,15 @@
       "sources": [
         {
           "source": "web",
-          "url": "https://bestchicagoproperties.com/listings/listing/MRED/12717993/Chicago/1235-N-ASHLAND-Avenue-502"
+          "url": "https://bestchicagoproperties.com/listings/listing/MRED/12739876/Chicago/1235-N-ASHLAND-Avenue-502"
         }
       ],
       "sqft": 1235,
       "status": "active",
+      "suspect_pricing": false,
       "unit": "502",
+      "unit_level": null,
+      "url": "https://bestchicagoproperties.com/listings/listing/MRED/12739876/Chicago/1235-N-ASHLAND-Avenue-502",
       "verdict": null
     },
     "1241-n-milwaukee-1br-2900": {
@@ -473,17 +488,29 @@
     "1257-n-ashland-402": {
       "address_raw": "1257 N Ashland Avenue 402, Chicago, IL 60622",
       "all_in_monthly": 4700.0,
+      "available_date": null,
       "baths": 2.0,
       "beds": 2,
+      "ceiling_height_ft": null,
+      "concession": null,
       "first_seen": "2026-08-19",
+      "heat_included": null,
       "key": "1257-n-ashland-402",
       "key_type": "primary",
-      "last_seen": "2026-08-21",
+      "last_seen": "2026-08-22",
       "lat": 41.9050592,
+      "laundry": null,
       "layout": null,
+      "lease_term_months": null,
       "lng": -87.6671395,
+      "loft_signals": null,
       "loft_type": null,
       "neighborhood_claimed": "Wicker Park",
+      "net_effective": null,
+      "outdoor_space": null,
+      "outdoor_space_sqft": null,
+      "parking_cost": null,
+      "parking_type": null,
       "price_history": [
         {
           "date": "2026-08-19",
@@ -494,28 +521,43 @@
       "sources": [
         {
           "source": "web",
-          "url": "https://bestchicagoproperties.com/listings/listing/MRED/12730223/Chicago/1257-N-ASHLAND-Avenue-402"
+          "url": "https://bestchicagoproperties.com/listings/listing/MRED/12739867/Chicago/1257-N-ASHLAND-Avenue-402"
         }
       ],
       "sqft": 1193,
       "status": "active",
+      "suspect_pricing": false,
       "unit": "402",
+      "unit_level": null,
+      "url": "https://bestchicagoproperties.com/listings/listing/MRED/12739867/Chicago/1257-N-ASHLAND-Avenue-402",
       "verdict": null
     },
     "1257-n-ashland-502": {
       "address_raw": "1257 N Ashland Avenue 502, Chicago, IL 60622",
       "all_in_monthly": 4800.0,
+      "available_date": null,
       "baths": 2.0,
       "beds": 2,
+      "ceiling_height_ft": null,
+      "concession": null,
       "first_seen": "2026-08-19",
+      "heat_included": null,
       "key": "1257-n-ashland-502",
       "key_type": "primary",
-      "last_seen": "2026-08-21",
+      "last_seen": "2026-08-22",
       "lat": 41.9050592,
+      "laundry": null,
       "layout": null,
+      "lease_term_months": null,
       "lng": -87.6671395,
+      "loft_signals": null,
       "loft_type": null,
       "neighborhood_claimed": "Wicker Park",
+      "net_effective": null,
+      "outdoor_space": null,
+      "outdoor_space_sqft": null,
+      "parking_cost": null,
+      "parking_type": null,
       "price_history": [
         {
           "date": "2026-08-19",
@@ -526,12 +568,15 @@
       "sources": [
         {
           "source": "web",
-          "url": "https://bestchicagoproperties.com/listings/listing/MRED/12730269/Chicago/1257-N-ASHLAND-Avenue-502"
+          "url": "https://bestchicagoproperties.com/listings/listing/MRED/12739880/Chicago/1257-N-ASHLAND-Avenue-502"
         }
       ],
       "sqft": 1193,
       "status": "active",
+      "suspect_pricing": false,
       "unit": "502",
+      "unit_level": null,
+      "url": "https://bestchicagoproperties.com/listings/listing/MRED/12739880/Chicago/1257-N-ASHLAND-Avenue-502",
       "verdict": null
     },
     "1301-n-oakley-2B": {
@@ -846,16 +891,29 @@
     "1407-n-milwaukee-UNKNOWN": {
       "address_raw": "1407 N Milwaukee Avenue, Chicago, IL 60622",
       "all_in_monthly": null,
+      "available_date": null,
+      "baths": null,
       "beds": null,
+      "ceiling_height_ft": null,
+      "concession": null,
       "first_seen": "2026-08-20",
+      "heat_included": null,
       "key": "1407-n-milwaukee-UNKNOWN",
       "key_type": "weak",
-      "last_seen": "2026-08-21",
+      "last_seen": "2026-08-22",
       "lat": 41.9074766,
+      "laundry": null,
       "layout": null,
+      "lease_term_months": null,
       "lng": -87.6726773,
+      "loft_signals": null,
       "loft_type": null,
       "neighborhood_claimed": "Wicker Park",
+      "net_effective": null,
+      "outdoor_space": null,
+      "outdoor_space_sqft": null,
+      "parking_cost": null,
+      "parking_type": null,
       "price_history": [
         {
           "date": "2026-08-20",
@@ -869,8 +927,12 @@
           "url": "https://bestchicagoproperties.com/listings/listing/MRED/12693495/Chicago/1407-N-Milwaukee-Avenue"
         }
       ],
+      "sqft": null,
       "status": "active",
+      "suspect_pricing": false,
       "unit": null,
+      "unit_level": null,
+      "url": "https://bestchicagoproperties.com/listings/listing/MRED/12693495/Chicago/1407-N-Milwaukee-Avenue",
       "verdict": null
     },
     "1413-e-57th-3br-3500": {
@@ -1112,17 +1174,29 @@
     "1449-n-ashland-2F": {
       "address_raw": "1449 N Ashland Avenue 2F, Chicago, IL 60622",
       "all_in_monthly": 2400.0,
+      "available_date": null,
       "baths": 1.0,
       "beds": 2,
+      "ceiling_height_ft": null,
+      "concession": null,
       "first_seen": "2026-08-19",
+      "heat_included": null,
       "key": "1449-n-ashland-2F",
       "key_type": "primary",
-      "last_seen": "2026-08-21",
+      "last_seen": "2026-08-22",
       "lat": 41.9084453,
+      "laundry": null,
       "layout": null,
+      "lease_term_months": null,
       "lng": -87.6672541,
+      "loft_signals": null,
       "loft_type": null,
       "neighborhood_claimed": "Wicker Park",
+      "net_effective": null,
+      "outdoor_space": null,
+      "outdoor_space_sqft": null,
+      "parking_cost": null,
+      "parking_type": null,
       "price_history": [
         {
           "date": "2026-08-19",
@@ -1138,7 +1212,10 @@
       ],
       "sqft": 700,
       "status": "active",
+      "suspect_pricing": true,
       "unit": "2F",
+      "unit_level": null,
+      "url": "https://bestchicagoproperties.com/listings/listing/MRED/12723524/Chicago/1449-N-Ashland-Avenue-2F",
       "verdict": null
     },
     "1450-n-maplewood-2F": {
@@ -1208,17 +1285,29 @@
     "1451-n-ashland-S": {
       "address_raw": "1451 N Ashland Avenue S, Chicago, IL 60622",
       "all_in_monthly": 5000.0,
+      "available_date": null,
       "baths": 2.0,
       "beds": 3,
+      "ceiling_height_ft": null,
+      "concession": null,
       "first_seen": "2026-08-19",
+      "heat_included": null,
       "key": "1451-n-ashland-S",
       "key_type": "primary",
-      "last_seen": "2026-08-21",
+      "last_seen": "2026-08-22",
       "lat": 41.90854,
+      "laundry": null,
       "layout": null,
+      "lease_term_months": null,
       "lng": -87.6673039,
+      "loft_signals": null,
       "loft_type": null,
       "neighborhood_claimed": "Wicker Park",
+      "net_effective": null,
+      "outdoor_space": null,
+      "outdoor_space_sqft": null,
+      "parking_cost": null,
+      "parking_type": null,
       "price_history": [
         {
           "date": "2026-08-19",
@@ -1234,7 +1323,10 @@
       ],
       "sqft": 2400,
       "status": "active",
+      "suspect_pricing": false,
       "unit": "S",
+      "unit_level": null,
+      "url": "https://bestchicagoproperties.com/listings/listing/MRED/12728542/Chicago/1451-N-ASHLAND-Avenue-S",
       "verdict": null
     },
     "1455-w-fullerton-302": {
@@ -1395,17 +1487,29 @@
     "1514-n-wood-1N": {
       "address_raw": "1514 N Wood Street 1N, Chicago, IL 60622",
       "all_in_monthly": 5595.0,
+      "available_date": null,
       "baths": 3.0,
       "beds": 4,
+      "ceiling_height_ft": null,
+      "concession": null,
       "first_seen": "2026-08-19",
+      "heat_included": null,
       "key": "1514-n-wood-1N",
       "key_type": "primary",
-      "last_seen": "2026-08-21",
+      "last_seen": "2026-08-22",
       "lat": 41.9092527,
+      "laundry": null,
       "layout": null,
+      "lease_term_months": null,
       "lng": -87.6728455,
+      "loft_signals": null,
       "loft_type": null,
       "neighborhood_claimed": "Wicker Park",
+      "net_effective": null,
+      "outdoor_space": null,
+      "outdoor_space_sqft": null,
+      "parking_cost": null,
+      "parking_type": null,
       "price_history": [
         {
           "date": "2026-08-19",
@@ -1425,7 +1529,10 @@
       ],
       "sqft": 1930,
       "status": "active",
+      "suspect_pricing": false,
       "unit": "1N",
+      "unit_level": null,
+      "url": "https://bestchicagoproperties.com/listings/listing/MRED/12699324/Chicago/1514-N-Wood-Street-1N",
       "verdict": null
     },
     "1521-w-sherwin-601": {
@@ -1460,17 +1567,29 @@
     "1522-n-bosworth-2": {
       "address_raw": "1522 N Bosworth Avenue 2, Chicago, IL 60642",
       "all_in_monthly": 2950.0,
+      "available_date": null,
       "baths": 2.0,
       "beds": 2,
+      "ceiling_height_ft": null,
+      "concession": null,
       "first_seen": "2026-08-19",
+      "heat_included": null,
       "key": "1522-n-bosworth-2",
       "key_type": "primary",
-      "last_seen": "2026-08-21",
+      "last_seen": "2026-08-22",
       "lat": 41.9095441,
+      "laundry": null,
       "layout": null,
+      "lease_term_months": null,
       "lng": -87.6667358,
+      "loft_signals": null,
       "loft_type": null,
       "neighborhood_claimed": "Wicker Park",
+      "net_effective": null,
+      "outdoor_space": null,
+      "outdoor_space_sqft": null,
+      "parking_cost": null,
+      "parking_type": null,
       "price_history": [
         {
           "date": "2026-08-19",
@@ -1486,7 +1605,10 @@
       ],
       "sqft": 1100,
       "status": "active",
+      "suspect_pricing": false,
       "unit": "2",
+      "unit_level": null,
+      "url": "https://bestchicagoproperties.com/listings/listing/MRED/12723405/Chicago/1522-N-Bosworth-Avenue-2",
       "verdict": null
     },
     "1528-n-ashland-2R": {
@@ -1577,6 +1699,100 @@
       ],
       "status": "active",
       "unit": "1R",
+      "verdict": null
+    },
+    "1532-n-greenview-1F": {
+      "address_raw": "1532 N Greenview Ave Unit 1F, Chicago, IL 60642",
+      "all_in_monthly": 2361.0,
+      "available_date": null,
+      "baths": 1.0,
+      "beds": 2,
+      "ceiling_height_ft": null,
+      "concession": null,
+      "first_seen": "2026-08-22",
+      "heat_included": null,
+      "key": "1532-n-greenview-1F",
+      "key_type": "primary",
+      "last_seen": "2026-08-22",
+      "lat": 41.9098504,
+      "laundry": null,
+      "layout": null,
+      "lease_term_months": null,
+      "lng": -87.6657339,
+      "loft_signals": [],
+      "loft_type": null,
+      "neighborhood_claimed": null,
+      "net_effective": null,
+      "outdoor_space": "private_patio",
+      "outdoor_space_sqft": null,
+      "parking_cost": null,
+      "parking_type": null,
+      "price_history": [
+        {
+          "date": "2026-08-22",
+          "rent": 2361
+        }
+      ],
+      "rent_gross": 2361,
+      "sources": [
+        {
+          "source": "redfin",
+          "url": "https://www.redfin.com/homedetails/204422147_zpid/"
+        }
+      ],
+      "sqft": 800,
+      "status": "active",
+      "suspect_pricing": true,
+      "unit": "1F",
+      "unit_level": null,
+      "url": "https://www.redfin.com/homedetails/204422147_zpid/",
+      "verdict": null
+    },
+    "1532-n-greenview-2F": {
+      "address_raw": "1532 N Greenview Ave Unit 2F, Chicago, IL 60642",
+      "all_in_monthly": 2597.0,
+      "available_date": null,
+      "baths": 1.0,
+      "beds": 2,
+      "ceiling_height_ft": null,
+      "concession": null,
+      "first_seen": "2026-08-22",
+      "heat_included": null,
+      "key": "1532-n-greenview-2F",
+      "key_type": "primary",
+      "last_seen": "2026-08-22",
+      "lat": 41.9098504,
+      "laundry": null,
+      "layout": null,
+      "lease_term_months": null,
+      "lng": -87.6657339,
+      "loft_signals": [],
+      "loft_type": null,
+      "neighborhood_claimed": null,
+      "net_effective": null,
+      "outdoor_space": null,
+      "outdoor_space_sqft": null,
+      "parking_cost": null,
+      "parking_type": null,
+      "price_history": [
+        {
+          "date": "2026-08-22",
+          "rent": 2597
+        }
+      ],
+      "rent_gross": 2597,
+      "sources": [
+        {
+          "source": "redfin",
+          "url": "https://www.redfin.com/homedetails/204436305_zpid/"
+        }
+      ],
+      "sqft": 850,
+      "status": "active",
+      "suspect_pricing": true,
+      "unit": "2F",
+      "unit_level": null,
+      "url": "https://www.redfin.com/homedetails/204436305_zpid/",
       "verdict": null
     },
     "1538-n-milwaukee-2F": {
@@ -1732,15 +1948,29 @@
     "1557-n-honore-G": {
       "address_raw": "1557 N Honore Street G, Chicago, IL 60622",
       "all_in_monthly": 2500.0,
+      "available_date": null,
+      "baths": 1.0,
       "beds": 2,
+      "ceiling_height_ft": null,
+      "concession": null,
       "first_seen": "2026-08-13",
+      "heat_included": null,
       "key": "1557-n-honore-G",
       "key_type": "primary",
-      "last_seen": "2026-08-21",
+      "last_seen": "2026-08-22",
       "lat": 41.9099825,
+      "laundry": null,
       "layout": null,
+      "lease_term_months": null,
       "lng": -87.6735468,
+      "loft_signals": null,
       "loft_type": null,
+      "neighborhood_claimed": "Wicker Park",
+      "net_effective": null,
+      "outdoor_space": null,
+      "outdoor_space_sqft": null,
+      "parking_cost": null,
+      "parking_type": null,
       "price_history": [
         {
           "date": "2026-08-13",
@@ -1754,8 +1984,12 @@
           "url": "https://bestchicagoproperties.com/listings/listing/MRED/12732665/Chicago/1557-N-Honore-Street-G"
         }
       ],
+      "sqft": 1000,
       "status": "active",
+      "suspect_pricing": true,
       "unit": "G",
+      "unit_level": null,
+      "url": "https://bestchicagoproperties.com/listings/listing/MRED/12732665/Chicago/1557-N-Honore-Street-G",
       "verdict": null
     },
     "1608-w-sherwin-610": {
@@ -1785,6 +2019,100 @@
       ],
       "status": "active",
       "unit": "610",
+      "verdict": null
+    },
+    "1611-n-wood-1": {
+      "address_raw": "1611 N Wood St #1, Chicago, IL",
+      "all_in_monthly": 3000.0,
+      "available_date": null,
+      "baths": 1.0,
+      "beds": 2,
+      "ceiling_height_ft": null,
+      "concession": null,
+      "first_seen": "2026-08-22",
+      "heat_included": null,
+      "key": "1611-n-wood-1",
+      "key_type": "primary",
+      "last_seen": "2026-08-22",
+      "lat": 41.9109313,
+      "laundry": null,
+      "layout": null,
+      "lease_term_months": null,
+      "lng": -87.6723839,
+      "loft_signals": [],
+      "loft_type": null,
+      "neighborhood_claimed": null,
+      "net_effective": null,
+      "outdoor_space": null,
+      "outdoor_space_sqft": null,
+      "parking_cost": null,
+      "parking_type": null,
+      "price_history": [
+        {
+          "date": "2026-08-22",
+          "rent": 3000
+        }
+      ],
+      "rent_gross": 3000,
+      "sources": [
+        {
+          "source": "zillow",
+          "url": "https://www.zillow.com/homedetails/464746705_zpid/"
+        }
+      ],
+      "sqft": 1150,
+      "status": "active",
+      "suspect_pricing": false,
+      "unit": "1",
+      "unit_level": null,
+      "url": "https://www.zillow.com/homedetails/464746705_zpid/",
+      "verdict": null
+    },
+    "1611-n-wood-2": {
+      "address_raw": "1611 N Wood St #2, Chicago, IL",
+      "all_in_monthly": 3000.0,
+      "available_date": null,
+      "baths": 1.0,
+      "beds": 2,
+      "ceiling_height_ft": null,
+      "concession": null,
+      "first_seen": "2026-08-22",
+      "heat_included": null,
+      "key": "1611-n-wood-2",
+      "key_type": "primary",
+      "last_seen": "2026-08-22",
+      "lat": 41.9109313,
+      "laundry": null,
+      "layout": null,
+      "lease_term_months": null,
+      "lng": -87.6723839,
+      "loft_signals": [],
+      "loft_type": null,
+      "neighborhood_claimed": null,
+      "net_effective": null,
+      "outdoor_space": null,
+      "outdoor_space_sqft": null,
+      "parking_cost": null,
+      "parking_type": null,
+      "price_history": [
+        {
+          "date": "2026-08-22",
+          "rent": 3000
+        }
+      ],
+      "rent_gross": 3000,
+      "sources": [
+        {
+          "source": "zillow",
+          "url": "https://www.zillow.com/homedetails/464746736_zpid/"
+        }
+      ],
+      "sqft": 1150,
+      "status": "active",
+      "suspect_pricing": false,
+      "unit": "2",
+      "unit_level": null,
+      "url": "https://www.zillow.com/homedetails/464746736_zpid/",
       "verdict": null
     },
     "1615-n-campbell-1S": {
@@ -1998,6 +2326,53 @@
       ],
       "status": "active",
       "unit": null,
+      "verdict": null
+    },
+    "1640-w-division-1br-2850": {
+      "address_raw": "1640 W Division St, Chicago, IL 60622",
+      "all_in_monthly": 2850.0,
+      "available_date": null,
+      "baths": 1.0,
+      "beds": 1,
+      "ceiling_height_ft": null,
+      "concession": null,
+      "first_seen": "2026-08-22",
+      "heat_included": null,
+      "key": "1640-w-division-1br-2850",
+      "key_type": "fallback",
+      "last_seen": "2026-08-22",
+      "lat": 41.9036864,
+      "laundry": null,
+      "layout": null,
+      "lease_term_months": null,
+      "lng": -87.6692551,
+      "loft_signals": [],
+      "loft_type": null,
+      "neighborhood_claimed": "Wicker Park Connection",
+      "net_effective": null,
+      "outdoor_space": null,
+      "outdoor_space_sqft": null,
+      "parking_cost": null,
+      "parking_type": null,
+      "price_history": [
+        {
+          "date": "2026-08-22",
+          "rent": 2850
+        }
+      ],
+      "rent_gross": 2850,
+      "sources": [
+        {
+          "source": "redfin",
+          "url": "https://www.redfin.com/homedetails/145694004_zpid/"
+        }
+      ],
+      "sqft": 637,
+      "status": "active",
+      "suspect_pricing": false,
+      "unit": null,
+      "unit_level": null,
+      "url": "https://www.redfin.com/homedetails/145694004_zpid/",
       "verdict": null
     },
     "1642-w-bryn-mawr-1": {
@@ -2282,6 +2657,53 @@
       "unit_level": "upper",
       "verdict": null
     },
+    "1708-w-augusta-2F": {
+      "address_raw": "1708 W Augusta Blvd APT 2F, Chicago, IL",
+      "all_in_monthly": 3000.0,
+      "available_date": null,
+      "baths": 2.0,
+      "beds": 2,
+      "ceiling_height_ft": null,
+      "concession": null,
+      "first_seen": "2026-08-22",
+      "heat_included": null,
+      "key": "1708-w-augusta-2F",
+      "key_type": "primary",
+      "last_seen": "2026-08-22",
+      "lat": 41.8998607,
+      "laundry": null,
+      "layout": null,
+      "lease_term_months": null,
+      "lng": -87.6702887,
+      "loft_signals": [],
+      "loft_type": null,
+      "neighborhood_claimed": null,
+      "net_effective": null,
+      "outdoor_space": null,
+      "outdoor_space_sqft": null,
+      "parking_cost": null,
+      "parking_type": null,
+      "price_history": [
+        {
+          "date": "2026-08-22",
+          "rent": 3000
+        }
+      ],
+      "rent_gross": 3000,
+      "sources": [
+        {
+          "source": "zillow",
+          "url": "https://www.zillow.com/homedetails/2087230654_zpid/"
+        }
+      ],
+      "sqft": 1500,
+      "status": "active",
+      "suspect_pricing": false,
+      "unit": "2F",
+      "unit_level": null,
+      "url": "https://www.zillow.com/homedetails/2087230654_zpid/",
+      "verdict": null
+    },
     "1717-s-michigan-804": {
       "address_raw": "1717 S Michigan Ave #804, Chicago, IL 60616",
       "all_in_monthly": 3440.0,
@@ -2346,17 +2768,29 @@
     "1721-w-pierce-2": {
       "address_raw": "1721 W Pierce Avenue 2, Chicago, IL 60622",
       "all_in_monthly": 3400.0,
+      "available_date": null,
       "baths": 1.0,
       "beds": 2,
+      "ceiling_height_ft": null,
+      "concession": null,
       "first_seen": "2026-08-19",
+      "heat_included": null,
       "key": "1721-w-pierce-2",
       "key_type": "primary",
-      "last_seen": "2026-08-21",
+      "last_seen": "2026-08-22",
       "lat": 41.9096662,
+      "laundry": null,
       "layout": null,
+      "lease_term_months": null,
       "lng": -87.6709971,
+      "loft_signals": null,
       "loft_type": null,
       "neighborhood_claimed": "Wicker Park",
+      "net_effective": null,
+      "outdoor_space": null,
+      "outdoor_space_sqft": null,
+      "parking_cost": null,
+      "parking_type": null,
       "price_history": [
         {
           "date": "2026-08-19",
@@ -2370,24 +2804,40 @@
           "url": "https://bestchicagoproperties.com/listings/listing/MRED/12730302/Chicago/1721-W-Pierce-Avenue-2"
         }
       ],
+      "sqft": null,
       "status": "active",
+      "suspect_pricing": false,
       "unit": "2",
+      "unit_level": null,
+      "url": "https://bestchicagoproperties.com/listings/listing/MRED/12730302/Chicago/1721-W-Pierce-Avenue-2",
       "verdict": null
     },
     "1721-w-pierce-3": {
       "address_raw": "1721 W Pierce Avenue 3, Chicago, IL 60622",
       "all_in_monthly": 3500.0,
+      "available_date": null,
       "baths": 1.0,
       "beds": 2,
+      "ceiling_height_ft": null,
+      "concession": null,
       "first_seen": "2026-08-19",
+      "heat_included": null,
       "key": "1721-w-pierce-3",
       "key_type": "primary",
-      "last_seen": "2026-08-21",
+      "last_seen": "2026-08-22",
       "lat": 41.9096662,
+      "laundry": null,
       "layout": null,
+      "lease_term_months": null,
       "lng": -87.6709971,
+      "loft_signals": null,
       "loft_type": null,
       "neighborhood_claimed": "Wicker Park",
+      "net_effective": null,
+      "outdoor_space": null,
+      "outdoor_space_sqft": null,
+      "parking_cost": null,
+      "parking_type": null,
       "price_history": [
         {
           "date": "2026-08-19",
@@ -2401,8 +2851,12 @@
           "url": "https://bestchicagoproperties.com/listings/listing/MRED/12731515/Chicago/1721-W-Pierce-Avenue-3"
         }
       ],
+      "sqft": null,
       "status": "active",
+      "suspect_pricing": false,
       "unit": "3",
+      "unit_level": null,
+      "url": "https://bestchicagoproperties.com/listings/listing/MRED/12731515/Chicago/1721-W-Pierce-Avenue-3",
       "verdict": null
     },
     "1723-w-north-1": {
@@ -2756,18 +3210,31 @@
       "verdict": null
     },
     "1880-n-milwaukee-201": {
-      "address_raw": "1880 N Milwaukee Ave #201, Chicago, IL",
+      "address_raw": "1880 N Milwaukee Ave, Unit 201, Chicago, IL 60647",
       "all_in_monthly": 3670.0,
+      "available_date": "2026-10-15",
       "baths": 2.0,
       "beds": 2,
+      "ceiling_height_ft": null,
+      "concession": null,
       "first_seen": "2026-08-20",
+      "heat_included": null,
       "key": "1880-n-milwaukee-201",
       "key_type": "primary",
-      "last_seen": "2026-08-20",
+      "last_seen": "2026-08-22",
       "lat": 41.9153979,
+      "laundry": "in_unit",
       "layout": null,
+      "lease_term_months": null,
       "lng": -87.6856802,
+      "loft_signals": null,
       "loft_type": null,
+      "neighborhood_claimed": "Bucktown",
+      "net_effective": null,
+      "outdoor_space": null,
+      "outdoor_space_sqft": null,
+      "parking_cost": null,
+      "parking_type": null,
       "price_history": [
         {
           "date": "2026-08-20",
@@ -2777,13 +3244,486 @@
       "rent_gross": 3670,
       "sources": [
         {
-          "source": "zillow",
-          "url": "https://www.zillow.com/apartments/chicago-il/1880-milwaukee/"
+          "source": "web",
+          "url": "https://www.rentcafe.com/apartments/il/chicago/1880-milwaukee/default.aspx"
         }
       ],
       "sqft": 989,
       "status": "active",
+      "suspect_pricing": false,
       "unit": "201",
+      "unit_level": null,
+      "url": "https://www.rentcafe.com/apartments/il/chicago/1880-milwaukee/default.aspx",
+      "verdict": null
+    },
+    "1880-n-milwaukee-203": {
+      "address_raw": "1880 N Milwaukee Ave, Unit 203, Chicago, IL 60647",
+      "all_in_monthly": 2600.0,
+      "available_date": "2026-10-15",
+      "baths": 1.0,
+      "beds": 1,
+      "ceiling_height_ft": null,
+      "concession": null,
+      "first_seen": "2026-08-22",
+      "heat_included": null,
+      "key": "1880-n-milwaukee-203",
+      "key_type": "primary",
+      "last_seen": "2026-08-22",
+      "lat": 41.9153979,
+      "laundry": "in_unit",
+      "layout": null,
+      "lease_term_months": null,
+      "lng": -87.6856802,
+      "loft_signals": null,
+      "loft_type": null,
+      "neighborhood_claimed": "Bucktown",
+      "net_effective": null,
+      "outdoor_space": null,
+      "outdoor_space_sqft": null,
+      "parking_cost": null,
+      "parking_type": null,
+      "price_history": [
+        {
+          "date": "2026-08-22",
+          "rent": 2600
+        }
+      ],
+      "rent_gross": 2600,
+      "sources": [
+        {
+          "source": "web",
+          "url": "https://www.rentcafe.com/apartments/il/chicago/1880-milwaukee/default.aspx"
+        }
+      ],
+      "sqft": 562,
+      "status": "active",
+      "suspect_pricing": false,
+      "unit": "203",
+      "unit_level": null,
+      "url": "https://www.rentcafe.com/apartments/il/chicago/1880-milwaukee/default.aspx",
+      "verdict": null
+    },
+    "1880-n-milwaukee-204": {
+      "address_raw": "1880 N Milwaukee Ave, Unit 204, Chicago, IL 60647",
+      "all_in_monthly": 3650.0,
+      "available_date": "2026-10-15",
+      "baths": 2.0,
+      "beds": 2,
+      "ceiling_height_ft": null,
+      "concession": null,
+      "first_seen": "2026-08-22",
+      "heat_included": null,
+      "key": "1880-n-milwaukee-204",
+      "key_type": "primary",
+      "last_seen": "2026-08-22",
+      "lat": 41.9153979,
+      "laundry": "in_unit",
+      "layout": null,
+      "lease_term_months": null,
+      "lng": -87.6856802,
+      "loft_signals": null,
+      "loft_type": null,
+      "neighborhood_claimed": "Bucktown",
+      "net_effective": null,
+      "outdoor_space": null,
+      "outdoor_space_sqft": null,
+      "parking_cost": null,
+      "parking_type": null,
+      "price_history": [
+        {
+          "date": "2026-08-22",
+          "rent": 3650
+        }
+      ],
+      "rent_gross": 3650,
+      "sources": [
+        {
+          "source": "web",
+          "url": "https://www.rentcafe.com/apartments/il/chicago/1880-milwaukee/default.aspx"
+        }
+      ],
+      "sqft": 1005,
+      "status": "active",
+      "suspect_pricing": false,
+      "unit": "204",
+      "unit_level": null,
+      "url": "https://www.rentcafe.com/apartments/il/chicago/1880-milwaukee/default.aspx",
+      "verdict": null
+    },
+    "1880-n-milwaukee-206": {
+      "address_raw": "1880 N Milwaukee Ave, Unit 206, Chicago, IL 60647",
+      "all_in_monthly": 3895.0,
+      "available_date": "2026-10-15",
+      "baths": 2.0,
+      "beds": 2,
+      "ceiling_height_ft": null,
+      "concession": null,
+      "first_seen": "2026-08-22",
+      "heat_included": null,
+      "key": "1880-n-milwaukee-206",
+      "key_type": "primary",
+      "last_seen": "2026-08-22",
+      "lat": 41.9153979,
+      "laundry": "in_unit",
+      "layout": null,
+      "lease_term_months": null,
+      "lng": -87.6856802,
+      "loft_signals": null,
+      "loft_type": null,
+      "neighborhood_claimed": "Bucktown",
+      "net_effective": null,
+      "outdoor_space": null,
+      "outdoor_space_sqft": null,
+      "parking_cost": null,
+      "parking_type": null,
+      "price_history": [
+        {
+          "date": "2026-08-22",
+          "rent": 3895
+        }
+      ],
+      "rent_gross": 3895,
+      "sources": [
+        {
+          "source": "web",
+          "url": "https://www.rentcafe.com/apartments/il/chicago/1880-milwaukee/default.aspx"
+        }
+      ],
+      "sqft": 1010,
+      "status": "active",
+      "suspect_pricing": false,
+      "unit": "206",
+      "unit_level": null,
+      "url": "https://www.rentcafe.com/apartments/il/chicago/1880-milwaukee/default.aspx",
+      "verdict": null
+    },
+    "1880-n-milwaukee-207": {
+      "address_raw": "1880 N Milwaukee Ave, Unit 207, Chicago, IL 60647",
+      "all_in_monthly": 2625.0,
+      "available_date": "2026-10-15",
+      "baths": 1.0,
+      "beds": 1,
+      "ceiling_height_ft": null,
+      "concession": null,
+      "first_seen": "2026-08-22",
+      "heat_included": null,
+      "key": "1880-n-milwaukee-207",
+      "key_type": "primary",
+      "last_seen": "2026-08-22",
+      "lat": 41.9153979,
+      "laundry": "in_unit",
+      "layout": null,
+      "lease_term_months": null,
+      "lng": -87.6856802,
+      "loft_signals": null,
+      "loft_type": null,
+      "neighborhood_claimed": "Bucktown",
+      "net_effective": null,
+      "outdoor_space": null,
+      "outdoor_space_sqft": null,
+      "parking_cost": null,
+      "parking_type": null,
+      "price_history": [
+        {
+          "date": "2026-08-22",
+          "rent": 2625
+        }
+      ],
+      "rent_gross": 2625,
+      "sources": [
+        {
+          "source": "web",
+          "url": "https://www.rentcafe.com/apartments/il/chicago/1880-milwaukee/default.aspx"
+        }
+      ],
+      "sqft": 531,
+      "status": "active",
+      "suspect_pricing": false,
+      "unit": "207",
+      "unit_level": null,
+      "url": "https://www.rentcafe.com/apartments/il/chicago/1880-milwaukee/default.aspx",
+      "verdict": null
+    },
+    "1880-n-milwaukee-208": {
+      "address_raw": "1880 N Milwaukee Ave, Unit 208, Chicago, IL 60647",
+      "all_in_monthly": 3250.0,
+      "available_date": "2026-10-15",
+      "baths": 1.0,
+      "beds": 1,
+      "ceiling_height_ft": null,
+      "concession": null,
+      "first_seen": "2026-08-22",
+      "heat_included": null,
+      "key": "1880-n-milwaukee-208",
+      "key_type": "primary",
+      "last_seen": "2026-08-22",
+      "lat": 41.9153979,
+      "laundry": "in_unit",
+      "layout": null,
+      "lease_term_months": null,
+      "lng": -87.6856802,
+      "loft_signals": null,
+      "loft_type": null,
+      "neighborhood_claimed": "Bucktown",
+      "net_effective": null,
+      "outdoor_space": null,
+      "outdoor_space_sqft": null,
+      "parking_cost": null,
+      "parking_type": null,
+      "price_history": [
+        {
+          "date": "2026-08-22",
+          "rent": 3250
+        }
+      ],
+      "rent_gross": 3250,
+      "sources": [
+        {
+          "source": "web",
+          "url": "https://www.rentcafe.com/apartments/il/chicago/1880-milwaukee/default.aspx"
+        }
+      ],
+      "sqft": 740,
+      "status": "active",
+      "suspect_pricing": false,
+      "unit": "208",
+      "unit_level": null,
+      "url": "https://www.rentcafe.com/apartments/il/chicago/1880-milwaukee/default.aspx",
+      "verdict": null
+    },
+    "1880-n-milwaukee-210": {
+      "address_raw": "1880 N Milwaukee Ave, Unit 210, Chicago, IL 60647",
+      "all_in_monthly": 2650.0,
+      "available_date": "2026-10-15",
+      "baths": 1.0,
+      "beds": 1,
+      "ceiling_height_ft": null,
+      "concession": null,
+      "first_seen": "2026-08-22",
+      "heat_included": null,
+      "key": "1880-n-milwaukee-210",
+      "key_type": "primary",
+      "last_seen": "2026-08-22",
+      "lat": 41.9153979,
+      "laundry": "in_unit",
+      "layout": null,
+      "lease_term_months": null,
+      "lng": -87.6856802,
+      "loft_signals": null,
+      "loft_type": null,
+      "neighborhood_claimed": "Bucktown",
+      "net_effective": null,
+      "outdoor_space": null,
+      "outdoor_space_sqft": null,
+      "parking_cost": null,
+      "parking_type": null,
+      "price_history": [
+        {
+          "date": "2026-08-22",
+          "rent": 2650
+        }
+      ],
+      "rent_gross": 2650,
+      "sources": [
+        {
+          "source": "web",
+          "url": "https://www.rentcafe.com/apartments/il/chicago/1880-milwaukee/default.aspx"
+        }
+      ],
+      "sqft": 538,
+      "status": "active",
+      "suspect_pricing": false,
+      "unit": "210",
+      "unit_level": null,
+      "url": "https://www.rentcafe.com/apartments/il/chicago/1880-milwaukee/default.aspx",
+      "verdict": null
+    },
+    "1880-n-milwaukee-305": {
+      "address_raw": "1880 N Milwaukee Ave, Unit 305, Chicago, IL 60647",
+      "all_in_monthly": 3970.0,
+      "available_date": "2026-10-15",
+      "baths": 2.0,
+      "beds": 2,
+      "ceiling_height_ft": null,
+      "concession": null,
+      "first_seen": "2026-08-22",
+      "heat_included": null,
+      "key": "1880-n-milwaukee-305",
+      "key_type": "primary",
+      "last_seen": "2026-08-22",
+      "lat": 41.9153979,
+      "laundry": "in_unit",
+      "layout": null,
+      "lease_term_months": null,
+      "lng": -87.6856802,
+      "loft_signals": null,
+      "loft_type": null,
+      "neighborhood_claimed": "Bucktown",
+      "net_effective": null,
+      "outdoor_space": null,
+      "outdoor_space_sqft": null,
+      "parking_cost": null,
+      "parking_type": null,
+      "price_history": [
+        {
+          "date": "2026-08-22",
+          "rent": 3970
+        }
+      ],
+      "rent_gross": 3970,
+      "sources": [
+        {
+          "source": "web",
+          "url": "https://www.rentcafe.com/apartments/il/chicago/1880-milwaukee/default.aspx"
+        }
+      ],
+      "sqft": 1038,
+      "status": "active",
+      "suspect_pricing": false,
+      "unit": "305",
+      "unit_level": null,
+      "url": "https://www.rentcafe.com/apartments/il/chicago/1880-milwaukee/default.aspx",
+      "verdict": null
+    },
+    "1880-n-milwaukee-406": {
+      "address_raw": "1880 N Milwaukee Ave, Unit 406, Chicago, IL 60647",
+      "all_in_monthly": 3795.0,
+      "available_date": "2026-10-15",
+      "baths": 2.0,
+      "beds": 2,
+      "ceiling_height_ft": null,
+      "concession": null,
+      "first_seen": "2026-08-22",
+      "heat_included": null,
+      "key": "1880-n-milwaukee-406",
+      "key_type": "primary",
+      "last_seen": "2026-08-22",
+      "lat": 41.9153979,
+      "laundry": "in_unit",
+      "layout": null,
+      "lease_term_months": null,
+      "lng": -87.6856802,
+      "loft_signals": null,
+      "loft_type": null,
+      "neighborhood_claimed": "Bucktown",
+      "net_effective": null,
+      "outdoor_space": null,
+      "outdoor_space_sqft": null,
+      "parking_cost": null,
+      "parking_type": null,
+      "price_history": [
+        {
+          "date": "2026-08-22",
+          "rent": 3795
+        }
+      ],
+      "rent_gross": 3795,
+      "sources": [
+        {
+          "source": "web",
+          "url": "https://www.rentcafe.com/apartments/il/chicago/1880-milwaukee/default.aspx"
+        }
+      ],
+      "sqft": 1010,
+      "status": "active",
+      "suspect_pricing": false,
+      "unit": "406",
+      "unit_level": null,
+      "url": "https://www.rentcafe.com/apartments/il/chicago/1880-milwaukee/default.aspx",
+      "verdict": null
+    },
+    "1880-n-milwaukee-509": {
+      "address_raw": "1880 N Milwaukee Ave, Unit 509, Chicago, IL 60647",
+      "all_in_monthly": 3225.0,
+      "available_date": "2026-10-15",
+      "baths": 1.0,
+      "beds": 1,
+      "ceiling_height_ft": null,
+      "concession": null,
+      "first_seen": "2026-08-22",
+      "heat_included": null,
+      "key": "1880-n-milwaukee-509",
+      "key_type": "primary",
+      "last_seen": "2026-08-22",
+      "lat": 41.9153979,
+      "laundry": "in_unit",
+      "layout": null,
+      "lease_term_months": null,
+      "lng": -87.6856802,
+      "loft_signals": null,
+      "loft_type": null,
+      "neighborhood_claimed": "Bucktown",
+      "net_effective": null,
+      "outdoor_space": null,
+      "outdoor_space_sqft": null,
+      "parking_cost": null,
+      "parking_type": null,
+      "price_history": [
+        {
+          "date": "2026-08-22",
+          "rent": 3225
+        }
+      ],
+      "rent_gross": 3225,
+      "sources": [
+        {
+          "source": "web",
+          "url": "https://www.rentcafe.com/apartments/il/chicago/1880-milwaukee/default.aspx"
+        }
+      ],
+      "sqft": 740,
+      "status": "active",
+      "suspect_pricing": false,
+      "unit": "509",
+      "unit_level": null,
+      "url": "https://www.rentcafe.com/apartments/il/chicago/1880-milwaukee/default.aspx",
+      "verdict": null
+    },
+    "1880-n-milwaukee-511": {
+      "address_raw": "1880 N Milwaukee Ave, Unit 511, Chicago, IL 60647",
+      "all_in_monthly": 3870.0,
+      "available_date": "2026-10-15",
+      "baths": 2.0,
+      "beds": 2,
+      "ceiling_height_ft": null,
+      "concession": null,
+      "first_seen": "2026-08-22",
+      "heat_included": null,
+      "key": "1880-n-milwaukee-511",
+      "key_type": "primary",
+      "last_seen": "2026-08-22",
+      "lat": 41.9153979,
+      "laundry": "in_unit",
+      "layout": null,
+      "lease_term_months": null,
+      "lng": -87.6856802,
+      "loft_signals": null,
+      "loft_type": null,
+      "neighborhood_claimed": "Bucktown",
+      "net_effective": null,
+      "outdoor_space": null,
+      "outdoor_space_sqft": null,
+      "parking_cost": null,
+      "parking_type": null,
+      "price_history": [
+        {
+          "date": "2026-08-22",
+          "rent": 3870
+        }
+      ],
+      "rent_gross": 3870,
+      "sources": [
+        {
+          "source": "web",
+          "url": "https://www.rentcafe.com/apartments/il/chicago/1880-milwaukee/default.aspx"
+        }
+      ],
+      "sqft": 1006,
+      "status": "active",
+      "suspect_pricing": false,
+      "unit": "511",
+      "unit_level": null,
+      "url": "https://www.rentcafe.com/apartments/il/chicago/1880-milwaukee/default.aspx",
       "verdict": null
     },
     "1914-n-wood-0": {
@@ -3133,6 +4073,100 @@
       "unit": "2A",
       "verdict": null
     },
+    "1934-w-north-201": {
+      "address_raw": "1934 W North Ave #201, Chicago, IL",
+      "all_in_monthly": 2565.0,
+      "available_date": null,
+      "baths": 1.0,
+      "beds": 1,
+      "ceiling_height_ft": null,
+      "concession": null,
+      "first_seen": "2026-08-22",
+      "heat_included": null,
+      "key": "1934-w-north-201",
+      "key_type": "primary",
+      "last_seen": "2026-08-22",
+      "lat": 41.91068,
+      "laundry": null,
+      "layout": null,
+      "lease_term_months": null,
+      "lng": -87.6765023,
+      "loft_signals": [],
+      "loft_type": null,
+      "neighborhood_claimed": null,
+      "net_effective": null,
+      "outdoor_space": null,
+      "outdoor_space_sqft": null,
+      "parking_cost": null,
+      "parking_type": null,
+      "price_history": [
+        {
+          "date": "2026-08-22",
+          "rent": 2565
+        }
+      ],
+      "rent_gross": 2565,
+      "sources": [
+        {
+          "source": "zillow",
+          "url": "https://www.zillow.com/homedetails/456154064_zpid/"
+        }
+      ],
+      "sqft": 600,
+      "status": "active",
+      "suspect_pricing": false,
+      "unit": "201",
+      "unit_level": null,
+      "url": "https://www.zillow.com/homedetails/456154064_zpid/",
+      "verdict": null
+    },
+    "1941-w-augusta-1381286P": {
+      "address_raw": "1941 W Augusta Blvd Unit 1381286P, Chicago, IL 60622",
+      "all_in_monthly": 4050.0,
+      "available_date": null,
+      "baths": 2.0,
+      "beds": 2,
+      "ceiling_height_ft": null,
+      "concession": null,
+      "first_seen": "2026-08-22",
+      "heat_included": null,
+      "key": "1941-w-augusta-1381286P",
+      "key_type": "primary",
+      "last_seen": "2026-08-22",
+      "lat": 41.8994815,
+      "laundry": null,
+      "layout": null,
+      "lease_term_months": null,
+      "lng": -87.6763375,
+      "loft_signals": [],
+      "loft_type": null,
+      "neighborhood_claimed": null,
+      "net_effective": null,
+      "outdoor_space": null,
+      "outdoor_space_sqft": null,
+      "parking_cost": null,
+      "parking_type": null,
+      "price_history": [
+        {
+          "date": "2026-08-22",
+          "rent": 4050
+        }
+      ],
+      "rent_gross": 4050,
+      "sources": [
+        {
+          "source": "redfin",
+          "url": "https://www.redfin.com/homedetails/200035517_zpid/"
+        }
+      ],
+      "sqft": 990,
+      "status": "active",
+      "suspect_pricing": false,
+      "unit": "1381286P",
+      "unit_level": null,
+      "url": "https://www.redfin.com/homedetails/200035517_zpid/",
+      "verdict": null
+    },
     "1942-w-division-3F": {
       "address_raw": "1942 W Division St APT 3F, Chicago, IL",
       "all_in_monthly": 3000.0,
@@ -3413,15 +4447,29 @@
     "2032-w-division-202N": {
       "address_raw": "2032 W Division Street 202N, Chicago, IL 60622",
       "all_in_monthly": 3350.0,
+      "available_date": null,
+      "baths": 2.0,
       "beds": 2,
+      "ceiling_height_ft": null,
+      "concession": null,
       "first_seen": "2026-08-18",
+      "heat_included": null,
       "key": "2032-w-division-202N",
       "key_type": "primary",
-      "last_seen": "2026-08-21",
+      "last_seen": "2026-08-22",
       "lat": 41.9034947,
+      "laundry": null,
       "layout": null,
+      "lease_term_months": null,
       "lng": -87.678828,
+      "loft_signals": null,
       "loft_type": null,
+      "neighborhood_claimed": "Wicker Park",
+      "net_effective": null,
+      "outdoor_space": null,
+      "outdoor_space_sqft": null,
+      "parking_cost": null,
+      "parking_type": null,
       "price_history": [
         {
           "date": "2026-08-18",
@@ -3435,8 +4483,12 @@
           "url": "https://bestchicagoproperties.com/listings/listing/MRED/12732383/Chicago/2032-W-Division-Street-202N"
         }
       ],
+      "sqft": 1100,
       "status": "active",
+      "suspect_pricing": false,
       "unit": "202N",
+      "unit_level": null,
+      "url": "https://bestchicagoproperties.com/listings/listing/MRED/12732383/Chicago/2032-W-Division-Street-202N",
       "verdict": null
     },
     "2036-n-larrabee-8206": {
@@ -3690,21 +4742,34 @@
       "verdict": null
     },
     "2061-n-southport-308": {
-      "address_raw": "2061-2071 N. Southport Ave.",
+      "address_raw": "2061-2071 N. Southport Ave., Unit 308, Chicago, IL 60614",
       "all_in_monthly": 2280.0,
       "available_date": "2026-09-07",
       "baths": 1.0,
       "beds": 1,
+      "ceiling_height_ft": 12,
+      "concession": null,
       "first_seen": "2026-08-17",
+      "heat_included": null,
       "key": "2061-n-southport-308",
       "key_type": "primary",
-      "last_seen": "2026-08-17",
+      "last_seen": "2026-08-22",
       "lat": 41.9179324,
       "laundry": "in_unit",
       "layout": null,
+      "lease_term_months": null,
       "lng": -87.6629699,
+      "loft_signals": [
+        "exposed_brick",
+        "timber_beams",
+        "high_ceilings"
+      ],
       "loft_type": null,
+      "neighborhood_claimed": "Lincoln Park",
+      "net_effective": null,
       "outdoor_space": "shared",
+      "outdoor_space_sqft": null,
+      "parking_cost": null,
       "parking_type": "paid_lot",
       "price_history": [
         {
@@ -3721,25 +4786,41 @@
       ],
       "sqft": 545,
       "status": "active",
+      "suspect_pricing": false,
       "unit": "308",
+      "unit_level": null,
+      "url": "https://www.rentcafe.com/apartments/il/chicago/southport-lofts/default.aspx",
       "verdict": null
     },
     "2061-n-southport-410": {
-      "address_raw": "2061-2071 N. Southport Ave.",
+      "address_raw": "2061-2071 N. Southport Ave., Unit 410, Chicago, IL 60614",
       "all_in_monthly": 2305.0,
       "available_date": "2026-08-23",
       "baths": 1.0,
       "beds": 1,
+      "ceiling_height_ft": 12,
+      "concession": null,
       "first_seen": "2026-08-17",
+      "heat_included": null,
       "key": "2061-n-southport-410",
       "key_type": "primary",
-      "last_seen": "2026-08-17",
+      "last_seen": "2026-08-22",
       "lat": 41.9179324,
       "laundry": "in_unit",
       "layout": null,
+      "lease_term_months": null,
       "lng": -87.6629699,
+      "loft_signals": [
+        "exposed_brick",
+        "timber_beams",
+        "high_ceilings"
+      ],
       "loft_type": null,
+      "neighborhood_claimed": "Lincoln Park",
+      "net_effective": null,
       "outdoor_space": "shared",
+      "outdoor_space_sqft": null,
+      "parking_cost": null,
       "parking_type": "paid_lot",
       "price_history": [
         {
@@ -3756,7 +4837,10 @@
       ],
       "sqft": 545,
       "status": "active",
+      "suspect_pricing": false,
       "unit": "410",
+      "unit_level": null,
+      "url": "https://www.rentcafe.com/apartments/il/chicago/southport-lofts/default.aspx",
       "verdict": null
     },
     "2105-w-caton-302": {
@@ -4629,15 +5713,29 @@
     "2257-w-hirsch-1E": {
       "address_raw": "2257 W Hirsch Street 1E, Chicago, IL 60622",
       "all_in_monthly": 2725.0,
+      "available_date": null,
+      "baths": 1.0,
       "beds": 2,
+      "ceiling_height_ft": null,
+      "concession": null,
       "first_seen": "2026-08-18",
+      "heat_included": null,
       "key": "2257-w-hirsch-1E",
       "key_type": "primary",
-      "last_seen": "2026-08-21",
+      "last_seen": "2026-08-22",
       "lat": 41.9065906,
+      "laundry": null,
       "layout": null,
+      "lease_term_months": null,
       "lng": -87.6843398,
+      "loft_signals": null,
       "loft_type": null,
+      "neighborhood_claimed": "Wicker Park",
+      "net_effective": null,
+      "outdoor_space": null,
+      "outdoor_space_sqft": null,
+      "parking_cost": null,
+      "parking_type": null,
       "price_history": [
         {
           "date": "2026-08-18",
@@ -4651,8 +5749,12 @@
           "url": "https://bestchicagoproperties.com/listings/listing/MRED/12735456/Chicago/2257-W-Hirsch-Street-1E"
         }
       ],
+      "sqft": 1000,
       "status": "active",
+      "suspect_pricing": true,
       "unit": "1E",
+      "unit_level": null,
+      "url": "https://bestchicagoproperties.com/listings/listing/MRED/12735456/Chicago/2257-W-Hirsch-Street-1E",
       "verdict": null
     },
     "2300-n-commonwealth-2C": {
@@ -4844,17 +5946,29 @@
     "2342-w-north-401": {
       "address_raw": "2342 W North Avenue 401, Chicago, IL 60647",
       "all_in_monthly": 4000.0,
+      "available_date": null,
       "baths": 2.0,
       "beds": 3,
+      "ceiling_height_ft": null,
+      "concession": null,
       "first_seen": "2026-08-19",
+      "heat_included": null,
       "key": "2342-w-north-401",
       "key_type": "primary",
-      "last_seen": "2026-08-21",
+      "last_seen": "2026-08-22",
       "lat": 41.910543,
+      "laundry": null,
       "layout": null,
+      "lease_term_months": null,
       "lng": -87.6865398,
+      "loft_signals": null,
       "loft_type": null,
       "neighborhood_claimed": "Wicker Park",
+      "net_effective": null,
+      "outdoor_space": null,
+      "outdoor_space_sqft": null,
+      "parking_cost": null,
+      "parking_type": null,
       "price_history": [
         {
           "date": "2026-08-19",
@@ -4870,7 +5984,10 @@
       ],
       "sqft": 1367,
       "status": "active",
+      "suspect_pricing": false,
       "unit": "401",
+      "unit_level": null,
+      "url": "https://bestchicagoproperties.com/listings/listing/MRED/12698202/Chicago/2342-W-NORTH-Avenue-401",
       "verdict": null
     },
     "2345-n-lincoln-A10805": {
@@ -5034,16 +6151,26 @@
       "available_date": "2026-09-01",
       "baths": 1.0,
       "beds": 0,
+      "ceiling_height_ft": null,
+      "concession": null,
       "first_seen": "2026-08-13",
+      "heat_included": null,
       "key": "2412-w-north-4R",
       "key_type": "primary",
-      "last_seen": "2026-08-21",
+      "last_seen": "2026-08-22",
       "lat": 41.910589,
       "laundry": "in_unit",
       "layout": null,
+      "lease_term_months": null,
       "lng": -87.68788,
+      "loft_signals": null,
       "loft_type": null,
-      "neighborhood_claimed": "Bucktown/West Town",
+      "neighborhood_claimed": "Wicker Park",
+      "net_effective": null,
+      "outdoor_space": null,
+      "outdoor_space_sqft": null,
+      "parking_cost": null,
+      "parking_type": null,
       "price_history": [
         {
           "date": "2026-08-13",
@@ -5055,15 +6182,14 @@
         {
           "source": "web",
           "url": "https://bestchicagoproperties.com/listings/listing/MRED/12707769/Chicago/2412-W-North-Avenue-4R"
-        },
-        {
-          "source": "web",
-          "url": "https://landstarchicago.com/homes-for-sale-details/2412-W-NORTH-AVENUE-4R-CHICAGO-IL-60647/12707769/34/"
         }
       ],
       "sqft": 2000,
       "status": "active",
+      "suspect_pricing": false,
       "unit": "4R",
+      "unit_level": null,
+      "url": "https://bestchicagoproperties.com/listings/listing/MRED/12707769/Chicago/2412-W-North-Avenue-4R",
       "verdict": null
     },
     "2416-n-greenview-G": {
@@ -5097,6 +6223,53 @@
       "status": "active",
       "unit": "G",
       "unit_level": "garden",
+      "verdict": null
+    },
+    "2418-n-washtenaw-2br-3500": {
+      "address_raw": "2418 N Washtenaw Ave, Chicago, IL 60647",
+      "all_in_monthly": 3499.0,
+      "available_date": null,
+      "baths": 1.0,
+      "beds": 2,
+      "ceiling_height_ft": null,
+      "concession": null,
+      "first_seen": "2026-08-22",
+      "heat_included": null,
+      "key": "2418-n-washtenaw-2br-3500",
+      "key_type": "fallback",
+      "last_seen": "2026-08-22",
+      "lat": 41.9255086,
+      "laundry": null,
+      "layout": null,
+      "lease_term_months": null,
+      "lng": -87.6954845,
+      "loft_signals": [],
+      "loft_type": null,
+      "neighborhood_claimed": "Logan Square",
+      "net_effective": null,
+      "outdoor_space": null,
+      "outdoor_space_sqft": null,
+      "parking_cost": null,
+      "parking_type": null,
+      "price_history": [
+        {
+          "date": "2026-08-22",
+          "rent": 3499
+        }
+      ],
+      "rent_gross": 3499,
+      "sources": [
+        {
+          "source": "domu",
+          "url": "http://www.domu.com/chicago/north-side/logan-square/2418-n-washtenaw-ave-chicago-il-60647"
+        }
+      ],
+      "sqft": null,
+      "status": "active",
+      "suspect_pricing": false,
+      "unit": null,
+      "unit_level": null,
+      "url": "http://www.domu.com/chicago/north-side/logan-square/2418-n-washtenaw-ave-chicago-il-60647",
       "verdict": null
     },
     "2428-w-walton-3": {
@@ -5770,6 +6943,53 @@
       "unit": "D2",
       "verdict": null
     },
+    "3130-n-lake-shore-1br-1750": {
+      "address_raw": "3130 N Lake Shore Dr, Chicago, IL 60657",
+      "all_in_monthly": 1773.0,
+      "available_date": null,
+      "baths": 1.0,
+      "beds": 1,
+      "ceiling_height_ft": null,
+      "concession": null,
+      "first_seen": "2026-08-22",
+      "heat_included": null,
+      "key": "3130-n-lake-shore-1br-1750",
+      "key_type": "fallback",
+      "last_seen": "2026-08-22",
+      "lat": 41.9385932,
+      "laundry": null,
+      "layout": null,
+      "lease_term_months": null,
+      "lng": -87.6385485,
+      "loft_signals": [],
+      "loft_type": null,
+      "neighborhood_claimed": null,
+      "net_effective": null,
+      "outdoor_space": null,
+      "outdoor_space_sqft": null,
+      "parking_cost": null,
+      "parking_type": null,
+      "price_history": [
+        {
+          "date": "2026-08-22",
+          "rent": 1773
+        }
+      ],
+      "rent_gross": 1773,
+      "sources": [
+        {
+          "source": "redfin",
+          "url": "https://www.redfin.com/homedetails/13372201_zpid/"
+        }
+      ],
+      "sqft": 346,
+      "status": "active",
+      "suspect_pricing": true,
+      "unit": null,
+      "unit_level": null,
+      "url": "https://www.redfin.com/homedetails/13372201_zpid/",
+      "verdict": null
+    },
     "325-w-fullerton-101": {
       "address_raw": "325 W Fullerton Pkwy #101, Chicago, IL",
       "all_in_monthly": 2873.0,
@@ -6406,6 +7626,53 @@
       ],
       "status": "active",
       "unit": "20F",
+      "verdict": null
+    },
+    "617-w-drummond-2CE": {
+      "address_raw": "617 W Drummond Pl Unit 2CE, Chicago, IL 60614",
+      "all_in_monthly": 3300.0,
+      "available_date": null,
+      "baths": 1.0,
+      "beds": 2,
+      "ceiling_height_ft": null,
+      "concession": null,
+      "first_seen": "2026-08-22",
+      "heat_included": null,
+      "key": "617-w-drummond-2CE",
+      "key_type": "primary",
+      "last_seen": "2026-08-22",
+      "lat": 41.9302817,
+      "laundry": "in_unit",
+      "layout": null,
+      "lease_term_months": null,
+      "lng": -87.6444464,
+      "loft_signals": [],
+      "loft_type": null,
+      "neighborhood_claimed": null,
+      "net_effective": null,
+      "outdoor_space": null,
+      "outdoor_space_sqft": null,
+      "parking_cost": null,
+      "parking_type": null,
+      "price_history": [
+        {
+          "date": "2026-08-22",
+          "rent": 3300
+        }
+      ],
+      "rent_gross": 3300,
+      "sources": [
+        {
+          "source": "redfin",
+          "url": "https://www.redfin.com/homedetails/13369435_zpid/"
+        }
+      ],
+      "sqft": 819,
+      "status": "active",
+      "suspect_pricing": false,
+      "unit": "2CE",
+      "unit_level": null,
+      "url": "https://www.redfin.com/homedetails/13369435_zpid/",
       "verdict": null
     },
     "617-w-drummond-3BW": {
@@ -7198,7 +8465,7 @@
   },
   "meta": {
     "created": "2026-08-13",
-    "last_output_date": "2026-08-21",
-    "last_run": "2026-08-21"
+    "last_output_date": "2026-08-22",
+    "last_run": "2026-08-22"
   }
 }

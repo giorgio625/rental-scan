@@ -1,0 +1,22 @@
+{
+  "agent": "web-scout",
+  "run_date": "2026-08-22",
+  "file": "raw/web-2026-08-22.json",
+  "count": 28,
+  "sources_present": [
+    "rentcafe-southport-lofts",
+    "rentcafe-1880-milwaukee",
+    "bestchicagoproperties"
+  ],
+  "sources_zero": [
+    "wickerparklofts.com",
+    "wickerparkapartments.com",
+    "1879milwaukee.com",
+    "1800nmilwaukee.com",
+    "fultongrace.com",
+    "mo2properties.com",
+    "dreamtown.com",
+    "2300wabansia.com",
+    "rent1819.com"
+  ]
+}
